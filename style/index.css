@@ -36,7 +36,6 @@
 
 .workout-content {
   position: relative;
-  margin-top: -75px !important;
   padding: 0 18px 20px;
   z-index: 5;
 }
@@ -44,10 +43,12 @@
 .workout-content h3 {
   color: #fff;
   font-size: 30px;
+  margin-top: -75px !important;
   letter-spacing: -1px;
 }
 
 .workout-content .text-muted {
+  margin-bottom: 10px;
   color: rgba(255, 255, 255, 0.82) !important;
 }
 

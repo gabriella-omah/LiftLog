@@ -16,26 +16,30 @@ const welcomeText =
 if (welcomeText) {
 
     const profile =
-    JSON.parse(localStorage.getItem("profile"));
+        JSON.parse(localStorage.getItem("profile"));
 
-    if (profile && profile.name) {
+    const hasCompletedWorkout =
+        workouts.some(workout => workout.completed);
+
+    if (!hasCompletedWorkout) {
+
+        welcomeText.textContent = "Welcome to LiftLog";
+
+    } else if (profile && profile.name) {
 
         const firstName =
-    profile.name
-        .trim()
-        .split(" ")[0];
+            profile.name.trim().split(" ")[0];
 
-const formattedFirstName =
-    firstName.charAt(0).toUpperCase() +
-    firstName.slice(1).toLowerCase();
+        const formattedFirstName =
+            firstName.charAt(0).toUpperCase() +
+            firstName.slice(1).toLowerCase();
 
-welcomeText.textContent =
-    `Welcome back, ${formattedFirstName}`;
+        welcomeText.textContent =
+            `Welcome back, ${formattedFirstName}`;
 
     } else {
 
-        welcomeText.textContent =
-            "Welcome back";
+        welcomeText.textContent = "Welcome back";
 
     }
 
@@ -74,15 +78,52 @@ function displayTodayWorkout() {
 
     if (!workout) {
 
+    const hasWorkouts = workouts.length > 0;
+
+    if (!hasWorkouts) {
+
         todayWorkout.innerHTML = `
-            <p class="mb-0">
-                You're all caught up for today.
-            </p>
+
+            <div class="workout-hero">
+
+                <h3>No workouts yet</h3>
+
+                <p class="text-muted">
+                    Create your first workout to get started.
+                </p>
+
+            </div>
+
+            <a
+                href="workouts.html"
+                class="btn btn-success">
+
+                Create Workout
+
+            </a>
+
         `;
 
-        return;
+    } else {
+
+        todayWorkout.innerHTML = `
+
+            <div class="workout-hero">
+
+                <h3>Rest Day</h3>
+
+                <p class="text-muted">
+                    No workout scheduled for today.
+                </p>
+
+            </div>
+
+        `;
+
     }
 
+    return;
+}
     /*
      * If today's workout has already been completed,
      * show a completed message instead of
@@ -265,12 +306,16 @@ function displayTodayWorkout() {
         ${workoutInfo}
 
         <a
-            href="workout.html?id=${workout.id}"
-            class="btn btn-success">
+    href="workout.html?id=${workout.id}"
+    class="btn btn-success">
 
-            Continue Workout
+    ${
+        workout.startTime || workout.isPaused
+            ? "Continue Workout"
+            : "Start Workout"
+    }
 
-        </a>
+</a>
 
     `;
 

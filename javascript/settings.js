@@ -308,19 +308,64 @@ if(bodyWeight){
 updateProfileCard();
 
 calculateBMI();
+
 // ========================================
 // PREFERENCES
 // ========================================
 
-const darkModeSwitch =
-    document.getElementById("darkModeSwitch");
+// ========================================
+// BROWSER THEME COLOR
+// ========================================
 
-    const notificationsSwitch =
-    document.getElementById("notifications");
+function updateBrowserTheme() {
 
-if (notificationsSwitch) {
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
 
-    notificationsSwitch.disabled = true;
+    if (!themeMeta) return;
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        themeMeta.setAttribute("content", "#141821");
+
+    } else {
+
+        themeMeta.setAttribute("content", "#5D8CFF");
+
+    }
+
+}
+
+// ========================================
+// DARK MODE
+// ========================================
+
+const darkMode =
+    localStorage.getItem("darkMode") === "true";
+
+if (darkMode) {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+updateBrowserTheme();
+
+if (darkModeSwitch) {
+
+    darkModeSwitch.checked = darkMode;
+
+    darkModeSwitch.addEventListener("change", () => {
+
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "darkMode",
+            document.body.classList.contains("dark-mode")
+        );
+
+        updateBrowserTheme();
+
+    });
 
 }
 

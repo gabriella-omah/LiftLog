@@ -494,25 +494,24 @@ function displayWorkouts(list = workouts) {
         // The workout itself remains accessible.
         //
         const editButton =
-            futureWorkout
-                ? `
-                    <button
-                        class="btn btn-outline-secondary edit-btn"
-                        data-id="${workout.id}"
-                        disabled
-                        title="Future workouts cannot be edited yet">
-                        <i class="bi bi-lock-fill"></i>
-                        Edit Workout
-                    </button>
-                `
-                : `
-                    <button
-                        class="btn btn-outline-success edit-btn"
-                        data-id="${workout.id}">
-                        <i class="bi bi-pencil"></i>
-                        Edit Workout
-                    </button>
-                `;
+    workout.completed
+        ? `
+            <button
+                class="btn btn-outline-secondary"
+                disabled
+                title="Completed workouts can't be edited">
+                <i class="bi bi-lock-fill"></i>
+                Edit Workout
+            </button>
+        `
+        : `
+            <button
+                class="btn btn-outline-success edit-btn"
+                data-id="${workout.id}">
+                <i class="bi bi-pencil"></i>
+                Edit Workout
+            </button>
+        `;
         // ---------------------------------
         // DAY DISPLAY
         // ---------------------------------
@@ -825,10 +824,6 @@ function editWorkout(id) {
     }
     // Completed workouts cannot be edited.
     if (workout.completed === true) {
-        return;
-    }
-    // Future workouts cannot be edited.
-    if (isWorkoutFuture(workout)) {
         return;
     }
     currentWorkoutId =

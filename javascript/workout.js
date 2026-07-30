@@ -774,7 +774,7 @@ function lockCompletedWorkout() {
    FINISH / LOG WORKOUT
 ========================================================= */
 
-function finishWorkout() {
+function completeWorkout() {
     const workout = workouts.find(w => w.id === workoutId);
 
     if (!workout) {
@@ -794,6 +794,7 @@ function finishWorkout() {
         (today.getTime() - scheduledDate.getTime()) /
         (1000 * 60 * 60 * 24)
     );
+
     const isMissedWorkout = daysAgo > 0;
 
     if (daysAgo < 0) {
@@ -803,12 +804,6 @@ function finishWorkout() {
 
     if (daysAgo > 7) {
         showToast("You can only log workouts from the last 7 days.");
-        return;
-    }
-
-    // Today's workout must be started first
-    if (!isMissedWorkout && !workout.startTime && !isRunning && !isPaused) {
-        showToast("Start the workout before finishing it.");
         return;
     }
 
@@ -825,7 +820,6 @@ function finishWorkout() {
     isPaused = false;
     workout.durationSeconds = seconds;
 
-    // Calculate totals
     let completedExercises = 0;
     let totalVolume = 0;
     let totalCalories = 0;
@@ -842,6 +836,7 @@ function finishWorkout() {
         totalCalories += Math.round(sets * reps * 0.5);
 
         const currentPR = Number(personalRecordsData[exercise.name]) || 0;
+
         if (weight > currentPR && weight > 0) {
             personalRecordsData[exercise.name] = weight;
             prCount++;
@@ -850,19 +845,19 @@ function finishWorkout() {
 
     savePersonalRecords();
 
-    const timerCalories = Math.round((seconds / 60) * 8);
-    totalCalories += timerCalories;
+    totalCalories += Math.round((seconds / 60) * 8);
 
     const distance = (seconds / 60) * 0.06;
-    const pace = distance > 0 ? ((seconds / 60) / distance).toFixed(1) : 0;
+    const pace =
+        distance > 0
+            ? ((seconds / 60) / distance).toFixed(1)
+            : 0;
 
     const now = new Date();
 
     workout.completed = true;
-    workout.scheduledDate = scheduledDate.toISOString();
     workout.loggedDate = now.toISOString();
     workout.completedDate = now.toISOString();
-    workout.durationSeconds = seconds;
     workout.startTime = null;
     workout.isPaused = false;
 
@@ -880,16 +875,19 @@ function finishWorkout() {
         "caloriesBurned",
         (Number(localStorage.getItem("caloriesBurned")) || 0) + totalCalories
     );
+
     localStorage.setItem(
         "totalWeight",
         (Number(localStorage.getItem("totalWeight")) || 0) + totalVolume
     );
 
     const streakValue =
-        typeof streak !== "undefined" ? streak : 0;
+        typeof streak !== "undefined"
+            ? streak
+            : 0;
 
     workout.summary = {
-        duration: workoutTimer ? workoutTimer.textContent : "00:00:00",
+        duration: workoutTimer.textContent,
         completedExercises,
         totalExercises: workout.exercises.length,
         calories: totalCalories,
@@ -911,25 +909,29 @@ function finishWorkout() {
     updateFinishWorkoutButton();
     lockCompletedWorkout();
 
-    const summaryElement = document.getElementById("workoutSummary");
+    const summaryElement =
+        document.getElementById("workoutSummary");
+
     if (summaryElement) {
         summaryElement.innerHTML = `
-            <h3 class="text-success text-center mb-4">Workout Complete</h3>
+            <h3 class="text-success text-center mb-4">
+                Workout Complete
+            </h3>
 
             ${
                 isMissedWorkout
                     ? `
-                        <div class="alert alert-info text-center">
-                            <i class="bi bi-calendar-check"></i>
-                            Workout logged for
-                            <strong>${scheduledDate.toLocaleDateString()}</strong>
-                        </div>
+                    <div class="alert alert-info text-center">
+                        <i class="bi bi-calendar-check"></i>
+                        Workout logged for
+                        <strong>${scheduledDate.toLocaleDateString()}</strong>
+                    </div>
                     `
                     : `
-                        <div class="alert alert-success text-center">
-                            <i class="bi bi-check-circle"></i>
-                            Today's workout has been completed.
-                        </div>
+                    <div class="alert alert-success text-center">
+                        <i class="bi bi-check-circle"></i>
+                        Today's workout has been completed.
+                    </div>
                     `
             }
 
@@ -938,37 +940,74 @@ function finishWorkout() {
                     <h4>${completedExercises}/${workout.exercises.length}</h4>
                     <small>Exercises</small>
                 </div>
+
                 <div class="col-6">
-                    <h4>${workoutTimer ? workoutTimer.textContent : "00:00:00"}</h4>
+                    <h4>${workoutTimer.textContent}</h4>
                     <small>Duration</small>
                 </div>
+
                 <div class="col-6">
                     <h4>${totalCalories}</h4>
                     <small>Calories</small>
                 </div>
+
                 <div class="col-6">
                     <h4>${distance.toFixed(2)} km</h4>
                     <small>Distance</small>
                 </div>
+
                 <div class="col-6">
                     <h4>${totalVolume.toLocaleString()} ${weightUnit}</h4>
                     <small>Total Volume</small>
                 </div>
+
                 <div class="col-6">
                     <h4>${prCount}</h4>
                     <small>New PRs</small>
                 </div>
             </div>
+
             <hr>
+
             <p class="text-center mt-3">
                 Great work! Keep showing up consistently.
             </p>
         `;
 
-        bootstrap.Modal.getOrCreateInstance(
-            document.getElementById("finishWorkoutModal")
-        ).show();
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("finishWorkoutModal")
+            )
+            .show();
     }
+}
+function finishWorkout() {
+    const workout = workouts.find(w => w.id === workoutId);
+
+    if (!workout) {
+        showToast("Workout not found.");
+        return;
+    }
+
+    const daysAgo = getWorkoutDaysAgo(workout);
+    const isMissedWorkout = daysAgo > 0;
+
+    if (
+        !isMissedWorkout &&
+        !workout.startTime &&
+        !isRunning &&
+        !isPaused
+    ) {
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("timerWarningModal")
+            )
+            .show();
+
+        return;
+    }
+
+    completeWorkout();
 }
 
 /* =========================================================
@@ -1108,6 +1147,38 @@ if (saveWorkoutBtn) {
 window.addEventListener("beforeunload", () => {
     clearInterval(timerInterval);
 });
+
+const startTimerInstead =
+    document.getElementById("startTimerInstead");
+
+const finishWithoutTimer =
+    document.getElementById("finishWithoutTimer");
+
+if (startTimerInstead) {
+    startTimerInstead.addEventListener("click", () => {
+
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("timerWarningModal")
+            )
+            .hide();
+
+        startWorkout();
+    });
+}
+
+if (finishWithoutTimer) {
+    finishWithoutTimer.addEventListener("click", () => {
+
+        bootstrap.Modal
+            .getOrCreateInstance(
+                document.getElementById("timerWarningModal")
+            )
+            .hide();
+
+        completeWorkout();
+    });
+}
 
 /* =========================================================
    INITIALIZATION

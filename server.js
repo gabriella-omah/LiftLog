@@ -9,12 +9,12 @@ app.use(express.static(__dirname));
 
 // Home = landing page (first visit)
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "landing.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Other pages
-app.get("/index", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+app.get("/home", (req, res) => {
+    res.sendFile(path.join(__dirname, "home.html"));
 });
 
 app.get("/workouts", (req, res) => {
