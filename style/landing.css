@@ -142,8 +142,6 @@ body{
 
     display:flex;
     flex-direction:column;
-    justify-content:flex-end;
-
     padding:
         48px
         clamp(50px,6vw,110px)
@@ -926,7 +924,7 @@ body{
 
     .hero-content h1{
 
-        font-size:40px;
+        font-size:50px;
 
     }
 
@@ -938,9 +936,9 @@ body{
 
     .hero-btn{
 
-        height:60px;
-
-        font-size:16px;
+        height:68px;
+       
+        font-size:19px;
 
     }
 
