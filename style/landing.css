@@ -890,7 +890,7 @@ body{
 
         line-height:1.65;
 
-        margin-bottom:24px;
+        margin-bottom:8vh;
 
     }
 
@@ -910,7 +910,7 @@ body{
     }
 
     .hero-btn-icon i{
-        font-size: 35px;
+        font-size: 30px;
     }
 
 }
