@@ -878,7 +878,7 @@ body{
 
     .hero-content h1{
 
-        font-size:60px;
+        font-size:80px;
 
         letter-spacing:-2px;
 
@@ -896,21 +896,21 @@ body{
 
     .hero-btn{
 
-        height:70px;
+        height:80px;
 
-        font-size:23px;
+        font-size:26px;
 
     }
 
     .hero-btn-icon{
 
-        width:60px;
-        height:60px;
+        width:70px;
+        height:70px;
 
     }
 
     .hero-btn-icon i{
-        font-size: 30px;
+        font-size: 35px;
     }
 
 }
