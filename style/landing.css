@@ -854,7 +854,7 @@ body{
     .logo{
 
         font-size:22px;
-        margin-bottom: 20px;
+        margin-bottom: 15vh;
 
     }
 
@@ -879,7 +879,7 @@ body{
 
     .hero-content h1{
 
-        font-size:50px;
+        font-size:60px;
 
         letter-spacing:-2px;
 
@@ -899,7 +899,7 @@ body{
 
         height:70px;
 
-        font-size:22px;
+        font-size:26px;
 
     }
 
@@ -911,7 +911,7 @@ body{
     }
 
     .hero-btn-ico i{
-        font-size: 25px;
+        font-size: 35px;
     }
 
 }
