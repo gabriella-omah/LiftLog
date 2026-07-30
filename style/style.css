@@ -1,0 +1,1542 @@
+/* ==========================================================
+   LIFTLOG PREMIUM GLOBAL CSS
+   Clean • Expensive • Cohesive
+========================================================== */
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+  /* Colors */
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #F0F3F8;
+  --surface-3: #E7ECF5;
+
+  --text: #10131A;
+  --text-light: #5B6475;
+  --text-muted: #8E98A8;
+
+  --primary: #4F7CFF;
+  --secondary: #7A5AF8;
+  --primary-light: #EEF3FF;
+
+  --success: #18C37E;
+  --warning: #F7B84B;
+  --danger: #F04438;
+
+  --border: #E6EAF1;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+  --success-gradient: linear-gradient(135deg, #19D48C, #0DBE77);
+  --danger-gradient: linear-gradient(135deg, #FF6B6B, #E53935);
+  --warning-gradient: linear-gradient(135deg, #FFC857, #F5A623);
+
+  /* Radius */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-round: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 60px 120px rgba(0, 0, 0, 0.16);
+
+  /* Typography */
+  --display: 64px;
+  --h1: 42px;
+  --h2: 32px;
+  --h3: 26px;
+  --h4: 22px;
+  --body-lg: 18px;
+  --body: 16px;
+  --body-sm: 14px;
+  --caption: 12px;
+
+  /* Spacing */
+  --space-1: 10px;
+  --space-2: 20px;
+  --space-3: 30px;
+  --space-4: 40px;
+  --space-5: 50px;
+  --space-6: 60px;
+  --space-7: 70px;
+  --space-8: 80px;
+  --space-9: 90px;
+  --space-10: 100px;
+
+  /* Motion */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --liftx: translateX(-3px);
+  --lifty: translateY(-3px);
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+.dark-mode {
+  --bg: #090B10;
+  --surface: #141821;
+  --surface-2: #1B212C;
+  --surface-3: #232B37;
+
+  --text: #F5F7FA;
+  --text-light: #C0C8D4;
+  --text-muted: #8C97A7;
+
+  --primary: #6EA2FF;
+  --secondary: #9D86FF;
+  --primary-light: #1C315B;
+
+  --success: #2BE59D;
+  --warning: #FFC857;
+  --danger: #FF6B6B;
+
+  --border: #2A3240;
+
+  --glass: rgba(18, 22, 30, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(18, 22, 30, 0.72);
+}
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(93, 140, 255, 0.08), transparent 320px),
+    var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.3s, color 0.3s;
+  padding-top: 82px;
+}
+
+h1, h2, h3, h4, h5, .logo {
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+p {
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Smooth theme transitions */
+* {
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s;
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-gradient);
+  border-radius: var(--radius-round);
+}
+
+/* ==========================================================
+   LAYOUT
+========================================================== */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+section {
+  padding: var(--space-7) 0;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 22px 20px 120px;
+  overflow-x: hidden;
+}
+
+main {
+  padding-bottom: 110px;
+}
+
+/* ==========================================================
+   GLASS
+========================================================== */
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--glass-border);
+}
+
+/* ==========================================================
+   NAVBAR
+========================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.logo i {
+  font-size: 1.8rem;
+  color: var(--primary);
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.avatar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 12px 30px rgba(93, 140, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar:hover {
+  transform: scale(1.06);
+  box-shadow: 0 20px 40px rgba(93, 140, 255, 0.45);
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: var(--radius-xl);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #fff;
+  box-shadow: 0 16px 35px rgba(93, 140, 255, 0.35);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 25px 50px rgba(93, 140, 255, 0.45);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-2);
+}
+
+.btn-success {
+  background: var(--success-gradient);
+  color: #fff;
+}
+
+.btn-danger {
+  background: var(--danger-gradient);
+  color: #fff;
+}
+
+.btn-warning {
+  background: var(--warning-gradient);
+  color: #111;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px);
+}
+
+/* ==========================================================
+   TEXT HELPERS
+========================================================== */
+
+.text-primary { color: var(--primary); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger  { color: var(--danger); }
+.text-muted   { color: var(--text-muted); }
+.text-center  { text-align: center; }
+
+/* ==========================================================
+   BADGES
+========================================================== */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge-primary {
+  background: rgba(79, 124, 255, 0.12);
+  color: var(--primary);
+}
+
+.badge-success {
+  background: rgba(24, 195, 126, 0.12);
+  color: var(--success);
+}
+
+.badge-danger {
+  background: rgba(240, 68, 56, 0.12);
+  color: var(--danger);
+}
+
+/* ==========================================================
+   FLOATING BOTTOM NAV
+========================================================== */
+
+.bottom-nav {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(94%, 500px);
+  height: 74px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 26px;
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
+}
+
+.bottom-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.bottom-nav a i {
+  font-size: 22px;
+}
+
+.bottom-nav a:hover {
+  color: var(--primary);
+  transform: translateY(-3px);
+}
+
+.bottom-nav a.active {
+  color: var(--primary);
+}
+
+.bottom-nav a.active i {
+  transform: scale(1.15);
+}
+
+/* ==========================================================
+   FORMS (GLOBAL)
+========================================================== */
+
+input,
+textarea,
+select,
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+textarea,
+textarea.form-control {
+  height: auto;
+  min-height: 120px;
+  padding: 16px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.12);
+}
+
+label {
+  display: block;
+  margin: 18px 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.input-group-text {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 16px;
+}
+
+/* ==========================================================
+   DIVIDERS
+========================================================== */
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.45s ease both;
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* ==========================================================
+   DASHBOARD CARDS
+========================================================== */
+
+.dashboard-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.dashboard-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.55),
+    transparent
+  );
+}
+
+.dark-mode .dashboard-card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+}
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.hero-section {
+  position: relative;
+  padding: 28px 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(93, 140, 255, 0.08),
+      rgba(122, 90, 248, 0.05)
+    ),
+    var(--surface);
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -120px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(93, 140, 255, 0.20), transparent 70%);
+  filter: blur(25px);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content .badge {
+  margin-bottom: 18px;
+}
+
+.hero-content h1 {
+  font-size: clamp(34px, 9vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.hero-content p {
+  max-width: 280px;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   SECTION HEADER
+========================================================== */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-title h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.section-title p {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================
+   ICON CIRCLE
+========================================================== */
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(93, 140, 255, 0.12),
+    rgba(122, 90, 248, 0.08)
+  );
+  color: var(--primary);
+  font-size: 20px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 24px rgba(93, 140, 255, 0.18);
+}
+
+.icon-circle:hover {
+  transform: translateY(-2px);
+}
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.search-card {
+  margin-bottom: 24px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box i {
+  position: absolute;
+  left: 20px;
+  font-size: 18px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  height: 58px;
+  padding: 0 22px 0 54px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 15px;
+}
+
+.search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.search-box input:focus {
+  outline: none;
+  background: var(--surface);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.12);
+}
+
+/* ==========================================================
+   PREMIUM MODALS
+========================================================== */
+
+/* ==========================================================
+   PREMIUM MODALS
+========================================================== */
+
+.modal-content,
+.premium-modal{
+    display:flex;
+    flex-direction:column;
+    max-height:90vh;
+    border:none;
+    border-radius:30px;
+    overflow:hidden;
+    background:var(--surface);
+    color:var(--text);
+    box-shadow:var(--shadow-lg);
+}
+
+/* Scrollable body */
+.modal-body{
+    overflow-y:auto;
+    flex:1;
+    padding:24px;
+}
+
+/* Sticky Header */
+.modal-header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    padding:22px 24px;
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+}
+
+/* Sticky Footer (optional but recommended) */
+.modal-footer{
+    position:sticky;
+    bottom:0;
+    z-index:100;
+    background:var(--surface);
+    border-top:1px solid var(--border);
+    padding:20px 24px;
+}
+
+/* Dark mode */
+.dark-mode .modal-header,
+.dark-mode .modal-footer{
+    background:var(--surface);
+    box-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.modal-body {
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.modal-body strong,
+.modal-body h5 {
+  color: var(--text);
+}
+
+.modal-body h5 {
+  margin: 22px 0 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.modal-body li {
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* Modal specific buttons */
+.modal .btn-secondary {
+  min-width: 110px;
+  height: 50px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 16px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.modal .btn-secondary:hover {
+  background: var(--border);
+}
+
+.modal .premium-primary-btn {
+  width: auto;
+  min-width: 120px;
+  margin: 0;
+  height: 50px;
+  padding: 0 22px;
+}
+
+.modal .danger-button {
+  width: auto;
+  min-width: 135px;
+  margin: 0;
+  height: 50px;
+  padding: 0 22px;
+}
+
+/* Close button */
+.btn-close {
+  opacity: 0.55;
+  transition: 0.25s ease;
+}
+
+.btn-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* Exercise modal image */
+.exercise-modal-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.exercise-modal-image img {
+
+  object-fit: contain;
+}
+
+/* ==========================================================
+   TOAST
+========================================================== */
+
+.toast {
+  border: none;
+  overflow: hidden;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+}
+
+.toast-body {
+  padding: 16px 18px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.toast.text-bg-success {
+  background: linear-gradient(135deg, #34C759, #28A745) !important;
+}
+
+/* ==========================================================
+   DARK MODE OVERRIDES
+========================================================== */
+
+.dark-mode .premium-modal,
+.dark-mode .modal-content {
+  background: var(--surface);
+}
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: var(--border);
+}
+
+.dark-mode .form-control,
+.dark-mode .form-select {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.dark-mode .input-group-text {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.dark-mode .btn-close {
+  filter: invert(1);
+}
+
+/* ==========================================================
+   SECTIONS
+========================================================== */
+
+.hero-section,
+.workout-section,
+.planner-section,
+.streak-section,
+.focus-section,
+.actions-section {
+  width: 100%;
+}
+
+/*==========================================================
+   CATEGORY & MUSCLE BADGE SYSTEM
+   Light + Dark Mode
+==========================================================*/
+
+/* Shared base styles */
+.workout-category,
+.muscle-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+}
+
+.muscle-badge {
+  margin-top: 14px;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/*==========================================================
+   CATEGORY COLORS (Light)
+==========================================================*/
+
+.category-chest,
+.muscle-badge.chest {
+  background: #FDECEC;
+  color: #DC2626;
+}
+
+.category-back,
+.muscle-badge.back {
+  background: #E8F1FF;
+  color: #2563EB;
+}
+
+.category-shoulders,
+.muscle-badge.shoulders {
+  background: #FFF3E6;
+  color: #EA580C;
+}
+
+.category-biceps,
+.category-triceps,
+.category-arms,
+.muscle-badge.biceps,
+.muscle-badge.triceps,
+.muscle-badge.arms {
+  background: #F2ECFF;
+  color: #7C3AED;
+}
+
+.category-core,
+.muscle-badge.core {
+  background: #FFF8DA;
+  color: #CA8A04;
+}
+
+.category-glutes,
+.muscle-badge.glutes {
+  background: #FFEAF3;
+  color: #DB2777;
+}
+
+.category-quadriceps,
+.category-hamstrings,
+.category-calves,
+.category-legs,
+.muscle-badge.quadriceps,
+.muscle-badge.hamstrings,
+.muscle-badge.calves,
+.muscle-badge.legs {
+  background: #E9FAEF;
+  color: #15803D;
+}
+
+.category-push {
+  background: #E8F1FF;
+  color: #2563EB;
+}
+
+.category-pull {
+  background: #F2ECFF;
+  color: #7C3AED;
+}
+
+.category-cardio,
+.muscle-badge.cardio {
+  background: #FFF3E6;          /* Orange / Amber – recommended */
+  color: #EA580C;
+}
+
+.category-full-body,
+.muscle-badge.full-body {
+  background: #E0F7FA;
+  color: #0E7490;
+}
+
+.category-upper-body,
+.muscle-badge.upper-body {
+  background: #EEF2FF;
+  color: #4F46E5;
+}
+
+.category-lower-body,
+.muscle-badge.lower-body {
+  background: #E9FAEF;
+  color: #15803D;
+}
+
+.category-power,
+.muscle-badge.power {
+  background: #FEF3C7;
+  color: #D97706;
+}
+
+.category-hiit,
+.muscle-badge.hiit {
+  background: #FEE2E2;
+  color: #DC2626;
+}
+
+.category-rest,
+.muscle-badge.rest {
+  background: #F3F4F6;
+  color: #6B7280;
+}
+
+/*==========================================================
+   DARK MODE
+==========================================================*/
+
+.dark-mode .category-chest,
+.dark-mode .muscle-badge.chest {
+  background: rgba(220, 38, 38, 0.15);
+  color: #F87171;
+}
+
+.dark-mode .category-back,
+.dark-mode .muscle-badge.back {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60A5FA;
+}
+
+.dark-mode .category-shoulders,
+.dark-mode .muscle-badge.shoulders {
+  background: rgba(234, 88, 12, 0.15);
+  color: #FB923C;
+}
+
+.dark-mode .category-biceps,
+.dark-mode .category-triceps,
+.dark-mode .category-arms,
+.dark-mode .muscle-badge.biceps,
+.dark-mode .muscle-badge.triceps,
+.dark-mode .muscle-badge.arms {
+  background: rgba(124, 58, 237, 0.15);
+  color: #A78BFA;
+}
+
+.dark-mode .category-core,
+.dark-mode .muscle-badge.core {
+  background: rgba(202, 138, 4, 0.15);
+  color: #FACC15;
+}
+
+.dark-mode .category-glutes,
+.dark-mode .muscle-badge.glutes {
+  background: rgba(219, 39, 119, 0.15);
+  color: #F472B6;
+}
+
+.dark-mode .category-quadriceps,
+.dark-mode .category-hamstrings,
+.dark-mode .category-calves,
+.dark-mode .category-legs,
+.dark-mode .muscle-badge.quadriceps,
+.dark-mode .muscle-badge.hamstrings,
+.dark-mode .muscle-badge.calves,
+.dark-mode .muscle-badge.legs {
+  background: rgba(21, 128, 61, 0.15);
+  color: #4ADE80;
+}
+
+.dark-mode .category-push {
+  background: rgba(59, 130, 246, 0.16);
+  color: #9CC4FF;
+}
+
+.dark-mode .category-pull {
+  background: rgba(124, 58, 237, 0.16);
+  color: #D2BEFF;
+}
+
+.dark-mode .category-cardio,
+.dark-mode .muscle-badge.cardio {
+  background: rgba(234, 88, 12, 0.16);
+  color: #FB923C;
+}
+
+.dark-mode .category-full-body,
+.dark-mode .muscle-badge.full-body {
+  background: rgba(14, 165, 233, 0.16);
+  color: #7DD3FC;
+}
+
+.dark-mode .category-upper-body,
+.dark-mode .muscle-badge.upper-body {
+  background: rgba(99, 102, 241, 0.16);
+  color: #C7D2FE;
+}
+
+.dark-mode .category-lower-body,
+.dark-mode .muscle-badge.lower-body {
+  background: rgba(34, 197, 94, 0.16);
+  color: #86EFAC;
+}
+
+.dark-mode .category-power,
+.dark-mode .muscle-badge.power {
+  background: rgba(217, 119, 6, 0.16);
+  color: #FBBF24;
+}
+
+.dark-mode .category-hiit,
+.dark-mode .muscle-badge.hiit {
+  background: rgba(220, 38, 38, 0.16);
+  color: #F87171;
+}
+
+.dark-mode .category-rest,
+.dark-mode .muscle-badge.rest {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9CA3AF;
+}
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-btn{
+
+    display: none;
+
+    width:44px;
+    height:44px;
+
+    border:none;
+    border-radius:14px;
+
+    align-items:center;
+    justify-content:center;
+    margin-right: 14px;
+    background:rgba(255,255,255,.08);
+
+    color:var(--text-color);
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.back-btn i{
+
+    font-size:1.15rem;
+
+}
+
+.back-btn:hover{
+
+    background:rgba(255,255,255,.14);
+
+    transform:translateX(-3px);
+
+}
+
+.back-btn:active{
+
+    transform:scale(.95);
+
+}
+
+body.dark-mode .back-btn{
+
+    background:rgba(255,255,255,.05);
+
+}
+/* ==========================================================
+   MOBILE – SHARP & TIGHT
+   (max-width: 768px)
+========================================================== */
+
+@media (max-width: 768px) {
+
+  /* ---------- NAVBAR (shorter) ---------- */
+  .navbar {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  body {
+    padding-top: 64px; /* match new navbar height */
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    gap: 8px;
+  }
+
+  .logo i {
+    font-size: 1.5rem;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  /* ---------- MAIN CONTENT (less air) ---------- */
+  .main-content {
+    gap: 18px;
+    padding: 14px 14px 110px;
+  }
+
+  section {
+    padding: 28px 0;
+  }
+
+  .container {
+    padding-inline: 14px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero-section {
+    padding: 20px 16px;
+    border-radius: 22px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(23px, 7vw, 30px);
+    letter-spacing: -1.2px;
+    margin-bottom: 8px;
+  }
+
+  .hero-content p {
+    font-size: 14.5px;
+    max-width: 100%;
+    line-height: 1.55;
+  }
+
+  .hero-content .badge {
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-header {
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    gap: 10px;
+  }
+
+  .section-title h2 {
+    font-size: 17px;
+  }
+
+  .section-title p {
+    font-size: 12px;
+  }
+
+  .icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  /* ---------- DASHBOARD CARDS ---------- */
+  .dashboard-card {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  /* ---------- SEARCH ---------- */
+  .search-box input {
+    height: 50px;
+    padding: 0 18px 0 48px;
+    border-radius: 14px;
+    font-size: 14.5px;
+  }
+
+  .search-box i {
+    left: 16px;
+    font-size: 16px;
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 16px;
+  }
+
+  /* ---------- BOTTOM NAV ---------- */
+  .bottom-nav {
+    height: 64px;
+    bottom: 12px;
+    border-radius: 20px;
+    width: min(96%, 480px);
+  }
+
+  .bottom-nav a {
+    font-size: 11px;
+    gap: 3px;
+  }
+
+  .bottom-nav a i {
+    font-size: 20px;
+  }
+
+  /* ---------- FORMS ---------- */
+  input,
+  textarea,
+  select,
+  .form-control,
+  .form-select {
+    height: 48px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 14.5px;
+  }
+
+  textarea,
+  textarea.form-control {
+    min-height: 100px;
+  }
+
+  label {
+    margin: 14px 0 6px;
+    font-size: 13px;
+  }
+
+  /* ---------- MODALS ---------- */
+  .modal-content,
+  .premium-modal {
+    border-radius: 22px;
+    margin: 10px;
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 16px 18px;
+  }
+
+  .modal-footer {
+    padding: 14px 18px;
+    gap: 10px;
+  }
+
+  .modal .btn-secondary,
+  .modal .premium-primary-btn,
+  .modal .danger-button {
+    height: 46px;
+    min-width: 100px;
+    padding: 0 16px;
+    border-radius: 14px;
+  }
+
+
+
+  /* ---------- BADGES ---------- */
+  .badge {
+    padding: 6px 11px;
+    font-size: 12px;
+  }
+
+  .workout-category,
+  .muscle-badge {
+    padding: 5px 11px;
+    font-size: 11.5px;
+  }
+
+  /* ---------- GENERAL TYPOGRAPHY TIGHTENING ---------- */
+  h1 { font-size: 1.75rem; max-width: 80vh; }
+  h2 { font-size: 1.35rem; }
+  h3 { font-size: 1.15rem; }
+  h4 { font-size: 1.05rem; }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
+/* Extra tight for very small phones */
+@media (max-width: 400px) {
+  .main-content {
+    padding: 25px 12px 105px;
+    gap: 14px;
+  }
+
+  .hero-section {
+    padding: 16px 14px;
+  }
+
+  .dashboard-card {
+    padding: 14px;
+  }
+
+  .section-title h2 {
+    font-size: 16px;
+  }
+}

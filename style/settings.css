@@ -1,0 +1,892 @@
+/*==========================================================
+   LIFTLOG SETTINGS PAGE CSS
+   Premium • Clean • Cohesive
+==========================================================*/
+
+/*==========================================================
+   ROOT VARIABLES
+==========================================================*/
+
+:root {
+  /* Backgrounds */
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #F7F9FC;
+  --surface-3: #EEF2F8;
+
+  /* Text */
+  --text: #10131A;
+  --text-light: #5B6475;
+  --text-muted: #9099A8;
+
+  /* Brand */
+  --primary: #5D8CFF;
+  --secondary: #7A5AF8;
+
+  --success: #34C759;
+  --warning: #F5B942;
+  --danger: #EF4444;
+
+  /* Borders */
+  --border: #E8ECF3;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Radius */
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+
+  /* Shadows */
+  --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
+
+  /* Gradient */
+  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+
+  /* Motion */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*==========================================================
+   DARK MODE
+==========================================================*/
+
+.dark-mode {
+  --bg: #090B10;
+  --surface: #141821;
+  --surface-2: #1B212C;
+  --surface-3: #232B37;
+
+  --text: #F5F7FA;
+  --text-light: #C3CBD8;
+  --text-muted: #8892A3;
+
+  --primary: #79A7FF;
+  --secondary: #9C84FF;
+
+  --success: #2BE59D;
+  --warning: #FFC857;
+  --danger: #FF6B6B;
+
+  --border: #2B3340;
+
+  --glass: rgba(18, 22, 30, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+/*==========================================================
+   HEADER
+==========================================================*/
+
+.setting-header {
+  margin: 20px 0 0;
+}
+
+.setting-header h1 {
+  font-size: 35px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+/*==========================================================
+   PROFILE SECTION
+==========================================================*/
+
+.form-check-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.settings-profile-section {
+  position: relative;
+  padding: 28px 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(93, 140, 255, 0.08),
+      rgba(122, 90, 248, 0.05)
+    ),
+    var(--surface);
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.settings-profile-section::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -120px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(93, 140, 255, 0.2), transparent 70%);
+  filter: blur(25px);
+  pointer-events: none;
+}
+
+.profile-layout {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: avatarFloat 4s ease-in-out infinite;
+}
+
+.premium-avatar {
+  background: var(--primary-gradient);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  box-shadow: 0 15px 30px rgba(93, 140, 255, 0.25);
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.profile-info p {
+  margin: 5px 0 0;
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(93, 140, 255, 0.1);
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.profile-badge i {
+  font-size: 17px;
+}
+
+/*==========================================================
+   SETTINGS CONTAINER
+==========================================================*/
+
+.settings-container {
+  padding: 8px;
+}
+
+/*==========================================================
+   SETTINGS ROW
+==========================================================*/
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 0 10px;
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.last-setting-row {
+  border-bottom: none !important;
+}
+
+.settings-row-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+
+.settings-row-left > div:last-child {
+  flex: 1;
+}
+
+.settings-row-left h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.settings-row-left p {
+  margin-top: 4px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.settings-arrow {
+  font-size: 18px;
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+}
+
+.settings-row:hover .settings-arrow {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+/*==========================================================
+   PROFILE FORM
+==========================================================*/
+
+.premium-form {
+  margin: 20px 0 26px;
+  padding: 28px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/*==========================================================
+   INPUTS
+==========================================================*/
+
+.premium-input {
+  width: 100%;
+  height: 56px;
+  padding: 0 18px;
+  border-radius: 16px !important;
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  font-size: 15px;
+  transition: 0.25s ease;
+  box-shadow: none !important;
+}
+
+textarea.premium-input {
+  height: 130px;
+  padding: 16px 18px;
+  resize: none;
+}
+
+.premium-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.premium-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.12) !important;
+  background: var(--surface) !important;
+}
+
+.form-select.premium-input {
+  cursor: pointer;
+  background-position: right 18px center;
+}
+
+/*==========================================================
+   BMI / METRIC DISPLAY
+==========================================================*/
+
+.metric-display {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.metric-display i {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(93, 140, 255, 0.1);
+  color: var(--primary);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.metric-display input {
+  flex: 1;
+}
+
+/*==========================================================
+   PRIMARY BUTTON
+==========================================================*/
+
+.premium-primary-btn {
+  width: 100%;
+  height: 56px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 16px 34px rgba(93, 140, 255, 0.22);
+}
+
+.premium-primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 44px rgba(93, 140, 255, 0.28);
+}
+
+.premium-primary-btn:active {
+  transform: scale(0.98);
+}
+
+.premium-primary-btn i {
+  font-size: 17px;
+}
+
+/*==========================================================
+   iOS-STYLE SWITCH
+==========================================================*/
+
+.premium-switch {
+  position: relative;
+  width: 54px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.premium-switch input {
+  display: none;
+}
+
+.premium-switch span {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #D1D5DB;
+  cursor: pointer;
+  transition: 0.28s ease;
+}
+
+.premium-switch span::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  left: 3px;
+  top: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  transition: 0.28s ease;
+}
+
+.premium-switch input:checked + span {
+  background: #34C759;
+}
+
+.premium-switch input:checked + span::before {
+  transform: translateX(22px);
+}
+
+.premium-switch:active span::before {
+  width: 30px;
+}
+
+/*==========================================================
+   WEIGHT UNIT SECTION
+==========================================================*/
+
+#weightUnitCollapse .accordion-body {
+  padding: 18px 0 24px;
+}
+
+#weightUnit {
+  width: 100%;
+}
+
+/*==========================================================
+   FAQ SECTION
+==========================================================*/
+
+.faq-container {
+  padding: 24px 0;
+}
+
+.faq-item {
+  padding: 22px;
+  margin-bottom: 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  transition: 0.3s ease;
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.faq-item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(93, 140, 255, 0.25);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+}
+
+.faq-item h4 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/*==========================================================
+   DANGER ZONE
+==========================================================*/
+
+.danger-container {
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.danger-row {
+  transition: 0.3s ease;
+}
+
+.danger-row:hover {
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.danger-row .settings-row-left h3 {
+  color: #EF4444;
+}
+
+.danger-icon {
+  background: rgba(239, 68, 68, 0.12) !important;
+  color: #EF4444 !important;
+}
+
+.danger-row .settings-arrow {
+  color: #EF4444;
+}
+
+.danger-text {
+  color: #EF4444 !important;
+}
+
+/*==========================================================
+   DANGER BUTTON
+==========================================================*/
+
+.danger-button {
+  width: 100%;
+  height: 54px;
+  border: none;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #FF5A5F, #E53935);
+  transition: 0.3s ease;
+  box-shadow: 0 16px 34px rgba(239, 68, 68, 0.22);
+}
+
+.danger-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 46px rgba(239, 68, 68, 0.28);
+}
+
+.danger-button:active {
+  transform: scale(0.98);
+}
+
+/*==========================================================
+   ACCORDION
+==========================================================*/
+
+.settings-collapse-trigger {
+  user-select: none;
+}
+
+.settings-collapse-trigger[aria-expanded="true"] .settings-arrow,
+.settings-row[aria-expanded="true"] .settings-arrow {
+  transform: rotate(90deg);
+  color: var(--primary);
+}
+
+.accordion-collapse {
+  transition: height 0.35s ease;
+}
+
+/*==========================================================
+   GLASS PANEL
+==========================================================*/
+
+.glass-panel {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+/*==========================================================
+   ANIMATIONS
+==========================================================*/
+
+@keyframes settingsFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes avatarFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/*==========================================================
+   DARK MODE OVERRIDES
+==========================================================*/
+
+.dark-mode .premium-form {
+  background: var(--surface-2);
+}
+
+.dark-mode .premium-input {
+  background: #0F172A !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.dark-mode .premium-input:focus {
+  border-color: var(--primary) !important;
+}
+
+.dark-mode .premium-switch span {
+  background: #3A4353;
+}
+
+.dark-mode .premium-switch input:checked + span {
+  background: #34C759;
+}
+
+.dark-mode .metric-display i {
+  background: rgba(93, 140, 255, 0.18);
+}
+
+.dark-mode .faq-item {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.dark-mode .modal-content {
+  background: #141821;
+}
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .btn-secondary {
+  background: #232B37;
+}
+
+.dark-mode .btn-secondary:hover {
+  background: #2C3645;
+}
+
+.dark-mode .toast {
+  background: #141821;
+}
+
+.dark-mode .btn-close {
+  filter: invert(1);
+}
+
+/*==========================================================
+   ACCESSIBILITY & POLISH
+==========================================================*/
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.18);
+}
+
+button {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*==========================================================
+   MOBILE – SHARP & TIGHT
+==========================================================*/
+
+@media (max-width: 768px) {
+
+  /* Header */
+  .setting-header {
+    margin: 12px 0 0;
+  }
+
+  .setting-header h1 {
+    font-size: 26px;
+    letter-spacing: -0.6px;
+  }
+
+  /* Profile card */
+  .settings-profile-section {
+    padding: 18px 16px;
+    border-radius: 22px;
+  }
+
+  .profile-layout {
+    gap: 14px;
+  }
+
+  .profile-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .premium-avatar {
+    font-size: 22px;
+  }
+
+  .profile-info h2 {
+    font-size: 17px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+    margin-top: 3px;
+  }
+
+  .profile-badge {
+    margin-top: 14px;
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .profile-badge i {
+    font-size: 15px;
+  }
+
+  /* Settings rows denser */
+  .settings-container {
+    padding: 4px;
+  }
+
+  .settings-row {
+    padding: 16px 0 8px;
+    gap: 12px;
+  }
+
+  .settings-row-left {
+    gap: 12px;
+  }
+
+  .settings-row-left h3 {
+    font-size: 15.5px;
+  }
+
+  .settings-row-left p {
+    font-size: 13px;
+    margin-top: 2px;
+    line-height: 1.45;
+  }
+
+  .settings-arrow {
+    font-size: 16px;
+  }
+
+  /* Form */
+  .premium-form {
+    margin: 14px 0 18px;
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+
+  .form-label {
+    margin-bottom: 7px;
+    font-size: 13px;
+  }
+
+  .form-grid {
+    gap: 12px;
+  }
+
+  .premium-input {
+    height: 48px;
+    padding: 0 14px;
+    border-radius: 14px !important;
+    font-size: 14.5px;
+  }
+
+  textarea.premium-input {
+    height: 110px;
+    padding: 12px 14px;
+  }
+
+  /* Metric */
+  .metric-display {
+    gap: 10px;
+  }
+
+  .metric-display i {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  /* Buttons */
+  .premium-primary-btn {
+    height: 50px;
+    border-radius: 16px;
+    font-size: 14.5px;
+    margin-top: 12px;
+  }
+
+  .danger-button {
+    height: 48px;
+    border-radius: 16px;
+    font-size: 14.5px;
+  }
+
+  /* Switch slightly smaller */
+  .premium-switch {
+    width: 50px;
+    height: 30px;
+  }
+
+  .premium-switch span::before {
+    width: 24px;
+    height: 24px;
+  }
+
+  .premium-switch input:checked + span::before {
+    transform: translateX(20px);
+  }
+
+  /* FAQ denser */
+  .faq-container {
+    padding: 16px 0;
+  }
+
+  .faq-item {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+  }
+
+  .faq-item h4 {
+    margin-bottom: 8px;
+    font-size: 15px;
+  }
+
+  .faq-item p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* Weight unit */
+  #weightUnitCollapse .accordion-body {
+    padding: 12px 0 16px;
+  }
+}
+
+/* Extra small */
+@media (max-width: 400px) {
+  .setting-header h1 {
+    font-size: 24px;
+  }
+
+  .settings-profile-section {
+    padding: 16px 14px;
+  }
+
+  .premium-form {
+    padding: 14px;
+  }
+
+  .settings-row-left h3 {
+    font-size: 15px;
+  }
+}

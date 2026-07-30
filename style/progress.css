@@ -1,0 +1,1330 @@
+/*==========================================================
+   LIFTLOG PROGRESS PAGE CSS
+   Premium • Clean • Cohesive
+   (includes enhanced Workout Calendar)
+==========================================================*/
+
+/*==========================================================
+   ROOT VARIABLES
+==========================================================*/
+
+:root {
+  /* Backgrounds */
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #F7F9FC;
+  --surface-3: #EEF2F8;
+  --card: #FFFFFF;
+
+  /* Text */
+  --text: #10131A;
+  --text-light: #5B6475;
+  --text-muted: #9099A8;
+
+  /* Brand */
+  --primary: #5D8CFF;
+  --secondary: #7A5AF8;
+
+  --success: #34C759;
+  --warning: #F5B942;
+  --danger: #EF4444;
+
+  /* Borders */
+  --border: #E8ECF3;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Radius */
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+
+  /* Shadows */
+  --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
+
+  /* Gradient */
+  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+
+  /* Motion */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*==========================================================
+   DARK MODE
+==========================================================*/
+
+.dark-mode {
+  --bg: #090B10;
+  --surface: #141821;
+  --surface-2: #1B212C;
+  --surface-3: #232B37;
+  --card: #141821;
+
+  --text: #F5F7FA;
+  --text-light: #C3CBD8;
+  --text-muted: #8892A3;
+
+  --primary: #79A7FF;
+  --secondary: #9C84FF;
+
+  --success: #2BE59D;
+  --warning: #FFC857;
+  --danger: #FF6B6B;
+
+  --border: #2B3340;
+
+  --glass: rgba(18, 22, 30, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+/*==========================================================
+   HERO SECTION
+==========================================================*/
+
+.progress-hero {
+  display: flex;
+  align-items: center;
+  min-height: 220px;
+}
+
+.progress-hero .hero-content {
+  max-width: 650px;
+}
+
+.progress-hero p {
+  max-width: 540px;
+}
+
+/*==========================================================
+   WORKOUT STATISTICS
+==========================================================*/
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/*==========================================================
+   STAT CARD
+==========================================================*/
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px;
+  transition: var(--transition);
+  animation: progressFade 0.35s ease both;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(59, 130, 246, 0.08),
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  font-size: 24px;
+}
+
+.stat-card h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.stat-card h2 {
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/*==========================================================
+   STAT ICON COLORS
+==========================================================*/
+
+.stat-icon.green {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+}
+
+.stat-icon.blue {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+}
+
+.stat-icon.orange {
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+}
+
+.stat-icon.purple {
+  background: rgba(168, 85, 247, 0.12);
+  color: #a855f7;
+}
+
+/*==========================================================
+   PERFORMANCE SUMMARY / RINGS
+==========================================================*/
+
+.summary-rings {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.summary-ring-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.summary-ring-card:last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.summary-ring-card p {
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/*==========================================================
+   RINGS
+==========================================================*/
+
+.ring {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.ring-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.ring-inner h3 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ring-inner span {
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.ring-orange {
+  background: conic-gradient(#f97316, #fdba74, #e5e7eb);
+}
+
+.ring-blue {
+  background: conic-gradient(#3b82f6, #93c5fd, #e5e7eb);
+}
+
+.ring-green {
+  background: conic-gradient(#22c55e, #86efac, #e5e7eb);
+}
+
+/*==========================================================
+   TRAINING TIME CARD
+==========================================================*/
+
+.training-time-card {
+  margin-top: 30px;
+  padding: 26px;
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  text-align: center;
+  transition: var(--transition);
+  animation: progressFade 0.35s ease both;
+}
+
+.training-time-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.1);
+}
+
+.training-time-card h3 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.training-time-card p {
+  margin: 8px 0 0;
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/*==========================================================
+   WEEKLY CHART
+==========================================================*/
+
+.chart-section .dashboard-panel {
+  padding: 28px;
+}
+
+.chart-wrapper {
+  position: relative;
+  margin-top: 24px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(59, 130, 246, 0.03);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  animation: progressFade 0.35s ease both;
+}
+
+.chart-wrapper canvas {
+  width: 100% !important;
+  height: 280px !important;
+}
+
+/*==========================================================
+   WORKOUT CALENDAR – CONTROLS
+==========================================================*/
+
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.calendar-month {
+  min-width: 190px;
+  margin: 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar-nav-btn {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.calendar-nav-btn:hover {
+  background: var(--success);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(52, 199, 89, 0.25);
+}
+
+/*==========================================================
+   CALENDAR GRID
+==========================================================*/
+
+.calendar-wrapper {
+  width: 100%;
+  margin-top: 8px;
+  animation: progressFade 0.35s ease both;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.calendar-weekdays {
+  margin-bottom: 8px;
+}
+
+.calendar-weekdays span {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+  padding: 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/*==========================================================
+   CALENDAR DAY
+==========================================================*/
+
+.calendar-day {
+  position: relative;
+  min-height: 70px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.calendar-day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: var(--success);
+}
+
+.calendar-day.not-tracked {
+opacity: 0.35;
+cursor: default;
+}
+
+.calendar-day.not-tracked:hover {
+transform: none;
+}
+
+.calendar-day.empty {
+  border: none;
+  background: transparent;
+  cursor: default;
+  box-shadow: none;
+}
+
+.calendar-day.empty:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.calendar-day-number {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.calendar-day-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+/* Day states */
+.calendar-day.completed {
+  background: rgba(52, 199, 89, 0.1);
+  border-color: rgba(52, 199, 89, 0.3);
+  color: #157347;
+}
+
+.calendar-day.completed .calendar-day-indicator {
+  background: var(--success);
+  color: #fff;
+}
+
+.calendar-day.missed {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+  color: #b42318;
+}
+
+.calendar-day.missed .calendar-day-indicator {
+  background: var(--danger);
+  color: #fff;
+}
+
+.calendar-day.upcoming {
+  background: var(--surface-2);
+  color: var(--text-light);
+}
+
+.calendar-day.rest {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.calendar-day.today {
+  box-shadow: 0 0 0 3px rgba(245, 185, 66, 0.28);
+}
+
+.calendar-day.today .calendar-day-number {
+  color: #d39e00;
+}
+
+.calendar-day.completed.today {
+  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.25);
+}
+
+/*==========================================================
+   CALENDAR LEGEND
+==========================================================*/
+
+.calendar-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.calendar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.legend-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot.completed {
+  background: var(--success);
+}
+
+.legend-dot.missed {
+  background: var(--danger);
+}
+
+.legend-dot.today {
+  background: var(--warning);
+}
+
+.legend-dot.rest {
+  background: #adb5bd;
+}
+
+/*==========================================================
+   CALENDAR DETAIL MODAL
+==========================================================*/
+
+.calendar-detail-modal {
+  border: none;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.calendar-modal-status {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.completed-text { color: var(--success); }
+.missed-text    { color: var(--danger); }
+.upcoming-text  { color: var(--primary); }
+.rest-text      { color: var(--text-muted); }
+
+.calendar-workout-detail {
+  padding: 2px 0;
+}
+
+.calendar-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.calendar-detail-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar-detail-header span {
+  display: block;
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.calendar-success-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.calendar-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.calendar-stat-grid > div {
+  padding: 15px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.calendar-stat-grid strong {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar-stat-grid span {
+  display: block;
+  margin-top: 3px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.calendar-exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendar-exercise-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.calendar-exercise-row > div:first-child {
+  min-width: 0;
+}
+
+.calendar-exercise-row strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.calendar-exercise-row small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+.calendar-exercise-values {
+  white-space: nowrap;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.calendar-empty-state {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.calendar-status-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.calendar-empty-state h4 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.calendar-empty-state p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.missed-icon {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--danger);
+}
+
+.upcoming-icon {
+  background: rgba(93, 140, 255, 0.12);
+  color: var(--primary);
+}
+
+.rest-icon {
+  background: var(--surface-2);
+  color: var(--text-muted);
+}
+
+.scheduled-workouts {
+  margin-top: 20px;
+}
+
+.scheduled-workouts h5 {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.scheduled-workout-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 8px;
+  background: var(--surface);
+}
+
+.scheduled-workout-item > i {
+  color: var(--success);
+  font-size: 1.1rem;
+}
+
+.scheduled-workout-item strong {
+  display: block;
+  color: var(--text);
+}
+
+.scheduled-workout-item small {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-muted);
+}
+
+/*==========================================================
+   WORKOUT HISTORY
+==========================================================*/
+
+#workoutHistory {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.history-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 22px;
+  transition: var(--transition);
+  animation: progressFade 0.35s ease both;
+}
+
+.history-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(34, 197, 94, 0.06),
+    transparent 35%
+  );
+  pointer-events: none;
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+}
+
+.history-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.history-top h4 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.history-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.history-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.history-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.history-meta span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: 14px;
+}
+
+.history-meta i {
+  color: #3b82f6;
+}
+
+/*==========================================================
+   EMPTY STATE
+==========================================================*/
+
+.empty-state,
+.empty-text {
+  padding: 36px 20px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.empty-state i {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 42px;
+  color: #9ca3af;
+}
+
+.empty-state h4 {
+  margin-bottom: 8px;
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+}
+
+/*==========================================================
+   PERSONAL RECORDS
+==========================================================*/
+
+#personalRecords {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.pr-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: var(--transition);
+  animation: progressFade 0.35s ease both;
+}
+
+.pr-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.pr-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pr-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  font-size: 22px;
+}
+
+.pr-name {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pr-weight {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #3b82f6;
+}
+
+/*==========================================================
+   ACHIEVEMENTS
+==========================================================*/
+
+#achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.achievement-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.achievement-group-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.achievement-group-header i {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  font-size: 20px;
+}
+
+.achievement-group-header h4 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.achievement-list {
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+}
+
+.achievement-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  transition: 0.25s ease;
+  animation: progressFade 0.35s ease both;
+}
+
+.achievement-row:last-child {
+  border-bottom: none;
+}
+
+.achievement-row:hover {
+  background: rgba(59, 130, 246, 0.03);
+}
+
+.achievement-row.unlocked {
+  color: #22c55e;
+  font-weight: 700;
+}
+
+.achievement-row.locked {
+  color: var(--text-light);
+}
+
+.achievement-row i {
+  font-size: 18px;
+}
+
+/*==========================================================
+   EXPORT SECTION
+==========================================================*/
+
+.export-card .dashboard-panel {
+  padding: 28px;
+}
+
+.export-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.export-info h2 {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#exportBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 170px;
+  height: 54px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 18px;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+#exportBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(93, 140, 255, 0.28);
+}
+
+#exportBtn i {
+  font-size: 18px;
+}
+
+/*==========================================================
+   ANIMATIONS
+==========================================================*/
+
+@keyframes progressFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card,
+.training-time-card,
+.history-card,
+.pr-item,
+.achievement-row,
+#exportBtn {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+/*==========================================================
+   DARK MODE OVERRIDES
+==========================================================*/
+
+.dark-mode .chart-wrapper {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: var(--border);
+}
+
+.dark-mode .calendar-day {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.dark-mode .calendar-day.completed {
+  background: rgba(43, 229, 157, 0.12);
+  border-color: rgba(43, 229, 157, 0.3);
+  color: #2be59d;
+}
+
+.dark-mode .calendar-day.missed {
+  background: rgba(255, 107, 107, 0.12);
+  border-color: rgba(255, 107, 107, 0.25);
+  color: #ff6b6b;
+}
+
+.dark-mode .calendar-day.upcoming {
+  background: var(--surface-3);
+  color: var(--text-muted);
+}
+
+.dark-mode .calendar-day.rest {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.dark-mode .calendar-day.empty {
+  background: transparent;
+  border: none;
+}
+
+.dark-mode .calendar-weekdays span,
+.dark-mode .calendar-legend-item {
+  color: var(--text-muted);
+}
+
+.dark-mode .calendar-nav-btn {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--success);
+}
+
+.dark-mode .calendar-nav-btn:hover {
+  background: var(--success);
+  color: #fff;
+}
+
+.dark-mode .calendar-detail-modal {
+  background: var(--surface);
+}
+
+.dark-mode .calendar-stat-grid > div {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.dark-mode .calendar-exercise-row,
+.dark-mode .scheduled-workout-item {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.dark-mode .history-card,
+.dark-mode .pr-item,
+.dark-mode .achievement-row {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+.dark-mode .history-top h4,
+.dark-mode .pr-name,
+.dark-mode .achievement-group-header h4 {
+  color: var(--text);
+}
+
+.dark-mode .history-date,
+.dark-mode .history-meta span,
+.dark-mode .empty-text,
+.dark-mode .achievement-row.locked {
+  color: var(--text-muted);
+}
+
+.dark-mode .achievement-group-header,
+.dark-mode .achievement-list,
+.dark-mode .achievement-row {
+  border-color: var(--border);
+}
+
+.dark-mode .achievement-row:hover {
+  background: var(--surface-2);
+}
+
+.dark-mode .training-time-card {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+.dark-mode .training-time-card h3,
+.dark-mode .export-info h2 {
+  color: var(--text);
+}
+
+.dark-mode .training-time-card p,
+.dark-mode .export-info p {
+  color: var(--text-muted);
+}
+
+.dark-mode .ring-inner {
+  background: var(--card);
+}
+
+.dark-mode .ring-inner h3 {
+  color: var(--text);
+}
+
+.dark-mode .ring-inner span {
+  color: var(--text-muted);
+}
+
+.dark-mode .stat-card {
+  background: var(--card);
+  border-color: var(--border);
+}
+
+.dark-mode .stat-icon.green {
+  background: rgba(43, 229, 157, 0.15);
+  color: #2be59d;
+}
+
+.dark-mode .stat-icon.blue {
+  background: rgba(110, 162, 255, 0.15);
+  color: #6ea2ff;
+}
+
+.dark-mode .stat-icon.orange {
+  background: rgba(255, 200, 87, 0.15);
+  color: #ffc857;
+}
+
+.dark-mode .stat-icon.purple {
+  background: rgba(157, 134, 255, 0.15);
+  color: #9d86ff;
+}
+
+/*==========================================================
+   RESPONSIVE
+==========================================================*/
+
+@media (max-width: 640px) {
+  .export-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #exportBtn {
+    width: 100%;
+  }
+
+  .calendar-weekdays,
+  .calendar-grid {
+    gap: 4px;
+  }
+
+  .calendar-day {
+    min-height: 55px;
+    border-radius: 10px;
+  }
+
+  .calendar-day-number {
+    font-size: 0.8rem;
+  }
+
+  .calendar-day-indicator {
+    width: 16px;
+    height: 16px;
+    font-size: 0.55rem;
+  }
+
+  .calendar-month {
+    min-width: 150px;
+    font-size: 1.1rem;
+  }
+
+  .calendar-nav-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .calendar-legend {
+    gap: 10px;
+  }
+
+  .calendar-legend-item {
+    font-size: 0.7rem;
+  }
+
+  .calendar-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-exercise-row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

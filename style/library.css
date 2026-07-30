@@ -1,0 +1,399 @@
+/*==========================================================
+   LIFTLOG LIBRARY PAGE CSS
+   Premium • Clean • Cohesive
+==========================================================*/
+
+/*==========================================================
+   ROOT VARIABLES (Library overrides / page tokens)
+==========================================================*/
+
+:root {
+  /* Backgrounds */
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #F7F9FC;
+  --surface-3: #EEF2F8;
+
+  /* Text */
+  --text: #10131A;
+  --text-light: #5B6475;
+  --text-muted: #9099A8;
+
+  /* Brand */
+  --primary: #5D8CFF;
+  --secondary: #7A5AF8;
+
+  --success: #34C759;
+  --warning: #F5B942;
+  --danger: #EF4444;
+
+  /* Borders */
+  --border: #E8ECF3;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.65);
+
+  /* Radius */
+  --radius-sm: 14px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 30px;
+
+  /* Shadows */
+  --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
+
+  /* Gradient */
+  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+
+  /* Motion */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/*==========================================================
+   DARK MODE
+==========================================================*/
+
+.dark-mode {
+  --bg: #090B10;
+  --surface: #141821;
+  --surface-2: #1B212C;
+  --surface-3: #232B37;
+
+  --text: #F5F7FA;
+  --text-light: #C3CBD8;
+  --text-muted: #8892A3;
+
+  --primary: #79A7FF;
+  --secondary: #9C84FF;
+
+  --success: #2BE59D;
+  --warning: #FFC857;
+  --danger: #FF6B6B;
+
+  --border: #2B3340;
+
+  --glass: rgba(18, 22, 30, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+/*==========================================================
+   FILTERS
+==========================================================*/
+
+.library-filter-card {
+  margin-bottom: 28px;
+}
+
+.library-main-filters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.library-filter {
+  height: 48px;
+  border: none;
+  padding: 0 10px;
+  border-radius: 16px;
+  background: var(--surface-2);
+  color: var(--text-light);
+  font-size: 14px;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.library-filter:hover {
+  background: rgba(93, 140, 255, 0.08);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.library-filter.active {
+  background: var(--primary-gradient);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(93, 140, 255, 0.22);
+}
+
+.library-sub-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.sub-filter-btn {
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.sub-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(93, 140, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.sub-filter-btn.active {
+  background: var(--primary-gradient);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(93, 140, 255, 0.2);
+}
+
+/*==========================================================
+   EXERCISE GRID
+==========================================================*/
+
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 30px;
+  margin-top: 26px;
+}
+
+/*==========================================================
+   EXERCISE CARD
+==========================================================*/
+
+.exercise-card {
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  border-radius: 26px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  animation: libraryFade 0.35s ease both;
+}
+
+.exercise-card::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -90px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(rgba(93, 140, 255, 0.06), transparent 70%);
+  pointer-events: none;
+}
+
+.exercise-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.exercise-info {
+  position: relative;
+  z-index: 2;
+}
+
+.exercise-info h4 {
+  margin: 0 0 5px;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.4px;
+}
+
+.exercise-info small {
+  display: block;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/*==========================================================
+   EXERCISE IMAGE / ANATOMY
+==========================================================*/
+
+.exercise-anatomy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 170px;
+  margin-bottom: 20px;
+  border-radius: 22px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.exercise-modal-image{
+    margin-bottom: 30px;
+}
+
+.exercise-anatomy img {
+  width: 130px;
+  height: 150px;
+  object-fit: contain;
+  transition: 0.35s ease;
+}
+
+.exercise-card:hover .exercise-anatomy img {
+  transform: scale(1.06);
+}
+
+
+/*==========================================================
+   ACTION BUTTONS
+==========================================================*/
+
+.viewExerciseBtn,
+#openAddWorkout,
+#saveExerciseBtn {
+  width: 100%;
+  height: 54px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 18px;
+  background: var(--primary-gradient);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  transition: var(--transition);
+  box-shadow: 0 14px 30px rgba(93, 140, 255, 0.2);
+  cursor: pointer;
+}
+
+.viewExerciseBtn:hover,
+#openAddWorkout:hover,
+#saveExerciseBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(93, 140, 255, 0.28);
+}
+
+.viewExerciseBtn:active,
+#openAddWorkout:active,
+#saveExerciseBtn:active {
+  transform: scale(0.98);
+}
+
+/*==========================================================
+   ANIMATIONS
+==========================================================*/
+
+@keyframes libraryFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*==========================================================
+   DARK MODE OVERRIDES
+==========================================================*/
+
+.dark-mode .exercise-card {
+  background: var(--surface);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .exercise-anatomy {
+  background: #0F172A;
+}
+
+.dark-mode .library-filter {
+  background: var(--surface-2);
+  color: var(--text-light);
+}
+
+.dark-mode .library-filter:hover {
+  background: rgba(121, 167, 255, 0.12);
+  color: var(--primary);
+}
+
+.dark-mode .library-filter.active {
+  background: var(--primary-gradient);
+  color: #fff;
+}
+
+.dark-mode .sub-filter-btn {
+  background: var(--surface-2);
+  border-color: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.dark-mode .sub-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(121, 167, 255, 0.1);
+}
+
+.dark-mode .sub-filter-btn.active {
+  background: var(--primary-gradient);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Muscle badges – slightly richer in dark mode */
+.dark-mode .muscle-badge.chest {
+  background: rgba(220, 38, 38, 0.15);
+  color: #F87171;
+}
+
+.dark-mode .muscle-badge.back {
+  background: rgba(37, 99, 235, 0.15);
+  color: #60A5FA;
+}
+
+.dark-mode .muscle-badge.shoulders {
+  background: rgba(234, 88, 12, 0.15);
+  color: #FB923C;
+}
+
+.dark-mode .muscle-badge.biceps,
+.dark-mode .muscle-badge.triceps {
+  background: rgba(124, 58, 237, 0.15);
+  color: #A78BFA;
+}
+
+.dark-mode .muscle-badge.core {
+  background: rgba(202, 138, 4, 0.15);
+  color: #FACC15;
+}
+
+.dark-mode .muscle-badge.glutes {
+  background: rgba(219, 39, 119, 0.15);
+  color: #F472B6;
+}
+
+.dark-mode .muscle-badge.quadriceps,
+.dark-mode .muscle-badge.hamstrings,
+.dark-mode .muscle-badge.calves {
+  background: rgba(21, 128, 61, 0.15);
+  color: #4ADE80;
+}
+
+/*==========================================================
+   RESPONSIVE
+==========================================================*/
+
+@media (max-width: 640px) {
+  .library-main-filters {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exercise-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
