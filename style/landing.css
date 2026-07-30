@@ -183,7 +183,7 @@ body{
 
     border-radius:18px;
 
-    background:var(--gradient);
+    background:linear-gradient(rgba(93,140, 255, 0.4), rgba(122, 90,248, 0.7));
 
     color:#fff;
 
@@ -880,7 +880,7 @@ body{
 
     .hero-content h1{
 
-        font-size:46px;
+        font-size:50px;
 
         letter-spacing:-2px;
 
@@ -890,8 +890,6 @@ body{
 
     .hero-content p{
 
-        font-size:16px;
-
         line-height:1.65;
 
         margin-bottom:24px;
@@ -900,46 +898,18 @@ body{
 
     .hero-btn{
 
-        height:64px;
+        height:70px;
 
-        font-size:17px;
+        font-size:18px;
 
     }
 
     .hero-btn-icon{
 
-        width:46px;
-        height:46px;
+        width:60px;
+        height:60px;
 
     }
 
 }
 
-
-/*==========================================================
- VERY SMALL DEVICES
-==========================================================*/
-
-@media (max-width:360px){
-
-    .hero-content h1{
-
-        font-size:50px;
-
-    }
-
-    .hero-content p{
-
-        font-size:15px;
-
-    }
-
-    .hero-btn{
-
-        height:68px;
-       
-        font-size:19px;
-
-    }
-
-}
