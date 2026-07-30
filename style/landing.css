@@ -1,6 +1,6 @@
 /*==========================================================
    LIFTLOG LANDING PAGE
-   Premium • Clean • On-brand
+   Premium • Large type • Natural stack
 ==========================================================*/
 
 *,
@@ -28,13 +28,12 @@ body {
   height: 100%;
   background: #090B10;
   overflow: hidden;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /*==========================================================
-   LANDING SHELL
+   LANDING
 ==========================================================*/
 
 .landing {
@@ -98,11 +97,10 @@ body {
   );
   filter: blur(55px);
   pointer-events: none;
-  z-index: 1;
 }
 
 /*==========================================================
-   CONTENT
+   CONTENT — natural bottom stack
 ==========================================================*/
 
 .hero-content {
@@ -111,21 +109,8 @@ body {
   z-index: 5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 48px clamp(50px, 6vw, 110px) 70px;
-}
-
-/* Top block: logo only */
-.hero-top {
-  flex-shrink: 0;
-}
-
-/* Bottom block: badge + title + copy + CTA */
-.hero-bottom {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
 }
 
 /*==========================================================
@@ -141,7 +126,7 @@ body {
   font-weight: 700;
   color: #fff;
   letter-spacing: -1px;
-  text-decoration: none;
+  margin-bottom: auto; /* pins logo to top, rest stays bottom */
 }
 
 .logo i {
@@ -151,7 +136,11 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 18px;
-  background: var(--gradient);
+  background: linear-gradient(
+    135deg,
+    rgba(93, 140, 255, 0.55),
+    rgba(122, 90, 248, 0.85)
+  );
   color: #fff;
   font-size: 26px;
   font-weight: 900;
@@ -168,7 +157,7 @@ body {
   align-self: flex-start;
   gap: 12px;
   padding: 14px 26px;
-  margin-bottom: 28px;
+  margin-bottom: 34px;
   border-radius: 999px;
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -180,16 +169,6 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.22);
-}
-
-.hero-badge::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gradient);
-  box-shadow: 0 0 12px rgba(93, 140, 255, 0.7);
-  flex-shrink: 0;
 }
 
 /*==========================================================
@@ -204,7 +183,7 @@ body {
   line-height: 0.96;
   letter-spacing: -4px;
   max-width: 900px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   text-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -212,9 +191,9 @@ body {
   max-width: 620px;
   color: rgba(255, 255, 255, 0.84);
   font-size: 22px;
-  line-height: 1.75;
+  line-height: 1.8;
   font-weight: 500;
-  margin-bottom: 36px;
+  margin-bottom: 42px;
 }
 
 .bottom-area {
@@ -250,7 +229,6 @@ body {
   transition: var(--transition);
 }
 
-/* Shine */
 .hero-btn::before {
   content: "";
   position: absolute;
@@ -267,7 +245,6 @@ body {
   pointer-events: none;
 }
 
-/* Bottom edge highlight */
 .hero-btn::after {
   content: "";
   position: absolute;
@@ -327,7 +304,7 @@ body {
 
 .hero-btn-icon i {
   color: #fff;
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 900;
 }
 
@@ -336,10 +313,6 @@ body {
   box-shadow:
     0 18px 35px rgba(93, 140, 255, 0.55),
     inset 0 2px 3px rgba(255, 255, 255, 0.4);
-}
-
-.hero-btn:hover span {
-  transform: translateX(-2px);
 }
 
 /* Ripple */
@@ -390,7 +363,7 @@ body {
   .hero-badge {
     font-size: 17px;
     padding: 16px 28px;
-    margin-bottom: 32px;
+    margin-bottom: 36px;
   }
 
   .hero-content h1 {
@@ -410,11 +383,6 @@ body {
   .hero-btn {
     height: 82px;
     font-size: 23px;
-  }
-
-  .hero-btn-icon {
-    width: 62px;
-    height: 62px;
   }
 }
 
@@ -457,12 +425,10 @@ body {
   .logo i {
     width: 56px;
     height: 56px;
-    font-size: 24px;
   }
 
   .hero-badge {
     font-size: 15px;
-    margin-bottom: 24px;
   }
 
   .hero-content h1 {
@@ -477,11 +443,6 @@ body {
   .hero-btn {
     height: 74px;
     font-size: 20px;
-  }
-
-  .hero-btn-icon {
-    width: 54px;
-    height: 54px;
   }
 }
 
@@ -501,27 +462,25 @@ body {
   .logo i {
     width: 52px;
     height: 52px;
-    font-size: 22px;
-    border-radius: 16px;
+    font-size: 23px;
   }
 
   .hero-badge {
-    padding: 12px 20px;
+    padding: 13px 20px;
     font-size: 14px;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
   }
 
   .hero-content h1 {
     font-size: 60px;
     line-height: 1;
-    letter-spacing: -2.5px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
 
   .hero-content p {
     font-size: 18px;
     line-height: 1.7;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
   }
 
   .bottom-area {
@@ -537,10 +496,6 @@ body {
     width: 54px;
     height: 54px;
   }
-
-  .hero-btn-icon i {
-    font-size: 20px;
-  }
 }
 
 /*==========================================================
@@ -555,47 +510,40 @@ body {
   }
 
   .hero-content {
-    padding: 28px 22px 32px;
+    padding: 24px 22px 34px;
   }
 
   .logo {
-    gap: 12px;
+    gap: 14px;
     font-size: 24px;
   }
 
   .logo i {
     width: 48px;
     height: 48px;
-    border-radius: 14px;
-    font-size: 20px;
+    border-radius: 15px;
+    font-size: 21px;
   }
 
   .hero-badge {
-    padding: 10px 16px;
-    font-size: 12px;
-    letter-spacing: 0.8px;
-    margin-bottom: 18px;
-    gap: 8px;
-  }
-
-  .hero-badge::before {
-    width: 7px;
-    height: 7px;
+    padding: 11px 18px;
+    font-size: 13px;
+    margin-bottom: 22px;
   }
 
   .hero-content h1 {
-    font-size: 48px;
-    line-height: 1.05;
+    font-size: 52px;
+    line-height: 1.02;
     letter-spacing: -2px;
     max-width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .hero-content p {
-    font-size: 16px;
-    line-height: 1.65;
+    font-size: 17px;
+    line-height: 1.7;
     max-width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
 
   .bottom-area {
@@ -603,112 +551,71 @@ body {
   }
 
   .hero-btn {
-    height: 64px;
-    font-size: 17px;
+    height: 68px;
+    font-size: 18px;
     padding: 0 10px 0 24px;
   }
 
   .hero-btn-icon {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
   }
 
   .hero-btn-icon i {
-    font-size: 18px;
+    font-size: 22px;
   }
 }
 
 /*==========================================================
-   SMALL PHONES
+   SMALL PHONES — your big type scale kept
 ==========================================================*/
 
 @media (max-width: 480px) {
   .hero-content {
-    padding: 24px 18px 26px;
+    padding: 22px 18px 28px;
   }
 
   .logo {
     font-size: 22px;
-    gap: 10px;
   }
 
   .logo i {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
     font-size: 18px;
   }
 
   .hero-badge {
-    font-size: 11px;
-    padding: 9px 14px;
-    margin-bottom: 16px;
+    font-size: 12px;
+    padding: 10px 16px;
+    margin-bottom: 28px;
   }
 
   .hero-content h1 {
-    font-size: 42px;
-    line-height: 1.06;
-    letter-spacing: -1.8px;
-    margin-bottom: 12px;
+    font-size: 70px;
+    letter-spacing: -2px;
+    line-height: 0.98;
+    margin-bottom: 24px;
   }
 
   .hero-content p {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 22px;
+    font-size: 17px;
+    line-height: 1.65;
+    margin-bottom: 32px;
   }
 
   .hero-btn {
-    height: 60px;
-    font-size: 16px;
-    padding: 0 8px 0 20px;
+    height: 80px;
+    font-weight: 700;
+    font-size: 30px;
   }
 
   .hero-btn-icon {
-    width: 46px;
-    height: 46px;
+    width: 70px;
+    height: 70px;
   }
 
   .hero-btn-icon i {
-    font-size: 17px;
-  }
-}
-
-/*==========================================================
-   VERY SMALL
-==========================================================*/
-
-@media (max-width: 360px) {
-  .hero-content {
-    padding: 20px 16px 22px;
-  }
-
-  .logo {
-    font-size: 20px;
-  }
-
-  .logo i {
-    width: 38px;
-    height: 38px;
-    font-size: 16px;
-  }
-
-  .hero-content h1 {
-    font-size: 36px;
-  }
-
-  .hero-content p {
-    font-size: 14px;
-    margin-bottom: 18px;
-  }
-
-  .hero-btn {
-    height: 56px;
-    font-size: 15px;
-  }
-
-  .hero-btn-icon {
-    width: 42px;
-    height: 42px;
+    font-size: 30px;
   }
 }
