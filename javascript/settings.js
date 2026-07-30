@@ -313,6 +313,16 @@ calculateBMI();
 // PREFERENCES
 // ========================================
 
+const darkModeSwitch =
+    document.getElementById("darkModeSwitch");
+
+const notificationsSwitch =
+    document.getElementById("notifications");
+
+if (notificationsSwitch) {
+    notificationsSwitch.disabled = true;
+}
+
 // ========================================
 // BROWSER THEME COLOR
 // ========================================
@@ -373,38 +383,6 @@ const weightUnitSelect =
     document.getElementById("weightUnit");
 
 
-// ========================================
-// DARK MODE
-// ========================================
-
-const darkMode =
-    localStorage.getItem("darkMode") === "true";
-
-if(darkMode){
-
-    document.body.classList.add("dark-mode");
-
-}
-
-if(darkModeSwitch){
-
-    darkModeSwitch.checked = darkMode;
-
-    darkModeSwitch.addEventListener("change",()=>{
-
-        document.body.classList.toggle("dark-mode");
-
-        localStorage.setItem(
-
-            "darkMode",
-
-            document.body.classList.contains("dark-mode")
-
-        );
-
-    });
-
-}
 
 
 // ========================================
