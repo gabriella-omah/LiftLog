@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LiftLog | Plan. Lift. Progress.</title>
+
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#5D8CFF">
+
+<link rel="apple-touch-icon" href="image/logo.png">
+
+<!-- Icons -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+<!-- Global Premium CSS -->
+<link rel="stylesheet" href="style/style.css">
+
+<!-- Page CSS -->
+<link rel="stylesheet" href="style/index.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- Premium Background Effects -->
+<div class="bg-gradient"></div>
+
+
+
+<!-- ==========================
+     HEADER
+========================== -->
+
+
+<div id="navbar-placeholder"></div>
+
+
+
+
+
+<!-- ==========================
+     MAIN CONTENT
+========================== -->
+
+
+<main class="container main-content">
+
+    <!-- ==========================
+         HERO
+    =========================== -->
+
+    <section class="dashboard-card hero-section fade-in">
+
+        <div class="hero-content">
+
+            <span class="badge badge-primary">
+                <i class="bi bi-grid"></i>
+                Dashboard
+            </span>
+
+            <h1 id="welcomeText" class="gradient-text">
+                Welcome back
+            </h1>
+
+            <p>
+                Stay consistent. One workout at a time.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         TODAY'S WORKOUT
+    =========================== -->
+
+    <section class="dashboard-card workout-section hello">
+
+        <div class="dashboard-panel workout-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <div>
+                        <h2>Today's Workout</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="workout-image-wrapper">
+
+                <div class="featured-workout-image"></div>
+
+            </div>
+
+            <div id="todayWorkout" class="workout-content"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         WEEKLY PLANNER
+    =========================== -->
+
+    <section class="dashboard-card planner-section">
+
+        <div class="dashboard-panel planner-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-calendar-week"></i>
+                    </div>
+
+                    <div>
+                        <h2>Weekly Planner</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="weeklyPlanner" class="planner-container"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         WORKOUT STREAK
+    =========================== -->
+
+    <section class="dashboard-card streak-section">
+
+        <div class="dashboard-panel streak-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-fire"></i>
+                    </div>
+
+                    <div>
+                        <h2>Workout Streak</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="streak-display">
+
+                <div class="streak-icon pulse">
+
+                    <i class="bi bi-fire"></i>
+
+                </div>
+
+                <div class="streak-content">
+
+                    <h2 id="homeWorkoutStreak" class="streak-value">
+                        0
+                    </h2>
+
+                    <p class="streak-caption">
+                        Day Streak
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         DAILY FOCUS
+    =========================== -->
+
+    <section class="dashboard-card focus-section">
+
+        <div class="dashboard-panel ai-focus-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-chat-quote-fill"></i>
+                    </div>
+
+                    <div>
+                        <h2>Daily Focus</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <blockquote id="motivationText" class="daily-focus-text"></blockquote>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         QUICK ACTIONS
+    =========================== -->
+
+    <section class="dashboard-card actions-section">
+
+        <div class="dashboard-panel quick-actions">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-stars"></i>
+                    </div>
+
+                    <div>
+                        <h2>Quick Actions</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="quick-actions-grid">
+
+                <a href="workouts.html" class="action-card">
+
+                    <div class="icon-action green">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+
+                    <span>Create Workout</span>
+
+                </a>
+
+                <a href="library.html" class="action-card">
+
+                    <div class="icon-action purple">
+                        <i class="bi bi-journal-richtext"></i>
+                    </div>
+
+                    <span>Exercise Library</span>
+
+                </a>
+
+                <a href="progress.html" class="action-card">
+
+                    <div class="icon-action blue">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <span>Progress</span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<div id="footer-placeholder"></div>
+
+<!-- ==========================
+     JAVASCRIPT
+========================== -->
+
+
+<script src="javascript/data.js"></script>
+
+
+<script src="javascript/streak.js"></script>
+<script src="javascript/index.js"></script>
+
+
+
+</body>
+
+</html>

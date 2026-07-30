@@ -579,7 +579,7 @@ if(confirmSignOut){
         localStorage.clear();
 
         window.location.href =
-            "index.html";
+            "home.html";
 
     });
 
@@ -632,7 +632,7 @@ if(confirmDeleteAccount){
         setTimeout(()=>{
 
             window.location.href =
-                "index.html";
+                "home.html";
 
         },1200);
 

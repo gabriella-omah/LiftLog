@@ -5,7 +5,7 @@ const ASSETS = [
     // ==========================
     "/",
     "/index.html",
-    "/landing.html",
+    "/home.html",
     "/workouts.html",
     "/library.html",
     "/progress.html",
@@ -111,7 +111,7 @@ self.addEventListener("fetch", event => {
                 .catch(() => {
                     return caches.match(request)
                         .then(response => {
-                            return response || caches.match("/index.html");
+                            return response || caches.match("/home.html");
                         });
                 })
         );
@@ -127,7 +127,7 @@ self.addEventListener("fetch", event => {
                 return fetch(request);
             })
             .catch(() => {
-                return caches.match("/index.html");
+                return caches.match("/home.html");
             })
     );
 });
