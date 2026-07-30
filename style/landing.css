@@ -897,8 +897,8 @@ body{
     .hero-btn{
 
         height:80px;
-
-        font-size:40px;
+        font-weight: 700;
+        font-size:30px;
 
     }
 
@@ -910,7 +910,7 @@ body{
     }
 
     .hero-btn-icon i{
-        font-size: 35px;
+        font-size: 30px;
     }
 
 }
