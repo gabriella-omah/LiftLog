@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LiftLog | Exercise Library</title>
+
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#5D8CFF">
+
+<link rel="apple-touch-icon" href="image/logo.png">
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet"
+          href="style/style.css">
+
+
+    <!-- Library CSS -->
+
+    <link rel="stylesheet"
+          href="style/library.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- ==========================
+        HEADER
+========================== -->
+
+
+<div id="navbar-placeholder"></div>
+
+
+
+
+
+<main class="container main-content">
+
+    <!-- ==========================
+         HERO
+    =========================== -->
+
+    <section class="dashboard-card hero-section fade-in">
+
+        <div class="hero-content">
+
+            <span class="badge badge-primary">
+                <i class="bi bi-journal-richtext"></i>
+                Exercise Library
+            </span>
+
+            <h1 class="gradient-text">
+                Exercise Library
+            </h1>
+
+            <p>
+                Discover exercises, master proper form, and build stronger workouts.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         SEARCH
+    =========================== -->
+
+    <section class="dashboard-card search-section">
+
+        <div class="dashboard-panel search-panel">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-search"></i>
+                    </div>
+
+                    <div>
+                        <h2>Search</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="search-box">
+
+                <i class="bi bi-search"></i>
+
+                <input
+                    id="exerciseSearch"
+                    type="text"
+                    placeholder="Search exercises, muscles or equipment...">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         FILTERS
+    =========================== -->
+
+    <section class="dashboard-card filters-section">
+
+        <div class="dashboard-panel filter-panel">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-funnel-fill"></i>
+                    </div>
+
+                    <div>
+                        <h2>Filters</h2>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="library-main-filters">
+
+                <button class="library-filter active"
+                    data-filter-type="all">
+
+                    All
+
+                </button>
+
+                <button class="library-filter"
+                    data-filter-type="muscle">
+
+                    Muscle
+
+                </button>
+
+                <button class="library-filter"
+                    data-filter-type="type">
+
+                    Type
+
+                </button>
+
+                <button class="library-filter"
+                    data-filter-type="equipment">
+
+                    Equipment
+
+                </button>
+
+            </div>
+
+            <div
+                id="exerciseCategories"
+                class="library-sub-filters">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         EXERCISES
+    =========================== -->
+
+    <section class="dashboard-card exercises-section">
+
+        <div class="dashboard-panel exercise-panel">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>Exercises</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="exerciseLibrary"
+                class="exercise-grid">
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+
+
+<!-- ==========================
+        BOTTOM NAVIGATION
+========================== -->
+
+
+<div id="footer-placeholder"></div>
+
+
+
+
+
+
+<!-- ==========================
+        EXERCISE DETAILS MODAL
+========================== -->
+
+
+<div
+
+class="modal fade"
+
+id="exerciseModal"
+
+tabindex="-1">
+
+
+<div
+
+class="modal-dialog modal-lg modal-dialog-centered">
+
+
+
+<div
+
+class="modal-content">
+
+
+
+<div class="modal-header">
+
+
+<h5
+
+class="modal-title"
+
+id="exerciseTitle">
+
+
+</h5>
+
+
+
+<button
+
+class="btn-close"
+
+data-bs-dismiss="modal">
+
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+<div
+
+class="modal-body">
+
+<div class="exercise-modal-image">
+
+
+<img
+
+id="exerciseMuscleImage"
+
+src=""
+
+alt="Target Muscle">
+
+
+</div>
+
+<div id="exerciseBody"></div>
+
+
+</div>
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+
+class="btn btn-success"
+
+id="openAddWorkout">
+
+
+Add to Workout
+
+
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+        ADD EXERCISE MODAL
+========================== -->
+
+
+<div
+
+class="modal fade"
+
+id="addWorkoutModal"
+
+tabindex="-1">
+
+
+
+<div
+
+class="modal-dialog modal-dialog-centered">
+
+
+
+<div
+
+class="modal-content">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+
+Add Exercise
+
+
+</h5>
+
+
+
+<button
+
+class="btn-close"
+
+data-bs-dismiss="modal">
+
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="modal-body">
+
+
+
+<label>
+
+Workout
+
+</label>
+
+
+
+<select
+
+id="workoutSelect"
+
+class="form-select">
+
+
+</select>
+
+
+
+
+
+<label>
+
+Sets
+
+</label>
+
+
+
+<input
+
+type="number"
+
+id="exerciseSets"
+
+min="1"
+
+max="10"
+
+class="form-control"
+
+value="3">
+
+
+
+
+
+<label>
+
+Reps
+
+</label>
+
+
+
+<input
+
+type="number"
+
+id="exerciseReps"
+
+min="1"
+
+max="50"
+
+class="form-control"
+
+value="10">
+
+
+
+
+
+
+<label>
+
+Weight
+
+</label>
+
+
+
+<div class="input-group">
+
+
+<input
+
+type="number"
+
+id="exerciseWeight"
+
+class="form-control"
+
+value="20">
+
+
+
+<span
+
+class="input-group-text"
+
+id="weightLabel">
+
+
+kg
+
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+<label>
+
+Notes
+
+</label>
+
+
+
+
+<textarea
+
+id="exerciseNotes"
+
+class="form-control"
+
+rows="3">
+
+</textarea>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+
+class="btn btn-success"
+
+id="saveExerciseBtn">
+
+
+Add Exercise
+
+
+</button>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ==========================
+        TOAST
+========================== -->
+
+
+<div
+
+class="toast-container position-fixed bottom-0 end-0 p-3">
+
+
+
+<div
+
+id="exerciseToast"
+
+class="toast align-items-center text-bg-success border-0">
+
+
+<div class="d-flex">
+
+
+
+<div
+
+class="toast-body"
+
+id="toastMessage">
+
+
+</div>
+
+
+
+
+
+<button
+
+class="btn-close btn-close-white me-2 m-auto"
+
+data-bs-dismiss="toast">
+
+
+</button>
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- ==========================
+        SCRIPTS
+========================== -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="javascript/data.js"></script>
+
+
+<script src="javascript/record.js"></script>
+
+
+<script src="javascript/library.js"></script>
+
+
+
+</body>
+
+
+</html>

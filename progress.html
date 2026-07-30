@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>LiftLog | Progress</title>
+
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#5D8CFF">
+
+<link rel="apple-touch-icon" href="image/logo.png">
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" href="style/style.css">
+
+    <link rel="stylesheet" href="style/progress.css">
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- =========================
+        HEADER
+========================= -->
+
+<div id="navbar-placeholder">
+
+</div>
+
+
+
+
+
+<!-- =========================
+        MAIN
+========================= -->
+
+
+<main class="container main-content">
+
+    <!-- ==========================
+         HERO
+    =========================== -->
+
+    <section class="dashboard-card hero-section fade-in progress-hero">
+
+        <div class="hero-content">
+
+            <span class="badge badge-primary">
+                <i class="bi bi-graph-up-arrow"></i>
+                Progress
+            </span>
+
+            <h1 class="gradient-text">
+                Performance Overview
+            </h1>
+
+            <p>
+                Monitor your workouts, achievements and long-term performance.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         WORKOUT STATISTICS
+    =========================== -->
+
+    <section class="dashboard-card progress-section">
+
+        <div class="dashboard-panel progress-panel">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Workout Statistics
+                        </h2>
+
+                        <p>A snapshot of overall training activity.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+
+                        <i class="bi bi-calendar3"></i>
+
+                    </div>
+
+                    <h5>
+                        Total Workouts
+                    </h5>
+
+                    <h2 id="totalWorkouts">
+                        0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+
+                        <i class="bi bi-card-checklist"></i>
+
+                    </div>
+
+                    <h5>
+                        Exercises
+                    </h5>
+
+                    <h2 id="totalExercises">
+                        0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+
+                        <i class="bi bi-lightning-charge-fill"></i>
+
+                    </div>
+
+                    <h5>
+                        Current Streak
+                    </h5>
+
+                    <h2 id="workoutStreak">
+                        0
+                    </h2>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                    </div>
+
+                    <h5>
+                        Success Rate
+                    </h5>
+
+                    <h2 id="completionRate">
+                        0%
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ==========================
+         PERFORMANCE SUMMARY
+    =========================== -->
+
+    <section class="dashboard-card summary-section">
+
+        <div class="dashboard-panel summary-panel">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-trophy-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Performance Summary
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="summary-rings">
+
+                <div class="summary-ring-card">
+
+                    <div class="ring ring-orange">
+
+                        <div class="ring-inner">
+
+                            <h3 id="longestStreak">
+                                0
+                            </h3>
+
+                            <span>
+                                Days
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Longest Streak
+                    </p>
+
+                </div>
+
+
+
+                <div class="summary-ring-card">
+
+                    <div class="ring ring-blue">
+
+                        <div class="ring-inner">
+
+                            <h3 id="displayStrength">
+                                0
+                            </h3>
+
+                            <span>
+                                Lifted
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Total Strength
+                    </p>
+
+                </div>
+
+
+
+                <div class="summary-ring-card">
+
+                    <div class="ring ring-green">
+
+                        <div class="ring-inner">
+
+                            <h3 id="caloriesBurned">
+                                0
+                            </h3>
+
+                            <span>
+                                kcal
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Calories Burned
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="training-time-card">
+
+                <h3 id="totalTrainingTime">
+                    0 hr
+                </h3>
+
+                <p>
+                    Total Training Time
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         WEEKLY ACTIVITY
+    =========================== -->
+
+    <section class="dashboard-card chart-section">
+
+        <div class="dashboard-panel chart-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-bar-chart-line-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Weekly Activity
+                        </h2>
+
+                        <p>Your workout activity over the last seven days.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chart-wrapper">
+
+                <canvas id="weeklyChart"></canvas>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ==========================
+         WORKOUT CALENDAR
+    =========================== -->
+
+
+    <!-- ==========================
+     WORKOUT CALENDAR
+========================== -->
+
+<section class="dashboard-card calendar-section">
+
+    <div class="dashboard-panel calendar-card">
+
+        <div class="section-header">
+
+            <div class="section-title">
+
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-week"></i>
+                </div>
+
+                <div>
+                    <h2>Workout Calendar</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CALENDAR NAVIGATION -->
+
+        <div class="calendar-controls">
+
+            <button
+                id="previousMonthBtn"
+                class="calendar-nav-btn"
+                type="button">
+
+                <i class="bi bi-chevron-left"></i>
+
+            </button>
+
+
+            <h3
+                id="calendarMonth"
+                class="calendar-month">
+
+                July 2026
+
+            </h3>
+
+
+            <button
+                id="nextMonthBtn"
+                class="calendar-nav-btn"
+                type="button">
+
+                <i class="bi bi-chevron-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- CALENDAR -->
+
+        <div class="calendar-wrapper">
+
+            <div class="calendar-weekdays">
+
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+
+            </div>
+
+
+            <div
+                id="calendar"
+                class="calendar-grid">
+            </div>
+
+        </div>
+
+
+        <!-- LEGEND -->
+
+        <div class="calendar-legend">
+
+            <div class="calendar-legend-item">
+
+                <span class="legend-dot completed"></span>
+
+                <span>Completed</span>
+
+            </div>
+
+
+            <div class="calendar-legend-item">
+
+                <span class="legend-dot missed"></span>
+
+                <span>Missed</span>
+
+            </div>
+
+
+            <div class="calendar-legend-item">
+
+                <span class="legend-dot today"></span>
+
+                <span>Today</span>
+
+            </div>
+
+
+            <div class="calendar-legend-item">
+
+                <span class="legend-dot rest"></span>
+
+                <span>Rest / Upcoming</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==========================
+     CALENDAR DAY MODAL
+========================== -->
+
+<div
+    class="modal fade"
+    id="calendarWorkoutModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content calendar-detail-modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h5
+                        id="calendarModalDate"
+                        class="modal-title">
+
+                        Workout Details
+
+                    </h5>
+
+                    <small
+                        id="calendarModalStatus"
+                        class="calendar-modal-status">
+
+                    </small>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div
+                id="calendarModalBody"
+                class="modal-body">
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+    <!-- ==========================
+         WORKOUT HISTORY
+    =========================== -->
+
+    <section class="dashboard-card history-section">
+
+        <div class="dashboard-panel history-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Workout History
+                        </h2>
+
+                        <p>
+                            Your latest completed sessions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="workoutHistory"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         PERSONAL RECORDS
+    =========================== -->
+
+    <section class="dashboard-card records-section">
+
+        <div class="dashboard-panel records-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-award-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Personal Records
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="personalRecords">
+
+                <p class="empty-text">
+                    No personal records yet.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- ==========================
+         ACHIEVEMENTS
+    =========================== -->
+
+    <section class="dashboard-card achievements-section">
+
+        <div class="dashboard-panel achievements-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-stars"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Achievements
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div
+                id="achievements"
+                class="achievement-grid">
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         EXPORT DATA
+    =========================== -->
+
+    <section class="dashboard-card export-section">
+
+        <div class="dashboard-panel export-card">
+
+            <div class="section-header">
+
+                <div class="section-title">
+
+                    <div class="icon-circle">
+                        <i class="bi bi-download"></i>
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Export Workout Data
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="export-info">
+
+                <button
+                    id="exportBtn"
+                    class="premium-primary-btn">
+
+                    <i class="bi bi-download"></i>
+
+                    <span>
+                        Download Data
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+
+
+<!-- =========================
+        BOTTOM NAVIGATION
+========================= -->
+
+
+<div id="footer-placeholder"></div>
+
+
+
+
+
+
+<!-- =========================
+        SCRIPTS
+========================= -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script src="javascript/data.js"></script>
+
+
+<script src="javascript/streak.js"></script>
+<script src="javascript/progress.js"></script>
+
+
+
+</body>
+
+</html>

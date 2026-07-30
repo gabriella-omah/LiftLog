@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+
+<title>
+LiftLog | Settings
+</title>
+
+<link rel="apple-touch-icon" href="image/logo.png">
+
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#5D8CFF">
+
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+
+<!-- Icons -->
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
+<!-- Fonts -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+
+<!-- Bootstrap JS support -->
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+
+
+
+<!-- Global -->
+
+<link rel="stylesheet"
+href="style/style.css">
+
+
+<!-- Page -->
+
+<link rel="stylesheet"
+href="style/settings.css">
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="bg-gradient"></div>
+
+
+
+
+<!-- ==========================
+HEADER
+========================== -->
+
+
+<div id="navbar-placeholder"></div>
+
+
+
+
+
+
+
+
+<main class="container main-content">
+
+
+<!-- ==========================
+     SETTINGS HERO
+========================== -->
+
+<div class="setting-header">
+
+
+        <h1>
+
+            Settings
+
+        </h1>
+
+
+</div>
+
+
+
+
+<section class="dashboard-card settings-profile-section">
+
+
+    <div class="dashboard-panel profile-card">
+
+
+        <div class="profile-layout">
+
+
+            <div
+            id="profileAvatar"
+            class="profile-avatar premium-avatar">
+
+                G
+
+            </div>
+
+
+
+            <div class="profile-info">
+
+
+                <h2 id="displayName">
+
+                    Gabby
+
+                </h2>
+
+
+                <p id="displayGoal">
+
+                    Build Muscle
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="profile-badge">
+
+
+            <i class="bi bi-shield-check"></i>
+
+
+            Fitness Profile
+
+
+        </div>
+
+
+
+    </div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ==========================
+     ACCOUNT SETTINGS
+========================== -->
+
+
+<section class="dashboard-card settings-section">
+
+
+<div class="dashboard-panel settings-container">
+
+
+
+<!-- PROFILE DETAILS -->
+
+
+<div class="settings-row accordion-trigger settings-collapse-trigger"
+data-bs-toggle="collapse"
+data-bs-target="#profileCollapse">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-person-circle"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Profile Details
+</h3>
+
+
+<p>
+Manage your fitness identity
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+
+
+
+<div id="profileCollapse"
+class="accordion-collapse collapse">
+
+
+<div class="accordion-body premium-form">
+
+
+<div class="form-group">
+
+
+<label class="form-label">
+
+Full Name
+
+</label>
+
+
+<input
+id="profileName"
+type="text"
+class="form-control premium-input"
+placeholder="Enter your full name">
+
+
+</div>
+
+
+
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label class="form-label">
+
+Height (cm)
+
+</label>
+
+
+<input
+id="bodyHeight"
+type="number"
+class="form-control premium-input"
+placeholder="170">
+
+</div>
+
+
+
+<div class="form-group">
+
+<label class="form-label">
+
+Weight
+
+</label>
+
+
+<input
+id="bodyWeight"
+type="number"
+class="form-control premium-input"
+placeholder="70">
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+
+<label class="form-label">
+
+Fitness Level
+
+</label>
+
+
+<select
+id="fitnessLevel"
+class="form-select premium-input">
+
+
+<option>Beginner</option>
+
+<option>Intermediate</option>
+
+<option>Advanced</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+
+<label class="form-label">
+
+Goal
+
+</label>
+
+
+<select
+id="fitnessGoal"
+class="form-select premium-input">
+
+
+<option>Build Muscle</option>
+
+<option>Lose Fat</option>
+
+<option>Gain Strength</option>
+
+<option>Improve Endurance</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="form-group">
+
+
+<label class="form-label">
+
+BMI
+
+</label>
+
+
+<div class="metric-display">
+
+
+<i class="bi bi-calculator"></i>
+
+
+<input
+id="bmi"
+class="form-control premium-input"
+readonly>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<button
+id="saveProfileBtn"
+class="premium-primary-btn">
+
+
+<i class="bi bi-check-circle"></i>
+
+
+Save Changes
+
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- DARK MODE -->
+
+
+<div class="settings-row">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-moon-stars-fill"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Dark Mode
+</h3>
+
+
+<p>
+Switch your visual experience
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<label class="premium-switch">
+
+
+<input
+id="darkModeSwitch"
+type="checkbox">
+
+
+<span></span>
+
+
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- NOTIFICATIONS -->
+
+
+<div class="settings-row">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-bell-fill"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Notifications
+</h3>
+
+
+<p>
+Coming soon on mobile
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<label class="premium-switch">
+
+
+<input
+id="notifications"
+type="checkbox">
+
+
+<span></span>
+
+
+</label>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- WEIGHT UNITS -->
+
+
+<div class="settings-row settings-collapse-trigger last-setting-row"
+data-bs-toggle="collapse"
+data-bs-target="#weightUnitCollapse">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-speedometer2"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Weight Units
+</h3>
+
+
+<p>
+Choose your measurement system
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+
+
+<div id="weightUnitCollapse"
+class="accordion-collapse collapse">
+
+
+<div class="accordion-body">
+
+
+<select
+id="weightUnit"
+class="form-select premium-input">
+
+
+<option value="kg">
+Kilograms (kg)
+</option>
+
+
+<option value="lb">
+Pounds (lb)
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+     SUPPORT
+========================== -->
+
+
+<section class="dashboard-card support-section">
+
+
+<div class="dashboard-panel settings-container">
+
+
+
+<div class="settings-row accordion-trigger"
+data-bs-toggle="collapse"
+data-bs-target="#faqCollapse">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-question-circle-fill"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Help & FAQ
+</h3>
+
+
+<p>
+Learn how LiftLog works
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+
+
+
+<div id="faqCollapse"
+class="accordion-collapse collapse">
+
+
+<div class="accordion-body faq-container">
+
+
+<div class="faq-item">
+
+<h4>
+How do I log a workout?
+</h4>
+
+<p>
+Open Workouts, select an exercise,
+enter your sets, reps and weight,
+then save your workout.
+</p>
+
+</div>
+
+
+
+<div class="faq-item">
+
+<h4>
+How does BMI work?
+</h4>
+
+<p>
+LiftLog calculates BMI automatically
+using your height and weight.
+</p>
+
+</div>
+
+
+
+<div class="faq-item">
+
+<h4>
+How do I change weight units?
+</h4>
+
+<p>
+Change the Weight Units preference
+and your workout weights update automatically.
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="settings-row last-setting-row"
+id="aboutTrigger">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-info-circle-fill"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+About LiftLog
+</h3>
+
+
+<p>
+App information and details
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ==========================
+     SECURITY
+========================== -->
+
+
+<section class="dashboard-card security-section">
+
+
+<div class="dashboard-panel settings-container danger-container">
+
+
+<div id="signOutBtn"
+class="settings-row">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle">
+
+<i class="bi bi-box-arrow-right"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Sign Out
+</h3>
+
+
+<p>
+Leave your current session
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+
+
+
+<div id="deleteAccountBtn"
+class="settings-row danger-row">
+
+
+<div class="settings-row-left">
+
+
+<div class="icon-circle danger-icon">
+
+<i class="bi bi-trash3-fill"></i>
+
+</div>
+
+
+<div>
+
+<h3>
+Delete Account
+</h3>
+
+
+<p>
+Permanently remove your data
+</p>
+
+
+</div>
+
+
+</div>
+
+
+<i class="bi bi-chevron-right settings-arrow"></i>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+</main>
+
+
+
+
+
+
+
+
+<!-- ==========================
+BOTTOM NAVIGATION
+========================== -->
+
+
+<div id="footer-placeholder"></div>
+
+
+
+
+
+
+
+
+
+<!-- ==========================
+SUCCESS TOAST
+========================== -->
+
+
+
+
+
+
+
+
+
+
+
+<div
+class="modal fade"
+id="aboutModal"
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content premium-modal">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+About LiftLog
+
+</h5>
+
+
+
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="modal-body">
+
+
+<p>
+
+<strong>
+Version:
+</strong>
+
+1.0.0
+
+</p>
+
+
+
+<p>
+
+<strong>
+Developer:
+</strong>
+
+Gabby
+
+</p>
+
+
+
+<p>
+
+<strong>
+Built With:
+</strong>
+
+HTML, CSS, Bootstrap & JavaScript
+
+</p>
+
+
+
+
+<p>
+
+LiftLog helps you track workouts,
+monitor progress, build consistency
+and achieve your fitness goals.
+
+</p>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div
+class="modal fade"
+id="signOutModal"
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content premium-modal">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+Sign Out
+
+</h5>
+
+
+
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="modal-body">
+
+
+Are you sure you want to sign out?
+
+
+</div>
+
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+
+Cancel
+
+
+</button>
+
+
+
+
+<button
+id="confirmSignOut"
+class="premium-primary-btn">
+
+
+Sign Out
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<div
+class="modal fade"
+id="deleteAccountModal"
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content premium-modal">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title danger-text">
+
+Delete Account
+
+</h5>
+
+
+
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="modal-body">
+
+
+This action cannot be undone.
+All workouts, progress and settings
+will be permanently removed.
+
+
+</div>
+
+
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+class="btn btn-secondary"
+data-bs-dismiss="modal">
+
+
+Cancel
+
+
+</button>
+
+
+
+
+
+<button
+id="confirmDeleteAccount"
+class="danger-button premium-primary-btn">
+
+
+Delete Account
+
+
+</button>
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+
+<div
+id="exerciseToast"
+class="toast align-items-center text-bg-success border-0">
+
+
+
+<div class="d-flex">
+
+
+
+<div
+id="toastMessage"
+class="toast-body">
+
+
+Saved successfully.
+
+
+</div>
+
+
+
+
+<button
+class="btn-close btn-close-white me-2 m-auto"
+data-bs-dismiss="toast">
+
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ==========================
+SCRIPTS
+========================== -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<script src="javascript/data.js"></script>
+
+
+<script src="javascript/settings.js"></script>
+
+
+
+
+</body>
+
+</html>

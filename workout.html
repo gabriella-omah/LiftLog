@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LiftLog | Workout Session</title>
+
+<link rel="manifest" href="/manifest.json">
+
+<meta name="theme-color" content="#5D8CFF">
+
+<link rel="apple-touch-icon" href="image/logo.png">
+
+
+<!-- Bootstrap -->
+
+<link 
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+
+<!-- Bootstrap Icons -->
+
+<link 
+rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<!-- Fonts -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link 
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+rel="stylesheet">
+
+
+<!-- Styles -->
+
+<link rel="stylesheet" href="style/style.css">
+
+<link rel="stylesheet" href="style/workout.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+
+<div id="navbar-placeholder"></div>
+
+
+
+
+<main class="container main-content">
+
+    <!-- ==========================
+         WORKOUT HERO
+    =========================== -->
+
+    <section class="dashboard-card workout-hero fade-in">
+
+        <div class="hero-content">
+
+            <div>
+
+                <div class="hero-badge">
+
+                    <i class="bi bi-lightning-charge-fill"></i>
+
+                    Active Workout
+
+                </div>
+
+                <h1 id="workoutTitle" class="gradient-text">
+                    Workout Name
+                </h1>
+
+                <div id="workoutInfo" class="workout-meta"></div>
+
+            </div>
+
+            <div class="hero-actions">
+
+                <button
+                    id="editWorkoutBtn"
+                    class="btn btn-outline-success">
+
+                    <i class="bi bi-pencil"></i>
+
+                    Edit
+
+                </button>
+
+                <button
+                    id="addExerciseBtn"
+                    class="btn btn-success"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exerciseModal">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add Exercise
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         PROGRESS
+    =========================== -->
+
+    <section class="dashboard-card progress-section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+
+                <div class="icon-circle">
+
+                    <i class="bi bi-bar-chart-line"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Workout Progress</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="progress-container">
+
+            <div class="progress">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                    style="width:0%">
+                </div>
+
+            </div>
+
+            <p id="progressText">
+
+                0/0 Exercises Completed • 0%
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==========================
+         TIMER
+    =========================== -->
+
+    <section class="dashboard-card timer-section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+
+                <div class="icon-circle">
+
+                    <i class="bi bi-stopwatch"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Workout Timer</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="timer-display">
+
+            <h2 id="workoutTimer">
+
+                00:00:00
+
+            </h2>
+
+        </div>
+
+        <div class="timer-controls">
+
+            <button
+                id="pauseResumeBtn"
+                class="control-btn play-btn">
+
+                <i
+                    id="pauseResumeIcon"
+                    class="bi bi-play-fill">
+                </i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+         EXERCISES
+    =========================== -->
+
+    <section class="dashboard-card exercises-section">
+
+        <div class="section-header">
+
+            <div class="section-title">
+
+                <div class="icon-circle">
+
+                    <i class="bi bi-list-check"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Exercises</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="workoutExercises"></div>
+
+    </section>
+
+    <!-- ==========================
+         SUMMARY
+    =========================== -->
+
+    <section
+        id="workoutSummaryCard"
+        class="dashboard-card workout-summary d-none">
+
+        <div class="section-header">
+
+            <div class="section-title">
+
+                <div class="icon-circle">
+
+                    <i class="bi bi-check-circle"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>Workout Summary</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="workoutSummaryContent"></div>
+
+    </section>
+
+    <!-- ==========================
+         FINISH
+    =========================== -->
+
+    <section class="dashboard-card finish-section">
+
+        <button
+            id="finishWorkoutBtn"
+            class="finish-btn">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            Finish Workout
+
+        </button>
+
+    </section>
+
+</main>
+
+
+
+
+
+<!-- =========================
+     BOTTOM NAVIGATION
+========================= -->
+
+
+<div id="footer-placeholder"></div>
+
+
+
+
+
+
+
+<!-- =========================
+     ADD EXERCISE MODAL
+========================= -->
+
+
+<div
+
+class="modal fade"
+
+id="exerciseModal"
+
+tabindex="-1">
+
+
+<div class="modal-dialog modal-lg modal-dialog-centered">
+
+
+<div class="modal-content">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+
+Add Exercise
+
+</h5>
+
+
+
+<button
+
+type="button"
+
+class="btn-close"
+
+data-bs-dismiss="modal">
+
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="modal-body">
+
+
+<div class="search-box mb-3">
+
+
+<i class="bi bi-search"></i>
+
+
+
+<input
+
+id="exerciseSearch"
+
+class="form-control"
+
+
+
+placeholder="Search exercises...">
+
+
+</div>
+
+
+
+
+
+<div id="exerciseResults">
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- =========================
+     TOAST MESSAGE
+========================= -->
+
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+
+<div
+
+id="exerciseToast"
+
+class="toast align-items-center text-bg-success border-0"
+
+role="alert">
+
+
+<div class="d-flex">
+
+
+
+<div
+
+id="toastMessage"
+
+class="toast-body">
+
+
+Exercise added successfully.
+
+
+</div>
+
+
+
+<button
+
+type="button"
+
+class="btn-close btn-close-white me-2 m-auto"
+
+data-bs-dismiss="toast">
+
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- =========================
+     FINISH WORKOUT MODAL
+========================= -->
+
+
+<div
+
+class="modal fade"
+
+id="finishWorkoutModal"
+
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content finish-modal">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+
+<i class="bi bi-trophy"></i>
+
+Workout Complete
+
+
+</h5>
+
+
+</div>
+
+
+
+
+
+<div class="modal-body">
+
+
+<div class="completion-icon">
+
+
+<i class="bi bi-check-circle-fill"></i>
+
+
+</div>
+
+
+
+
+<h3 class="text-success text-center">
+
+Great Work!
+
+
+</h3>
+
+
+
+<div id="workoutSummary">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="modal-footer">
+
+
+<a
+
+href="workouts.html"
+
+class="btn btn-success">
+
+
+Back to Workouts
+
+
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- =========================
+     EDIT WORKOUT MODAL
+========================= -->
+
+
+<div
+
+class="modal fade"
+
+id="editWorkoutModal"
+
+tabindex="-1">
+
+
+<div class="modal-dialog modal-dialog-centered">
+
+
+<div class="modal-content">
+
+
+
+<div class="modal-header">
+
+
+<h5 class="modal-title">
+
+
+Edit Workout
+
+
+</h5>
+
+
+
+<button
+
+type="button"
+
+class="btn-close"
+
+data-bs-dismiss="modal">
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div class="modal-body">
+
+
+
+<label class="form-label">
+
+Workout Name
+
+</label>
+
+
+
+<input
+
+id="editWorkoutName"
+
+class="form-control "
+
+placeholder="Workout Name">
+
+
+
+
+
+<label class="form-label">
+
+Workout Day
+
+</label>
+
+
+
+<select
+
+id="editWorkoutDay"
+
+class="form-select mb-3">
+
+
+<option>
+Monday
+</option>
+
+
+<option>
+Tuesday
+</option>
+
+
+<option>
+Wednesday
+</option>
+
+
+<option>
+Thursday
+</option>
+
+
+<option>
+Friday
+</option>
+
+
+<option>
+Saturday
+</option>
+
+
+<option>
+Sunday
+</option>
+
+
+</select>
+
+
+
+
+
+
+<label class="form-label">
+
+Category
+
+</label>
+
+
+
+<select
+
+id="editWorkoutCategory"
+
+class="form-select mb-3">
+
+
+<option>
+Strength
+</option>
+
+
+<option>
+Hypertrophy
+</option>
+
+
+<option>
+Cardio
+</option>
+
+
+<option>
+Full Body
+</option>
+
+
+</select>
+
+
+
+
+
+<label class="form-label">
+
+Goal
+
+</label>
+
+
+
+<select
+
+id="editWorkoutGoal"
+
+class="form-select mb-3">
+
+
+<option>
+Muscle Gain
+</option>
+
+
+<option>
+Strength
+</option>
+
+
+<option>
+Fat Loss
+</option>
+
+
+<option>
+Endurance
+</option>
+
+
+</select>
+
+
+
+
+
+<label class="form-label">
+
+Difficulty
+
+</label>
+
+
+
+<select
+
+id="editWorkoutDifficulty"
+
+class="form-select">
+
+
+<option>
+Beginner
+</option>
+
+
+<option>
+Intermediate
+</option>
+
+
+<option>
+Advanced
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+
+id="saveWorkoutBtn"
+
+class="btn btn-success">
+
+
+<i class="bi bi-check"></i>
+
+Save Changes
+
+
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     REMOVE EXERCISE MODAL
+========================= -->
+
+<div
+    class="modal fade"
+    id="removeExerciseModal"
+    tabindex="-1"
+    aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Remove Exercise
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body text-center">
+
+               <p>
+                    Are you sure you want to delete
+                    <br><br>
+                    <strong id="removeExerciseName"></strong> ?
+                </p>
+
+
+                <p class="text-muted">
+                    This action cannot be undone.
+                </p>
+
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="button"
+                    id="confirmRemoveExerciseBtn"
+                    class="btn btn-danger">
+
+                    <i class="bi bi-trash3"></i>
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =========================
+     SCRIPTS
+========================= -->
+
+
+<!-- Bootstrap JS -->
+
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+
+<!-- LiftLog Scripts -->
+
+
+<script src="javascript/data.js"></script>
+
+<script src="javascript/record.js"></script>
+
+<script src="javascript/streak.js"></script>
+
+<script src="javascript/workout.js"></script>
+
+
+
+</body>
+
+</html>
