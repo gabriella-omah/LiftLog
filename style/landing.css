@@ -109,7 +109,7 @@ body {
   z-index: 5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 48px clamp(50px, 6vw, 110px) 70px;
   pointer-events: none;
 }
@@ -546,7 +546,7 @@ body {
 
   .hero-badge {
     padding: 10px 16px;
-    font-size: 12px;
+    font-size: 13px;
     margin-bottom: 18px;
   }
 
@@ -605,14 +605,14 @@ body {
   }
 
   .bottom-area h1 {
-    font-size: 52px;
+    font-size: 60px;
     letter-spacing: -2px;
     line-height: 0.98;
     margin-bottom: 16px;
   }
 
   .bottom-area p {
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.6;
     margin-bottom: 24px;
   }
