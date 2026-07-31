@@ -246,18 +246,6 @@ document.addEventListener("click", e => {
 
 }
 
-const muscleImages = {
-    Chest: "image/chest.png",
-    Back: "image/back.png",
-    Shoulders: "image/shoulder.png",
-    Biceps: "image/bicep.png",
-    Triceps: "image/tricep.png",
-    Core: "image/core.png",
-    Quadriceps: "image/quads.png",
-    Hamstrings: "image/hamstring.png",
-    Glutes: "image/glute.png",
-    Calves: "image/calf.png"
-};
 
 function displayExercises(list) {
 
@@ -359,27 +347,70 @@ document.addEventListener("click", e => {
     if (!e.target.classList.contains("viewExerciseBtn"))
         return;
 
-    const id =
-        Number(e.target.dataset.id);
+
+    const id = Number(e.target.dataset.id);
+
 
     selectedExercise =
         exerciseLibrary.find(
-
             exercise => exercise.id === id
-
         );
 
-        document.getElementById("exerciseMuscleImage").src =
-muscleImages[selectedExercise.muscle];
+
+    if (!selectedExercise) return;
+
+
+    // BODY MAP IMAGE
+
+    const bodyImage =
+        document.getElementById("exerciseMuscleImage");
+
+
+    if(bodyImage){
+
+        bodyImage.src =
+            selectedExercise.bodyMap;
+
+    }
+
+
+
+    // TITLE
 
     document.getElementById(
         "exerciseTitle"
     ).textContent =
         selectedExercise.name;
 
+
+
+    // BODY CONTENT
+
     document.getElementById(
         "exerciseBody"
     ).innerHTML = `
+
+
+        <div class="exercise-images mb-3">
+
+            ${
+                selectedExercise.images
+                ?
+                selectedExercise.images.map(image => `
+
+                    <img 
+                    src="${image}"
+                    class="img-fluid rounded mb-2"
+                    >
+
+                `).join("")
+                :
+                ""
+            }
+
+        </div>
+
+
 
         <p>
 
@@ -389,6 +420,8 @@ muscleImages[selectedExercise.muscle];
 
         </p>
 
+
+
         <p>
 
             <strong>Equipment:</strong>
@@ -396,6 +429,8 @@ muscleImages[selectedExercise.muscle];
             ${selectedExercise.equipment}
 
         </p>
+
+
 
         <p>
 
@@ -405,6 +440,8 @@ muscleImages[selectedExercise.muscle];
 
         </p>
 
+
+
         <p>
 
             <strong>Type:</strong>
@@ -413,39 +450,59 @@ muscleImages[selectedExercise.muscle];
 
         </p>
 
+
+
         <hr>
+
+
 
         <h5>How to Perform</h5>
 
+
         <ol>
 
-            ${selectedExercise.instructions
-                .map(step=>`<li>${step}</li>`)
-                .join("")}
+        ${
+            selectedExercise.instructions
+            .map(step => `<li>${step}</li>`)
+            .join("")
+        }
 
         </ol>
 
+
+
         <h5>Tips</h5>
+
 
         <ul>
 
-            ${selectedExercise.tips
-                .map(tip=>`<li>${tip}</li>`)
-                .join("")}
+        ${
+            selectedExercise.tips
+            .map(tip => `<li>${tip}</li>`)
+            .join("")
+        }
 
         </ul>
+
+
 
         <h5>Common Mistakes</h5>
 
+
         <ul>
 
-            ${selectedExercise.mistakes
-                .map(m=>`<li>${m}</li>`)
-                .join("")}
+        ${
+            selectedExercise.mistakes
+            .map(mistake => `<li>${mistake}</li>`)
+            .join("")
+        }
 
         </ul>
 
+
     `;
+
+
 
     new bootstrap.Modal(
 
@@ -454,6 +511,7 @@ muscleImages[selectedExercise.muscle];
         )
 
     ).show();
+
 
 });
 

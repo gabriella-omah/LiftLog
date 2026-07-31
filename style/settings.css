@@ -8,18 +8,15 @@
 ==========================================================*/
 
 :root {
-  /* Backgrounds */
   --bg: #F6F8FB;
   --surface: #FFFFFF;
   --surface-2: #F7F9FC;
   --surface-3: #EEF2F8;
 
-  /* Text */
   --text: #10131A;
   --text-light: #5B6475;
   --text-muted: #9099A8;
 
-  /* Brand */
   --primary: #5D8CFF;
   --secondary: #7A5AF8;
 
@@ -27,29 +24,22 @@
   --warning: #F5B942;
   --danger: #EF4444;
 
-  /* Borders */
   --border: #E8ECF3;
 
-  /* Glass */
   --glass: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.65);
 
-  /* Radius */
   --radius-sm: 14px;
   --radius-md: 18px;
   --radius-lg: 24px;
   --radius-xl: 30px;
 
-  /* Shadows */
   --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
 
-  /* Gradient */
   --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-
-  /* Motion */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -689,204 +679,202 @@ button {
 }
 
 /*==========================================================
-   MOBILE – SHARP & TIGHT
+   MOBILE – more padding & gap
 ==========================================================*/
 
 @media (max-width: 768px) {
 
-  /* Header */
   .setting-header {
-    margin: 12px 0 0;
+    margin: 14px 0 0;
   }
 
   .setting-header h1 {
-    font-size: 26px;
+    font-size: 28px;
     letter-spacing: -0.6px;
   }
 
-  /* Profile card */
   .settings-profile-section {
-    padding: 18px 16px;
-    border-radius: 22px;
+    padding: 22px 18px;
+    border-radius: 24px;
   }
 
   .profile-layout {
-    gap: 14px;
+    gap: 16px;
   }
 
   .profile-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 16px;
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
   }
 
   .premium-avatar {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .profile-info h2 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .profile-info p {
-    font-size: 14px;
-    margin-top: 3px;
+    font-size: 14.5px;
+    margin-top: 4px;
   }
 
   .profile-badge {
-    margin-top: 14px;
-    padding: 7px 12px;
-    font-size: 13px;
+    margin-top: 16px;
+    padding: 8px 13px;
+    font-size: 13.5px;
   }
 
-  .profile-badge i {
+  .settings-container {
+    padding: 6px;
+  }
+
+  .settings-row {
+    padding: 18px 0 10px;
+    gap: 14px;
+  }
+
+  .settings-row-left {
+    gap: 14px;
+  }
+
+  .settings-row-left h3 {
+    font-size: 16px;
+  }
+
+  .settings-row-left p {
+    font-size: 13.5px;
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  .settings-arrow {
+    font-size: 17px;
+  }
+
+  .premium-form {
+    margin: 16px 0 20px;
+    padding: 20px 18px;
+    border-radius: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+  }
+
+  .form-label {
+    margin-bottom: 8px;
+    font-size: 13.5px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .premium-input {
+    height: 50px;
+    padding: 0 16px;
+    border-radius: 14px !important;
     font-size: 15px;
   }
 
-  /* Settings rows denser */
-  .settings-container {
-    padding: 4px;
+  textarea.premium-input {
+    height: 120px;
+    padding: 14px 16px;
+  }
+
+  .metric-display {
+    gap: 12px;
+  }
+
+  .metric-display i {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 17px;
+  }
+
+  .premium-primary-btn {
+    height: 52px;
+    border-radius: 16px;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .danger-button {
+    height: 50px;
+    border-radius: 16px;
+    font-size: 15px;
+  }
+
+  .premium-switch {
+    width: 52px;
+    height: 31px;
+  }
+
+  .premium-switch span::before {
+    width: 25px;
+    height: 25px;
+  }
+
+  .premium-switch input:checked + span::before {
+    transform: translateX(21px);
+  }
+
+  .faq-container {
+    padding: 18px 0;
+  }
+
+  .faq-item {
+    padding: 18px 16px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+  }
+
+  .faq-item h4 {
+    margin-bottom: 10px;
+    font-size: 15.5px;
+  }
+
+  .faq-item p {
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  #weightUnitCollapse .accordion-body {
+    padding: 14px 0 18px;
+  }
+
+  .danger-container {
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .setting-header h1 {
+    font-size: 25px;
+  }
+
+  .settings-profile-section {
+    padding: 18px 16px;
+  }
+
+  .premium-form {
+    padding: 16px;
   }
 
   .settings-row {
     padding: 16px 0 8px;
-    gap: 12px;
-  }
-
-  .settings-row-left {
-    gap: 12px;
   }
 
   .settings-row-left h3 {
     font-size: 15.5px;
   }
 
-  .settings-row-left p {
-    font-size: 13px;
-    margin-top: 2px;
-    line-height: 1.45;
-  }
-
-  .settings-arrow {
-    font-size: 16px;
-  }
-
-  /* Form */
-  .premium-form {
-    margin: 14px 0 18px;
-    padding: 18px;
-    border-radius: 18px;
-  }
-
-  .form-group {
-    margin-bottom: 10px;
-  }
-
-
-  .form-label {
-    margin-bottom: 7px;
-    font-size: 13px;
-  }
-
-  .form-grid {
-    gap: 12px;
-  }
-
-  .premium-input {
-    height: 48px;
-    padding: 0 14px;
-    border-radius: 14px !important;
-    font-size: 14.5px;
-  }
-
-  textarea.premium-input {
-    height: 110px;
-    padding: 12px 14px;
-  }
-
-  /* Metric */
-  .metric-display {
-    gap: 10px;
-  }
-
-  .metric-display i {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    font-size: 16px;
-  }
-
-  /* Buttons */
-  .premium-primary-btn {
-    height: 50px;
-    border-radius: 16px;
-    font-size: 14.5px;
-    margin-top: 12px;
-  }
-
-  .danger-button {
-    height: 48px;
-    border-radius: 16px;
-    font-size: 14.5px;
-  }
-
-  /* Switch slightly smaller */
-  .premium-switch {
-    width: 50px;
-    height: 30px;
-  }
-
-  .premium-switch span::before {
-    width: 24px;
-    height: 24px;
-  }
-
-  .premium-switch input:checked + span::before {
-    transform: translateX(20px);
-  }
-
-  /* FAQ denser */
-  .faq-container {
-    padding: 16px 0;
-  }
-
   .faq-item {
     padding: 16px;
-    margin-bottom: 12px;
-    border-radius: 16px;
-  }
-
-  .faq-item h4 {
-    margin-bottom: 8px;
-    font-size: 15px;
-  }
-
-  .faq-item p {
-    font-size: 13px;
-    line-height: 1.6;
-  }
-
-  /* Weight unit */
-  #weightUnitCollapse .accordion-body {
-    padding: 12px 0 16px;
-  }
-}
-
-/* Extra small */
-@media (max-width: 400px) {
-  .setting-header h1 {
-    font-size: 24px;
-  }
-
-  .settings-profile-section {
-    padding: 16px 14px;
-  }
-
-  .premium-form {
-    padding: 14px;
-  }
-
-  .settings-row-left h3 {
-    font-size: 15px;
   }
 }

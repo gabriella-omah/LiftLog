@@ -6,6 +6,13 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+
         instructions: [
             "Lie flat on the bench with feet planted on the floor.",
             "Grip the bar slightly wider than shoulder-width.",
@@ -30,6 +37,13 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+
         instructions: [
             "Set bench to 30-45° incline and sit back.",
             "Hold dumbbells at shoulder level.",
@@ -54,6 +68,13 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+
         instructions: [
             "Sit on the machine with back against pad.",
             "Grab handles and bring them together in front of chest.",
@@ -78,6 +99,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+        
+        
         instructions: [
             "Set pulleys high and stand in center.",
             "Grab handles and bring hands together in front of chest.",
@@ -102,6 +131,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+        
+        
         instructions: [
             "Start in high plank with hands wider than shoulders.",
             "Lower chest toward floor by bending elbows.",
@@ -126,6 +163,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/glute.png",
+        
+        
         instructions: [
             "Position upper back on bench with bar over hips.",
             "Plant feet flat on floor.",
@@ -149,6 +194,14 @@ const exerciseLibrary = [
         muscle: "Hamstrings",
         equipment: "Barbell",
         difficulty: "Intermediate",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/hamstring.png",
+        
+        
         type: "Compound",
         instructions: [
             "Stand with feet hip-width holding barbell.",
@@ -174,6 +227,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/glute.png",
+        
+        
         instructions: [
             "Attach ankle strap and face cable machine.",
             "Kick one leg straight back.",
@@ -198,6 +259,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Stand in lunge position with rear foot elevated.",
             "Lower until front thigh is parallel to floor.",
@@ -222,6 +291,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Sit in leg press machine with feet shoulder-width.",
             "Lower sled by bending knees.",
@@ -246,6 +323,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Place bar across upper back and unrack.",
             "Feet shoulder-width with toes slightly out.",
@@ -270,6 +355,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Advanced",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/hamstring.png",
+        
+        
         instructions: [
             "Stand with mid-foot under barbell.",
             "Bend at hips and knees to grip bar.",
@@ -294,6 +387,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Stand tall holding dumbbells.",
             "Step forward and lower until both knees are at 90°.",
@@ -318,6 +419,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Sit on machine and adjust pad to shins.",
             "Extend legs to straighten knees.",
@@ -342,6 +451,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/hamstring.png",
+        
+        
         instructions: [
             "Lie face down on machine with pad on calves.",
             "Curl legs toward glutes.",
@@ -366,6 +483,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/calf.png",
+        
+        
         instructions: [
             "Stand on calf raise machine with balls of feet on platform.",
             "Rise up onto toes.",
@@ -390,6 +515,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/glute.png",
+        
+        
         instructions: [
             "Lie on back with knees bent and feet flat.",
             "Drive hips up toward ceiling.",
@@ -414,6 +547,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Hang from bar with overhand grip.",
             "Pull body up until chin clears bar.",
@@ -438,6 +579,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Sit at lat pulldown machine and grip bar wide.",
             "Pull bar down to upper chest.",
@@ -462,6 +611,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Hinge at hips with slight knee bend.",
             "Pull barbell toward lower chest.",
@@ -486,6 +643,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Sit at cable row with feet braced.",
             "Pull handle to lower chest.",
@@ -510,6 +675,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Set cable at face height with rope.",
             "Pull rope toward face.",
@@ -534,6 +707,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Place one knee and hand on bench.",
             "Row dumbbell toward hip.",
@@ -558,6 +739,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/back.png",
+        
+        
         instructions: [
             "Straddle T-bar with knees slightly bent.",
             "Pull handle to chest.",
@@ -582,6 +771,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Stand with bar at shoulder level.",
             "Press bar overhead until arms are locked.",
@@ -606,6 +803,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Sit or stand with dumbbells at shoulder height.",
             "Press weights overhead.",
@@ -630,6 +835,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Hold light dumbbells at sides.",
             "Raise arms out to sides until parallel to floor.",
@@ -654,6 +867,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Hold dumbbells in front of thighs.",
             "Raise arms straight forward to shoulder height.",
@@ -678,6 +899,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Sit on rear delt fly machine.",
             "Pull handles back in wide arc.",
@@ -702,6 +931,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/shoulder.png",
+        
+        
         instructions: [
             "Hold bar with close grip.",
             "Pull bar up to chest level.",
@@ -726,6 +963,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/bicep.png",
+        
+        
         instructions: [
             "Stand with dumbbells at sides.",
             "Curl weights toward shoulders.",
@@ -750,6 +995,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/bicep.png",
+        
+        
         instructions: [
             "Hold dumbbells with neutral grip.",
             "Curl weights to shoulders.",
@@ -774,6 +1027,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/tricep.png",
+        
+        
         instructions: [
             "Attach straight bar to high pulley.",
             "Push bar down until arms are straight.",
@@ -798,6 +1059,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/tricep.png",
+        
+        
         instructions: [
             "Hold dumbbell overhead with both hands.",
             "Lower weight behind head.",
@@ -822,6 +1091,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "images/body/chest.png",
+        
+        
         instructions: [
             "Grab parallel bars and lift body.",
             "Lower until shoulders are below elbows.",
@@ -846,6 +1123,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/bicep.png",
+        
+        
         instructions: [
             "Sit on bench with elbow on inner thigh.",
             "Curl dumbbell to shoulder.",
@@ -870,6 +1155,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/tricep.png",
+        
+        
         instructions: [
             "Lie on bench holding bar above chest.",
             "Lower bar toward forehead.",
@@ -894,6 +1187,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/core.png",
+        
+        
         instructions: [
             "Hold forearm plank position.",
             "Keep body in straight line.",
@@ -918,6 +1219,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/core.png",
+        
+        
         instructions: [
             "Sit with knees bent and lean back slightly.",
             "Rotate torso side to side.",
@@ -942,6 +1251,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/core.png",
+        
+        
         instructions: [
             "Hang from pull-up bar.",
             "Raise legs toward chest.",
@@ -966,6 +1283,14 @@ const exerciseLibrary = [
         equipment: "Cable",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/core.png",
+        
+        
         instructions: [
             "Kneel facing cable machine with rope attachment.",
             "Crunch down squeezing abs.",
@@ -990,6 +1315,14 @@ const exerciseLibrary = [
         equipment: "Ab Wheel",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/core.png",
+        
+        
         instructions: [
             "Kneel and hold ab wheel.",
             "Roll forward extending body.",
@@ -1014,6 +1347,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+        
+        
         instructions: [
             "Lie on decline bench.",
             "Grip bar wider than shoulders.",
@@ -1038,6 +1379,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "images/chest.png",
+        
+        
         instructions: [
             "Lie on incline bench.",
             "Grip bar slightly wider than shoulders.",
@@ -1062,6 +1411,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+        
+        
         instructions: [
             "Sit on pec deck machine.",
             "Bring handles together in front.",
@@ -1086,6 +1443,14 @@ const exerciseLibrary = [
         equipment: "Bodyweight",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/chest.png",
+        
+        
         instructions: [
             "Form diamond shape with hands.",
             "Lower chest to hands.",
@@ -1110,6 +1475,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Position shoulders under pads.",
             "Lower sled by bending knees.",
@@ -1134,6 +1507,14 @@ const exerciseLibrary = [
         equipment: "Barbell",
         difficulty: "Intermediate",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image.glute.png",
+        
+        
         instructions: [
             "Wide stance with toes out.",
             "Grip bar inside knees.",
@@ -1158,6 +1539,14 @@ const exerciseLibrary = [
         equipment: "Dumbbell",
         difficulty: "Beginner",
         type: "Compound",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/quads.png",
+        
+        
         instructions: [
             "Step onto box with one foot.",
             "Drive through heel to stand.",
@@ -1182,6 +1571,14 @@ const exerciseLibrary = [
         equipment: "Machine",
         difficulty: "Beginner",
         type: "Isolation",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/calf.png",
+        
+        
         instructions: [
             "Sit in calf raise machine.",
             "Raise heels by contracting calves.",
@@ -1206,6 +1603,14 @@ const exerciseLibrary = [
     equipment: "Treadmill",
     difficulty: "Beginner",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Step onto the treadmill and start at a comfortable walking speed.",
         "Maintain an upright posture.",
@@ -1230,6 +1635,14 @@ const exerciseLibrary = [
     equipment: "Bodyweight",
     difficulty: "Beginner",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Begin at a comfortable jogging pace.",
         "Maintain a steady rhythm.",
@@ -1254,6 +1667,14 @@ const exerciseLibrary = [
     equipment: "Bodyweight",
     difficulty: "Advanced",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Warm up thoroughly.",
         "Sprint at maximum effort.",
@@ -1278,6 +1699,14 @@ const exerciseLibrary = [
     equipment: "Bike",
     difficulty: "Beginner",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Adjust seat height.",
         "Begin pedaling at an easy pace.",
@@ -1302,6 +1731,14 @@ const exerciseLibrary = [
     equipment: "Rowing Machine",
     difficulty: "Intermediate",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Push with your legs first.",
         "Lean back slightly.",
@@ -1326,6 +1763,14 @@ const exerciseLibrary = [
     equipment: "StairMaster",
     difficulty: "Intermediate",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Step naturally onto each stair.",
         "Maintain an upright posture.",
@@ -1350,6 +1795,14 @@ const exerciseLibrary = [
     equipment: "Jump Rope",
     difficulty: "Intermediate",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Hold the rope handles comfortably.",
         "Jump lightly on the balls of your feet.",
@@ -1374,6 +1827,14 @@ const exerciseLibrary = [
     equipment: "Bodyweight",
     difficulty: "Advanced",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Squat down and place your hands on the floor.",
         "Jump your feet back into a plank.",
@@ -1398,6 +1859,14 @@ const exerciseLibrary = [
     equipment: "Bodyweight",
     difficulty: "Intermediate",
     type: "Cardio",
+
+        images:[
+        "images/exercises/bench-press-1.png",
+        "images/exercises/bench-press-2.png"
+        ],
+        bodyMap: "image/cardio.png",
+        
+        
     instructions: [
         "Start in a high plank.",
         "Drive one knee toward your chest.",

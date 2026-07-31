@@ -9,19 +9,16 @@
 ==========================================================*/
 
 :root {
-  /* Backgrounds */
   --bg: #F6F8FB;
   --surface: #FFFFFF;
   --surface-2: #F7F9FC;
   --surface-3: #EEF2F8;
   --card: #FFFFFF;
 
-  /* Text */
   --text: #10131A;
   --text-light: #5B6475;
   --text-muted: #9099A8;
 
-  /* Brand */
   --primary: #5D8CFF;
   --secondary: #7A5AF8;
 
@@ -29,29 +26,22 @@
   --warning: #F5B942;
   --danger: #EF4444;
 
-  /* Borders */
   --border: #E8ECF3;
 
-  /* Glass */
   --glass: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.65);
 
-  /* Radius */
   --radius-sm: 14px;
   --radius-md: 18px;
   --radius-lg: 24px;
   --radius-xl: 30px;
 
-  /* Shadows */
   --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
 
-  /* Gradient */
   --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-
-  /* Motion */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -84,7 +74,7 @@
 }
 
 /*==========================================================
-   HERO SECTION
+   HERO
 ==========================================================*/
 
 .progress-hero {
@@ -102,7 +92,7 @@
 }
 
 /*==========================================================
-   WORKOUT STATISTICS
+   STATS
 ==========================================================*/
 
 .stats-grid {
@@ -110,10 +100,6 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 18px;
 }
-
-/*==========================================================
-   STAT CARD
-==========================================================*/
 
 .stat-card {
   position: relative;
@@ -170,10 +156,6 @@
   color: var(--text);
 }
 
-/*==========================================================
-   STAT ICON COLORS
-==========================================================*/
-
 .stat-icon.green {
   background: rgba(34, 197, 94, 0.12);
   color: #22c55e;
@@ -195,7 +177,7 @@
 }
 
 /*==========================================================
-   PERFORMANCE SUMMARY / RINGS
+   RINGS
 ==========================================================*/
 
 .summary-rings {
@@ -223,10 +205,6 @@
   font-weight: 600;
   color: var(--text);
 }
-
-/*==========================================================
-   RINGS
-==========================================================*/
 
 .ring {
   width: 132px;
@@ -280,7 +258,7 @@
 }
 
 /*==========================================================
-   TRAINING TIME CARD
+   TRAINING TIME
 ==========================================================*/
 
 .training-time-card {
@@ -315,7 +293,7 @@
 }
 
 /*==========================================================
-   WEEKLY CHART
+   CHART
 ==========================================================*/
 
 .chart-section .dashboard-panel {
@@ -339,7 +317,7 @@
 }
 
 /*==========================================================
-   WORKOUT CALENDAR – CONTROLS
+   CALENDAR CONTROLS
 ==========================================================*/
 
 .calendar-controls {
@@ -412,10 +390,6 @@
   letter-spacing: 0.4px;
 }
 
-/*==========================================================
-   CALENDAR DAY
-==========================================================*/
-
 .calendar-day {
   position: relative;
   min-height: 70px;
@@ -440,12 +414,12 @@
 }
 
 .calendar-day.not-tracked {
-opacity: 0.35;
-cursor: default;
+  opacity: 0.35;
+  cursor: default;
 }
 
 .calendar-day.not-tracked:hover {
-transform: none;
+  transform: none;
 }
 
 .calendar-day.empty {
@@ -476,7 +450,6 @@ transform: none;
   font-size: 0.65rem;
 }
 
-/* Day states */
 .calendar-day.completed {
   background: rgba(52, 199, 89, 0.1);
   border-color: rgba(52, 199, 89, 0.3);
@@ -522,7 +495,7 @@ transform: none;
 }
 
 /*==========================================================
-   CALENDAR LEGEND
+   LEGEND
 ==========================================================*/
 
 .calendar-legend {
@@ -548,21 +521,10 @@ transform: none;
   display: inline-block;
 }
 
-.legend-dot.completed {
-  background: var(--success);
-}
-
-.legend-dot.missed {
-  background: var(--danger);
-}
-
-.legend-dot.today {
-  background: var(--warning);
-}
-
-.legend-dot.rest {
-  background: #adb5bd;
-}
+.legend-dot.completed { background: var(--success); }
+.legend-dot.missed    { background: var(--danger); }
+.legend-dot.today     { background: var(--warning); }
+.legend-dot.rest      { background: #adb5bd; }
 
 /*==========================================================
    CALENDAR DETAIL MODAL
@@ -773,7 +735,7 @@ transform: none;
 }
 
 /*==========================================================
-   WORKOUT HISTORY
+   HISTORY
 ==========================================================*/
 
 #workoutHistory {
@@ -1034,7 +996,7 @@ transform: none;
 }
 
 /*==========================================================
-   EXPORT SECTION
+   EXPORT
 ==========================================================*/
 
 .export-card .dashboard-panel {
@@ -1112,7 +1074,7 @@ transform: none;
 }
 
 /*==========================================================
-   DARK MODE OVERRIDES
+   DARK MODE
 ==========================================================*/
 
 .dark-mode .chart-wrapper {
@@ -1267,64 +1229,256 @@ transform: none;
 }
 
 /*==========================================================
-   RESPONSIVE
+   MOBILE – more padding & gap
 ==========================================================*/
 
-@media (max-width: 640px) {
-  .export-info {
-    flex-direction: column;
-    align-items: flex-start;
+@media (max-width: 768px) {
+
+  .stats-grid {
+    gap: 14px;
   }
 
-  #exportBtn {
-    width: 100%;
+  .stat-card {
+    padding: 18px 16px;
+    border-radius: 20px;
   }
 
-  .calendar-weekdays,
-  .calendar-grid {
-    gap: 4px;
+  .stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    font-size: 20px;
   }
 
-  .calendar-day {
-    min-height: 55px;
-    border-radius: 10px;
+  .stat-card h5 {
+    font-size: 13px;
   }
 
-  .calendar-day-number {
-    font-size: 0.8rem;
+  .stat-card h2 {
+    font-size: 26px;
+    margin-top: 8px;
   }
 
-  .calendar-day-indicator {
-    width: 16px;
-    height: 16px;
-    font-size: 0.55rem;
+  .summary-rings {
+    gap: 16px;
+    margin-top: 22px;
+  }
+
+  .ring {
+    width: 110px;
+    height: 110px;
+  }
+
+  .ring-inner h3 {
+    font-size: 24px;
+  }
+
+  .summary-ring-card p {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .training-time-card {
+    margin-top: 22px;
+    padding: 22px 18px;
+    border-radius: 20px;
+  }
+
+  .training-time-card h3 {
+    font-size: 28px;
+  }
+
+  .chart-section .dashboard-panel,
+  .export-card .dashboard-panel {
+    padding: 20px 18px;
+  }
+
+  .chart-wrapper {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .chart-wrapper canvas {
+    height: 220px !important;
+  }
+
+  .calendar-controls {
+    gap: 14px;
+    margin: 20px 0;
   }
 
   .calendar-month {
     min-width: 150px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .calendar-nav-btn {
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .calendar-weekdays,
+  .calendar-grid {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    min-height: 58px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+
+  .calendar-day-number {
+    font-size: 0.85rem;
+  }
+
+  .calendar-day-indicator {
+    width: 17px;
+    height: 17px;
+    font-size: 0.55rem;
   }
 
   .calendar-legend {
-    gap: 10px;
+    gap: 12px;
+    margin-top: 18px;
   }
 
   .calendar-legend-item {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .calendar-stat-grid {
     grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .calendar-exercise-row {
     align-items: flex-start;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
+    padding: 14px;
+  }
+
+  #workoutHistory {
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .history-card {
+    padding: 18px 16px;
+    border-radius: 20px;
+  }
+
+  .history-top h4 {
+    font-size: 16px;
+  }
+
+  .history-meta {
+    gap: 14px;
+    margin-top: 14px;
+    padding-top: 14px;
+  }
+
+  .history-meta span {
+    font-size: 13px;
+  }
+
+  #personalRecords {
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .pr-item {
+    padding: 16px;
+    border-radius: 18px;
+    gap: 14px;
+  }
+
+  .pr-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    font-size: 20px;
+  }
+
+  #achievements {
+    gap: 22px;
+    margin-top: 18px;
+  }
+
+  .achievement-group-header {
+    gap: 12px;
+    padding-bottom: 12px;
+  }
+
+  .achievement-group-header i {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    font-size: 18px;
+  }
+
+  .achievement-group-header h4 {
+    font-size: 16px;
+  }
+
+  .achievement-row {
+    padding: 16px;
+  }
+
+  .export-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .export-info h2 {
+    font-size: 18px;
+  }
+
+  #exportBtn {
+    width: 100%;
+    height: 50px;
+    border-radius: 16px;
+  }
+
+  .empty-state,
+  .empty-text {
+    padding: 28px 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .stat-card {
+    padding: 16px 14px;
+  }
+
+  .stat-card h2 {
+    font-size: 22px;
+  }
+
+  .ring {
+    width: 96px;
+    height: 96px;
+  }
+
+  .ring-inner h3 {
+    font-size: 20px;
+  }
+
+  .calendar-day {
+    min-height: 50px;
+    border-radius: 10px;
+  }
+
+  .calendar-day-number {
+    font-size: 0.78rem;
+  }
+
+  .history-card,
+  .pr-item {
+    padding: 14px;
   }
 }

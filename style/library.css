@@ -4,22 +4,19 @@
 ==========================================================*/
 
 /*==========================================================
-   ROOT VARIABLES (Library overrides / page tokens)
+   ROOT VARIABLES
 ==========================================================*/
 
 :root {
-  /* Backgrounds */
   --bg: #F6F8FB;
   --surface: #FFFFFF;
   --surface-2: #F7F9FC;
   --surface-3: #EEF2F8;
 
-  /* Text */
   --text: #10131A;
   --text-light: #5B6475;
   --text-muted: #9099A8;
 
-  /* Brand */
   --primary: #5D8CFF;
   --secondary: #7A5AF8;
 
@@ -27,29 +24,22 @@
   --warning: #F5B942;
   --danger: #EF4444;
 
-  /* Borders */
   --border: #E8ECF3;
 
-  /* Glass */
   --glass: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.65);
 
-  /* Radius */
   --radius-sm: 14px;
   --radius-md: 18px;
   --radius-lg: 24px;
   --radius-xl: 30px;
 
-  /* Shadows */
   --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
   --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
   --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
 
-  /* Gradient */
   --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-
-  /* Motion */
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -119,6 +109,7 @@
   box-shadow: 0 12px 28px rgba(93, 140, 255, 0.22);
 }
 
+#exerciseCategories,
 .library-sub-filters {
   display: flex;
   flex-wrap: wrap;
@@ -156,10 +147,11 @@
    EXERCISE GRID
 ==========================================================*/
 
+#exerciseLibrary,
 .exercise-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 30px;
+  gap: 28px;
   margin-top: 26px;
 }
 
@@ -196,58 +188,63 @@
   box-shadow: var(--shadow-md);
 }
 
+.exercise-card .card-body {
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
 .exercise-info {
   position: relative;
   z-index: 2;
 }
 
 .exercise-info h4 {
-  margin: 0 0 5px;
-  font-size: 22px;
+  margin: 0 0 10px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.4px;
+  line-height: 1.25;
 }
 
 .exercise-info small {
   display: block;
   margin-top: 12px;
   color: var(--text-muted);
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 
 /*==========================================================
-   EXERCISE IMAGE / ANATOMY
+   MUSCLE BADGES
 ==========================================================*/
 
-.exercise-anatomy {
-  display: flex;
+.muscle-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 170px;
-  margin-bottom: 20px;
-  border-radius: 22px;
-  background: var(--surface-3);
-  overflow: hidden;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  margin: 0;
 }
 
-.exercise-modal-image{
-    margin-bottom: 30px;
-}
-
-.exercise-anatomy img {
-  width: 130px;
-  height: 150px;
-  object-fit: contain;
-  transition: 0.35s ease;
-}
-
-.exercise-card:hover .exercise-anatomy img {
-  transform: scale(1.06);
-}
-
+.muscle-badge.chest { background: #FDECEC; color: #DC2626; }
+.muscle-badge.back { background: #E8F1FF; color: #2563EB; }
+.muscle-badge.shoulders { background: #FFF3E6; color: #EA580C; }
+.muscle-badge.biceps,
+.muscle-badge.triceps,
+.muscle-badge.arms { background: #F2ECFF; color: #7C3AED; }
+.muscle-badge.core { background: #FFF8DA; color: #CA8A04; }
+.muscle-badge.glutes { background: #FFEAF3; color: #DB2777; }
+.muscle-badge.quadriceps,
+.muscle-badge.hamstrings,
+.muscle-badge.calves,
+.muscle-badge.legs { background: #E9FAEF; color: #15803D; }
+.muscle-badge.cardio { background: #FFF3E6; color: #EA580C; }
 
 /*==========================================================
    ACTION BUTTONS
@@ -257,13 +254,13 @@
 #openAddWorkout,
 #saveExerciseBtn {
   width: 100%;
-  height: 54px;
-  margin-top: 20px;
+  height: 52px;
+  margin-top: 18px;
   border: none;
-  border-radius: 18px;
+  border-radius: 16px;
   background: var(--primary-gradient);
   color: #fff;
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
   transition: var(--transition);
   box-shadow: 0 14px 30px rgba(93, 140, 255, 0.2);
@@ -284,6 +281,190 @@
 }
 
 /*==========================================================
+   EXERCISE DETAIL MODAL (#exerciseModal)
+==========================================================*/
+
+#exerciseModal .modal-content {
+  border: none;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+#exerciseModal .modal-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#exerciseModal .modal-title,
+#exerciseTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+#exerciseModal .modal-body {
+  padding: 24px;
+  max-height: min(72vh, 640px);
+  overflow-y: auto;
+}
+
+/* Body map */
+.exercise-modal-image,
+#exerciseMuscleImage {
+  display: block;
+  margin: 0 auto 24px;
+  max-height: 200px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+/* Movement images */
+.exercise-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.exercise-images img,
+#exerciseBody img {
+  display: block;
+  width: 100%;
+  max-width: calc(50% - 6px);
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 10px;
+}
+
+/* Body content */
+#exerciseBody {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+#exerciseBody p {
+  margin: 0 0 10px;
+  color: var(--text-light);
+}
+
+#exerciseBody strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+#exerciseBody hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 22px 0;
+}
+
+#exerciseBody h5 {
+  margin: 26px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+
+#exerciseBody h5:first-of-type {
+  margin-top: 4px;
+}
+
+#exerciseBody ol,
+#exerciseBody ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-light);
+}
+
+#exerciseBody li {
+  margin-bottom: 10px;
+  line-height: 1.65;
+  padding-left: 4px;
+}
+
+#exerciseBody ol li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#exerciseBody ul li::marker {
+  color: var(--primary);
+}
+
+#exerciseModal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#exerciseModal .modal-footer .btn,
+#openAddWorkout {
+  margin-top: 0;
+}
+
+/*==========================================================
+   ADD TO WORKOUT MODAL
+==========================================================*/
+
+#addWorkoutModal .modal-content {
+  border: none;
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+#addWorkoutModal .modal-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+#addWorkoutModal .modal-body {
+  padding: 24px;
+}
+
+#addWorkoutModal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+}
+
+#workoutSelect {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+#workoutSelect:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.12);
+  background: var(--surface);
+  outline: none;
+}
+
+/*==========================================================
    ANIMATIONS
 ==========================================================*/
 
@@ -299,16 +480,12 @@
 }
 
 /*==========================================================
-   DARK MODE OVERRIDES
+   DARK MODE
 ==========================================================*/
 
 .dark-mode .exercise-card {
   background: var(--surface);
   border-color: rgba(255, 255, 255, 0.08);
-}
-
-.dark-mode .exercise-anatomy {
-  background: #0F172A;
 }
 
 .dark-mode .library-filter {
@@ -344,7 +521,6 @@
   color: #fff;
 }
 
-/* Muscle badges – slightly richer in dark mode */
 .dark-mode .muscle-badge.chest {
   background: rgba(220, 38, 38, 0.15);
   color: #F87171;
@@ -361,7 +537,8 @@
 }
 
 .dark-mode .muscle-badge.biceps,
-.dark-mode .muscle-badge.triceps {
+.dark-mode .muscle-badge.triceps,
+.dark-mode .muscle-badge.arms {
   background: rgba(124, 58, 237, 0.15);
   color: #A78BFA;
 }
@@ -378,22 +555,172 @@
 
 .dark-mode .muscle-badge.quadriceps,
 .dark-mode .muscle-badge.hamstrings,
-.dark-mode .muscle-badge.calves {
+.dark-mode .muscle-badge.calves,
+.dark-mode .muscle-badge.legs {
   background: rgba(21, 128, 61, 0.15);
   color: #4ADE80;
+}
+
+.dark-mode .muscle-badge.cardio {
+  background: rgba(234, 88, 12, 0.16);
+  color: #FB923C;
+}
+
+.dark-mode #exerciseModal .modal-content,
+.dark-mode #addWorkoutModal .modal-content {
+  background: var(--surface);
+}
+
+.dark-mode .exercise-images img,
+.dark-mode #exerciseBody img {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.dark-mode #workoutSelect {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text);
 }
 
 /*==========================================================
    RESPONSIVE
 ==========================================================*/
 
-@media (max-width: 640px) {
-  .library-main-filters {
-    grid-template-columns: repeat(2, 1fr);
+@media (max-width: 768px) {
+  .library-filter-card {
+    margin-bottom: 22px;
   }
 
+  .library-main-filters {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .library-filter {
+    height: 46px;
+    border-radius: 14px;
+    font-size: 13.5px;
+  }
+
+  #exerciseCategories,
+  .library-sub-filters {
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .sub-filter-btn {
+    padding: 9px 15px;
+    font-size: 12.5px;
+  }
+
+  #exerciseLibrary,
   .exercise-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
+    margin-top: 20px;
+  }
+
+  .exercise-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .exercise-info h4 {
+    font-size: 18px;
+  }
+
+  .exercise-info small {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+
+  .viewExerciseBtn,
+  #openAddWorkout,
+  #saveExerciseBtn {
+    height: 50px;
+    margin-top: 16px;
+    border-radius: 14px;
+    font-size: 14px;
+  }
+
+  /* Modal mobile */
+  #exerciseModal .modal-content,
+  #addWorkoutModal .modal-content {
+    border-radius: 22px;
+    margin: 10px;
+  }
+
+  #exerciseModal .modal-header,
+  #addWorkoutModal .modal-header {
+    padding: 16px 18px;
+  }
+
+  #exerciseModal .modal-title,
+  #exerciseTitle {
+    font-size: 18px;
+  }
+
+  #exerciseModal .modal-body,
+  #addWorkoutModal .modal-body {
+    padding: 18px;
+    max-height: min(74vh, 560px);
+  }
+
+  .exercise-modal-image,
+  #exerciseMuscleImage {
+    max-height: 160px;
+    margin-bottom: 18px;
+  }
+
+  .exercise-images {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .exercise-images img,
+  #exerciseBody img {
+    max-width: 100%;
+    max-height: 170px;
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  #exerciseBody {
+    font-size: 14.5px;
+  }
+
+  #exerciseBody h5 {
+    margin: 22px 0 10px;
+    padding-top: 16px;
+    font-size: 15px;
+  }
+
+  #exerciseBody li {
+    margin-bottom: 8px;
+  }
+
+  #exerciseModal .modal-footer,
+  #addWorkoutModal .modal-footer {
+    padding: 14px 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .library-filter {
+    height: 44px;
+    font-size: 12.5px;
+  }
+
+  .exercise-card {
+    padding: 16px;
+  }
+
+  .exercise-info h4 {
+    font-size: 17px;
+  }
+
+  .viewExerciseBtn {
+    height: 48px;
   }
 }

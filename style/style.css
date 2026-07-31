@@ -190,7 +190,6 @@ ul {
   list-style: none;
 }
 
-/* Smooth theme transitions */
 * {
   transition:
     background-color 0.3s,
@@ -795,56 +794,54 @@ hr {
    PREMIUM MODALS
 ========================================================== */
 
-/* ==========================================================
-   PREMIUM MODALS
-========================================================== */
-
 .modal-content,
-.premium-modal{
-    display:flex;
-    flex-direction:column;
-    max-height:90vh;
-    border:none;
-    border-radius:30px;
-    overflow:hidden;
-    background:var(--surface);
-    color:var(--text);
-    box-shadow:var(--shadow-lg);
+.premium-modal {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  border: none;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
 }
 
-/* Scrollable body */
-.modal-body{
-    overflow-y:auto;
-    flex:1;
-    padding:24px;
+.modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.8;
 }
 
-/* Sticky Header */
-.modal-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:var(--surface);
-    border-bottom:1px solid var(--border);
-    padding:22px 24px;
-    box-shadow:0 2px 12px rgba(0,0,0,.05);
+.modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 22px 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Sticky Footer (optional but recommended) */
-.modal-footer{
-    position:sticky;
-    bottom:0;
-    z-index:100;
-    background:var(--surface);
-    border-top:1px solid var(--border);
-    padding:20px 24px;
+.modal-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 20px 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
-/* Dark mode */
 .dark-mode .modal-header,
-.dark-mode .modal-footer{
-    background:var(--surface);
-    box-shadow:0 2px 12px rgba(0,0,0,.35);
+.dark-mode .modal-footer {
+  background: var(--surface);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .modal-title {
@@ -852,13 +849,6 @@ hr {
   font-size: 20px;
   font-weight: 700;
   color: var(--text);
-}
-
-.modal-body {
-  padding: 24px;
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.8;
 }
 
 .modal-body strong,
@@ -878,15 +868,6 @@ hr {
   margin-bottom: 10px;
 }
 
-.modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  padding: 20px 24px;
-  border-top: 1px solid var(--border);
-}
-
-/* Modal specific buttons */
 .modal .btn-secondary {
   min-width: 110px;
   height: 50px;
@@ -918,7 +899,6 @@ hr {
   padding: 0 22px;
 }
 
-/* Close button */
 .btn-close {
   opacity: 0.55;
   transition: 0.25s ease;
@@ -929,7 +909,6 @@ hr {
   transform: rotate(90deg);
 }
 
-/* Exercise modal image */
 .exercise-modal-image {
   display: flex;
   align-items: center;
@@ -938,7 +917,6 @@ hr {
 }
 
 .exercise-modal-image img {
-
   object-fit: contain;
 }
 
@@ -1010,10 +988,8 @@ hr {
 
 /*==========================================================
    CATEGORY & MUSCLE BADGE SYSTEM
-   Light + Dark Mode
 ==========================================================*/
 
-/* Shared base styles */
 .workout-category,
 .muscle-badge {
   display: inline-flex;
@@ -1032,10 +1008,6 @@ hr {
   padding: 8px 16px;
   font-size: 13px;
 }
-
-/*==========================================================
-   CATEGORY COLORS (Light)
-==========================================================*/
 
 .category-chest,
 .muscle-badge.chest {
@@ -1101,7 +1073,7 @@ hr {
 
 .category-cardio,
 .muscle-badge.cardio {
-  background: #FFF3E6;          /* Orange / Amber – recommended */
+  background: #FFF3E6;
   color: #EA580C;
 }
 
@@ -1141,10 +1113,7 @@ hr {
   color: #6B7280;
 }
 
-/*==========================================================
-   DARK MODE
-==========================================================*/
-
+/* Dark mode categories */
 .dark-mode .category-chest,
 .dark-mode .muscle-badge.chest {
   background: rgba(220, 38, 38, 0.15);
@@ -1249,196 +1218,186 @@ hr {
   color: #9CA3AF;
 }
 
-/* ==========================================
-   BACK BUTTON
-========================================== */
-/* ==========================================
-   BACK BUTTON
-========================================== */
-
-.back-btn{
-
-    display: none;
-
-    width:44px;
-    height:44px;
-
-    border:none;
-    border-radius:14px;
-
-    align-items:center;
-    justify-content:center;
-    margin-right: 14px;
-    background:rgba(255,255,255,.08);
-
-    color:var(--text-color);
-
-    cursor:pointer;
-
-    transition:all .25s ease;
-
-}
-
-.back-btn i{
-
-    font-size:1.15rem;
-
-}
-
-.back-btn:hover{
-
-    background:rgba(255,255,255,.14);
-
-    transform:translateX(-3px);
-
-}
-
-.back-btn:active{
-
-    transform:scale(.95);
-
-}
-
-body.dark-mode .back-btn{
-
-    background:rgba(255,255,255,.05);
-
-}
 /* ==========================================================
-   MOBILE – SHARP & TIGHT
+   BACK BUTTON
+========================================================== */
+
+.back-btn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.back-btn i {
+  font-size: 1.15rem;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateX(-3px);
+}
+
+.back-btn:active {
+  transform: scale(0.95);
+}
+
+body.dark-mode .back-btn {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ==========================================================
+   MOBILE – balanced breathing room
    (max-width: 768px)
+========================================================== */
+
+/* ==========================================================
+   MOBILE – more padding & gap in dashboards / sections
 ========================================================== */
 
 @media (max-width: 768px) {
 
-  /* ---------- NAVBAR (shorter) ---------- */
+  /* Navbar */
   .navbar {
-    height: 64px;
-    padding: 0 16px;
+    height: 68px;
+    padding: 0 18px;
   }
 
   body {
-    padding-top: 64px; /* match new navbar height */
+    padding-top: 68px;
   }
 
   .logo {
-    font-size: 1.2rem;
-    gap: 8px;
+    font-size: 1.25rem;
+    gap: 10px;
   }
 
   .logo i {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
   }
 
   .avatar {
-    width: 40px;
-    height: 40px;
-    font-size: 0.9rem;
+    width: 42px;
+    height: 42px;
+    font-size: 0.92rem;
   }
 
-  /* ---------- MAIN CONTENT (less air) ---------- */
+  /* ---------- MAIN LAYOUT (more gap + padding) ---------- */
   .main-content {
-    gap: 18px;
-    padding: 14px 14px 110px;
+    gap: 28px;                 /* was 18–22 */
+    padding: 22px 18px 124px;  /* more side + top padding */
   }
 
   section {
-    padding: 28px 0;
+    padding: 36px 0;           /* more section breathing room */
   }
 
   .container {
-    padding-inline: 14px;
+    padding-inline: 18px;
   }
 
-  /* ---------- HERO ---------- */
+  /* ---------- HERO / DASHBOARD SECTIONS ---------- */
   .hero-section {
-    padding: 20px 16px;
-    border-radius: 22px;
+    padding: 26px 20px;        /* more inner padding */
+    border-radius: 24px;
   }
 
   .hero-content h1 {
-    font-size: clamp(23px, 7vw, 30px);
+    font-size: clamp(24px, 7vw, 32px);
     letter-spacing: -1.2px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
   .hero-content p {
-    font-size: 14.5px;
+    font-size: 15px;
     max-width: 100%;
-    line-height: 1.55;
+    line-height: 1.65;
   }
 
   .hero-content .badge {
-    margin-bottom: 12px;
-    padding: 6px 12px;
+    margin-bottom: 16px;
+    padding: 7px 13px;
     font-size: 12px;
   }
 
   /* ---------- SECTION HEADERS ---------- */
   .section-header {
-    margin-bottom: 16px;
+    margin-bottom: 22px;       /* more space before content */
   }
 
   .section-title {
-    gap: 10px;
+    gap: 12px;
   }
 
   .section-title h2 {
-    font-size: 17px;
+    font-size: 18px;
   }
 
   .section-title p {
-    font-size: 12px;
+    font-size: 13px;
+    margin-top: 4px;
   }
 
   .icon-circle {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: 18px;
   }
 
-  /* ---------- DASHBOARD CARDS ---------- */
+  /* ---------- DASHBOARD CARDS (more padding) ---------- */
   .dashboard-card {
-    padding: 16px;
-    border-radius: 22px;
+    padding: 22px 20px;        /* was 16–18 */
+    border-radius: 24px;
   }
 
   /* ---------- SEARCH ---------- */
+  .search-card {
+    margin-bottom: 20px;
+  }
+
   .search-box input {
-    height: 50px;
-    padding: 0 18px 0 48px;
-    border-radius: 14px;
-    font-size: 14.5px;
+    height: 52px;
+    padding: 0 18px 0 50px;
+    border-radius: 16px;
+    font-size: 15px;
   }
 
   .search-box i {
-    left: 16px;
-    font-size: 16px;
+    left: 17px;
+    font-size: 17px;
   }
 
   /* ---------- BUTTONS ---------- */
   .btn {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 13px 22px;
+    font-size: 14.5px;
     border-radius: 16px;
   }
 
   /* ---------- BOTTOM NAV ---------- */
   .bottom-nav {
-    height: 64px;
-    bottom: 12px;
-    border-radius: 20px;
-    width: min(96%, 480px);
+    height: 68px;
+    bottom: 14px;
+    border-radius: 22px;
+    width: min(94%, 480px);
   }
 
   .bottom-nav a {
-    font-size: 11px;
-    gap: 3px;
+    font-size: 11.5px;
+    gap: 4px;
   }
 
   .bottom-nav a i {
-    font-size: 20px;
+    font-size: 21px;
   }
 
   /* ---------- FORMS ---------- */
@@ -1447,31 +1406,31 @@ body.dark-mode .back-btn{
   select,
   .form-control,
   .form-select {
-    height: 48px;
-    padding: 12px 14px;
+    height: 50px;
+    padding: 13px 15px;
     border-radius: 14px;
-    font-size: 14.5px;
+    font-size: 15px;
   }
 
   textarea,
   textarea.form-control {
-    min-height: 100px;
+    min-height: 110px;
   }
 
   label {
-    margin: 14px 0 6px;
-    font-size: 13px;
+    margin: 16px 0 8px;
+    font-size: 13.5px;
   }
 
   /* ---------- MODALS ---------- */
   .modal-content,
   .premium-modal {
-    border-radius: 22px;
-    margin: 10px;
+    border-radius: 24px;
+    margin: 12px;
   }
 
   .modal-header {
-    padding: 16px 18px;
+    padding: 18px 20px;
   }
 
   .modal-title {
@@ -1479,64 +1438,75 @@ body.dark-mode .back-btn{
   }
 
   .modal-body {
-    padding: 16px 18px;
+    padding: 20px;
   }
 
   .modal-footer {
-    padding: 14px 18px;
-    gap: 10px;
+    padding: 16px 20px;
+    gap: 12px;
   }
 
   .modal .btn-secondary,
   .modal .premium-primary-btn,
   .modal .danger-button {
-    height: 46px;
-    min-width: 100px;
-    padding: 0 16px;
+    height: 48px;
+    min-width: 104px;
+    padding: 0 18px;
     border-radius: 14px;
   }
 
-
-
   /* ---------- BADGES ---------- */
   .badge {
-    padding: 6px 11px;
+    padding: 7px 12px;
     font-size: 12px;
   }
 
   .workout-category,
   .muscle-badge {
-    padding: 5px 11px;
-    font-size: 11.5px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 
-  /* ---------- GENERAL TYPOGRAPHY TIGHTENING ---------- */
-  h1 { font-size: 1.75rem; max-width: 80vh; }
-  h2 { font-size: 1.35rem; }
-  h3 { font-size: 1.15rem; }
-  h4 { font-size: 1.05rem; }
+  /* ---------- TYPOGRAPHY ---------- */
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.2rem; }
+  h4 { font-size: 1.08rem; }
 
   p {
-    line-height: 1.6;
+    line-height: 1.65;
   }
 }
 
-/* Extra tight for very small phones */
+/* Extra small — still keep card/section room */
 @media (max-width: 400px) {
   .main-content {
-    padding: 25px 12px 105px;
-    gap: 14px;
+    padding: 18px 14px 118px;
+    gap: 24px;
   }
 
   .hero-section {
-    padding: 16px 14px;
+    padding: 22px 16px;
   }
 
   .dashboard-card {
-    padding: 14px;
+    padding: 18px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 18px;
   }
 
   .section-title h2 {
-    font-size: 16px;
+    font-size: 17px;
+  }
+
+  .navbar {
+    height: 64px;
+    padding: 0 14px;
+  }
+
+  body {
+    padding-top: 64px;
   }
 }

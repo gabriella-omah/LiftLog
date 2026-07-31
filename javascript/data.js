@@ -223,6 +223,68 @@ const getWorkoutExercises = (exerciseIds, exerciseLibrary) => {
     );
 };
 
+
+// ========================================
+// BROWSER THEME COLOR
+// ========================================
+
+function updateBrowserTheme() {
+
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+
+    if (!themeMeta) return;
+
+    if (document.body.classList.contains("dark-mode")) {
+
+        themeMeta.setAttribute("content", "#141821");
+
+    } else {
+
+        themeMeta.setAttribute("content", "#5D8CFF");
+
+    }
+
+}
+const darkModeSwitch =
+    document.getElementById("darkModeSwitch");
+
+// ========================================
+// DARK MODE
+// ========================================
+
+const darkMode =
+    localStorage.getItem("darkMode") === "true";
+
+if (darkMode) {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+
+
+updateBrowserTheme();
+
+if (darkModeSwitch) {
+
+    darkModeSwitch.checked = darkMode;
+
+    darkModeSwitch.addEventListener("change", () => {
+
+        document.body.classList.toggle("dark-mode");
+
+        localStorage.setItem(
+            "darkMode",
+            document.body.classList.contains("dark-mode")
+        );
+
+        updateBrowserTheme();
+
+    });
+
+}
+
+
 async function loadNavbar() {
     const placeholder =
         document.getElementById("navbar-placeholder");

@@ -94,6 +94,156 @@ function getWorkoutDaysAgo(workout) {
 }
 
 /* =========================================================
+   VIEW EXERCISE INFORMATION
+========================================================= */
+
+function openWorkoutExerciseInfo(exerciseId) {
+
+    const workout = workouts.find(w => w.id === workoutId);
+
+    if (!workout) return;
+
+    const exercise = workout.exercises.find(
+        e => e.id === Number(exerciseId)
+    );
+
+    if (!exercise) return;
+
+
+    const modalTitle =
+        document.getElementById("exerciseInfoTitle");
+
+    const modalBody =
+        document.getElementById("exerciseInfoBody");
+
+
+    if (!modalTitle || !modalBody) return;
+
+
+    modalTitle.textContent = exercise.name;
+
+
+    modalBody.innerHTML = `
+
+        ${
+            exercise.images && exercise.images.length
+            ?
+            `
+            <div class="row mb-3">
+
+                ${exercise.images.map(image => `
+
+                    <div class="col-6">
+
+                        <img 
+                        src="${image}"
+                        class="img-fluid rounded"
+                        alt="${exercise.name}">
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        ${
+            exercise.bodyMap
+            ?
+            `
+            <div class="text-center mb-3">
+
+                <img 
+                src="${exercise.bodyMap}"
+                class="img-fluid"
+                style="max-height:250px">
+
+                <p class="mt-2">
+                    Target Muscle
+                </p>
+
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        <p>
+            <strong>Muscle:</strong>
+            ${exercise.muscle}
+        </p>
+
+
+        <p>
+            <strong>Equipment:</strong>
+            ${exercise.equipment}
+        </p>
+
+
+        <p>
+            <strong>Type:</strong>
+            ${exercise.type}
+        </p>
+
+
+        <hr>
+
+
+        <h5>How to Perform</h5>
+
+        <ol>
+
+            ${
+                exercise.instructions
+                .map(step => `<li>${step}</li>`)
+                .join("")
+            }
+
+        </ol>
+
+
+        <h5>Tips</h5>
+
+        <ul>
+
+            ${
+                exercise.tips
+                .map(tip => `<li>${tip}</li>`)
+                .join("")
+            }
+
+        </ul>
+
+
+        <h5>Common Mistakes</h5>
+
+        <ul>
+
+            ${
+                exercise.mistakes
+                .map(mistake => `<li>${mistake}</li>`)
+                .join("")
+            }
+
+        </ul>
+
+    `;
+
+
+    bootstrap.Modal
+    .getOrCreateInstance(
+        document.getElementById("exerciseInfoModal")
+    )
+    .show();
+
+}
+
+/* =========================================================
    TOAST
 ========================================================= */
 
@@ -233,6 +383,23 @@ function attachRemoveExerciseEvents() {
     });
 }
 
+function attachWorkoutExerciseInfoEvents(){
+
+    document.querySelectorAll(".view-workout-exercise")
+    .forEach(button=>{
+
+        button.addEventListener("click",()=>{
+
+            openWorkoutExerciseInfo(
+                button.dataset.id
+            );
+
+        });
+
+    });
+
+}
+
 function openRemoveExerciseModal(workout, exercise) {
     const modalElement = document.getElementById("removeExerciseModal");
     const nameElement = document.getElementById("removeExerciseName");
@@ -295,6 +462,15 @@ function displayWorkoutExercises() {
         workoutExercises.innerHTML += `
             <section class="card mb-3 shadow-sm">
                 <div class="card-body">
+                  <div class="text-end ">
+        <button
+            class="btn btn-link exercise-info-btn"
+            data-id="${exercise.id}"
+            title="Exercise information"
+        >
+            <i class="bi bi-info-circle fs-5"></i>
+        </button>
+    </div>
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="form-check">
                             <input
@@ -372,6 +548,7 @@ function displayWorkoutExercises() {
     });
 
     attachRemoveExerciseEvents();
+    attachWorkoutExerciseInfoEvents();
     attachExerciseInputEvents();
     attachCompleteEvents();
 }
@@ -577,6 +754,164 @@ function pauseWorkout() {
     if (pauseResumeIcon) {
         pauseResumeIcon.className = "bi bi-play-fill";
     }
+}
+
+function openExerciseInfo(exerciseId) {
+
+    const exercise = exerciseLibrary.find(
+        e => e.id === Number(exerciseId)
+    );
+
+    if (!exercise) {
+        showToast("Exercise not found.");
+        return;
+    }
+
+    const modalBody = document.getElementById("exerciseInfoContent");
+
+    modalBody.innerHTML = `
+
+        <h3 class="mb-3">${exercise.name}</h3>
+
+        <div class="row mb-3">
+
+            <div class="col-md-6">
+                <strong>Muscle</strong><br>
+                ${exercise.muscle}
+            </div>
+
+            <div class="col-md-6">
+                <strong>Body Part</strong><br>
+
+                ${
+                    exercise.bodyMap
+                    ?
+                    `<img src="${exercise.bodyMap}"
+                         class="img-fluid rounded border mt-2"
+                         style="max-height:220px;">`
+                    :
+                    "N/A"
+                }
+
+            </div>
+
+        </div>
+
+
+        <div class="row mb-3">
+
+            <div class="col-md-4">
+                <strong>Type</strong><br>
+                ${exercise.type}
+            </div>
+
+            <div class="col-md-4">
+                <strong>Difficulty</strong><br>
+                ${exercise.difficulty}
+            </div>
+
+            <div class="col-md-4">
+                <strong>Equipment</strong><br>
+                ${exercise.equipment}
+            </div>
+
+        </div>
+
+
+        ${
+            exercise.images?.length
+            ?
+            `
+            <hr>
+
+            <h5 class="mb-3">Exercise Movement</h5>
+
+            <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+
+                <img
+                    src="${exercise.images[0]}"
+                    class="img-fluid rounded border"
+                    style="max-height:220px;"
+                >
+
+                ${
+                    exercise.images.length > 1
+                    ?
+                    `<i class="bi bi-arrow-right fs-1"></i>`
+                    :
+                    ""
+                }
+
+                ${
+                    exercise.images[1]
+                    ?
+                    `<img
+                        src="${exercise.images[1]}"
+                        class="img-fluid rounded border"
+                        style="max-height:220px;"
+                    >`
+                    :
+                    ""
+                }
+
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        <hr>
+
+        <h5>How to Perform</h5>
+
+        <ol>
+
+            ${
+                exercise.instructions
+                    .map(step => `<li>${step}</li>`)
+                    .join("")
+            }
+
+        </ol>
+
+
+        <hr>
+
+        <h5>Tips</h5>
+
+        <ul>
+
+            ${
+                exercise.tips
+                    .map(tip => `<li>${tip}</li>`)
+                    .join("")
+            }
+
+        </ul>
+
+
+        <hr>
+
+        <h5>Common Mistakes</h5>
+
+        <ul>
+
+            ${
+                exercise.mistakes
+                    .map(item => `<li>${item}</li>`)
+                    .join("")
+            }
+
+        </ul>
+
+    `;
+
+    bootstrap.Modal
+        .getOrCreateInstance(
+            document.getElementById("exerciseInfoModal")
+        )
+        .show();
 }
 
 function initializeWorkoutTimer() {
@@ -1179,6 +1514,17 @@ if (finishWithoutTimer) {
         completeWorkout();
     });
 }
+
+document.addEventListener("click", event => {
+
+    const button = event.target.closest(".exercise-info-btn");
+
+    if (!button) return;
+
+
+    openExerciseInfo(button.dataset.id);
+
+});
 
 /* =========================================================
    INITIALIZATION

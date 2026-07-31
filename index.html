@@ -1,105 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiftLog</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#5D8CFF">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
 
-<title>LiftLog</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link rel="manifest" href="/manifest.json">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<meta name="theme-color" content="#5D8CFF">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="style/landing.css">
 
-
-    <!-- Bootstrap -->
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
-          rel="stylesheet">
-
-
-    <!-- Bootstrap Icons -->
-
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
-    <!-- Fonts -->
-
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
-
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
-          rel="stylesheet">
-
-<!-- Page CSS -->
-<link rel="stylesheet" href="style/landing.css">
-
-<script>
-    // Skip landing if user already clicked Get Started
+  <script>
     if (localStorage.getItem("hasSeenLanding") === "true") {
-        window.location.replace("hoe.html");
+      window.location.replace("home.html");
     }
-</script>
-
+  </script>
 </head>
 
 <body>
 
 <section class="landing">
 
-    <img src="image/landing-image.jpeg" class="hero-image" alt="">
+  <img src="image/landing-image.jpeg" class="hero-image" alt="">
 
-    <div class="overlay"></div>
+  <div class="overlay"></div>
 
-    <div class="hero-content">
+  <div class="hero-content">
 
-        <div class="logo">
-            <i class="bi bi-activity"></i>
-            <span>LiftLog</span>
+    <!-- Logo always at top -->
+    <div class="logo">
+      <i class="bi bi-activity"></i>
+      <span>LiftLog</span>
+    </div>
+
+    <!-- Badge + title + copy + CTA at bottom -->
+    <div class="bottom-area">
+
+      <span class="hero-badge">
+        YOUR PERSONAL TRAINING JOURNEY
+      </span>
+
+      <h1>
+        Plan.
+        <br>
+        Lift.
+        <br>
+        Progress.
+      </h1>
+
+      <p>
+        Build consistency, track every workout and stay stronger every day.
+      </p>
+
+      <a href="home.html" class="hero-btn" id="getStartedBtn">
+        <span>Get Started</span>
+        <div class="hero-btn-icon">
+          <i class="bi bi-chevron-right"></i>
         </div>
-
-        <span class="hero-badge">
-            YOUR PERSONAL TRAINING JOURNEY
-        </span>
-
-        <h1>
-            Plan.
-            <br>
-            Lift.
-            <br>
-            Progress.
-        </h1>
-
-        <p>
-            Build consistency, track every workout and stay stronger every day.
-        </p>
-
-        <div class="bottom-area">
-
-            <a href="home.html" class="hero-btn" id="getStartedBtn">
-                <span>Get Started</span>
-                <div class="hero-btn-icon">
-                    <i class="bi bi-chevron-right"></i>
-                </div>
-            </a>
-
-        </div>
+      </a>
 
     </div>
+
+  </div>
 
 </section>
 
 <script>
-    document.getElementById("getStartedBtn").addEventListener("click", function () {
-        localStorage.setItem("hasSeenLanding", "true");
-    });
+  document.getElementById("getStartedBtn").addEventListener("click", function () {
+    localStorage.setItem("hasSeenLanding", "true");
+  });
 </script>
 
 </body>

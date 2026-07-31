@@ -363,7 +363,7 @@
 }
 
 #workoutExercises .card-body {
-  padding: 22px;
+  padding: 0 22px 22px;
 }
 
 #workoutExercises .card-body > .d-flex {
@@ -372,6 +372,21 @@
   align-items: flex-start;
   gap: 16px;
   margin-bottom: 20px;
+}
+
+#workoutExercises .exercise-info-btn {
+  margin-bottom: 20px;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#workoutExercises .exercise-info-btn:hover {
+  color: var(--success);
 }
 
 #workoutExercises .form-check {
@@ -493,8 +508,7 @@
   margin-bottom: 6px;
 }
 
-#workoutExercises .form-control,
-#workoutExercises .input-group-text {
+#workoutExercises .form-control {
   height: 48px;
   border-radius: 14px;
   border: 1px solid var(--border);
@@ -510,10 +524,13 @@
 }
 
 #workoutExercises .input-group-text {
-  background: var(--surface-3);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 3px;
   color: var(--text-muted);
-  font-size: 13px;
   font-weight: 600;
+  font-size: 13px;
 }
 
 #workoutExercises textarea.form-control {
@@ -560,7 +577,7 @@
 }
 
 /*==========================================================
-   EXERCISE MODAL (Add Exercise)
+   EXERCISE MODAL
 ==========================================================*/
 
 #exerciseModal .modal-body {
@@ -610,6 +627,7 @@
   background: var(--surface-2) !important;
   box-shadow: none !important;
   transition: 0.25s;
+  cursor: pointer;
 }
 
 #exerciseModal #exerciseResults .exercise-card:hover {
@@ -847,8 +865,7 @@
   border-color: var(--border);
 }
 
-.dark-mode #workoutExercises .form-control,
-.dark-mode #workoutExercises .input-group-text {
+.dark-mode #workoutExercises .form-control {
   background: var(--surface-2);
   border-color: var(--border);
   color: var(--text);
@@ -889,137 +906,139 @@
 }
 
 /*==========================================================
-   MOBILE – SHARP & TIGHT
+   MOBILE – more padding & gap on cards / sections
 ==========================================================*/
 
 @media (max-width: 768px) {
 
   .workout-hero {
-    padding: 20px 16px;
+    padding: 24px 18px;
   }
 
   .hero-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 18px;
   }
 
   .hero-badge {
-    margin-bottom: 12px;
-    padding: 6px 12px;
-    font-size: 11.5px;
+    margin-bottom: 14px;
+    padding: 7px 13px;
+    font-size: 12px;
   }
 
   #workoutTitle,
   .gradient-text {
     font-size: clamp(24px, 7vw, 30px);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     letter-spacing: -0.8px;
   }
 
   .workout-meta {
-    font-size: 13.5px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.55;
   }
 
   .hero-actions {
     width: 100%;
-    gap: 8px;
+    gap: 10px;
   }
 
   .hero-actions .btn {
     flex: 1;
-    height: 46px;
-    padding: 0 14px;
+    height: 48px;
+    padding: 0 16px;
     border-radius: 14px;
-    font-size: 13.5px;
+    font-size: 14px;
   }
 
-  /* Progress */
   .progress {
     height: 10px;
   }
 
   #progressText {
-    margin-top: 12px;
-    font-size: 13px;
+    margin-top: 14px;
+    font-size: 13.5px;
   }
 
-  /* Timer smaller */
   .timer-display {
-    margin: 18px 0 22px;
+    margin: 22px 0 26px;
   }
 
   #workoutTimer,
   .timer-display h2 {
-    width: 170px;
-    height: 170px;
-    font-size: 28px;
+    width: 180px;
+    height: 180px;
+    font-size: 30px;
     letter-spacing: 1.5px;
   }
 
   .timer-display h2::before,
   #workoutTimer::before {
-    inset: -10px;
+    inset: -12px;
   }
 
   .control-btn {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
     font-size: 24px;
   }
 
   .timer-controls {
-    gap: 12px;
+    gap: 14px;
   }
 
-  /* Stats denser */
+  /* Stats — more room */
   .stats-grid {
-    gap: 10px;
+    gap: 14px;
   }
 
   .stat-card {
-    padding: 14px;
-    border-radius: 16px;
-    gap: 12px;
+    padding: 18px 16px;
+    border-radius: 18px;
+    gap: 14px;
   }
 
   .stat-card i {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 12px;
-    font-size: 17px;
-  }
-
-  .stat-card strong {
     font-size: 18px;
   }
 
-  .stat-card span {
-    font-size: 12px;
+  .stat-card strong {
+    font-size: 20px;
   }
 
-  /* Exercises denser */
+  .stat-card span {
+    font-size: 12.5px;
+  }
+
+  /* Exercises — more gap & padding */
   .exercises-section #workoutExercises {
-    gap: 12px;
+    gap: 16px;
   }
 
   #workoutExercises .card,
   #workoutExercises section.card {
-    border-radius: 16px;
+    border-radius: 18px;
   }
 
   #workoutExercises .card-body {
-    padding: 14px;
+    padding: 0 18px 18px;
   }
 
-  #workoutExercises .card-body > .d-flex {
-    gap: 10px;
+  #workoutExercises .exercise-info-btn {
     margin-bottom: 14px;
   }
 
+  #workoutExercises .card-body > .d-flex {
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
   #workoutExercises .form-check {
-    gap: 10px;
+    gap: 12px;
   }
 
   #workoutExercises .form-check-input {
@@ -1029,72 +1048,68 @@
 
   #workoutExercises .form-check-label h5,
   #workoutExercises h5 {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   #workoutExercises .form-check small,
   #workoutExercises small {
-    font-size: 12px;
+    font-size: 12.5px;
   }
 
   #workoutExercises .remove-exercise,
   #workoutExercises .btn-outline-danger {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    font-size: 15px;
   }
 
-  #workoutExercises .form-control,
-  #workoutExercises .input-group-text {
-    height: 44px;
+  #workoutExercises .form-control {
+    height: 46px;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 14.5px;
   }
 
   #workoutExercises textarea.form-control {
-    min-height: 70px;
+    min-height: 76px;
   }
 
   #workoutExercises .alert {
-    padding: 20px 16px;
-    border-radius: 16px;
-    font-size: 14px;
+    padding: 24px 18px;
+    border-radius: 18px;
+    font-size: 14.5px;
   }
 
-  /* Add exercise btn */
   #openAddWorkout {
-    height: 48px;
-    border-radius: 14px;
-    font-size: 14px;
+    height: 50px;
+    border-radius: 16px;
+    font-size: 14.5px;
   }
 
-  /* Exercise modal */
   #exerciseModal .modal-body {
-    padding: 16px;
+    padding: 18px;
   }
 
   #exerciseModal #exerciseSearch {
-    height: 48px;
+    height: 50px;
     border-radius: 14px;
   }
 
   #exerciseModal #exerciseResults {
-    gap: 10px;
+    gap: 12px;
     max-height: 340px;
   }
 
   #exerciseModal #exerciseResults .card-body {
-    padding: 12px 14px !important;
+    padding: 14px 16px !important;
   }
 
   #exerciseModal #exerciseResults h5 {
     font-size: 15px !important;
   }
 
-  /* Summary denser */
   .workout-summary .section-header {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
   #workoutSummaryContent h4 {
@@ -1102,45 +1117,342 @@
   }
 
   #workoutSummaryContent .col-12 {
-    margin-top: 12px;
-    padding: 16px 14px !important;
-    border-radius: 14px;
+    margin-top: 16px;
+    padding: 18px 16px !important;
+    border-radius: 16px;
   }
 
-  /* Finish */
   .finish-btn {
-    height: 52px;
+    height: 54px;
     border-radius: 16px;
-    font-size: 15.5px;
+    font-size: 16px;
   }
 
   .dashboard-card {
-    padding: 16px;
-    border-radius: 20px;
+    padding: 20px 18px;
+    border-radius: 22px;
   }
 }
 
-/* Extra small */
 @media (max-width: 400px) {
+  .workout-hero {
+    padding: 20px 16px;
+  }
+
   #workoutTimer,
   .timer-display h2 {
-    width: 150px;
-    height: 150px;
-    font-size: 24px;
+    width: 160px;
+    height: 160px;
+    font-size: 26px;
   }
 
   .control-btn {
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     font-size: 22px;
   }
 
+  .stat-card {
+    padding: 16px 14px;
+  }
+
   .stat-card strong {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   #workoutTitle,
   .gradient-text {
     font-size: 22px;
+  }
+
+  .dashboard-card {
+    padding: 18px 16px;
+  }
+
+  #workoutExercises .card-body {
+    padding: 0 16px 16px;
+  }
+}
+/*==========================================================
+   EXERCISE INFO MODAL
+   Images • Body map • Instructions • Tips • Mistakes
+==========================================================*/
+
+#exerciseInfoModal .modal-content,
+#exerciseInfoModal.premium-modal {
+  border: none;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+#exerciseInfoModal .modal-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#exerciseInfoModal .modal-title,
+#exerciseInfoTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+#exerciseInfoModal .modal-body,
+#exerciseInfoBody,
+#exerciseInfoContent {
+  padding: 24px;
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.75;
+  max-height: min(70vh, 620px);
+  overflow-y: auto;
+}
+
+/* ---------- Images row ---------- */
+#exerciseInfoModal .row.mb-3,
+#exerciseInfoBody .row,
+#exerciseInfoContent .row {
+  --bs-gutter-x: 14px;
+  --bs-gutter-y: 14px;
+}
+
+#exerciseInfoModal img,
+#exerciseInfoBody img,
+#exerciseInfoContent img {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 10px;
+}
+
+/* Movement images side-by-side */
+#exerciseInfoContent .d-flex img,
+#exerciseInfoBody .d-flex img {
+  max-height: 200px;
+  width: auto;
+  max-width: min(46%, 220px);
+}
+
+#exerciseInfoContent .bi-arrow-right,
+#exerciseInfoBody .bi-arrow-right {
+  color: var(--primary);
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+/* ---------- Body map ---------- */
+#exerciseInfoModal .text-center img,
+#exerciseInfoBody .text-center img {
+  max-height: 240px;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+#exerciseInfoBody .text-center p,
+#exerciseInfoContent .text-center p {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------- Meta blocks ---------- */
+#exerciseInfoModal strong,
+#exerciseInfoBody strong,
+#exerciseInfoContent strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+#exerciseInfoModal h3,
+#exerciseInfoContent h3 {
+  margin: 0 0 18px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+
+#exerciseInfoModal h5,
+#exerciseInfoBody h5,
+#exerciseInfoContent h5 {
+  margin: 28px 0 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+
+#exerciseInfoModal h5:first-of-type,
+#exerciseInfoBody h5:first-of-type,
+#exerciseInfoContent h5:first-of-type {
+  margin-top: 8px;
+}
+
+/* ---------- Lists ---------- */
+#exerciseInfoModal ol,
+#exerciseInfoModal ul,
+#exerciseInfoBody ol,
+#exerciseInfoBody ul,
+#exerciseInfoContent ol,
+#exerciseInfoContent ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-light);
+}
+
+#exerciseInfoModal li,
+#exerciseInfoBody li,
+#exerciseInfoContent li {
+  margin-bottom: 10px;
+  line-height: 1.65;
+  padding-left: 4px;
+}
+
+#exerciseInfoModal ol li::marker,
+#exerciseInfoBody ol li::marker,
+#exerciseInfoContent ol li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#exerciseInfoModal ul li::marker,
+#exerciseInfoBody ul li::marker,
+#exerciseInfoContent ul li::marker {
+  color: var(--primary);
+}
+
+/* ---------- Dividers ---------- */
+#exerciseInfoModal hr,
+#exerciseInfoBody hr,
+#exerciseInfoContent hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 22px 0;
+}
+
+/* ---------- Footer ---------- */
+#exerciseInfoModal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#exerciseInfoModal .btn-secondary {
+  min-width: 110px;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: var(--surface-3);
+  color: var(--text);
+  font-weight: 600;
+}
+
+#exerciseInfoModal .btn-secondary:hover {
+  background: var(--border);
+}
+
+/* ---------- Dark mode ---------- */
+.dark-mode #exerciseInfoModal .modal-content {
+  background: var(--surface);
+}
+
+.dark-mode #exerciseInfoModal img,
+.dark-mode #exerciseInfoBody img,
+.dark-mode #exerciseInfoContent img {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+.dark-mode #exerciseInfoModal .text-center img,
+.dark-mode #exerciseInfoBody .text-center img {
+  background: transparent;
+  border: none;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  #exerciseInfoModal .modal-content {
+    border-radius: 22px;
+    margin: 10px;
+  }
+
+  #exerciseInfoModal .modal-header {
+    padding: 16px 18px;
+  }
+
+  #exerciseInfoModal .modal-title,
+  #exerciseInfoTitle {
+    font-size: 18px;
+  }
+
+  #exerciseInfoModal .modal-body,
+  #exerciseInfoBody,
+  #exerciseInfoContent {
+    padding: 18px;
+    max-height: min(72vh, 560px);
+    font-size: 14.5px;
+  }
+
+  #exerciseInfoModal img,
+  #exerciseInfoBody img,
+  #exerciseInfoContent img {
+    max-height: 180px;
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  #exerciseInfoContent .d-flex {
+    flex-direction: column;
+    gap: 12px !important;
+  }
+
+  #exerciseInfoContent .d-flex img,
+  #exerciseInfoBody .d-flex img {
+    max-width: 100%;
+    max-height: 160px;
+  }
+
+  #exerciseInfoContent .bi-arrow-right {
+    transform: rotate(90deg);
+  }
+
+  #exerciseInfoModal h3,
+  #exerciseInfoContent h3 {
+    font-size: 19px;
+  }
+
+  #exerciseInfoModal h5,
+  #exerciseInfoBody h5,
+  #exerciseInfoContent h5 {
+    margin: 22px 0 10px;
+    padding-top: 18px;
+    font-size: 15px;
+  }
+
+  #exerciseInfoModal li,
+  #exerciseInfoBody li,
+  #exerciseInfoContent li {
+    margin-bottom: 8px;
+  }
+
+  #exerciseInfoModal .modal-footer {
+    padding: 14px 18px;
   }
 }
