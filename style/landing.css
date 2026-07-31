@@ -164,7 +164,7 @@ body {
   z-index: 5;
   display: flex;
   flex-direction: column;  
-  gap: 5vh;
+  justify-content: space-between;
   padding: 48px clamp(50px, 6vw, 110px) 70px;
   pointer-events: none;
 }
@@ -543,7 +543,7 @@ body {
   }
 
   .bottom-area {
-    margin-top: 10vh;
+    margin-bottom: 5vh;
     max-width: 100%;
   }
 
@@ -654,19 +654,19 @@ body {
   .hero-badge {
     font-size: 13px;
     padding: 8px 12px;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
 
   .bottom-area h1 {
     font-size: 65px;
     letter-spacing: -1.6px;
     line-height: 1;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
   }
 
   .bottom-area p {
     font-size: 16px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
   .hero-btn {
@@ -677,6 +677,6 @@ body {
   .hero-btn-icon {
     width: 55px;
     height: 55px;
-    font-size: 40;
+    font-size: 35px;
   }
 }
