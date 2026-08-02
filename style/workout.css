@@ -1,11 +1,134 @@
-/*==========================================================
-   LIFTLOG ACTIVE WORKOUT PAGE CSS
-   Premium • Clean • Cohesive
-==========================================================*/
+/* ==========================================================
+   LIFTLOG PREMIUM GLOBAL CSS
+   Clean • Expensive • Cohesive
+========================================================== */
 
-/*==========================================================
-   PAGE LAYOUT OVERRIDES
-==========================================================*/
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root {
+  /* Colors */
+  --bg: #F6F8FB;
+  --surface: #FFFFFF;
+  --surface-2: #F0F3F8;
+  --surface-3: #E7ECF5;
+
+  --text: #10131A;
+  --text-light: #5B6475;
+  --text-muted: #8E98A8;
+
+  --primary: #4F7CFF;
+  --secondary: #7A5AF8;
+  --primary-light: #EEF3FF;
+
+  --success: #18C37E;
+  --warning: #F7B84B;
+  --danger: #F04438;
+
+  --border: #E6EAF1;
+
+  /* Glass */
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --nav-bg: rgba(255, 255, 255, 0.72);
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+  --success-gradient: linear-gradient(135deg, #19D48C, #0DBE77);
+  --danger-gradient: linear-gradient(135deg, #FF6B6B, #E53935);
+  --warning-gradient: linear-gradient(135deg, #FFC857, #F5A623);
+
+  /* Radius */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-round: 999px;
+
+  /* Shadows */
+  --shadow-xs: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 30px 80px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 60px 120px rgba(0, 0, 0, 0.16);
+
+  /* Typography */
+  --display: 64px;
+  --h1: 42px;
+  --h2: 32px;
+  --h3: 26px;
+  --h4: 22px;
+  --body-lg: 18px;
+  --body: 16px;
+  --body-sm: 14px;
+  --caption: 12px;
+
+  /* Spacing */
+  --space-1: 10px;
+  --space-2: 20px;
+  --space-3: 30px;
+  --space-4: 40px;
+  --space-5: 50px;
+  --space-6: 60px;
+  --space-7: 70px;
+  --space-8: 80px;
+  --space-9: 90px;
+  --space-10: 100px;
+
+  /* Motion */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --liftx: translateX(-3px);
+  --lifty: translateY(-3px);
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+.dark-mode {
+  --bg: #090B10;
+  --surface: #141821;
+  --surface-2: #1B212C;
+  --surface-3: #232B37;
+
+  --text: #F5F7FA;
+  --text-light: #C0C8D4;
+  --text-muted: #8C97A7;
+
+  --primary: #6EA2FF;
+  --secondary: #9D86FF;
+  --primary-light: #1C315B;
+
+  --success: #2BE59D;
+  --warning: #FFC857;
+  --danger: #FF6B6B;
+
+  --border: #2A3240;
+
+  --glass: rgba(18, 22, 30, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --nav-bg: rgba(18, 22, 30, 0.72);
+}
+
 
 .back-btn {
   display: flex;
@@ -1291,7 +1414,6 @@
 #exerciseInfoContent h5 {
   margin: 28px 0 12px;
   padding-top: 22px;
-  border-top: 1px solid var(--border);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.2px;
@@ -1455,4 +1577,10 @@
   #exerciseInfoModal .modal-footer {
     padding: 14px 18px;
   }
+}
+
+#exerciseToast{
+    background:var(--warning) !important ;
+    color:var(--text);
+    border:none;
 }

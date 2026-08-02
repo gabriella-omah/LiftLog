@@ -160,6 +160,21 @@ function updateProfileCard(){
 }
 
 
+
+function showErrorToast(message){
+
+    if(!exerciseToast) return;
+
+    toastMessage.textContent = message;
+
+    exerciseToast.classList.remove("text-bg-success");
+    exerciseToast.classList.add("text-bg-danger");
+
+    bootstrap.Toast.getOrCreateInstance(exerciseToast).show();
+
+}
+
+
 // ========================================
 // BMI
 // ========================================
@@ -208,27 +223,24 @@ if(saveProfileBtn){
 
 saveProfileBtn.addEventListener("click",()=>{
 
-    if(
+const name = profileName.value.trim();
 
-        profileName.value.trim()===""
+if (name === "") {
+    showErrorToast("Please enter your name.");
+    return;
+}
 
-    ){
+const namePattern = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
 
-        toastMessage.textContent =
-            "Please enter your name.";
-
-        new bootstrap.Toast(
-            exerciseToast
-        ).show();
-
-        return;
-
-    }
+if (!namePattern.test(name)) {
+    showErrorToast("Name can only contain letters.");
+    return;
+}
 
     profile = {
 
         name:
-            profileName.value.trim(),
+            name,
 
         height:
             bodyHeight.value,

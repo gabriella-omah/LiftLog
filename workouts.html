@@ -439,29 +439,43 @@ Create My Own
                     class="form-control"
                     placeholder="Example: Push Day">
 
-                <label>Training Day</label>
+                <label>Workout Date</label>
 
-                <select
-                    id="workoutDay"
-                    class="form-select">
-
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-
-                </select>
+<input
+    type="date"
+    id="workoutDate"
+    class="form-control">
 
                 <label>Duration</label>
 
-                <input
-                    id="workoutDuration"
-                    type="number"
-                    class="form-control"
-                    placeholder="Minutes">
+                <div class="row">
+
+    <div class="col-6">
+        <label class="form-label">
+            Hours
+        </label>
+
+        <input
+            type="number"
+            min="0"
+            id="workoutHours"
+            class="form-control">
+    </div>
+
+    <div class="col-6">
+        <label class="form-label">
+            Minutes
+        </label>
+
+        <input
+            type="number"
+            min="0"
+            max="59"
+            id="workoutMinutes"
+            class="form-control">
+    </div>
+
+</div>
 
                 <label>Category</label>
 
@@ -562,37 +576,43 @@ Create My Own
                     class="form-control"
                     placeholder="Workout Name">
 
-                <label>Training Day</label>
+                <label>Workout Date</label>
 
-                <select
-                    id="editWorkoutDay"
-                    class="form-select">
-
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
-
-                </select>
-
-                <label>Number of Exercises</label>
-
-                <input
-                    id="editWorkoutExercises"
-                    type="number"
-                    class="form-control"
-                    placeholder="Exercises">
+<input
+    type="date"
+    id="editWorkoutDay"
+    class="form-control">
 
                 <label>Duration</label>
 
-                <input
-                    id="editWorkoutDuration"
-                    type="number"
-                    class="form-control"
-                    placeholder="Minutes">
+                <div class="row">
+
+    <div class="col-6">
+        <label class="form-label">
+            Hours
+        </label>
+
+        <input
+            type="number"
+            min="0"
+            id="editWorkoutHours"
+            class="form-control">
+    </div>
+
+    <div class="col-6">
+        <label class="form-label">
+            Minutes
+        </label>
+
+        <input
+            type="number"
+            min="0"
+            max="59"
+            id="editWorkoutMinutes"
+            class="form-control">
+    </div>
+
+</div>
 
             </div>
 
@@ -666,6 +686,94 @@ Create My Own
                     id="confirmDeleteWorkout"
                     class="btn btn-danger">
                     Delete Workout
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+
+    <div id="exerciseToast"
+         class="toast align-items-center text-bg-success"
+         role="alert"
+         aria-live="assertive"
+         aria-atomic="true"
+         data-bs-delay="3000">
+
+        <div class="toast-body">
+            <span id="toastMessage"></span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= REPLACE WORKOUT MODAL ================= -->
+
+<div class="modal fade"
+     id="replaceWorkoutModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Workout Already Scheduled
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>
+
+                    <strong id="existingWorkoutName"></strong>
+
+                    is already scheduled for
+
+                    <strong id="existingWorkoutDate"></strong>.
+
+                </p>
+
+                <p>
+
+                    Replacing it will permanently delete the existing workout.
+
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    id="confirmReplaceWorkout"
+                    class="btn btn-danger"
+                    type="button">
+                
+
+                    Replace Workout
+
                 </button>
 
             </div>

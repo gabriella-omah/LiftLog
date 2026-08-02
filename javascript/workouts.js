@@ -7,6 +7,9 @@
 // =====================================
 let workoutToDelete = null;
 let currentWorkoutId = null;
+let workoutToReplace = null;
+let pendingWorkout = null;
+
 const workoutList =
     document.getElementById("workoutList");
 const workoutName =
@@ -37,26 +40,18 @@ const editWorkoutDuration =
     document.getElementById("editWorkoutDuration");
 const saveWorkoutChanges =
     document.getElementById("saveWorkoutChanges");
+const workoutHours =
+    document.getElementById("workoutHours");
+const workoutMinutes =
+    document.getElementById("workoutMinutes");
+const confirmReplaceWorkout =
+ document.getElementById("confirmReplaceWorkout")
+
 // =====================================
 // Week Helpers
 // =====================================
-function getStartOfWeek(date = new Date()) {
-    const d = new Date(date);
-    const day = d.getDay();
-    const diff =
-        day === 0
-            ? -6
-            : 1 - day;
-    d.setDate(d.getDate() + diff);
-    d.setHours(0, 0, 0, 0);
-    return d;
-}
-function getEndOfWeek(date = new Date()) {
-    const end = getStartOfWeek(date);
-    end.setDate(end.getDate() + 7);
-    end.setHours(0, 0, 0, 0);
-    return end;
-}
+
+
 // =====================================
 // SAFE LOCAL DATE PARSER
 // =====================================
@@ -70,206 +65,11 @@ function getEndOfWeek(date = new Date()) {
 // So date-only strings must be parsed manually
 // as local dates.
 //
-function parseLocalDate(dateValue) {
-    if (!dateValue) {
-        return null;
-    }
-    // Already a Date object
-    if (dateValue instanceof Date) {
-        if (isNaN(dateValue.getTime())) {
-            return null;
-        }
-        const result = new Date(dateValue);
-        result.setHours(0, 0, 0, 0);
-        return result;
-    }
-    const value =
-        String(dateValue).trim();
-    if (!value) {
-        return null;
-    }
-    // ---------------------------------
-    // YYYY-MM-DD
-    // ---------------------------------
-    const dateOnlyMatch =
-        value.match(
-            /^(\d{4})-(\d{2})-(\d{2})$/
-        );
-    if (dateOnlyMatch) {
-        const year =
-            Number(dateOnlyMatch[1]);
-        const month =
-            Number(dateOnlyMatch[2]) - 1;
-        const day =
-            Number(dateOnlyMatch[3]);
-        const localDate =
-            new Date(
-                year,
-                month,
-                day
-            );
-        localDate.setHours(
-            0,
-            0,
-            0,
-            0
-        );
-        return localDate;
-    }
-    // ---------------------------------
-    // Full ISO timestamp
-    // ---------------------------------
-    const parsed =
-        new Date(value);
-    if (isNaN(parsed.getTime())) {
-        return null;
-    }
-    parsed.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-    return parsed;
-}
-function isThisWeek(dateString) {
-    const date =
-        parseLocalDate(dateString);
-    if (!date) {
-        return false;
-    }
-    return (
-        date >= getStartOfWeek() &&
-        date < getEndOfWeek()
-    );
-}
-// =====================================
-// Get Scheduled Date For Day
-// =====================================
-function getScheduledDateForDay(
-    dayName,
-    referenceDate = new Date()
-) {
-    if (!dayName) {
-        return null;
-    }
-    const start =
-        getStartOfWeek(referenceDate);
-    // IMPORTANT:
-    // dayOrder comes from data.js:
-    //
-    // Sunday
-    // Monday
-    // Tuesday
-    // Wednesday
-    // Thursday
-    // Friday
-    // Saturday
-    //
-    // But our week starts Monday.
-    const mondayDayIndex = {
-        Monday: 0,
-        Tuesday: 1,
-        Wednesday: 2,
-        Thursday: 3,
-        Friday: 4,
-        Saturday: 5,
-        Sunday: 6
-    };
-    const dayOffset =
-        mondayDayIndex[dayName];
-    if (dayOffset === undefined) {
-        return null;
-    }
-    const scheduled =
-        new Date(start);
-    scheduled.setDate(
-        start.getDate() + dayOffset
-    );
-    scheduled.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-    return scheduled;
-}
-// =====================================
-// Get Workout Scheduled Date
-// =====================================
-function getWorkoutScheduledDate(workout) {
-    if (!workout) {
-        return null;
-    }
-    // ---------------------------------
-    // Existing scheduled date
-    // ---------------------------------
-    if (workout.scheduledDate) {
-        const date =
-            parseLocalDate(
-                workout.scheduledDate
-            );
-        if (date) {
-            return date;
-        }
-    }
-    // ---------------------------------
-    // Fallback to workout day
-    // ---------------------------------
-    if (workout.day) {
-        return getScheduledDateForDay(
-            workout.day
-        );
-    }
-    return null;
-}
+
 // =====================================
 // Today Helpers
 // =====================================
-function getToday() {
-    const today =
-        new Date();
-    today.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-    return today;
-}
-function isWorkoutFuture(workout) {
-    const scheduledDate =
-        getWorkoutScheduledDate(workout);
-    if (!scheduledDate) {
-        return false;
-    }
-    return (
-        scheduledDate.getTime() >
-        getToday().getTime()
-    );
-}
-function isWorkoutToday(workout) {
-    const scheduledDate =
-        getWorkoutScheduledDate(workout);
-    if (!scheduledDate) {
-        return false;
-    }
-    return (
-        scheduledDate.getTime() ===
-        getToday().getTime()
-    );
-}
-function isWorkoutPast(workout) {
-    const scheduledDate =
-        getWorkoutScheduledDate(workout);
-    if (!scheduledDate) {
-        return false;
-    }
-    return (
-        scheduledDate.getTime() <
-        getToday().getTime()
-    );
-}
+
 // =====================================
 // Helpers
 // =====================================
@@ -394,185 +194,205 @@ function getWorkoutStatus(workout) {
             "Log Previous Workout"
     };
 }
+
+
 // =====================================
 // Display Workouts
 // =====================================
-function displayWorkouts(list = workouts) {
-    if (!workoutList) {
-        return;
+function getWeekLabel(date) {
+
+    const today = getToday();
+
+    const thisWeek = getStartOfWeek(today);
+
+    const nextWeek = new Date(thisWeek);
+    nextWeek.setDate(nextWeek.getDate() + 7);
+
+    const weekAfter = new Date(nextWeek);
+    weekAfter.setDate(weekAfter.getDate() + 7);
+
+    const workoutWeek = getStartOfWeek(date);
+
+    if (workoutWeek.getTime() === thisWeek.getTime()) {
+        return "This Week";
     }
-    const sortedWorkouts =
-        [...list].sort((a, b) => {
-            const dateA =
-                getWorkoutScheduledDate(a);
-            const dateB =
-                getWorkoutScheduledDate(b);
-            if (
-                dateA &&
-                dateB
-            ) {
-                return (
-                    dateA.getTime() -
-                    dateB.getTime()
-                );
-            }
-            return (
-                dayOrder.indexOf(a.day) -
-                dayOrder.indexOf(b.day)
-            );
-        });
+
+    if (workoutWeek.getTime() === nextWeek.getTime()) {
+        return "Next Week";
+    }
+
+    const end = new Date(workoutWeek);
+    end.setDate(end.getDate() + 6);
+
+    return `${workoutWeek.toLocaleDateString(undefined,{
+        month:"short",
+        day:"numeric"
+    })} – ${end.toLocaleDateString(undefined,{
+        month:"short",
+        day:"numeric"
+    })}`;
+
+}
+function displayWorkouts(list = workouts) {
+
+    if (!workoutList) return;
+
     workoutList.innerHTML = "";
-    // ---------------------------------
-    // EMPTY STATE
-    // ---------------------------------
+
+    const sortedWorkouts = [...list].sort((a, b) => {
+
+        const dateA = getWorkoutScheduledDate(a);
+        const dateB = getWorkoutScheduledDate(b);
+
+        if (dateA && dateB) {
+            return dateA - dateB;
+        }
+
+        return dayOrder.indexOf(a.day) -
+               dayOrder.indexOf(b.day);
+
+    });
+
     if (sortedWorkouts.length === 0) {
+
         workoutList.innerHTML = `
             <div class="text-center py-5">
                 <i class="bi bi-barbell display-1 text-success"></i>
-                <h3 class="mt-4">
-                    No workouts yet
-                </h3>
+                <h3 class="mt-4">No workouts yet</h3>
                 <p>
-                    Create your first workout to begin tracking
-                    your progress, or choose one of our workout
-                    templates to get started.
+                    Create your first workout to begin tracking your progress.
                 </p>
-                <button
-                    class="btn btn-success"
-                    data-bs-toggle="modal"
-                    data-bs-target="#newWorkoutModal">
-                    <i class="bi bi-plus-circle"></i>
-                    Create Workout
-                </button>
             </div>
         `;
+
         return;
     }
-    // ---------------------------------
-    // WORKOUT CARDS
-    // ---------------------------------
+
+    let currentSection = "";
+
     sortedWorkouts.forEach(workout => {
+
         const {
             status,
             statusClass,
             buttonText
-        } =
-            getWorkoutStatus(workout);
-        const futureWorkout =
-            isWorkoutFuture(workout);
+        } = getWorkoutStatus(workout);
+
         const scheduledDate =
             getWorkoutScheduledDate(workout);
+
+        const weekLabel =
+            scheduledDate
+                ? getWeekLabel(scheduledDate)
+                : "Other";
+
+        if (weekLabel !== currentSection) {
+
+            currentSection = weekLabel;
+
+            workoutList.innerHTML += `
+                <div class="mt-4 mb-3">
+                    <h4 class="fw-bold text-success">
+                        ${weekLabel}
+                    </h4>
+                    <hr>
+                </div>
+            `;
+
+        }
+
         const scheduledText =
             scheduledDate
-                ? scheduledDate.toLocaleDateString()
-                : "";
-        // ---------------------------------
-        // MAIN WORKOUT BUTTON
-        // ---------------------------------
-        //
-        // IMPORTANT:
-        // Future workouts are NOT disabled.
-        //
-        // The user can still VIEW tomorrow's
-        // workout.
-        //
-        const workoutLink =
-            `
-                <a
-                    href="workout.html?id=${workout.id}"
-                    class="btn btn-success">
-                    ${buttonText}
-                </a>
-            `;
-        // ---------------------------------
-        // EDIT BUTTON
-        // ---------------------------------
-        //
-        // Only the EDIT button is disabled
-        // for future workouts.
-        //
-        // The workout itself remains accessible.
-        //
-        const editButton =
-    workout.completed
-        ? `
-            <button
-                class="btn btn-outline-secondary"
-                disabled
-                title="Completed workouts can't be edited">
-                <i class="bi bi-lock-fill"></i>
-                Edit Workout
-            </button>
-        `
-        : `
-            <button
-                class="btn btn-outline-success edit-btn"
-                data-id="${workout.id}">
-                <i class="bi bi-pencil"></i>
-                Edit Workout
-            </button>
+                ? scheduledDate.toLocaleDateString(undefined,{
+                    weekday:"short",
+                    month:"short",
+                    day:"numeric"
+                })
+                : workout.day;
+
+        const workoutLink = `
+            <a
+                href="workout.html?id=${workout.id}"
+                class="btn btn-success">
+                ${buttonText}
+            </a>
         `;
-        // ---------------------------------
-        // DAY DISPLAY
-        // ---------------------------------
-        const shortDay =
-            workout.day
-                ? workout.day.slice(0, 3)
-                : "";
-        // ---------------------------------
-        // CATEGORY CLASS
-        // ---------------------------------
+
+        const editButton =
+            workout.completed
+                ? `
+                    <button
+                        class="btn btn-outline-secondary"
+                        disabled>
+                        <i class="bi bi-lock-fill"></i>
+                        Edit Workout
+                    </button>
+                `
+                : `
+                    <button
+                        class="btn btn-outline-success edit-btn"
+                        data-id="${workout.id}">
+                        <i class="bi bi-pencil"></i>
+                        Edit Workout
+                    </button>
+                `;
+
         const category =
             workout.category || "";
+
         const categoryClass =
-            category
-                .toLowerCase()
-                .replace(/\s+/g, "-");
-        // ---------------------------------
-        // EXERCISE COUNT
-        // ---------------------------------
+            category.toLowerCase().replace(/\s+/g,"-");
+
         const exerciseCount =
             Array.isArray(workout.exercises)
                 ? workout.exercises.length
                 : Number(workout.exerciseCount) || 0;
+
         workoutList.innerHTML += `
-            <section class="card">
+
+            <section class="card mb-3">
+
                 <div class="card-body">
+
                     <div class="d-flex justify-content-between align-items-start">
+
                         <div>
+
                             <h3 class="workout-title">
                                 ${workout.name || "Workout"}
                             </h3>
-                            <p class="shortday">
-                                ${shortDay}
+
+                            <p class="text-muted mb-0">
+                                <i class="bi bi-calendar3"></i>
+                                ${scheduledText}
                             </p>
+
                         </div>
+
                         <span class="${statusClass}">
                             ${status}
                         </span>
+
                     </div>
+
                     <hr>
+
                     <div class="row text-center">
+
                         <div class="col">
-                            <h5>
-                                ${exerciseCount}
-                            </h5>
-                            <small>
-                                Exercises
-                            </small>
+                            <h5>${exerciseCount}</h5>
+                            <small>Exercises</small>
                         </div>
+
                         <div class="col">
-                            <h5>
-                                ${formatWorkoutDuration(
-                                    workout.duration
-                                )}
-                            </h5>
-                            <small>
-                                Duration
-                            </small>
+                            <h5>${formatWorkoutDuration(workout.duration)}</h5>
+                            <small>Duration</small>
                         </div>
+
                     </div>
+
                     <div class="d-flex flex-wrap gap-2 mb-4">
+
                         ${
                             category
                                 ? `
@@ -582,6 +402,7 @@ function displayWorkouts(list = workouts) {
                                 `
                                 : ""
                         }
+
                         ${
                             workout.goal
                                 ? `
@@ -591,129 +412,273 @@ function displayWorkouts(list = workouts) {
                                 `
                                 : ""
                         }
+
                     </div>
-                    ${
-                        futureWorkout && scheduledText
-                            ? `
-                                <small class="text-muted d-block mb-2">
-                                    <i class="bi bi-calendar3"></i>
-                                    Available on ${scheduledText}
-                                </small>
-                            `
-                            : ""
-                    }
+
                     <div class="d-grid gap-2">
+
                         ${workoutLink}
+
                         ${editButton}
+
                         <button
                             class="btn btn-outline-danger delete-btn"
                             data-id="${workout.id}">
                             <i class="bi bi-trash"></i>
                             Delete Workout
                         </button>
+
                     </div>
+
                 </div>
+
             </section>
+
         `;
+
     });
+
 }
+
+function showReplaceWorkoutModal(existingWorkout, newWorkout) {
+
+    workoutToReplace = existingWorkout;
+
+    pendingWorkout = newWorkout;
+
+    document.getElementById(
+        "existingWorkoutName"
+    ).textContent =
+        existingWorkout.name;
+
+    document.getElementById(
+        "existingWorkoutDate"
+    ).textContent =
+        getWorkoutScheduledDate(existingWorkout)
+            .toLocaleDateString();
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "replaceWorkoutModal"
+        )
+    ).show();
+
+}
+
+function replaceWorkout() {
+
+    if (!workoutToReplace || !pendingWorkout) {
+        return;
+    }
+
+    workouts =
+        workouts.filter(workout =>
+            workout.id !== workoutToReplace.id
+        );
+
+    const existingIndex =
+        workouts.findIndex(workout =>
+            workout.id === pendingWorkout.id
+        );
+
+    if (existingIndex >= 0) {
+
+        workouts[existingIndex] =
+            pendingWorkout;
+
+    } else {
+
+        workouts.push(pendingWorkout);
+
+    }
+
+    workouts.sort((a,b)=>{
+
+        const dateA =
+            getWorkoutScheduledDate(a);
+
+        const dateB =
+            getWorkoutScheduledDate(b);
+
+        return dateA-dateB;
+
+    });
+
+    saveWorkouts();
+
+    refreshWorkouts();
+
+    const replaceModal =
+    bootstrap.Modal.getInstance(
+        document.getElementById("replaceWorkoutModal")
+    );
+
+if (replaceModal) {
+    replaceModal.hide();
+}
+
+    const editModal =
+        document.getElementById(
+            "editWorkoutModal"
+        );
+
+    if(editModal){
+
+        const modal =
+            bootstrap.Modal.getInstance(editModal);
+
+        if(modal){
+
+            modal.hide();
+
+        }
+
+    }
+
+    const addModal =
+        document.getElementById(
+            "newWorkoutModal"
+        );
+
+    if(addModal){
+
+        const modal =
+            bootstrap.Modal.getInstance(addModal);
+
+        if(modal){
+
+            modal.hide();
+
+        }
+
+    }
+
+    workoutToReplace = null;
+
+    pendingWorkout = null;
+
+    showToast(
+        "Workout replaced successfully."
+    );
+
+}
+
 // =====================================
 // Add Workout
 // =====================================
 function addWorkout() {
-    const name =
-        workoutName.value.trim();
+
+    const name = workoutName.value.trim();
+
     if (name === "") {
-        const toastMessage =
-            document.getElementById(
-                "toastMessage"
-            );
-        const exerciseToast =
-            document.getElementById(
-                "exerciseToast"
-            );
-        if (toastMessage) {
-            toastMessage.textContent =
-                "Please enter a workout name.";
-        }
-        if (exerciseToast) {
-            new bootstrap.Toast(
-                exerciseToast
-            ).show();
-        }
+
+        showToast("Please enter a workout name.");
         return;
+
     }
+
+    const selectedDate = workoutDate.value;
+
+    if (!selectedDate) {
+
+        showToast("Please select a workout date.");
+        return;
+
+    }
+
+    const scheduled = parseLocalDate(selectedDate);
+
     const day =
-        workoutDay.value;
-    const scheduled =
-        getScheduledDateForDay(day);
-    if (!scheduled) {
-        return;
-    }
+        scheduled.toLocaleDateString("en-US", {
+            weekday: "long"
+        });
+
     const newWorkout = {
+
         id: Date.now(),
+
         name,
+
         day,
-        scheduledDate:
-            scheduled.toISOString(),
+
+        scheduledDate: selectedDate,
+
         exercises: [],
+
         exerciseCount: 0,
+
         duration:
-            Number(workoutDuration.value) || 0,
-        category:
-            workoutCategory.value,
-        goal:
-            workoutGoal.value,
-        difficulty:
-            workoutDifficulty.value,
-        completed:
-            false,
-        completedDate:
-            null,
-        startTime:
-            null
+            (Number(workoutHours.value) || 0) * 60 +
+            (Number(workoutMinutes.value) || 0),
+
+        category: workoutCategory.value,
+
+        goal: workoutGoal.value,
+
+        difficulty: workoutDifficulty.value,
+
+        completed: false,
+
+        completedDate: null,
+
+        startTime: null
+
     };
-    newWorkout.exerciseCount =
-        newWorkout.exercises.length;
+
+    const existingWorkout =
+        workouts.find(workout =>
+            workout.scheduledDate &&
+            workout.scheduledDate.slice(0, 10) === selectedDate
+        );
+
+    if (existingWorkout) {
+
+        showReplaceWorkoutModal(
+            existingWorkout,
+            newWorkout
+        );
+
+        return;
+
+    }
+
     workouts.push(newWorkout);
+
     workouts.sort((a, b) => {
-        const dateA =
-            getWorkoutScheduledDate(a);
-        const dateB =
-            getWorkoutScheduledDate(b);
-        if (dateA && dateB) {
-            return (
-                dateA.getTime() -
-                dateB.getTime()
-            );
-        }
-        return (
-            dayOrder.indexOf(a.day) -
-            dayOrder.indexOf(b.day)
-        );
+
+        const dateA = getWorkoutScheduledDate(a);
+        const dateB = getWorkoutScheduledDate(b);
+
+        return dateA - dateB;
+
     });
+
     saveWorkouts();
+
     refreshWorkouts();
+
     const newWorkoutModal =
-        document.getElementById(
-            "newWorkoutModal"
-        );
+        document.getElementById("newWorkoutModal");
+
     if (newWorkoutModal) {
+
         const modal =
-            bootstrap.Modal.getInstance(
-                newWorkoutModal
-            );
+            bootstrap.Modal.getInstance(newWorkoutModal);
+
         if (modal) {
             modal.hide();
         }
+
     }
-    // Clear Form
+
     workoutName.value = "";
-    workoutDay.selectedIndex = 0;
-    workoutDuration.value = "";
+    workoutDate.value = "";
+    workoutHours.value = "";
+    workoutMinutes.value = "";
     workoutCategory.selectedIndex = 0;
     workoutGoal.selectedIndex = 0;
     workoutDifficulty.selectedIndex = 0;
+
 }
 // =====================================
 // Search Workouts
@@ -810,118 +775,238 @@ function attachDeleteEvents() {
             );
         });
 }
+
+function showToast(message) {
+    const toastMessage = document.getElementById("toastMessage");
+    const toastElement = document.getElementById("exerciseToast");
+
+    if (!toastMessage || !toastElement) {
+        alert(message); // fallback
+        return;
+    }
+
+    toastMessage.textContent = message;
+
+    const toast = bootstrap.Toast.getOrCreateInstance(toastElement);
+    toast.show();
+}
 // =====================================
 // Edit Workout
 // =====================================
 function editWorkout(id) {
+
     const workout =
         workouts.find(
             workout =>
                 workout.id == id
         );
+
     if (!workout) {
         return;
     }
-    // Completed workouts cannot be edited.
+
     if (workout.completed === true) {
         return;
     }
+
     currentWorkoutId =
         workout.id;
+
     editWorkoutName.value =
         workout.name || "";
+
     editWorkoutDay.value =
-        workout.day || "";
-    editWorkoutExercises.value =
-        workout.exerciseCount ||
-        (
-            Array.isArray(workout.exercises)
-                ? workout.exercises.length
-                : 0
+        workout.scheduledDate
+            ? workout.scheduledDate.slice(0, 10)
+            : "";
+
+    editWorkoutHours.value =
+        Math.floor(
+            (workout.duration || 0) / 60
         );
-    editWorkoutDuration.value =
-        workout.duration || "";
+
+    editWorkoutMinutes.value =
+        (workout.duration || 0) % 60;
+
+    
+
     const editModal =
         document.getElementById(
             "editWorkoutModal"
         );
+
     if (editModal) {
+
         new bootstrap.Modal(
             editModal
         ).show();
+
     }
+
 }
+
+
 // =====================================
 // Save Workout Changes
 // =====================================
 function saveWorkout() {
+
     const workout =
         workouts.find(
             workout =>
-                workout.id ==
-                currentWorkoutId
+                workout.id == currentWorkoutId
         );
+
     if (!workout) {
         return;
     }
-    // ---------------------------------
-    // Name
-    // ---------------------------------
+
     const newName =
         editWorkoutName.value.trim();
+
     if (newName) {
         workout.name = newName;
     }
-    // ---------------------------------
-    // Day
-    // ---------------------------------
-    const newDay =
+
+    const selectedDate =
         editWorkoutDay.value;
-    if (newDay) {
-        workout.day =
-            newDay;
-        const scheduled =
-            getScheduledDateForDay(
-                workout.day
-            );
-        if (scheduled) {
-            workout.scheduledDate =
-                scheduled.toISOString();
-        }
+
+    if (!selectedDate) {
+
+        showToast("Please select a workout date.");
+
+        return;
+
     }
-    // ---------------------------------
-    // Exercise Count
-    // ---------------------------------
-    workout.exerciseCount =
-        Number(
-            editWorkoutExercises.value
-        ) || 0;
-    // ---------------------------------
-    // Duration
-    // ---------------------------------
+
+    const existingWorkout =
+        workouts.find(w =>
+
+            w.id !== workout.id &&
+
+            w.scheduledDate &&
+
+            w.scheduledDate.slice(0,10) === selectedDate
+
+        );
+
+    if (existingWorkout) {
+
+        workoutToReplace = existingWorkout;
+
+        pendingWorkout = {
+
+            ...workout,
+
+            name: workout.name,
+
+            scheduledDate: selectedDate,
+
+            day: new Date(selectedDate)
+                .toLocaleDateString(
+                    "en-US",
+                    {
+                        weekday:"long"
+                    }
+                ),
+
+            duration:
+                (Number(editWorkoutHours.value)||0)*60+
+                (Number(editWorkoutMinutes.value)||0)
+
+        };
+
+        document.getElementById(
+            "existingWorkoutName"
+        ).textContent =
+            existingWorkout.name;
+
+        document.getElementById(
+            "existingWorkoutDate"
+        ).textContent =
+            getWorkoutScheduledDate(existingWorkout)
+                .toLocaleDateString();
+
+        new bootstrap.Modal(
+            document.getElementById(
+                "replaceWorkoutModal"
+            )
+        ).show();
+
+        return;
+
+    }
+
+    const previousDate =
+        workout.scheduledDate
+            ? workout.scheduledDate.slice(0,10)
+            : "";
+
+    workout.scheduledDate = selectedDate;
+
+    workout.day =
+        new Date(selectedDate)
+            .toLocaleDateString(
+                "en-US",
+                {
+                    weekday:"long"
+                }
+            );
+
     workout.duration =
-        Number(
-            editWorkoutDuration.value
-        ) || 0;
-    // ---------------------------------
-    // Save
-    // ---------------------------------
+        (Number(editWorkoutHours.value)||0)*60+
+        (Number(editWorkoutMinutes.value)||0);
+
+    workouts.sort((a,b)=>{
+
+        const dateA =
+            getWorkoutScheduledDate(a);
+
+        const dateB =
+            getWorkoutScheduledDate(b);
+
+        return dateA-dateB;
+
+    });
+
     saveWorkouts();
+
     refreshWorkouts();
+
+    if(previousDate!==selectedDate){
+
+        showToast(
+            `Workout moved to ${new Date(selectedDate).toLocaleDateString()}`
+        );
+
+    }else{
+
+        showToast(
+            "Workout updated successfully."
+        );
+
+    }
+
     const editModal =
         document.getElementById(
             "editWorkoutModal"
         );
-    if (editModal) {
+
+    if(editModal){
+
         const modal =
-            bootstrap.Modal.getInstance(
-                editModal
-            );
-        if (modal) {
+            bootstrap.Modal.getInstance(editModal);
+
+        if(modal){
+
             modal.hide();
+
         }
+
     }
+
 }
+
 // =====================================
 // Delete Workout
 // =====================================
@@ -1116,6 +1201,8 @@ if (
 // =====================================
 // Recommended Plan
 // =====================================
+
+
 const recommendedPlanBtn =
     document.getElementById(
         "recommendedPlanBtn"
@@ -1354,3 +1441,13 @@ setTimeout(() => {
         }
     }
 }, 150);
+
+if (confirmReplaceWorkout) {
+
+    confirmReplaceWorkout.addEventListener("click", () => {
+
+        replaceWorkout();
+
+    });
+
+}

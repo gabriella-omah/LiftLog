@@ -1510,3 +1510,120 @@ body.dark-mode .back-btn {
     padding-top: 64px;
   }
 }
+
+/*==========================================================
+   WORKOUT BANNER — warning yellow
+==========================================================*/
+
+.workout-banner {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: min(480px, 92%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #FFC857, #F5B942);
+  color: #1A1408;
+  font-size: 14.5px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  line-height: 1.4;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 24px rgba(245, 185, 66, 0.35),
+    0 20px 48px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workout-banner.hidden {
+  display: none;
+}
+
+.workout-banner i,
+.workout-banner .banner-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.12);
+  color: #1A1408;
+  font-size: 18px;
+}
+
+.workout-banner p,
+.workout-banner span:not(.banner-icon) {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+}
+
+.workout-banner button {
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 12px;
+  background: #1A1408;
+  color: #FFC857;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.workout-banner button:hover {
+  transform: translateY(-2px);
+  background: #2A2010;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.workout-banner button:active {
+  transform: scale(0.97);
+}
+
+/*==========================================================
+   MOBILE
+==========================================================*/
+
+@media (max-width: 640px) {
+  .workout-banner {
+    top: 64px;
+    width: min(440px, 94%);
+    padding: 12px 14px;
+    gap: 12px;
+    border-radius: 16px;
+    font-size: 13.5px;
+  }
+
+  .workout-banner i,
+  .workout-banner .banner-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .workout-banner button {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+}

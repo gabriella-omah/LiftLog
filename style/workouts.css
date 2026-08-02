@@ -332,7 +332,7 @@
 ==========================================================*/
 
 #workoutList .d-grid {
-  gap: 12px;
+  gap: 16px;
 }
 
 #workoutList .btn {
@@ -353,16 +353,12 @@
   border: none;
   color: #fff;
   background: var(--primary-gradient);
-  box-shadow:
-    0 4px 12px rgba(93, 140, 255, 0.2),
-    0 14px 32px rgba(93, 140, 255, 0.28);
+  box-shadow: 0 4px 10px rgba(93,140,255,.15);
 }
 
 #workoutList .btn-success:hover {
   transform: translateY(-3px);
-  box-shadow:
-    0 8px 18px rgba(93, 140, 255, 0.25),
-    0 22px 48px rgba(93, 140, 255, 0.38);
+  box-shadow: 0 6px 16px rgba(93,140,255,.20);
 }
 
 #workoutList .btn-outline-success {
@@ -732,10 +728,6 @@
   .workout-goal {
     padding: 6px 12px;
     font-size: 12px;
-  }
-
-  #workoutList .d-grid {
-    gap: 10px;
   }
 
   #workoutList .btn {

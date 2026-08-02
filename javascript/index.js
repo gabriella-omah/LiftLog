@@ -353,73 +353,131 @@ function displayWeeklyPlanner() {
 
     weeklyPlanner.innerHTML = "";
 
-    const todayName = days[new Date().getDay()];
+    const weekStart = getStartOfWeek();
+    const weekEnd = getEndOfWeek();
+    const today = getToday();
 
+    // Only workouts scheduled this week
+    const weeklyWorkouts = getSortedWorkouts().filter(workout => {
 
-getSortedWorkouts().forEach(workout => {
+        const scheduled = getWorkoutScheduledDate(workout);
+
+        if (!scheduled) return false;
+
+        return (
+            scheduled >= weekStart &&
+            scheduled < weekEnd
+        );
+
+    });
+
+    if (weeklyWorkouts.length === 0) {
+
+        weeklyPlanner.innerHTML = `
+            <div class="text-center text-muted py-3">
+                No workouts scheduled this week.
+            </div>
+        `;
+
+        return;
+
+    }
+
+    weeklyWorkouts.forEach(workout => {
+
+        const scheduled = getWorkoutScheduledDate(workout);
 
         let statusClass = "";
+        let statusIcon = "";
+        let statusText = "";
 
-if (workout.day === todayName) {
+        if (workout.completed) {
 
-    statusClass = "active";
+            statusClass = "completed";
+            statusIcon = `<i class="bi bi-check-lg"></i>`;
+            statusText = "Completed";
 
-} else if (workout.completed) {
+        } else if (scheduled.getTime() === today.getTime()) {
 
-    statusClass = "completed";
+            statusClass = "active";
+            statusIcon = `<i class="bi bi-lightning-charge-fill"></i>`;
+            statusText = "Today";
 
-} else {
+        } else if (scheduled > today) {
 
-    statusClass = "pending";
+            statusClass = "pending";
+            statusIcon = `<i class="bi bi-circle"></i>`;
+            statusText = "Upcoming";
 
-}
+        } else {
+
+            statusClass = "missed";
+            statusIcon = `<i class="bi bi-x-circle-fill"></i>`;
+            statusText = "Missed";
+
+        }
 
         weeklyPlanner.innerHTML += `
 
-        <div class="planner-item ${statusClass}">
+            <div
+                class="planner-item ${statusClass}"
+                data-id="${workout.id}"
+            >
 
-            <div class="planner-day">
+                <div class="planner-day">
+                    ${scheduled.toLocaleDateString(undefined,{
+                        weekday:"short"
+                    }).toUpperCase()}
+                </div>
 
-                ${workout.day.slice(0,3).toUpperCase()}
+                <div class="planner-workout">
+                    ${workout.name.toUpperCase()}
+                </div>
 
-            </div>
-
-            <div class="planner-workout">
-
-                ${workout.name.toUpperCase()}
-
-            </div>
-
-            <div class="planner-status">
-
-                ${
-                    workout.completed
-                    ? `<i class="bi bi-check-lg"></i>`
-                    : `<i class="bi bi-circle"></i>`
-                }
+                <div class="planner-status">
+                    ${statusIcon}
+                </div>
 
             </div>
-
-        </div>
 
         `;
 
     });
-    const activeWorkout = weeklyPlanner.querySelector(".planner-item.active");
 
-if (activeWorkout) {
+    // Scroll today's workout into view
+    const activeWorkout =
+        weeklyPlanner.querySelector(".planner-item.active");
 
-    activeWorkout.scrollIntoView({
+    if (activeWorkout) {
 
-        behavior: "smooth",
+        activeWorkout.scrollIntoView({
 
-        inline: "center",
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
 
-        block: "nearest"
+        });
 
-    });
+    }
 
-}
+    // Make planner items clickable
+    weeklyPlanner
+        .querySelectorAll(".planner-item")
+        .forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                const id = item.dataset.id;
+
+                if (!id) return;
+
+                window.location.href =
+                    `workout.html?id=${id}`;
+
+            });
+
+        });
+
 }
 
 const motivationText =

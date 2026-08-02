@@ -38,6 +38,16 @@ let timerInterval = null;
 let isRunning = false;
 let isPaused = false;
 
+let userHasInteracted = false;
+
+document.addEventListener("pointerdown", () => {
+    userHasInteracted = true;
+}, { once: true });
+
+document.addEventListener("keydown", () => {
+    userHasInteracted = true;
+}, { once: true });
+
 /* =========================================================
    DATE HELPERS (aligned with workouts.js)
 ========================================================= */
@@ -46,15 +56,6 @@ function startOfDay(date) {
     const result = new Date(date);
     result.setHours(0, 0, 0, 0);
     return result;
-}
-
-function getStartOfWeek(date = new Date()) {
-    const d = new Date(date);
-    const day = d.getDay();
-    const diff = day === 0 ? -6 : 1 - day;
-    d.setDate(d.getDate() + diff);
-    d.setHours(0, 0, 0, 0);
-    return d;
 }
 
 /*
@@ -669,11 +670,35 @@ function displayWorkoutHeader() {
 
     if (workoutTitle) workoutTitle.textContent = workout.name;
 
+    // Text color only
+    let difficultyClass = "";
+
+    switch (workout.difficulty?.toLowerCase()) {
+        case "beginner":
+            difficultyClass = "text-success";
+            break;
+
+        case "intermediate":
+            difficultyClass = "text-warning";
+            break;
+
+        case "advanced":
+            difficultyClass = "text-danger";
+            break;
+
+        default:
+            difficultyClass = "text-secondary";
+    }
+
     if (workoutInfo) {
         workoutInfo.innerHTML = `
             <div class="mb-2"><strong>${workout.day}</strong></div>
+
             <div class="mb-2">${workout.category} • ${workout.goal}</div>
-            <span class="badge bg-success">${workout.difficulty}</span>
+
+            <span class="badge ${difficultyClass}">
+                ${workout.difficulty}
+            </span>
         `;
     }
 }
@@ -693,9 +718,36 @@ function renderTimer() {
 }
 
 function updateTimer() {
+    
     const workout = workouts.find(w => w.id === workoutId);
+
     if (!workout || workout.completed || !isRunning) return;
     if (!workout.startTime) return;
+
+    const targetMinutes = workout.duration || 0;
+const targetSeconds = targetMinutes * 60;
+
+if (
+    targetSeconds > 0 &&
+    seconds >= targetSeconds &&
+    !workout.overtimeToastShown
+) {
+    workout.overtimeToastShown = true;
+    saveWorkouts();
+
+    showToast("You've reached your planned workout duration.");
+
+    if (userHasInteracted) {
+        const beep = document.getElementById("timerBeep");
+
+        if (beep) {
+            beep.currentTime = 0;
+            beep.play().catch(() => {});
+        }
+    }
+}
+
+
 
     seconds = Math.floor((Date.now() - workout.startTime) / 1000);
     workout.durationSeconds = seconds;
@@ -712,10 +764,27 @@ function startWorkout() {
         return;
     }
 
+    if (workout.overtimeToastShown === undefined) {
+    workout.overtimeToastShown = false;
+}
+
     if (isPaused) {
         workout.startTime = Date.now() - (seconds * 1000);
+
+        if (typeof resumeWorkoutTimer === "function") {
+            resumeWorkoutTimer();
+        }
     } else if (!workout.startTime) {
         workout.startTime = Date.now() - (seconds * 1000);
+
+        // Start global timer used for notifications / banner
+        if (typeof startWorkoutTimer === "function") {
+            startWorkoutTimer(workout);
+        }
+
+        if (typeof ensureNotificationPermission === "function") {
+            ensureNotificationPermission();
+        }
     }
 
     workout.isPaused = false;
@@ -746,6 +815,10 @@ function pauseWorkout() {
     workout.durationSeconds = seconds;
     workout.isPaused = true;
     saveWorkouts();
+
+    if (typeof pauseWorkoutTimer === "function") {
+        pauseWorkoutTimer();
+    }
 
     isRunning = false;
     isPaused = true;
@@ -1144,6 +1217,7 @@ function completeWorkout() {
 
     clearInterval(timerInterval);
     timerInterval = null;
+    
 
     if (isMissedWorkout && !workout.startTime) {
         seconds = 0;
@@ -1195,6 +1269,7 @@ function completeWorkout() {
     workout.completedDate = now.toISOString();
     workout.startTime = null;
     workout.isPaused = false;
+    delete workout.overtimeToastShown;
 
     if (!Array.isArray(workout.completionHistory)) {
         workout.completionHistory = [];
@@ -1525,6 +1600,7 @@ document.addEventListener("click", event => {
     openExerciseInfo(button.dataset.id);
 
 });
+
 
 /* =========================================================
    INITIALIZATION
