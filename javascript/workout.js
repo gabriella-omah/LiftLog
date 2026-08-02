@@ -3,16 +3,6 @@
 // javascript/workout.js
 // ========================================
 
-const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-];
-
 const params = new URLSearchParams(window.location.search);
 const workoutId = Number(params.get("id"));
 
@@ -34,10 +24,9 @@ const pauseResumeIcon = document.getElementById("pauseResumeIcon");
 ========================================================= */
 
 let seconds = 0;
-let timerInterval = null;
 let isRunning = false;
 let isPaused = false;
-
+let timerInterval = null;
 let userHasInteracted = false;
 
 document.addEventListener("pointerdown", () => {
@@ -49,204 +38,19 @@ document.addEventListener("keydown", () => {
 }, { once: true });
 
 /* =========================================================
-   DATE HELPERS (aligned with workouts.js)
+   HELPERS
 ========================================================= */
 
-function startOfDay(date) {
-    const result = new Date(date);
-    result.setHours(0, 0, 0, 0);
-    return result;
-}
-
-/*
-  Prefer workout.scheduledDate when present.
-  Otherwise map the day name to this week's calendar date.
-*/
-function getWorkoutScheduledDate(workout) {
-    if (workout && workout.scheduledDate) {
-        const date = new Date(workout.scheduledDate);
-        if (!Number.isNaN(date.getTime())) {
-            return startOfDay(date);
-        }
-    }
-
-    // Fallback: use day name for current week
-    if (workout && workout.day) {
-        const dayIndex = days.indexOf(workout.day);
-        if (dayIndex !== -1) {
-            const start = getStartOfWeek();
-            const mondayBased = dayIndex === 0 ? 6 : dayIndex - 1;
-            const scheduled = new Date(start);
-            scheduled.setDate(start.getDate() + mondayBased);
-            return startOfDay(scheduled);
-        }
-    }
-
-    return startOfDay(new Date());
-}
-
 function getWorkoutDaysAgo(workout) {
-    const today = startOfDay(new Date());
+    const today = getToday();
     const scheduledDate = getWorkoutScheduledDate(workout);
+    if (!scheduledDate) return 0;
+
     return Math.floor(
         (today.getTime() - scheduledDate.getTime()) /
         (1000 * 60 * 60 * 24)
     );
 }
-
-/* =========================================================
-   VIEW EXERCISE INFORMATION
-========================================================= */
-
-function openWorkoutExerciseInfo(exerciseId) {
-
-    const workout = workouts.find(w => w.id === workoutId);
-
-    if (!workout) return;
-
-    const exercise = workout.exercises.find(
-        e => e.id === Number(exerciseId)
-    );
-
-    if (!exercise) return;
-
-
-    const modalTitle =
-        document.getElementById("exerciseInfoTitle");
-
-    const modalBody =
-        document.getElementById("exerciseInfoBody");
-
-
-    if (!modalTitle || !modalBody) return;
-
-
-    modalTitle.textContent = exercise.name;
-
-
-    modalBody.innerHTML = `
-
-        ${
-            exercise.images && exercise.images.length
-            ?
-            `
-            <div class="row mb-3">
-
-                ${exercise.images.map(image => `
-
-                    <div class="col-6">
-
-                        <img 
-                        src="${image}"
-                        class="img-fluid rounded"
-                        alt="${exercise.name}">
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-            `
-            :
-            ""
-        }
-
-
-        ${
-            exercise.bodyMap
-            ?
-            `
-            <div class="text-center mb-3">
-
-                <img 
-                src="${exercise.bodyMap}"
-                class="img-fluid"
-                style="max-height:250px">
-
-                <p class="mt-2">
-                    Target Muscle
-                </p>
-
-            </div>
-            `
-            :
-            ""
-        }
-
-
-        <p>
-            <strong>Muscle:</strong>
-            ${exercise.muscle}
-        </p>
-
-
-        <p>
-            <strong>Equipment:</strong>
-            ${exercise.equipment}
-        </p>
-
-
-        <p>
-            <strong>Type:</strong>
-            ${exercise.type}
-        </p>
-
-
-        <hr>
-
-
-        <h5>How to Perform</h5>
-
-        <ol>
-
-            ${
-                exercise.instructions
-                .map(step => `<li>${step}</li>`)
-                .join("")
-            }
-
-        </ol>
-
-
-        <h5>Tips</h5>
-
-        <ul>
-
-            ${
-                exercise.tips
-                .map(tip => `<li>${tip}</li>`)
-                .join("")
-            }
-
-        </ul>
-
-
-        <h5>Common Mistakes</h5>
-
-        <ul>
-
-            ${
-                exercise.mistakes
-                .map(mistake => `<li>${mistake}</li>`)
-                .join("")
-            }
-
-        </ul>
-
-    `;
-
-
-    bootstrap.Modal
-    .getOrCreateInstance(
-        document.getElementById("exerciseInfoModal")
-    )
-    .show();
-
-}
-
-/* =========================================================
-   TOAST
-========================================================= */
 
 function showToast(message) {
     const toastMessage = document.getElementById("toastMessage");
@@ -255,6 +59,94 @@ function showToast(message) {
 
     toastMessage.textContent = message;
     bootstrap.Toast.getOrCreateInstance(toastElement).show();
+}
+
+/* =========================================================
+   EXERCISE INFORMATION MODAL
+========================================================= */
+
+function openExerciseInfo(exerciseId) {
+    const exercise = exerciseLibrary.find(e => e.id === Number(exerciseId));
+    if (!exercise) {
+        showToast("Exercise not found.");
+        return;
+    }
+
+    const modalBody = document.getElementById("exerciseInfoContent") ||
+                      document.getElementById("exerciseInfoBody");
+
+    if (!modalBody) return;
+
+    modalBody.innerHTML = `
+        <h3 class="mb-3">${exercise.name}</h3>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <strong>Muscle</strong><br>
+                ${exercise.muscle}
+            </div>
+            <div class="col-md-6">
+                <strong>Body Part</strong><br>
+                ${
+                    exercise.bodyMap
+                        ? `<img src="${exercise.bodyMap}" class="img-fluid rounded border mt-2" style="max-height:220px;">`
+                        : "N/A"
+                }
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <strong>Type</strong><br>
+                ${exercise.type}
+            </div>
+            <div class="col-md-4">
+                <strong>Difficulty</strong><br>
+                ${exercise.difficulty}
+            </div>
+            <div class="col-md-4">
+                <strong>Equipment</strong><br>
+                ${exercise.equipment}
+            </div>
+        </div>
+
+        ${
+            exercise.images?.length
+                ? `
+                <hr>
+                <h5 class="mb-3">Exercise Movement</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                    <img src="${exercise.images[0]}" class="img-fluid rounded border" style="max-height:220px;">
+                    ${exercise.images.length > 1 ? `<i class="bi bi-arrow-right fs-1"></i>` : ""}
+                    ${exercise.images[1] ? `<img src="${exercise.images[1]}" class="img-fluid rounded border" style="max-height:220px;">` : ""}
+                </div>
+                `
+                : ""
+        }
+
+        <hr>
+        <h5>How to Perform</h5>
+        <ol>
+            ${(exercise.instructions || []).map(step => `<li>${step}</li>`).join("")}
+        </ol>
+
+        <hr>
+        <h5>Tips</h5>
+        <ul>
+            ${(exercise.tips || []).map(tip => `<li>${tip}</li>`).join("")}
+        </ul>
+
+        <hr>
+        <h5>Common Mistakes</h5>
+        <ul>
+            ${(exercise.mistakes || []).map(item => `<li>${item}</li>`).join("")}
+        </ul>
+    `;
+
+    const modalEl = document.getElementById("exerciseInfoModal");
+    if (modalEl) {
+        bootstrap.Modal.getOrCreateInstance(modalEl).show();
+    }
 }
 
 /* =========================================================
@@ -295,7 +187,7 @@ function searchExercises() {
 }
 
 /* =========================================================
-   ADD EXERCISE
+   ADD / REMOVE EXERCISE
 ========================================================= */
 
 function attachExerciseEvents() {
@@ -320,16 +212,12 @@ function attachExerciseEvents() {
             }
 
             const exercise = exerciseLibrary.find(e => e.id === exerciseId);
-
             if (!exercise) {
                 showToast("Exercise not found.");
                 return;
             }
 
-            const alreadyAdded = currentWorkout.exercises.some(
-                item => item.id === exercise.id
-            );
-
+            const alreadyAdded = currentWorkout.exercises.some(item => item.id === exercise.id);
             if (alreadyAdded) {
                 showToast(`${exercise.name} is already in this workout.`);
                 return;
@@ -360,10 +248,6 @@ function attachExerciseEvents() {
     });
 }
 
-/* =========================================================
-   REMOVE EXERCISE
-========================================================= */
-
 function attachRemoveExerciseEvents() {
     document.querySelectorAll(".remove-exercise").forEach(button => {
         button.addEventListener("click", () => {
@@ -384,23 +268,6 @@ function attachRemoveExerciseEvents() {
     });
 }
 
-function attachWorkoutExerciseInfoEvents(){
-
-    document.querySelectorAll(".view-workout-exercise")
-    .forEach(button=>{
-
-        button.addEventListener("click",()=>{
-
-            openWorkoutExerciseInfo(
-                button.dataset.id
-            );
-
-        });
-
-    });
-
-}
-
 function openRemoveExerciseModal(workout, exercise) {
     const modalElement = document.getElementById("removeExerciseModal");
     const nameElement = document.getElementById("removeExerciseName");
@@ -416,9 +283,7 @@ function openRemoveExerciseModal(workout, exercise) {
             return;
         }
 
-        workout.exercises = workout.exercises.filter(
-            item => item.id !== exercise.id
-        );
+        workout.exercises = workout.exercises.filter(item => item.id !== exercise.id);
         workout.exerciseCount = workout.exercises.length;
 
         saveWorkouts();
@@ -449,8 +314,7 @@ function displayWorkoutExercises() {
     if (workout.exercises.length === 0) {
         workoutExercises.innerHTML = `
             <div class="alert alert-light text-center">
-                No exercises yet.
-                <br>
+                No exercises yet.<br>
                 <span>Click <strong>Add Exercise</strong> to begin.</span>
             </div>
         `;
@@ -463,15 +327,12 @@ function displayWorkoutExercises() {
         workoutExercises.innerHTML += `
             <section class="card mb-3 shadow-sm">
                 <div class="card-body">
-                  <div class="text-end ">
-        <button
-            class="btn btn-link exercise-info-btn"
-            data-id="${exercise.id}"
-            title="Exercise information"
-        >
-            <i class="bi bi-info-circle fs-5"></i>
-        </button>
-    </div>
+                    <div class="text-end">
+                        <button class="btn btn-link exercise-info-btn" data-id="${exercise.id}" title="Exercise information">
+                            <i class="bi bi-info-circle fs-5"></i>
+                        </button>
+                    </div>
+
                     <div class="d-flex justify-content-between align-items-start">
                         <div class="form-check">
                             <input
@@ -485,6 +346,7 @@ function displayWorkoutExercises() {
                                 <h5>${exercise.name}</h5>
                             </label>
                         </div>
+
                         <button
                             class="btn btn-outline-danger btn-sm remove-exercise"
                             data-id="${exercise.id}"
@@ -499,35 +361,19 @@ function displayWorkoutExercises() {
                     <div class="row mt-3">
                         <div class="col">
                             <label class="form-label">Sets</label>
-                            <input
-                                type="number"
-                                class="form-control sets-input"
-                                data-id="${exercise.id}"
-                                value="${exercise.sets ?? ""}"
-                                ${isLocked ? "disabled" : ""}
-                            >
+                            <input type="number" class="form-control sets-input" data-id="${exercise.id}"
+                                value="${exercise.sets ?? ""}" ${isLocked ? "disabled" : ""}>
                         </div>
                         <div class="col">
                             <label class="form-label">Reps</label>
-                            <input
-                                type="text"
-                                class="form-control reps-input"
-                                data-id="${exercise.id}"
-                                value="${exercise.reps ?? ""}"
-                                ${isLocked ? "disabled" : ""}
-                            >
+                            <input type="text" class="form-control reps-input" data-id="${exercise.id}"
+                                value="${exercise.reps ?? ""}" ${isLocked ? "disabled" : ""}>
                         </div>
                         <div class="col">
                             <label class="form-label">Weight</label>
                             <div class="input-group">
-                                <input
-                                    type="number"
-                                    class="form-control weight-input"
-                                    data-id="${exercise.id}"
-                                    value="${exercise.weight ?? ""}"
-                                    placeholder="0"
-                                    ${isLocked ? "disabled" : ""}
-                                >
+                                <input type="number" class="form-control weight-input" data-id="${exercise.id}"
+                                    value="${exercise.weight ?? ""}" placeholder="0" ${isLocked ? "disabled" : ""}>
                                 <span class="input-group-text">${weightUnit}</span>
                             </div>
                         </div>
@@ -535,13 +381,8 @@ function displayWorkoutExercises() {
 
                     <div class="mt-3">
                         <label class="form-label">Notes</label>
-                        <textarea
-                            class="form-control notes-input"
-                            rows="2"
-                            data-id="${exercise.id}"
-                            placeholder="Exercise notes..."
-                            ${isLocked ? "disabled" : ""}
-                        >${exercise.notes || ""}</textarea>
+                        <textarea class="form-control notes-input" rows="2" data-id="${exercise.id}"
+                            placeholder="Exercise notes..." ${isLocked ? "disabled" : ""}>${exercise.notes || ""}</textarea>
                     </div>
                 </div>
             </section>
@@ -549,37 +390,24 @@ function displayWorkoutExercises() {
     });
 
     attachRemoveExerciseEvents();
-    attachWorkoutExerciseInfoEvents();
     attachExerciseInputEvents();
     attachCompleteEvents();
 }
 
 /* =========================================================
-   EXERCISE INPUTS
+   EXERCISE INPUTS & COMPLETION
 ========================================================= */
 
 function attachExerciseInputEvents() {
-    document.querySelectorAll(".sets-input").forEach(input => {
-        input.addEventListener("change", updateExercise);
-    });
-    document.querySelectorAll(".reps-input").forEach(input => {
-        input.addEventListener("change", updateExercise);
-    });
-    document.querySelectorAll(".weight-input").forEach(input => {
-        input.addEventListener("change", updateExercise);
-    });
-    document.querySelectorAll(".notes-input").forEach(input => {
-        input.addEventListener("change", updateExercise);
-    });
+    document.querySelectorAll(".sets-input, .reps-input, .weight-input, .notes-input")
+        .forEach(input => input.addEventListener("change", updateExercise));
 }
 
 function updateExercise(event) {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout || workout.completed) return;
 
-    const exercise = workout.exercises.find(
-        e => e.id == event.target.dataset.id
-    );
+    const exercise = workout.exercises.find(e => e.id == event.target.dataset.id);
     if (!exercise) return;
 
     if (event.target.classList.contains("sets-input")) {
@@ -616,19 +444,13 @@ function updateExercise(event) {
     saveWorkouts();
 }
 
-/* =========================================================
-   EXERCISE COMPLETION
-========================================================= */
-
 function attachCompleteEvents() {
     document.querySelectorAll(".complete-input").forEach(input => {
         input.addEventListener("change", () => {
             const workout = workouts.find(w => w.id === workoutId);
             if (!workout || workout.completed) return;
 
-            const exercise = workout.exercises.find(
-                ex => ex.id == input.dataset.id
-            );
+            const exercise = workout.exercises.find(ex => ex.id == input.dataset.id);
             if (!exercise) return;
 
             exercise.completed = input.checked;
@@ -639,7 +461,7 @@ function attachCompleteEvents() {
 }
 
 /* =========================================================
-   WORKOUT PROGRESS
+   WORKOUT PROGRESS & HEADER
 ========================================================= */
 
 function updateWorkoutProgress() {
@@ -655,14 +477,9 @@ function updateWorkoutProgress() {
 
     if (progressBar) progressBar.style.width = `${percent}%`;
     if (progressText) {
-        progressText.textContent =
-            `${completed}/${total} Exercises Completed • ${percent}%`;
+        progressText.textContent = `${completed}/${total} Exercises Completed • ${percent}%`;
     }
 }
-
-/* =========================================================
-   WORKOUT HEADER
-========================================================= */
 
 function displayWorkoutHeader() {
     const workout = workouts.find(w => w.id === workoutId);
@@ -670,35 +487,18 @@ function displayWorkoutHeader() {
 
     if (workoutTitle) workoutTitle.textContent = workout.name;
 
-    // Text color only
-    let difficultyClass = "";
-
-    switch (workout.difficulty?.toLowerCase()) {
-        case "beginner":
-            difficultyClass = "text-success";
-            break;
-
-        case "intermediate":
-            difficultyClass = "text-warning";
-            break;
-
-        case "advanced":
-            difficultyClass = "text-danger";
-            break;
-
-        default:
-            difficultyClass = "text-secondary";
+    let difficultyClass = "text-secondary";
+    switch ((workout.difficulty || "").toLowerCase()) {
+        case "beginner": difficultyClass = "text-success"; break;
+        case "intermediate": difficultyClass = "text-warning"; break;
+        case "advanced": difficultyClass = "text-danger"; break;
     }
 
     if (workoutInfo) {
         workoutInfo.innerHTML = `
             <div class="mb-2"><strong>${workout.day}</strong></div>
-
-            <div class="mb-2">${workout.category} • ${workout.goal}</div>
-
-            <span class="badge ${difficultyClass}">
-                ${workout.difficulty}
-            </span>
+            <div class="mb-2">${workout.category || ""} • ${workout.goal || ""}</div>
+            <span class="badge ${difficultyClass}">${workout.difficulty || ""}</span>
         `;
     }
 }
@@ -718,36 +518,24 @@ function renderTimer() {
 }
 
 function updateTimer() {
-    
     const workout = workouts.find(w => w.id === workoutId);
+    if (!workout || workout.completed || !isRunning || !workout.startTime) return;
 
-    if (!workout || workout.completed || !isRunning) return;
-    if (!workout.startTime) return;
+    const targetSeconds = (workout.duration || 0) * 60;
 
-    const targetMinutes = workout.duration || 0;
-const targetSeconds = targetMinutes * 60;
+    if (targetSeconds > 0 && seconds >= targetSeconds && !workout.overtimeToastShown) {
+        workout.overtimeToastShown = true;
+        saveWorkouts();
+        showToast("You've reached your planned workout duration.");
 
-if (
-    targetSeconds > 0 &&
-    seconds >= targetSeconds &&
-    !workout.overtimeToastShown
-) {
-    workout.overtimeToastShown = true;
-    saveWorkouts();
-
-    showToast("You've reached your planned workout duration.");
-
-    if (userHasInteracted) {
-        const beep = document.getElementById("timerBeep");
-
-        if (beep) {
-            beep.currentTime = 0;
-            beep.play().catch(() => {});
+        if (userHasInteracted) {
+            const beep = document.getElementById("timerBeep");
+            if (beep) {
+                beep.currentTime = 0;
+                beep.play().catch(() => {});
+            }
         }
     }
-}
-
-
 
     seconds = Math.floor((Date.now() - workout.startTime) / 1000);
     workout.durationSeconds = seconds;
@@ -764,24 +552,27 @@ function startWorkout() {
         return;
     }
 
+    const daysAgo = getWorkoutDaysAgo(workout);
+
+    // Block future workouts
+    if (daysAgo < 0) {
+        showToast("You cannot start a workout scheduled for a future date.");
+        return;
+    }
+
     if (workout.overtimeToastShown === undefined) {
-    workout.overtimeToastShown = false;
-}
+        workout.overtimeToastShown = false;
+    }
 
     if (isPaused) {
         workout.startTime = Date.now() - (seconds * 1000);
-
-        if (typeof resumeWorkoutTimer === "function") {
-            resumeWorkoutTimer();
-        }
+        if (typeof resumeWorkoutTimer === "function") resumeWorkoutTimer();
     } else if (!workout.startTime) {
         workout.startTime = Date.now() - (seconds * 1000);
 
-        // Start global timer used for notifications / banner
         if (typeof startWorkoutTimer === "function") {
             startWorkoutTimer(workout);
         }
-
         if (typeof ensureNotificationPermission === "function") {
             ensureNotificationPermission();
         }
@@ -796,9 +587,7 @@ function startWorkout() {
     isRunning = true;
     isPaused = false;
 
-    if (pauseResumeIcon) {
-        pauseResumeIcon.className = "bi bi-pause-fill";
-    }
+    if (pauseResumeIcon) pauseResumeIcon.className = "bi bi-pause-fill";
 }
 
 function pauseWorkout() {
@@ -816,175 +605,13 @@ function pauseWorkout() {
     workout.isPaused = true;
     saveWorkouts();
 
-    if (typeof pauseWorkoutTimer === "function") {
-        pauseWorkoutTimer();
-    }
+    if (typeof pauseWorkoutTimer === "function") pauseWorkoutTimer();
 
     isRunning = false;
     isPaused = true;
     renderTimer();
 
-    if (pauseResumeIcon) {
-        pauseResumeIcon.className = "bi bi-play-fill";
-    }
-}
-
-function openExerciseInfo(exerciseId) {
-
-    const exercise = exerciseLibrary.find(
-        e => e.id === Number(exerciseId)
-    );
-
-    if (!exercise) {
-        showToast("Exercise not found.");
-        return;
-    }
-
-    const modalBody = document.getElementById("exerciseInfoContent");
-
-    modalBody.innerHTML = `
-
-        <h3 class="mb-3">${exercise.name}</h3>
-
-        <div class="row mb-3">
-
-            <div class="col-md-6">
-                <strong>Muscle</strong><br>
-                ${exercise.muscle}
-            </div>
-
-            <div class="col-md-6">
-                <strong>Body Part</strong><br>
-
-                ${
-                    exercise.bodyMap
-                    ?
-                    `<img src="${exercise.bodyMap}"
-                         class="img-fluid rounded border mt-2"
-                         style="max-height:220px;">`
-                    :
-                    "N/A"
-                }
-
-            </div>
-
-        </div>
-
-
-        <div class="row mb-3">
-
-            <div class="col-md-4">
-                <strong>Type</strong><br>
-                ${exercise.type}
-            </div>
-
-            <div class="col-md-4">
-                <strong>Difficulty</strong><br>
-                ${exercise.difficulty}
-            </div>
-
-            <div class="col-md-4">
-                <strong>Equipment</strong><br>
-                ${exercise.equipment}
-            </div>
-
-        </div>
-
-
-        ${
-            exercise.images?.length
-            ?
-            `
-            <hr>
-
-            <h5 class="mb-3">Exercise Movement</h5>
-
-            <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-
-                <img
-                    src="${exercise.images[0]}"
-                    class="img-fluid rounded border"
-                    style="max-height:220px;"
-                >
-
-                ${
-                    exercise.images.length > 1
-                    ?
-                    `<i class="bi bi-arrow-right fs-1"></i>`
-                    :
-                    ""
-                }
-
-                ${
-                    exercise.images[1]
-                    ?
-                    `<img
-                        src="${exercise.images[1]}"
-                        class="img-fluid rounded border"
-                        style="max-height:220px;"
-                    >`
-                    :
-                    ""
-                }
-
-            </div>
-            `
-            :
-            ""
-        }
-
-
-        <hr>
-
-        <h5>How to Perform</h5>
-
-        <ol>
-
-            ${
-                exercise.instructions
-                    .map(step => `<li>${step}</li>`)
-                    .join("")
-            }
-
-        </ol>
-
-
-        <hr>
-
-        <h5>Tips</h5>
-
-        <ul>
-
-            ${
-                exercise.tips
-                    .map(tip => `<li>${tip}</li>`)
-                    .join("")
-            }
-
-        </ul>
-
-
-        <hr>
-
-        <h5>Common Mistakes</h5>
-
-        <ul>
-
-            ${
-                exercise.mistakes
-                    .map(item => `<li>${item}</li>`)
-                    .join("")
-            }
-
-        </ul>
-
-    `;
-
-    bootstrap.Modal
-        .getOrCreateInstance(
-            document.getElementById("exerciseInfoModal")
-        )
-        .show();
+    if (pauseResumeIcon) pauseResumeIcon.className = "bi bi-play-fill";
 }
 
 function initializeWorkoutTimer() {
@@ -1031,65 +658,278 @@ function initializeWorkoutTimer() {
 }
 
 /* =========================================================
-   TIMER BUTTON
+   FINISH / LOG WORKOUT
 ========================================================= */
 
-if (pauseResumeBtn) {
-    pauseResumeBtn.addEventListener("click", () => {
-        const workout = workouts.find(w => w.id === workoutId);
-        if (!workout || workout.completed) return;
+function completeWorkout() {
+    const workout = workouts.find(w => w.id === workoutId);
+    if (!workout) {
+        showToast("Workout not found.");
+        return;
+    }
 
-        if (isRunning) {
-            pauseWorkout();
-        } else {
-            startWorkout();
+    if (workout.completed) {
+        showToast("This workout has already been completed.");
+        lockCompletedWorkout();
+        return;
+    }
+
+    const daysAgo = getWorkoutDaysAgo(workout);
+
+    if (daysAgo < 0) {
+        showToast("This workout is scheduled for a future date.");
+        return;
+    }
+
+    if (daysAgo > 7) {
+        showToast("You can only log workouts from the last 7 days.");
+        return;
+    }
+
+    clearInterval(timerInterval);
+    timerInterval = null;
+
+    const isMissedWorkout = daysAgo > 0;
+
+    if (isMissedWorkout && !workout.startTime) {
+        seconds = 0;
+    } else if (workout.startTime && !isPaused) {
+        seconds = Math.floor((Date.now() - workout.startTime) / 1000);
+    }
+
+    isRunning = false;
+    isPaused = false;
+    workout.durationSeconds = seconds;
+
+    let completedExercises = 0;
+    let totalVolume = 0;
+    let totalCalories = 0;
+    let prCount = 0;
+
+    workout.exercises.forEach(exercise => {
+        if (exercise.completed) completedExercises++;
+
+        const sets = Number(exercise.sets) || 0;
+        const reps = Number(exercise.reps) || 0;
+        const weight = Number(exercise.weight) || 0;
+
+        totalVolume += sets * reps * weight;
+        totalCalories += Math.round(sets * reps * 0.5);
+
+        const currentPR = Number(personalRecordsData[exercise.name]) || 0;
+        if (weight > currentPR && weight > 0) {
+            personalRecordsData[exercise.name] = weight;
+            prCount++;
         }
     });
-}
 
-/* =========================================================
-   MIGRATE OLD EXERCISES
-========================================================= */
+    savePersonalRecords();
 
-function migrateWorkoutExercises() {
-    let changed = false;
+    totalCalories += Math.round((seconds / 60) * 8);
 
-    workouts.forEach(workout => {
-        if (!Array.isArray(workout.exercises)) {
-            workout.exercises = [];
-        }
+    const distance = (seconds / 60) * 0.06;
+    const pace = distance > 0 ? ((seconds / 60) / distance).toFixed(1) : 0;
 
-        workout.exercises = workout.exercises.map(oldExercise => {
-            if (oldExercise.id !== undefined) return oldExercise;
+    const now = new Date();
 
-            const libraryExercise = exerciseLibrary.find(
-                e => e.name === oldExercise.name
-            );
-            if (!libraryExercise) return oldExercise;
+    workout.completed = true;
+    workout.loggedDate = now.toISOString();
+    workout.completedDate = now.toISOString();
+    workout.startTime = null;
+    workout.isPaused = false;
+    delete workout.overtimeToastShown;
 
-            changed = true;
+    if (!Array.isArray(workout.completionHistory)) {
+        workout.completionHistory = [];
+    }
 
-            return {
-                ...libraryExercise,
-                sets: oldExercise.sets ?? "",
-                reps: oldExercise.reps ?? "",
-                weight: oldExercise.weight ?? "",
-                notes: oldExercise.notes ?? "",
-                completed: oldExercise.completed || false,
-                volume: oldExercise.volume || 0,
-                calories: oldExercise.calories || 0
-            };
-        });
-
-        workout.exerciseCount = workout.exercises.length;
+    workout.completionHistory.push({
+        scheduledDate: workout.scheduledDate,
+        loggedDate: workout.loggedDate,
+        durationSeconds: seconds
     });
 
-    if (changed) saveWorkouts();
+    localStorage.setItem(
+        "caloriesBurned",
+        (Number(localStorage.getItem("caloriesBurned")) || 0) + totalCalories
+    );
+
+    localStorage.setItem(
+        "totalWeight",
+        (Number(localStorage.getItem("totalWeight")) || 0) + totalVolume
+    );
+
+    workout.summary = {
+        duration: workoutTimer ? workoutTimer.textContent : "00:00:00",
+        completedExercises,
+        totalExercises: workout.exercises.length,
+        calories: totalCalories,
+        volume: totalVolume,
+        prs: prCount,
+        distance: distance.toFixed(2),
+        pace,
+        streak: typeof streak !== "undefined" ? streak : 0,
+        scheduledDate: workout.scheduledDate,
+        loggedDate: workout.loggedDate,
+        completedDate: workout.completedDate
+    };
+
+    saveWorkouts();
+
+    displayWorkoutSummary();
+    displayWorkoutExercises();
+    updateWorkoutProgress();
+    updateFinishWorkoutButton();
+    lockCompletedWorkout();
+
+    // Optional finish modal content
+    const summaryElement = document.getElementById("workoutSummary");
+    if (summaryElement) {
+        const scheduledDate = getWorkoutScheduledDate(workout);
+
+        summaryElement.innerHTML = `
+            <h3 class="text-success text-center mb-4">Workout Complete</h3>
+
+            ${
+                isMissedWorkout
+                    ? `<div class="alert alert-info text-center">
+                           <i class="bi bi-calendar-check"></i>
+                           Workout logged for <strong>${scheduledDate.toLocaleDateString()}</strong>
+                       </div>`
+                    : `<div class="alert alert-success text-center">
+                           <i class="bi bi-check-circle"></i>
+                           Today's workout has been completed.
+                       </div>`
+            }
+
+            <div class="row text-center g-3">
+                <div class="col-6">
+                    <h4>${completedExercises}/${workout.exercises.length}</h4>
+                    <small>Exercises</small>
+                </div>
+                <div class="col-6">
+                    <h4>${workoutTimer ? workoutTimer.textContent : "00:00:00"}</h4>
+                    <small>Duration</small>
+                </div>
+                <div class="col-6">
+                    <h4>${totalCalories}</h4>
+                    <small>Calories</small>
+                </div>
+                <div class="col-6">
+                    <h4>${distance.toFixed(2)} km</h4>
+                    <small>Distance</small>
+                </div>
+                <div class="col-6">
+                    <h4>${totalVolume.toLocaleString()} ${weightUnit}</h4>
+                    <small>Total Volume</small>
+                </div>
+                <div class="col-6">
+                    <h4>${prCount}</h4>
+                    <small>New PRs</small>
+                </div>
+            </div>
+
+            <hr>
+            <p class="text-center mt-3">Great work! Keep showing up consistently.</p>
+        `;
+
+        const finishModal = document.getElementById("finishWorkoutModal");
+        if (finishModal) {
+            bootstrap.Modal.getOrCreateInstance(finishModal).show();
+        }
+    }
 }
 
-/* =========================================================
-   WORKOUT SUMMARY
-========================================================= */
+function finishWorkout() {
+    const workout = workouts.find(w => w.id === workoutId);
+    if (!workout) {
+        showToast("Workout not found.");
+        return;
+    }
+
+    const daysAgo = getWorkoutDaysAgo(workout);
+    const isMissedWorkout = daysAgo > 0;
+
+    if (!isMissedWorkout && !workout.startTime && !isRunning && !isPaused) {
+        const warningModal = document.getElementById("timerWarningModal");
+        if (warningModal) {
+            bootstrap.Modal.getOrCreateInstance(warningModal).show();
+        }
+        return;
+    }
+
+    completeWorkout();
+}
+
+function updateFinishWorkoutButton() {
+    const workout = workouts.find(w => w.id === workoutId);
+    if (!workout || !finishWorkoutBtn) return;
+
+    // Also control the timer button
+    if (pauseResumeBtn) {
+        pauseResumeBtn.disabled = false;
+    }
+
+    if (workout.completed) {
+        finishWorkoutBtn.disabled = true;
+        finishWorkoutBtn.textContent = "Workout Completed";
+        if (pauseResumeBtn) pauseResumeBtn.disabled = true;
+        return;
+    }
+
+    const daysAgo = getWorkoutDaysAgo(workout);
+
+    if (daysAgo < 0) {
+        // Future workout
+        finishWorkoutBtn.disabled = true;
+        finishWorkoutBtn.textContent = "Workout Scheduled Later";
+        if (pauseResumeBtn) pauseResumeBtn.disabled = true;
+        return;
+    }
+
+    if (daysAgo === 0) {
+        finishWorkoutBtn.disabled = false;
+        finishWorkoutBtn.textContent = "Finish Workout";
+        return;
+    }
+
+    if (daysAgo > 0 && daysAgo <= 7) {
+        finishWorkoutBtn.disabled = false;
+        finishWorkoutBtn.textContent = "Log Previous Workout";
+        return;
+    }
+
+    finishWorkoutBtn.disabled = true;
+    finishWorkoutBtn.textContent = "Workout Too Old";
+    if (pauseResumeBtn) pauseResumeBtn.disabled = true;
+}
+
+function lockCompletedWorkout() {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    isRunning = false;
+    isPaused = false;
+
+    if (finishWorkoutBtn) {
+        finishWorkoutBtn.disabled = true;
+        finishWorkoutBtn.textContent = "Workout Completed";
+    }
+    if (pauseResumeBtn) pauseResumeBtn.disabled = true;
+    if (editWorkoutBtn) editWorkoutBtn.disabled = true;
+    if (pauseResumeIcon) pauseResumeIcon.className = "bi bi-check-circle-fill";
+
+    document.querySelectorAll(
+        ".sets-input, .reps-input, .weight-input, .notes-input, .complete-input, .remove-exercise"
+    ).forEach(el => el.disabled = true);
+
+    const addExerciseButton = document.querySelector('[data-bs-target="#exerciseModal"]');
+    if (addExerciseButton) {
+        addExerciseButton.disabled = true;
+        addExerciseButton.classList.add("disabled");
+        addExerciseButton.removeAttribute("data-bs-toggle");
+        addExerciseButton.removeAttribute("data-bs-target");
+    }
+}
 
 function displayWorkoutSummary() {
     const workout = workouts.find(w => w.id === workoutId);
@@ -1132,10 +972,7 @@ function displayWorkoutSummary() {
                 <p class="mb-0">
                     Completed<br>
                     <strong>
-                        ${new Date(
-                            workout.summary.loggedDate ||
-                            workout.summary.completedDate
-                        ).toLocaleString()}
+                        ${new Date(workout.summary.loggedDate || workout.summary.completedDate).toLocaleString()}
                     </strong>
                 </p>
             </div>
@@ -1144,327 +981,11 @@ function displayWorkoutSummary() {
 }
 
 /* =========================================================
-   LOCK COMPLETED WORKOUT
-========================================================= */
-
-function lockCompletedWorkout() {
-    clearInterval(timerInterval);
-    timerInterval = null;
-    isRunning = false;
-    isPaused = false;
-
-    if (finishWorkoutBtn) {
-        finishWorkoutBtn.disabled = true;
-        finishWorkoutBtn.textContent = "Workout Completed";
-    }
-    if (pauseResumeBtn) pauseResumeBtn.disabled = true;
-    if (editWorkoutBtn) editWorkoutBtn.disabled = true;
-    if (pauseResumeIcon) pauseResumeIcon.className = "bi bi-check-circle-fill";
-
-    document.querySelectorAll(
-        ".sets-input, .reps-input, .weight-input, .notes-input, .complete-input, .remove-exercise"
-    ).forEach(el => {
-        el.disabled = true;
-    });
-
-    const addExerciseButton = document.querySelector(
-        '[data-bs-target="#exerciseModal"]'
-    );
-    if (addExerciseButton) {
-        addExerciseButton.disabled = true;
-        addExerciseButton.classList.add("disabled");
-        addExerciseButton.removeAttribute("data-bs-toggle");
-        addExerciseButton.removeAttribute("data-bs-target");
-    }
-}
-
-/* =========================================================
-   FINISH / LOG WORKOUT
-========================================================= */
-
-function completeWorkout() {
-    const workout = workouts.find(w => w.id === workoutId);
-
-    if (!workout) {
-        showToast("Workout not found.");
-        return;
-    }
-
-    if (workout.completed) {
-        showToast("This workout has already been completed.");
-        lockCompletedWorkout();
-        return;
-    }
-
-    const today = startOfDay(new Date());
-    const scheduledDate = getWorkoutScheduledDate(workout);
-    const daysAgo = Math.floor(
-        (today.getTime() - scheduledDate.getTime()) /
-        (1000 * 60 * 60 * 24)
-    );
-
-    const isMissedWorkout = daysAgo > 0;
-
-    if (daysAgo < 0) {
-        showToast("This workout is scheduled for a future date.");
-        return;
-    }
-
-    if (daysAgo > 7) {
-        showToast("You can only log workouts from the last 7 days.");
-        return;
-    }
-
-    clearInterval(timerInterval);
-    timerInterval = null;
-    
-
-    if (isMissedWorkout && !workout.startTime) {
-        seconds = 0;
-    } else if (workout.startTime && !isPaused) {
-        seconds = Math.floor((Date.now() - workout.startTime) / 1000);
-    }
-
-    isRunning = false;
-    isPaused = false;
-    workout.durationSeconds = seconds;
-
-    let completedExercises = 0;
-    let totalVolume = 0;
-    let totalCalories = 0;
-    let prCount = 0;
-
-    workout.exercises.forEach(exercise => {
-        if (exercise.completed) completedExercises++;
-
-        const sets = Number(exercise.sets) || 0;
-        const reps = Number(exercise.reps) || 0;
-        const weight = Number(exercise.weight) || 0;
-
-        totalVolume += sets * reps * weight;
-        totalCalories += Math.round(sets * reps * 0.5);
-
-        const currentPR = Number(personalRecordsData[exercise.name]) || 0;
-
-        if (weight > currentPR && weight > 0) {
-            personalRecordsData[exercise.name] = weight;
-            prCount++;
-        }
-    });
-
-    savePersonalRecords();
-
-    totalCalories += Math.round((seconds / 60) * 8);
-
-    const distance = (seconds / 60) * 0.06;
-    const pace =
-        distance > 0
-            ? ((seconds / 60) / distance).toFixed(1)
-            : 0;
-
-    const now = new Date();
-
-    workout.completed = true;
-    workout.loggedDate = now.toISOString();
-    workout.completedDate = now.toISOString();
-    workout.startTime = null;
-    workout.isPaused = false;
-    delete workout.overtimeToastShown;
-
-    if (!Array.isArray(workout.completionHistory)) {
-        workout.completionHistory = [];
-    }
-
-    workout.completionHistory.push({
-        scheduledDate: workout.scheduledDate,
-        loggedDate: workout.loggedDate,
-        durationSeconds: seconds
-    });
-
-    localStorage.setItem(
-        "caloriesBurned",
-        (Number(localStorage.getItem("caloriesBurned")) || 0) + totalCalories
-    );
-
-    localStorage.setItem(
-        "totalWeight",
-        (Number(localStorage.getItem("totalWeight")) || 0) + totalVolume
-    );
-
-    const streakValue =
-        typeof streak !== "undefined"
-            ? streak
-            : 0;
-
-    workout.summary = {
-        duration: workoutTimer.textContent,
-        completedExercises,
-        totalExercises: workout.exercises.length,
-        calories: totalCalories,
-        volume: totalVolume,
-        prs: prCount,
-        distance: distance.toFixed(2),
-        pace,
-        streak: streakValue,
-        scheduledDate: workout.scheduledDate,
-        loggedDate: workout.loggedDate,
-        completedDate: workout.completedDate
-    };
-
-    saveWorkouts();
-
-    displayWorkoutSummary();
-    displayWorkoutExercises();
-    updateWorkoutProgress();
-    updateFinishWorkoutButton();
-    lockCompletedWorkout();
-
-    const summaryElement =
-        document.getElementById("workoutSummary");
-
-    if (summaryElement) {
-        summaryElement.innerHTML = `
-            <h3 class="text-success text-center mb-4">
-                Workout Complete
-            </h3>
-
-            ${
-                isMissedWorkout
-                    ? `
-                    <div class="alert alert-info text-center">
-                        <i class="bi bi-calendar-check"></i>
-                        Workout logged for
-                        <strong>${scheduledDate.toLocaleDateString()}</strong>
-                    </div>
-                    `
-                    : `
-                    <div class="alert alert-success text-center">
-                        <i class="bi bi-check-circle"></i>
-                        Today's workout has been completed.
-                    </div>
-                    `
-            }
-
-            <div class="row text-center g-3">
-                <div class="col-6">
-                    <h4>${completedExercises}/${workout.exercises.length}</h4>
-                    <small>Exercises</small>
-                </div>
-
-                <div class="col-6">
-                    <h4>${workoutTimer.textContent}</h4>
-                    <small>Duration</small>
-                </div>
-
-                <div class="col-6">
-                    <h4>${totalCalories}</h4>
-                    <small>Calories</small>
-                </div>
-
-                <div class="col-6">
-                    <h4>${distance.toFixed(2)} km</h4>
-                    <small>Distance</small>
-                </div>
-
-                <div class="col-6">
-                    <h4>${totalVolume.toLocaleString()} ${weightUnit}</h4>
-                    <small>Total Volume</small>
-                </div>
-
-                <div class="col-6">
-                    <h4>${prCount}</h4>
-                    <small>New PRs</small>
-                </div>
-            </div>
-
-            <hr>
-
-            <p class="text-center mt-3">
-                Great work! Keep showing up consistently.
-            </p>
-        `;
-
-        bootstrap.Modal
-            .getOrCreateInstance(
-                document.getElementById("finishWorkoutModal")
-            )
-            .show();
-    }
-}
-function finishWorkout() {
-    const workout = workouts.find(w => w.id === workoutId);
-
-    if (!workout) {
-        showToast("Workout not found.");
-        return;
-    }
-
-    const daysAgo = getWorkoutDaysAgo(workout);
-    const isMissedWorkout = daysAgo > 0;
-
-    if (
-        !isMissedWorkout &&
-        !workout.startTime &&
-        !isRunning &&
-        !isPaused
-    ) {
-        bootstrap.Modal
-            .getOrCreateInstance(
-                document.getElementById("timerWarningModal")
-            )
-            .show();
-
-        return;
-    }
-
-    completeWorkout();
-}
-
-/* =========================================================
-   FINISH BUTTON STATE
-========================================================= */
-
-function updateFinishWorkoutButton() {
-    const workout = workouts.find(w => w.id === workoutId);
-    if (!workout || !finishWorkoutBtn) return;
-
-    if (workout.completed) {
-        finishWorkoutBtn.disabled = true;
-        finishWorkoutBtn.textContent = "Workout Completed";
-        return;
-    }
-
-    const daysAgo = getWorkoutDaysAgo(workout);
-
-    if (daysAgo < 0) {
-        finishWorkoutBtn.disabled = true;
-        finishWorkoutBtn.textContent = "Workout Scheduled Later";
-        return;
-    }
-
-    if (daysAgo === 0) {
-        finishWorkoutBtn.disabled = false;
-        finishWorkoutBtn.textContent = "Finish Workout";
-        return;
-    }
-
-    if (daysAgo > 0 && daysAgo <= 7) {
-        finishWorkoutBtn.disabled = false;
-        finishWorkoutBtn.textContent = "Log Previous Workout";
-        return;
-    }
-
-    finishWorkoutBtn.disabled = true;
-    finishWorkoutBtn.textContent = "Workout Too Old";
-}
-
-/* =========================================================
    EDIT WORKOUT
 ========================================================= */
 
 function openEditWorkout() {
     const workout = workouts.find(w => w.id === workoutId);
-
     if (!workout) {
         showToast("Workout not found.");
         return;
@@ -1475,11 +996,10 @@ function openEditWorkout() {
         return;
     }
 
-    document.getElementById("editWorkoutName").value = workout.name;
-    document.getElementById("editWorkoutDay").value = workout.day;
-    document.getElementById("editWorkoutCategory").value = workout.category;
-    document.getElementById("editWorkoutGoal").value = workout.goal;
-    document.getElementById("editWorkoutDifficulty").value = workout.difficulty;
+    document.getElementById("editWorkoutName").value = workout.name || "";
+    document.getElementById("editWorkoutCategory").value = workout.category || "";
+    document.getElementById("editWorkoutGoal").value = workout.goal || "";
+    document.getElementById("editWorkoutDifficulty").value = workout.difficulty || "";
 
     bootstrap.Modal.getOrCreateInstance(
         document.getElementById("editWorkoutModal")
@@ -1488,7 +1008,6 @@ function openEditWorkout() {
 
 function saveWorkoutChanges() {
     const workout = workouts.find(w => w.id === workoutId);
-
     if (!workout) {
         showToast("Workout not found.");
         return;
@@ -1500,7 +1019,6 @@ function saveWorkoutChanges() {
     }
 
     const name = document.getElementById("editWorkoutName").value.trim();
-
     if (!name) {
         showToast("Workout name cannot be empty.");
         document.getElementById("editWorkoutName").focus();
@@ -1508,19 +1026,14 @@ function saveWorkoutChanges() {
     }
 
     workout.name = name;
-    workout.day = document.getElementById("editWorkoutDay").value;
     workout.category = document.getElementById("editWorkoutCategory").value;
     workout.goal = document.getElementById("editWorkoutGoal").value;
     workout.difficulty = document.getElementById("editWorkoutDifficulty").value;
 
-    // Keep scheduledDate in sync with the chosen day
-    const dayIndex = days.indexOf(workout.day);
-    if (dayIndex !== -1) {
-        const start = getStartOfWeek();
-        const mondayBased = dayIndex === 0 ? 6 : dayIndex - 1;
-        const scheduled = new Date(start);
-        scheduled.setDate(start.getDate() + mondayBased);
-        workout.scheduledDate = startOfDay(scheduled).toISOString();
+    // Keep scheduledDate in sync using the correct Sunday-based helper
+    const scheduled = getScheduledDateForDay(workout.day);
+    if (scheduled) {
+        workout.scheduledDate = scheduled.toLocaleDateString("en-CA"); // YYYY-MM-DD
     }
 
     saveWorkouts();
@@ -1532,6 +1045,44 @@ function saveWorkoutChanges() {
     ).hide();
 
     showToast("Workout updated successfully!");
+}
+
+/* =========================================================
+   MIGRATE OLD EXERCISES
+========================================================= */
+
+function migrateWorkoutExercises() {
+    let changed = false;
+
+    workouts.forEach(workout => {
+        if (!Array.isArray(workout.exercises)) {
+            workout.exercises = [];
+        }
+
+        workout.exercises = workout.exercises.map(oldExercise => {
+            if (oldExercise.id !== undefined) return oldExercise;
+
+            const libraryExercise = exerciseLibrary.find(e => e.name === oldExercise.name);
+            if (!libraryExercise) return oldExercise;
+
+            changed = true;
+
+            return {
+                ...libraryExercise,
+                sets: oldExercise.sets ?? "",
+                reps: oldExercise.reps ?? "",
+                weight: oldExercise.weight ?? "",
+                notes: oldExercise.notes ?? "",
+                completed: oldExercise.completed || false,
+                volume: oldExercise.volume || 0,
+                calories: oldExercise.calories || 0
+            };
+        });
+
+        workout.exerciseCount = workout.exercises.length;
+    });
+
+    if (changed) saveWorkouts();
 }
 
 /* =========================================================
@@ -1554,53 +1105,48 @@ if (saveWorkoutBtn) {
     saveWorkoutBtn.addEventListener("click", saveWorkoutChanges);
 }
 
+if (pauseResumeBtn) {
+    pauseResumeBtn.addEventListener("click", () => {
+        const workout = workouts.find(w => w.id === workoutId);
+        if (!workout || workout.completed) return;
+
+        if (isRunning) {
+            pauseWorkout();
+        } else {
+            startWorkout();
+        }
+    });
+}
+
 window.addEventListener("beforeunload", () => {
     clearInterval(timerInterval);
 });
 
-const startTimerInstead =
-    document.getElementById("startTimerInstead");
-
-const finishWithoutTimer =
-    document.getElementById("finishWithoutTimer");
+const startTimerInstead = document.getElementById("startTimerInstead");
+const finishWithoutTimer = document.getElementById("finishWithoutTimer");
 
 if (startTimerInstead) {
     startTimerInstead.addEventListener("click", () => {
-
-        bootstrap.Modal
-            .getOrCreateInstance(
-                document.getElementById("timerWarningModal")
-            )
-            .hide();
-
+        const modal = document.getElementById("timerWarningModal");
+        if (modal) bootstrap.Modal.getOrCreateInstance(modal).hide();
         startWorkout();
     });
 }
 
 if (finishWithoutTimer) {
     finishWithoutTimer.addEventListener("click", () => {
-
-        bootstrap.Modal
-            .getOrCreateInstance(
-                document.getElementById("timerWarningModal")
-            )
-            .hide();
-
+        const modal = document.getElementById("timerWarningModal");
+        if (modal) bootstrap.Modal.getOrCreateInstance(modal).hide();
         completeWorkout();
     });
 }
 
 document.addEventListener("click", event => {
-
     const button = event.target.closest(".exercise-info-btn");
-
-    if (!button) return;
-
-
-    openExerciseInfo(button.dataset.id);
-
+    if (button) {
+        openExerciseInfo(button.dataset.id);
+    }
 });
-
 
 /* =========================================================
    INITIALIZATION
@@ -1620,13 +1166,10 @@ updateWorkoutProgress();
 
 if (workout) {
     initializeWorkoutTimer();
-}
-
-if (workout && workout.completed) {
-    lockCompletedWorkout();
-    displayWorkoutSummary();
-}
-
-if (workout) {
     updateFinishWorkoutButton();
+
+    if (workout.completed) {
+        lockCompletedWorkout();
+        displayWorkoutSummary();
+    }
 }

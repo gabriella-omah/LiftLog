@@ -1,683 +1,1204 @@
 /*==========================================================
-   LIFTLOG LANDING — Ultra Clean • Glass • Modern
+   LIFTLOG LANDING — ULTRA MODERN GLASS
 ==========================================================*/
 
 *,
 *::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-:root {
-  --primary: #5D8CFF;
-  --secondary: #7A5AF8;
-  --accent: #22D3EE;
-  --gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-  --gradient-hot: linear-gradient(135deg, #5D8CFF 0%, #7A5AF8 50%, #22D3EE 100%);
-  --text: #FFFFFF;
-  --glass: rgba(255, 255, 255, 0.08);
-  --glass-border: rgba(255, 255, 255, 0.16);
-  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+:root{
+
+    --primary:#5D8CFF;
+    --secondary:#7A5AF8;
+    --accent:#22D3EE;
+
+    --gradient:
+    linear-gradient(
+    135deg,
+    #5D8CFF,
+    #7A5AF8);
+
+    --gradient-hot:
+    linear-gradient(
+    135deg,
+    #5D8CFF 0%,
+    #7A5AF8 50%,
+    #22D3EE 100%);
+
+    --glass:
+    rgba(255,255,255,.08);
+
+    --glass-border:
+    rgba(255,255,255,.15);
+
+    --transition:
+    .35s cubic-bezier(.4,0,.2,1);
+
 }
 
 html,
-body {
-  width: 100%;
-  height: 100%;
-  background: #06080F;
-  overflow: hidden;
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
+body{
+
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#06080F;
+    font-family:"Inter",sans-serif;
+    -webkit-font-smoothing:antialiased;
+
 }
 
 /*==========================================================
-   LANDING
+LANDING
 ==========================================================*/
 
-.landing {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  isolation: isolate;
+.landing{
+
+    position:relative;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    isolation:isolate;
+
 }
 
 /*==========================================================
-   HERO IMAGE — clean, no dusty filters
+IMAGE
 ==========================================================*/
 
-.hero-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  transform: scale(1.06);
+.hero-image{
+
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center top;
+
+    transform:scale(1.05);
+
 }
 
 /*==========================================================
-   OVERLAY — cool, sharp, ultra-clean
+OVERLAY
 ==========================================================*/
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
+.overlay{
+
+    position:absolute;
+    inset:0;
+
+    background:
+
+    linear-gradient(
+
     180deg,
-    rgba(8, 12, 24, 0.08) 0%,
-    rgba(8, 12, 24, 0.2) 35%,
-    rgba(8, 12, 24, 0.55) 62%,
-    rgba(6, 8, 15, 0.92) 100%
-  );
-  pointer-events: none;
+
+    rgba(6,8,15,.08) 0%,
+
+    rgba(6,8,15,.18) 35%,
+
+    rgba(6,8,15,.50) 65%,
+
+    rgba(6,8,15,.93) 100%
+
+    );
+
 }
 
 /*==========================================================
-   GLOWS — crisp glass light
+GLOWS
 ==========================================================*/
 
-.glow {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(90px);
-  z-index: 1;
-  opacity: 0.7;
+.glow{
+
+    position:absolute;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+    z-index:1;
+
 }
 
-.glow-1 {
-  width: 480px;
-  height: 480px;
-  top: -140px;
-  right: -60px;
-  background: radial-gradient(
-    circle,
-    rgba(93, 140, 255, 0.4) 0%,
-    transparent 70%
-  );
-  animation: floatGlow 10s ease-in-out infinite;
+.glow-1{
+
+    width:480px;
+    height:480px;
+
+    right:-90px;
+    top:-120px;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(93,140,255,.45),
+    transparent 70%);
+
+    animation:floatGlow 10s ease infinite;
+
 }
 
-.glow-2 {
-  width: 360px;
-  height: 360px;
-  bottom: 10%;
-  left: -80px;
-  background: radial-gradient(
-    circle,
-    rgba(122, 90, 248, 0.28) 0%,
-    transparent 70%
-  );
-  animation: floatGlow 12s ease-in-out infinite reverse;
+.glow-2{
+
+    width:360px;
+    height:360px;
+
+    left:-100px;
+    bottom:5%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(122,90,248,.30),
+    transparent 70%);
+
+    animation:floatGlow 11s ease infinite reverse;
+
 }
 
-.glow-3 {
-  width: 240px;
-  height: 240px;
-  bottom: 28%;
-  right: 14%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.12) 0%,
-    transparent 70%
-  );
-  animation: floatGlow 9s ease-in-out infinite 1.2s;
+.glow-3{
+
+    width:260px;
+    height:260px;
+
+    right:15%;
+    bottom:22%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(255,255,255,.12),
+    transparent 70%);
+
+    animation:floatGlow 9s ease infinite;
+
 }
 
-@keyframes floatGlow {
-  0%, 100% { transform: translate(0, 0); }
-  50% { transform: translate(12px, -16px); }
+@keyframes floatGlow{
+
+0%,100%{
+
+transform:translate(0,0);
+
 }
 
-/* Soft bottom bloom — cool only */
-.landing::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -180px;
-  transform: translateX(-50%);
-  width: 820px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(93, 140, 255, 0.18) 0%,
-    rgba(122, 90, 248, 0.08) 45%,
-    transparent 70%
-  );
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 1;
+50%{
+
+transform:translate(14px,-18px);
+
+}
+
+}
+
+.landing::after{
+
+content:"";
+
+position:absolute;
+
+left:50%;
+
+bottom:-170px;
+
+transform:translateX(-50%);
+
+width:800px;
+
+height:500px;
+
+border-radius:50%;
+
+background:
+
+radial-gradient(circle,
+
+rgba(93,140,255,.18),
+
+rgba(122,90,248,.08),
+
+transparent 70%);
+
+filter:blur(65px);
+
 }
 
 /*==========================================================
-   CONTENT — logo top, bottom-area bottom
+CONTENT
 ==========================================================*/
 
-.hero-content {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;  
-  justify-content: space-between;
-  padding: 48px clamp(50px, 6vw, 110px) 70px;
-  pointer-events: none;
+.hero-content{
+
+position:absolute;
+
+inset:0;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+padding:48px clamp(40px,6vw,100px) 60px;
+
+z-index:5;
+
 }
 
-.hero-content .logo,
-.hero-content .bottom-area {
-  pointer-events: auto;
+.logo,
+.bottom-area{
+
+pointer-events:auto;
+
 }
 
 /*==========================================================
-   LOGO
+LOGO
 ==========================================================*/
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-family: "Poppins", sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.8px;
-  flex-shrink: 0;
+.logo{
+
+display:flex;
+
+margin-bottom: 20px;
+
+align-items:center;
+
+gap:16px;
+
+font-family:"Poppins",sans-serif;
+
+font-size:34px;
+
+font-weight:700;
+
+color:#fff;
+
 }
 
-.logo i {
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  border: 2px solid var(--primary);
-  background: none;
-  color: #fff;
-  font-size: 46px;
-  position: relative;
-}
+.logo i{
 
-.logo i::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    transparent 50%
-  );
-  pointer-events: none;
+width:58px;
+
+height:58px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:18px;
+
+border:2px solid var(--primary);
+
+font-size:26px;
+
+color:#fff;
+
+background:rgba(255,255,255,.04);
+
 }
 
 /*==========================================================
-   BOTTOM AREA
+BOTTOM AREA
 ==========================================================*/
 
-.bottom-area {
-  width: 100%;
-  max-width: 580px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
+.bottom-area{
+
+max-width:620px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-start;
+
 }
 
 /*==========================================================
-   BADGE — pure glass, no icon
+BADGE
 ==========================================================*/
 
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 22px;
-  margin-bottom: 26px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(24px) saturate(1.2);
-  -webkit-backdrop-filter: blur(24px) saturate(1.2);
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+.hero-badge{
+
+display:inline-flex;
+
+align-items:center;
+
+padding:12px 22px;
+
+border-radius:999px;
+
+margin-bottom:24px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.14);
+
+backdrop-filter:blur(20px);
+
+color:#fff;
+
+width: max-content;
+
+font-size:13px;
+
+font-weight:700;
+
+letter-spacing:1.2px;
+
+text-transform:uppercase;
+
 }
 
 /*==========================================================
-   H1 — colored spans
+HERO TITLE
 ==========================================================*/
 
-.bottom-area h1 {
-  font-family: "Poppins", sans-serif;
-  font-size: 88px;
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -3.5px;
-  margin: 0 0 22px;
+h1{
+
+font-family:"Poppins",sans-serif;
+
+font-size:88px;
+
+font-weight:800;
+
+line-height:.95;
+
+letter-spacing:-4px;
+
+margin-bottom:24px;
+
+
+color:#fff;
+
 }
 
-.word-plan {
-  color: #FFFFFF;
-  text-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+/* BLUE TO PURPLE */
+
+h1 .word-lift{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#5D8CFF,
+
+#7A5AF8);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
 }
 
-.word-lift {
-  background: var(--gradient-hot);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 12px 30px rgba(93, 140, 255, 0.45));
+/* CYAN TO PURPLE */
+
+h1 .word-progress{
+
+background:
+
+linear-gradient(
+
+135deg,
+
+#22D3EE,
+
+#5D8CFF,
+
+#A78BFA);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
 }
 
-.word-progress {
-  background: linear-gradient(135deg, #22D3EE 0%, #5D8CFF 55%, #A78BFA 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 12px 28px rgba(34, 211, 238, 0.35));
-}
+p{
 
-.bottom-area p {
-  max-width: 480px;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 19px;
-  line-height: 1.7;
-  font-weight: 500;
-  margin: 0 0 34px;
-}
+max-width:500px;
 
+font-size:20px;
+
+line-height:1.7;
+
+color:rgba(255,255,255,.82);
+
+margin-bottom:34px;
+
+}
 /*==========================================================
    CTA BUTTON
 ==========================================================*/
 
-.hero-btn {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  height: 74px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 12px 0 30px;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F0F4FF 100%);
-  color: #10131A;
-  border-radius: 999px;
-  text-decoration: none;
-  font-family: "Poppins", sans-serif;
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  overflow: hidden;
-  box-shadow:
-    0 4px 16px rgba(0, 0, 0, 0.12),
-    0 24px 55px rgba(0, 0, 0, 0.32),
-    0 0 0 1px rgba(255, 255, 255, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
-  transition: var(--transition);
+.hero-btn{
+
+    position:relative;
+
+    width:100%;
+    max-width:420px;
+    height:74px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 12px 0 30px;
+
+    border-radius:999px;
+
+    text-decoration:none;
+
+    background:
+    linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #EEF4FF 100%);
+
+    color:#111827;
+
+    font-family:"Poppins",sans-serif;
+    font-size:19px;
+    font-weight:700;
+
+    overflow:hidden;
+
+    transition:var(--transition);
+
+    box-shadow:
+    0 10px 28px rgba(0,0,0,.18),
+    0 25px 60px rgba(0,0,0,.28);
+
 }
 
-.hero-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: linear-gradient(
-    115deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.2) 25%,
-    transparent 45%,
-    transparent 100%
-  );
-  pointer-events: none;
+.hero-btn::before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+
+linear-gradient(
+
+110deg,
+
+rgba(255,255,255,.85) 0%,
+
+rgba(255,255,255,.15) 35%,
+
+transparent 60%
+
+);
+
+pointer-events:none;
+
 }
 
-.hero-btn:hover {
-  transform: translateY(-5px);
-  color: #10131A;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.15),
-    0 32px 70px rgba(93, 140, 255, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.6);
+.hero-btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 16px 36px rgba(0,0,0,.22),
+
+0 30px 70px rgba(93,140,255,.30);
+
 }
 
-.hero-btn:active {
-  transform: scale(0.985);
+.hero-btn:active{
+
+transform:scale(.985);
+
 }
 
-.hero-btn span {
-  position: relative;
-  z-index: 2;
+.hero-btn span{
+
+position:relative;
+z-index:2;
+
 }
 
-/*==========================================================
-   ICON CIRCLE
-==========================================================*/
+.hero-btn-icon{
 
-.hero-btn-icon {
-  position: relative;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  background: var(--gradient);
-  box-shadow:
-    0 12px 28px rgba(93, 140, 255, 0.5),
-    inset 0 2px 2px rgba(255, 255, 255, 0.4);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.35s ease;
-  z-index: 2;
+width:54px;
+height:54px;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:var(--gradient);
+
+color:#fff;
+
+box-shadow:
+
+0 12px 28px rgba(93,140,255,.45);
+
+transition:.35s;
+
+flex-shrink:0;
+
 }
 
-.hero-btn-icon i {
-  color: #fff;
-  font-size: 22px;
-  font-weight: 900;
+.hero-btn:hover .hero-btn-icon{
+
+transform:translateX(5px);
+
 }
 
-.hero-btn:hover .hero-btn-icon {
-  transform: translateX(6px);
-  box-shadow:
-    0 16px 36px rgba(93, 140, 255, 0.6),
-    inset 0 2px 3px rgba(255, 255, 255, 0.45);
+.hero-btn-icon i{
+
+font-size:20px;
+
 }
 
 .hero-btn-icon::before,
-.hero-btn-icon::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 2px solid rgba(93, 140, 255, 0.4);
-  animation: ripple 2.4s ease-out infinite;
+.hero-btn-icon::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+border-radius:50%;
+
+border:2px solid rgba(93,140,255,.35);
+
+animation:ripple 2.4s ease infinite;
+
 }
 
-.hero-btn-icon::after {
-  animation-delay: 1.2s;
+.hero-btn-icon::after{
+
+animation-delay:1.2s;
+
 }
 
-@keyframes ripple {
-  from { transform: scale(1); opacity: 0.55; }
-  to { transform: scale(1.85); opacity: 0; }
+@keyframes ripple{
+
+from{
+
+transform:scale(1);
+
+opacity:.5;
+
 }
 
+to{
+
+transform:scale(1.8);
+
+opacity:0;
+
+}
+
+}
+
+/*==========================================================
+LARGE DESKTOP
+==========================================================*/
+
+@media (min-width:1600px){
+
+.hero-content{
+
+padding:58px 140px 80px;
+
+}
+
+.bottom-area{
+
+max-width:700px;
+
+}
+
+.bottom-area h1{
+
+font-size:108px;
+
+}
+
+.bottom-area p{
+
+font-size:22px;
+
+}
+
+.hero-btn{
+
+height:82px;
+
+max-width:460px;
+
+font-size:21px;
+
+}
+
+.hero-btn-icon{
+
+width:60px;
+height:60px;
+
+}
+
+}
+
+/*==========================================================
+DESKTOP
+==========================================================*/
+
+@media (max-width:1400px){
+
+.hero-content{
+
+padding:40px 70px 50px;
+
+}
+
+.bottom-area{
+
+max-width:600px;
+
+}
+
+.bottom-area h1{
+
+font-size:78px;
+
+}
+
+.bottom-area p{
+
+font-size:18px;
+
+}
+
+}
+
+/*==========================================================
+LAPTOP
+==========================================================*/
+
+@media (max-width:1200px){
+
+.hero-content{
+
+padding:36px 48px 42px;
+
+}
+
+.logo{
+
+font-size:28px;
+
+}
+
+.logo i{
+
+width:50px;
+height:50px;
+
+font-size:22px;
+
+}
+
+.hero-badge{
+
+font-size:12px;
+
+padding:10px 18px;
+
+}
+
+.bottom-area{
+
+max-width:560px;
+
+}
+
+.bottom-area h1{
+
+font-size:68px;
+
+letter-spacing:-3px;
+
+line-height:.95;
+
+}
+
+.bottom-area p{
+
+font-size:17px;
+
+line-height:1.65;
+
+margin-bottom:28px;
+
+}
+
+.hero-btn{
+
+height:68px;
+
+font-size:17px;
+
+max-width:390px;
+
+}
+
+.hero-btn-icon{
+
+width:48px;
+height:48px;
+
+}
+
+/* Prevent overflow on shorter laptop screens */
+
+@media (max-height:760px){
+
+.hero-content{
+
+padding:24px 42px 28px;
+
+}
+
+.bottom-area h1{
+
+font-size:58px;
+
+margin-bottom:16px;
+
+}
+
+.bottom-area p{
+
+font-size:15px;
+
+margin-bottom:20px;
+
+}
+
+.hero-btn{
+
+height:60px;
+
+}
+
+}
+
+}
+
+/*==========================================================
+TABLET
+==========================================================*/
+
+@media (max-width:992px){
+
+.hero-content{
+
+padding:28px 32px 34px;
+
+}
+
+.logo{
+
+font-size:24px;
+
+}
+
+.logo i{
+
+width:46px;
+height:46px;
+
+font-size:20px;
+
+}
+
+.hero-badge{
+
+font-size:11px;
+
+padding:10px 16px;
+
+margin-bottom:18px;
+
+}
+
+.bottom-area{
+
+max-width:100%;
+
+}
+
+.bottom-area h1{
+
+font-size:58px;
+
+line-height:.98;
+
+letter-spacing:-2px;
+
+margin-bottom:18px;
+
+}
+
+.bottom-area p{
+
+font-size:16px;
+
+line-height:1.65;
+
+margin-bottom:24px;
+
+}
+
+.hero-btn{
+
+max-width:100%;
+
+height:64px;
+
+font-size:17px;
+
+}
+
+.hero-btn-icon{
+
+width:48px;
+height:48px;
+
+}
+
+}
 /*==========================================================
    LARGE DESKTOP
 ==========================================================*/
 
 @media (min-width: 1600px) {
-  .hero-content {
-    padding: 56px 130px 84px;
+
+  .hero-content{
+    padding:56px 130px 72px;
   }
 
-  .logo {
-    font-size: 36px;
+  .bottom-area{
+    max-width:640px;
   }
 
-  .logo i {
-    width: 64px;
-    height: 64px;
-    font-size: 28px;
+  .bottom-area h1{
+    font-size:110px;
+    line-height:.94;
   }
 
-  .bottom-area h1 {
-    font-size: 102px;
+  .bottom-area p{
+    font-size:22px;
+    max-width:560px;
   }
 
-  .bottom-area p {
-    font-size: 21px;
+  .hero-btn{
+    width:440px;
+    height:82px;
+    font-size:21px;
   }
 
-  .hero-btn {
-    max-width: 440px;
-    height: 80px;
-    font-size: 21px;
-  }
-
-  .hero-btn-icon {
-    width: 58px;
-    height: 58px;
-  }
 }
+
 
 /*==========================================================
-   LAPTOPS
+   DESKTOP
 ==========================================================*/
 
-@media (max-width: 1400px) {
-  .hero-content {
-    padding: 40px 64px 56px;
+@media (max-width:1500px){
+
+  .hero-content{
+    padding:42px 70px 58px;
   }
 
-  .bottom-area h1 {
-    font-size: 74px;
+  .bottom-area h1{
+    font-size:88px;
   }
 
-  .bottom-area p {
-    font-size: 18px;
-  }
 }
 
-@media (max-width: 1200px) {
-  .hero-content {
-    padding: 36px 48px 48px;
+
+@media (max-width:1366px){
+
+  .hero-content{
+    padding:34px 58px 46px;
   }
 
-  .logo {
-    font-size: 28px;
+  .bottom-area{
+    max-width:560px;
   }
 
-  .logo i {
-    width: 52px;
-    height: 52px;
-    font-size: 22px;
+  .bottom-area h1{
+    font-size:76px;
   }
 
-  .hero-badge {
-    font-size: 12px;
-    padding: 10px 18px;
-    margin-bottom: 20px;
+  .bottom-area p{
+    font-size:18px;
   }
 
-  .bottom-area h1 {
-    font-size: 62px;
-    letter-spacing: -2.5px;
-  }
-
-  .bottom-area p {
-    font-size: 17px;
-    margin-bottom: 28px;
-  }
-
-  .hero-btn {
-    height: 68px;
-    font-size: 17px;
-  }
-
-  .hero-btn-icon {
-    width: 50px;
-    height: 50px;
-  }
 }
+
 
 /*==========================================================
-   TABLETS
+   LAPTOP
 ==========================================================*/
 
-@media (max-width: 992px) {
-  .glow-1 { width: 360px; height: 360px; }
-  .glow-2 { width: 300px; height: 300px; }
+@media (max-width:1200px){
 
-  .hero-content {
-    padding: 30px 32px 38px;
+  .hero-content{
+    padding:28px 40px 36px;
   }
 
-  .logo {
-    font-size: 25px;
+  .logo{
+    font-size:28px;
   }
 
-  .logo i {
-    width: 48px;
-    height: 48px;
-    font-size: 20px;
-    border-radius: 15px;
+  .logo i{
+    width:50px;
+    height:50px;
+    font-size:20px;
   }
 
-  .hero-badge {
-    padding: 10px 16px;
-    font-size: 11.5px;
-    margin-bottom: 18px;
+  .hero-badge{
+    font-size:12px;
   }
 
-  .bottom-area {
-    margin-bottom: 5vh;
-    max-width: 100%;
+  .bottom-area{
+    max-width:520px;
   }
 
-  .bottom-area h1 {
-    font-size: 54px;
-    line-height: 1;
-    margin-bottom: 16px;
+  .bottom-area h1{
+    font-size:68px;
+    line-height:.95;
   }
 
-  .bottom-area p {
-    font-size: 16px;
-    margin-bottom: 24px;
+  .bottom-area p{
+    font-size:17px;
+    margin-bottom:28px;
   }
 
-  .hero-btn {
-    max-width: 100%;
-    height: 64px;
-    font-size: 17px;
+  .hero-btn{
+    width:360px;
+    height:66px;
+    font-size:17px;
   }
+
 }
+
+
+/*==========================================================
+   TABLET
+==========================================================*/
+
+@media (max-width:992px){
+
+  html,
+  body{
+    overflow:auto;
+  }
+
+  .landing{
+    overflow:hidden;
+  }
+
+  .hero-content{
+    padding:28px 28px 34px;
+  }
+
+  .bottom-area{
+    max-width:100%;
+  }
+
+  .bottom-area h1{
+    font-size:60px;
+  }
+
+  .bottom-area p{
+    font-size:17px;
+    max-width:500px;
+  }
+
+  .hero-btn{
+    width:340px;
+  }
+
+}
+
 
 /*==========================================================
    MOBILE
 ==========================================================*/
 
-@media (max-width: 768px) {
-  .glow-1,
-  .glow-2,
-  .glow-3 {
-    filter: blur(60px);
+@media (max-width:768px){
+
+  html,
+  body{
+    overflow:auto;
   }
 
-  .landing::after {
-    width: 560px;
-    height: 480px;
-    bottom: -160px;
+  .landing{
+    overflow:hidden;
   }
 
-  .hero-content {
-    padding: 22px 20px 28px;
+  .hero-image{
+    object-position:center;
+    transform:scale(1.1);
   }
 
-  .logo {
-    gap: 12px;
-    font-size: 22px;
+  .hero-content{
+    padding:22px 20px 26px;
   }
 
-  .logo i {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    font-size: 18px;
+  .logo{
+    font-size:22px;
   }
 
-  .hero-badge {
-    padding: 9px 14px;
-    font-size: 11px;
-    margin-bottom: 16px;
+  .logo i{
+    width:44px;
+    height:44px;
   }
 
-  .bottom-area h1 {
-    font-size: 46px;
-    letter-spacing: -1.8px;
-    margin-bottom: 14px;
+  .hero-badge{
+    font-size:13px;
+    padding:10px 16px;
+    margin-bottom:18px;
   }
 
-  .bottom-area p {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 22px;
+  .bottom-area{
+    width:100%;
+    margin-bottom:0;
   }
 
-  .hero-btn {
-    height: 60px;
-    font-size: 16px;
-    padding: 0 10px 0 22px;
+  .bottom-area h1{
+
+    font-size:65px;
+    line-height:.92;
+    letter-spacing:-2.4px;
+    margin-bottom:18px;
+
   }
 
-  .hero-btn-icon {
-    width: 46px;
-    height: 46px;
+  .bottom-area p{
+
+    font-size:17px;
+    max-width:100%;
+    margin-bottom:28px;
+
   }
 
-  .hero-btn-icon i {
-    font-size: 18px;
+  .hero-btn{
+
+    width:100%;
+    max-width:none;
+    height:68px;
+    font-size:19px;
+
   }
+
 }
+
 
 /*==========================================================
    SMALL PHONES
 ==========================================================*/
 
-@media (max-width: 480px) {
-  .hero-content {
-    padding: 18px 16px 24px;
+@media (max-width:480px){
+
+  .hero-content{
+    padding:18px 16px 22px;
   }
 
-  .logo {
-    font-size: 20px;
+  .logo{
+    font-size:20px;
   }
 
-  .logo i {
-    width: 42px;
-    height: 42px;
-    font-size: 17px;
+  .logo i{
+    width:42px;
+    height:42px;
   }
 
-  .hero-badge {
-    font-size: 13px;
-    padding: 8px 12px;
-    margin-bottom: 18px;
+  .hero-badge{
+
+    font-size:13px;
+    padding:9px 14px;
+
   }
 
-  .bottom-area h1 {
-    font-size: 65px;
-    letter-spacing: -1.6px;
-    line-height: 1;
-    margin-bottom: 22px;
+  .bottom-area h1{
+
+    font-size:65px;
+    line-height:.9;
+    letter-spacing:-2px;
+
   }
 
-  .bottom-area p {
-    font-size: 16px;
-    margin-bottom: 24px;
+  .bottom-area p{
+
+    font-size:16px;
+    line-height:1.65;
+
   }
 
-  .hero-btn {
-    height: 65px;
-    font-size: 20px;
+  .hero-btn{
+
+    height:66px;
+    font-size:19px;
+
   }
 
-  .hero-btn-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 35git status
-    px;
+  .hero-btn-icon{
+
+    width:52px;
+    height:52px;
+
   }
+
+}
+
+
+/*==========================================================
+   VERY SMALL DEVICES
+==========================================================*/
+
+@media (max-width:380px){
+
+  .bottom-area h1{
+
+    font-size:58px;
+
+  }
+
+  .bottom-area p{
+
+    font-size:15px;
+
+  }
+
+  .hero-btn{
+
+    height:62px;
+    font-size:18px;
+
+  }
+
 }
