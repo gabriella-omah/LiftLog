@@ -213,6 +213,39 @@ const getWorkoutExercises = (exerciseIds, library) => {
         .filter(Boolean);
 };
 
+
+function showToast(message, type = "success") {
+    const toast = document.getElementById("exerciseToast");
+    const toastMessage = document.getElementById("toastMessage");
+
+    if (!toast || !toastMessage) return;
+
+    toastMessage.textContent = message;
+
+    // Remove every previous toast class
+    toast.classList.remove(
+        "toast-success",
+        "toast-warning",
+        "toast-error"
+    );
+
+    switch (type) {
+        case "warning":
+            toast.classList.add("toast-warning");
+            break;
+
+        case "error":
+            toast.classList.add("toast-error");
+            break;
+
+        default:
+            toast.classList.add("toast-success");
+            break;
+    }
+
+    bootstrap.Toast.getOrCreateInstance(toast).show();
+}
+
 // ========================================
 // Dark Mode & Theme
 // ========================================

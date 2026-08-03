@@ -161,20 +161,6 @@ function updateProfileCard(){
 
 
 
-function showErrorToast(message){
-
-    if(!exerciseToast) return;
-
-    toastMessage.textContent = message;
-
-    exerciseToast.classList.remove("text-bg-success");
-    exerciseToast.classList.add("text-bg-danger");
-
-    bootstrap.Toast.getOrCreateInstance(exerciseToast).show();
-
-}
-
-
 // ========================================
 // BMI
 // ========================================
@@ -226,14 +212,14 @@ saveProfileBtn.addEventListener("click",()=>{
 const name = profileName.value.trim();
 
 if (name === "") {
-    showErrorToast("Please enter your name.");
+    showToast("Please enter your name.", "warning");
     return;
 }
 
 const namePattern = /^[A-Za-z]+([ '-][A-Za-z]+)*$/;
 
 if (!namePattern.test(name)) {
-    showErrorToast("Name can only contain letters.");
+    showToast("Name can only contain letters.", "warning");
     return;
 }
 
@@ -270,12 +256,7 @@ if (!namePattern.test(name)) {
 
     calculateBMI();
 
-    toastMessage.textContent =
-        "Profile updated successfully.";
-
-    new bootstrap.Toast(
-        exerciseToast
-    ).show();
+    showToast("Profile updated successfully!", "success");
 
     closeAllSections();
 
@@ -326,12 +307,6 @@ calculateBMI();
 // ========================================
 
 
-const notificationsSwitch =
-    document.getElementById("notifications");
-
-if (notificationsSwitch) {
-    notificationsSwitch.disabled = true;
-}
 
 const weightUnitSelect =
     document.getElementById("weightUnit");
@@ -343,35 +318,39 @@ const weightUnitSelect =
 // NOTIFICATIONS
 // ========================================
 
-const notificationsEnabled =
-    localStorage.getItem("notifications") === "true";
 
-if(notificationsSwitch){
+const notificationsSwitch =
+    document.getElementById("notifications");
+
+if (notificationsSwitch) {
+
+    notificationsSwitch.disabled = true;
 
     notificationsSwitch.checked =
-        notificationsEnabled;
+        localStorage.getItem("notifications") === "true";
 
-    notificationsSwitch.addEventListener("change",()=>{
+    notificationsSwitch.addEventListener("change", () => {
 
         localStorage.setItem(
-
             "notifications",
-
             notificationsSwitch.checked
-
         );
 
-        toastMessage.textContent =
+        if (notificationsSwitch.checked) {
 
-            notificationsSwitch.checked
+            showToast(
+                "Workout reminder enabled.",
+                "success"
+            );
 
-            ? "Workout reminders enabled."
+        } else {
 
-            : "Workout reminders disabled.";
+            showToast(
+                "Workout reminder disabled.",
+                "warning"
+            );
 
-        new bootstrap.Toast(
-            exerciseToast
-        ).show();
+        }
 
     });
 
@@ -406,7 +385,7 @@ if(weightUnitSelect){
 
             ? "Weight unit changed to kilograms."
 
-            : "Weight unit changed to pounds."
+            : "Weight unit changed to pounds.", "success"
 
         );
 
@@ -599,12 +578,7 @@ if(confirmDeleteAccount){
 
         sessionStorage.clear();
 
-        toastMessage.textContent =
-            "Account deleted successfully.";
-
-        new bootstrap.Toast(
-            exerciseToast
-        ).show();
+        showToast("Account deleted successfully!", "success");
 
         setTimeout(()=>{
 
@@ -689,29 +663,6 @@ document.addEventListener(
 
 );
 
-
-// ========================================
-// HELPER
-// ========================================
-
-const exerciseToast =
-    document.getElementById("exerciseToast");
-
-const toastMessage =
-    document.getElementById("toastMessage");
-
-function showToast(message){
-
-    if(!exerciseToast) return;
-
-    toastMessage.textContent =
-        message;
-
-    new bootstrap.Toast(
-        exerciseToast
-    ).show();
-
-}
 
 // ========================================
 // ABOUT MODAL

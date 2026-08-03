@@ -52,14 +52,7 @@ function getWorkoutDaysAgo(workout) {
     );
 }
 
-function showToast(message) {
-    const toastMessage = document.getElementById("toastMessage");
-    const toastElement = document.getElementById("exerciseToast");
-    if (!toastMessage || !toastElement) return;
 
-    toastMessage.textContent = message;
-    bootstrap.Toast.getOrCreateInstance(toastElement).show();
-}
 
 /* =========================================================
    EXERCISE INFORMATION MODAL
@@ -68,7 +61,7 @@ function showToast(message) {
 function openExerciseInfo(exerciseId) {
     const exercise = exerciseLibrary.find(e => e.id === Number(exerciseId));
     if (!exercise) {
-        showToast("Exercise not found.");
+        showToast("Exercise not found.", "error");
         return;
     }
 
@@ -202,24 +195,24 @@ function attachExerciseEvents() {
             const currentWorkout = workouts.find(w => w.id === workoutId);
 
             if (!currentWorkout) {
-                showToast("Workout not found.");
+                showToast("Workout not found.", "error");
                 return;
             }
 
             if (currentWorkout.completed) {
-                showToast("This workout has already been completed.");
+                showToast("This workout has already been completed.", "warning");
                 return;
             }
 
             const exercise = exerciseLibrary.find(e => e.id === exerciseId);
             if (!exercise) {
-                showToast("Exercise not found.");
+                showToast("Exercise not found.", "error");
                 return;
             }
 
             const alreadyAdded = currentWorkout.exercises.some(item => item.id === exercise.id);
             if (alreadyAdded) {
-                showToast(`${exercise.name} is already in this workout.`);
+                showToast(`${exercise.name} is already in this workout.`, "warning");
                 return;
             }
 
@@ -238,7 +231,7 @@ function attachExerciseEvents() {
             saveWorkouts();
             displayWorkoutExercises();
             updateWorkoutProgress();
-            showToast(`${exercise.name} added successfully!`);
+            showToast(`${exercise.name} added successfully!`, "success");
 
             const modalElement = document.getElementById("exerciseModal");
             if (modalElement) {
@@ -255,7 +248,7 @@ function attachRemoveExerciseEvents() {
             if (!workout) return;
 
             if (workout.completed) {
-                showToast("Completed workouts cannot be edited.");
+                showToast("Completed workouts cannot be edited.", "warning");
                 return;
             }
 
@@ -279,7 +272,7 @@ function openRemoveExerciseModal(workout, exercise) {
 
     confirmButton.onclick = () => {
         if (workout.completed) {
-            showToast("Completed workouts cannot be edited.");
+            showToast("Completed workouts cannot be edited.", "warning");
             return;
         }
 
@@ -291,7 +284,7 @@ function openRemoveExerciseModal(workout, exercise) {
         updateWorkoutProgress();
 
         bootstrap.Modal.getOrCreateInstance(modalElement).hide();
-        showToast("Exercise removed.");
+        showToast("Exercise removed successfully!", "success");
     };
 
     bootstrap.Modal.getOrCreateInstance(modalElement).show();
@@ -438,7 +431,7 @@ function updateExercise(event) {
     if (currentWeight > currentPR && currentWeight > 0) {
         personalRecordsData[exercise.name] = currentWeight;
         savePersonalRecords();
-        showToast(`New PR! ${currentWeight}${weightUnit} on ${exercise.name}`);
+        showToast(`New PR! ${currentWeight}${weightUnit} on ${exercise.name}`, "success");
     }
 
     saveWorkouts();
@@ -526,7 +519,7 @@ function updateTimer() {
     if (targetSeconds > 0 && seconds >= targetSeconds && !workout.overtimeToastShown) {
         workout.overtimeToastShown = true;
         saveWorkouts();
-        showToast("You've reached your planned workout duration.");
+        showToast("You've reached your planned workout duration.", "warning");
 
         if (userHasInteracted) {
             const beep = document.getElementById("timerBeep");
@@ -548,7 +541,7 @@ function startWorkout() {
     if (!workout) return;
 
     if (workout.completed) {
-        showToast("This workout has already been completed.");
+        showToast("This workout has already been completed.", "warning");
         return;
     }
 
@@ -556,7 +549,13 @@ function startWorkout() {
 
     // Block future workouts
     if (daysAgo < 0) {
-        showToast("You cannot start a workout scheduled for a future date.");
+        showToast("You cannot start a workout scheduled for a future date.", "warning");
+        return;
+    }
+
+    // NEW: Prevent starting without exercises
+    if (!Array.isArray(workout.exercises) || workout.exercises.length === 0) {
+        showToast("Add at least one exercise before starting your workout.", "warning");
         return;
     }
 
@@ -566,13 +565,18 @@ function startWorkout() {
 
     if (isPaused) {
         workout.startTime = Date.now() - (seconds * 1000);
-        if (typeof resumeWorkoutTimer === "function") resumeWorkoutTimer();
+
+        if (typeof resumeWorkoutTimer === "function") {
+            resumeWorkoutTimer();
+        }
+
     } else if (!workout.startTime) {
         workout.startTime = Date.now() - (seconds * 1000);
 
         if (typeof startWorkoutTimer === "function") {
             startWorkoutTimer(workout);
         }
+
         if (typeof ensureNotificationPermission === "function") {
             ensureNotificationPermission();
         }
@@ -587,7 +591,11 @@ function startWorkout() {
     isRunning = true;
     isPaused = false;
 
-    if (pauseResumeIcon) pauseResumeIcon.className = "bi bi-pause-fill";
+    if (pauseResumeIcon) {
+        pauseResumeIcon.className = "bi bi-pause-fill";
+    }
+
+    renderTimer();
 }
 
 function pauseWorkout() {
@@ -664,12 +672,12 @@ function initializeWorkoutTimer() {
 function completeWorkout() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout) {
-        showToast("Workout not found.");
+        showToast("Workout not found.", "error");
         return;
     }
 
     if (workout.completed) {
-        showToast("This workout has already been completed.");
+        showToast("This workout has already been completed.", "warning");
         lockCompletedWorkout();
         return;
     }
@@ -677,12 +685,12 @@ function completeWorkout() {
     const daysAgo = getWorkoutDaysAgo(workout);
 
     if (daysAgo < 0) {
-        showToast("This workout is scheduled for a future date.");
+        showToast("This workout is scheduled for a future date.", "warning");
         return;
     }
 
     if (daysAgo > 7) {
-        showToast("You can only log workouts from the last 7 days.");
+        showToast("You can only log workouts from the last 7 days.", "warning");
         return;
     }
 
@@ -843,7 +851,7 @@ function completeWorkout() {
 function finishWorkout() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout) {
-        showToast("Workout not found.");
+        showToast("Workout not found.", "error");
         return;
     }
 
@@ -987,12 +995,12 @@ function displayWorkoutSummary() {
 function openEditWorkout() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout) {
-        showToast("Workout not found.");
+        showToast("Workout not found.", "error");
         return;
     }
 
     if (workout.completed) {
-        showToast("Completed workouts cannot be edited.");
+        showToast("Completed workouts cannot be edited.", "warning");
         return;
     }
 
@@ -1009,18 +1017,18 @@ function openEditWorkout() {
 function saveWorkoutChanges() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout) {
-        showToast("Workout not found.");
+        showToast("Workout not found.", "error");
         return;
     }
 
     if (workout.completed) {
-        showToast("Completed workouts cannot be edited.");
+        showToast("Completed workouts cannot be edited.", "warning");
         return;
     }
 
     const name = document.getElementById("editWorkoutName").value.trim();
     if (!name) {
-        showToast("Workout name cannot be empty.");
+        showToast("Workout name cannot be empty.", "warning");
         document.getElementById("editWorkoutName").focus();
         return;
     }
@@ -1044,7 +1052,7 @@ function saveWorkoutChanges() {
         document.getElementById("editWorkoutModal")
     ).hide();
 
-    showToast("Workout updated successfully!");
+    showToast("Workout updated successfully!", "success");
 }
 
 /* =========================================================
@@ -1155,7 +1163,7 @@ document.addEventListener("click", event => {
 const workout = workouts.find(w => w.id === workoutId);
 
 if (!workout) {
-    showToast("Workout not found.");
+    showToast("Workout not found.", "error");
 }
 
 migrateWorkoutExercises();

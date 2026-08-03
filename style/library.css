@@ -329,7 +329,6 @@
 /* Movement images */
 .exercise-images {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 22px;
 }
@@ -338,13 +337,10 @@
 #exerciseBody img {
   display: block;
   width: 100%;
-  max-width: calc(50% - 6px);
   max-height: 200px;
-  object-fit: contain;
   border-radius: 16px;
   border: 1px solid var(--border);
   background: var(--surface-2);
-  padding: 10px;
 }
 
 /* Body content */
@@ -683,7 +679,6 @@
     max-width: 100%;
     max-height: 170px;
     border-radius: 14px;
-    padding: 8px;
   }
 
   #exerciseBody {

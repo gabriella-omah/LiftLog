@@ -60,19 +60,6 @@ function formatWorkoutDuration(minutes) {
     return `${minutes} min`;
 }
 
-function showToast(message) {
-    const toastMessage = document.getElementById("toastMessage");
-    const toastElement = document.getElementById("exerciseToast");
-
-    if (!toastMessage || !toastElement) {
-        alert(message);
-        return;
-    }
-
-    toastMessage.textContent = message;
-    bootstrap.Toast.getOrCreateInstance(toastElement).show();
-}
-
 // ========================================
 // Workout Status
 // ========================================
@@ -316,7 +303,7 @@ function replaceWorkout() {
     workoutToReplace = null;
     pendingWorkout = null;
 
-    showToast("Workout replaced successfully.");
+    showToast("Workout replaced successfully!", "success");
 }
 
 // ========================================
@@ -326,13 +313,13 @@ function replaceWorkout() {
 function addWorkout() {
     const name = workoutName.value.trim();
     if (!name) {
-        showToast("Please enter a workout name.");
+        showToast("Please enter a workout name.", "warning");
         return;
     }
 
     const selectedDate = workoutDate.value;
     if (!selectedDate) {
-        showToast("Please select a workout date.");
+        showToast("Please select a workout date.", "warning");
         return;
     }
 
@@ -498,7 +485,7 @@ function saveWorkout() {
 
     const selectedDate = editWorkoutDay.value;
     if (!selectedDate) {
-        showToast("Please select a workout date.");
+        showToast("Please select a workout date.", "warning");
         return;
     }
 
@@ -547,9 +534,9 @@ function saveWorkout() {
     refreshWorkouts();
 
     if (previousDate !== selectedDate) {
-        showToast(`Workout moved to ${new Date(selectedDate).toLocaleDateString()}`);
+        showToast(`Workout moved to ${new Date(selectedDate).toLocaleDateString()}`, "success");
     } else {
-        showToast("Workout updated successfully.");
+        showToast("Workout updated successfully.", "success");
     }
 
     const editModal = document.getElementById("editWorkoutModal");

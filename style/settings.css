@@ -651,9 +651,6 @@ textarea.premium-input {
   background: #2C3645;
 }
 
-.dark-mode .toast {
-  background: #141821;
-}
 
 .dark-mode .btn-close {
   filter: invert(1);

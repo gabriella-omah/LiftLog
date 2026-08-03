@@ -4,1201 +4,731 @@
 
 *,
 *::before,
-*::after{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root{
+:root {
+  --primary: #5D8CFF;
+  --secondary: #7A5AF8;
+  --accent: #22D3EE;
 
-    --primary:#5D8CFF;
-    --secondary:#7A5AF8;
-    --accent:#22D3EE;
+  --gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
 
-    --gradient:
-    linear-gradient(
-    135deg,
-    #5D8CFF,
-    #7A5AF8);
-
-    --gradient-hot:
-    linear-gradient(
+  --gradient-hot: linear-gradient(
     135deg,
     #5D8CFF 0%,
     #7A5AF8 50%,
-    #22D3EE 100%);
+    #22D3EE 100%
+  );
 
-    --glass:
-    rgba(255,255,255,.08);
-
-    --glass-border:
-    rgba(255,255,255,.15);
-
-    --transition:
-    .35s cubic-bezier(.4,0,.2,1);
-
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html,
-body{
-
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#06080F;
-    font-family:"Inter",sans-serif;
-    -webkit-font-smoothing:antialiased;
-
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #06080F;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /*==========================================================
-LANDING
+   LANDING
 ==========================================================*/
 
-.landing{
-
-    position:relative;
-    width:100%;
-    height:100vh;
-    height:100dvh;
-    overflow:hidden;
-    isolation:isolate;
-
+.landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 /*==========================================================
-IMAGE
+   IMAGE
 ==========================================================*/
 
-.hero-image{
-
-    position:absolute;
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-    object-position:center top;
-
-    transform:scale(1.05);
-
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.05);
 }
 
 /*==========================================================
-OVERLAY
+   OVERLAY
 ==========================================================*/
 
-.overlay{
-
-    position:absolute;
-    inset:0;
-
-    background:
-
-    linear-gradient(
-
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
     180deg,
-
-    rgba(6,8,15,.08) 0%,
-
-    rgba(6,8,15,.18) 35%,
-
-    rgba(6,8,15,.50) 65%,
-
-    rgba(6,8,15,.93) 100%
-
-    );
-
+    rgba(6, 8, 15, 0.08) 0%,
+    rgba(6, 8, 15, 0.18) 35%,
+    rgba(6, 8, 15, 0.5) 65%,
+    rgba(6, 8, 15, 0.93) 100%
+  );
+  pointer-events: none;
 }
 
 /*==========================================================
-GLOWS
+   GLOWS
 ==========================================================*/
 
-.glow{
-
-    position:absolute;
-    border-radius:50%;
-    filter:blur(90px);
-    pointer-events:none;
-    z-index:1;
-
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.glow-1{
-
-    width:480px;
-    height:480px;
-
-    right:-90px;
-    top:-120px;
-
-    background:
-
-    radial-gradient(circle,
-    rgba(93,140,255,.45),
-    transparent 70%);
-
-    animation:floatGlow 10s ease infinite;
-
+.glow-1 {
+  width: 480px;
+  height: 480px;
+  right: -90px;
+  top: -120px;
+  background: radial-gradient(
+    circle,
+    rgba(93, 140, 255, 0.45),
+    transparent 70%
+  );
+  animation: floatGlow 10s ease infinite;
 }
 
-.glow-2{
-
-    width:360px;
-    height:360px;
-
-    left:-100px;
-    bottom:5%;
-
-    background:
-
-    radial-gradient(circle,
-    rgba(122,90,248,.30),
-    transparent 70%);
-
-    animation:floatGlow 11s ease infinite reverse;
-
+.glow-2 {
+  width: 360px;
+  height: 360px;
+  left: -100px;
+  bottom: 5%;
+  background: radial-gradient(
+    circle,
+    rgba(122, 90, 248, 0.3),
+    transparent 70%
+  );
+  animation: floatGlow 11s ease infinite reverse;
 }
 
-.glow-3{
-
-    width:260px;
-    height:260px;
-
-    right:15%;
-    bottom:22%;
-
-    background:
-
-    radial-gradient(circle,
-    rgba(255,255,255,.12),
-    transparent 70%);
-
-    animation:floatGlow 9s ease infinite;
-
+.glow-3 {
+  width: 260px;
+  height: 260px;
+  right: 15%;
+  bottom: 22%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12),
+    transparent 70%
+  );
+  animation: floatGlow 9s ease infinite;
 }
 
-@keyframes floatGlow{
-
-0%,100%{
-
-transform:translate(0,0);
-
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(14px, -18px);
+  }
 }
 
-50%{
-
-transform:translate(14px,-18px);
-
-}
-
-}
-
-.landing::after{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-
-bottom:-170px;
-
-transform:translateX(-50%);
-
-width:800px;
-
-height:500px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(circle,
-
-rgba(93,140,255,.18),
-
-rgba(122,90,248,.08),
-
-transparent 70%);
-
-filter:blur(65px);
-
+.landing::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -170px;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(93, 140, 255, 0.18),
+    rgba(122, 90, 248, 0.08),
+    transparent 70%
+  );
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /*==========================================================
-CONTENT
+   CONTENT
 ==========================================================*/
 
-.hero-content{
-
-position:absolute;
-
-inset:0;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:space-between;
-
-padding:48px clamp(40px,6vw,100px) 60px;
-
-z-index:5;
-
+.hero-content {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px clamp(40px, 6vw, 100px) 60px;
+  pointer-events: none;
 }
 
 .logo,
-.bottom-area{
-
-pointer-events:auto;
-
+.bottom-area {
+  pointer-events: auto;
 }
 
 /*==========================================================
-LOGO
+   LOGO
 ==========================================================*/
 
-.logo{
-
-display:flex;
-
-margin-bottom: 20px;
-
-align-items:center;
-
-gap:16px;
-
-font-family:"Poppins",sans-serif;
-
-font-size:34px;
-
-font-weight:700;
-
-color:#fff;
-
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
 }
 
-.logo i{
-
-width:58px;
-
-height:58px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:18px;
-
-border:2px solid var(--primary);
-
-font-size:26px;
-
-color:#fff;
-
-background:rgba(255,255,255,.04);
-
+.logo i {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  border: 2px solid var(--primary);
+  font-size: 26px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /*==========================================================
-BOTTOM AREA
+   BOTTOM AREA
 ==========================================================*/
 
-.bottom-area{
-
-max-width:620px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:flex-start;
-
+.bottom-area {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
 }
 
 /*==========================================================
-BADGE
+   BADGE
 ==========================================================*/
 
-.hero-badge{
-
-display:inline-flex;
-
-align-items:center;
-
-padding:12px 22px;
-
-border-radius:999px;
-
-margin-bottom:24px;
-
-background:rgba(255,255,255,.08);
-
-border:1px solid rgba(255,255,255,.14);
-
-backdrop-filter:blur(20px);
-
-color:#fff;
-
-width: max-content;
-
-font-size:13px;
-
-font-weight:700;
-
-letter-spacing:1.2px;
-
-text-transform:uppercase;
-
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #fff;
+  width: max-content;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
 }
 
 /*==========================================================
-HERO TITLE
+   HERO TITLE
 ==========================================================*/
 
-h1{
-
-font-family:"Poppins",sans-serif;
-
-font-size:88px;
-
-font-weight:800;
-
-line-height:.95;
-
-letter-spacing:-4px;
-
-margin-bottom:24px;
-
-
-color:#fff;
-
+.bottom-area h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 88px;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -4px;
+  margin: 0 0 24px;
+  color: #fff;
 }
 
-/* BLUE TO PURPLE */
-
-h1 .word-lift{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#5D8CFF,
-
-#7A5AF8);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
+.bottom-area h1 .word-lift {
+  background: linear-gradient(135deg, #5D8CFF, #7A5AF8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* CYAN TO PURPLE */
-
-h1 .word-progress{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#22D3EE,
-
-#5D8CFF,
-
-#A78BFA);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
+.bottom-area h1 .word-progress {
+  background: linear-gradient(135deg, #22D3EE, #5D8CFF, #A78BFA);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-p{
-
-max-width:500px;
-
-font-size:20px;
-
-line-height:1.7;
-
-color:rgba(255,255,255,.82);
-
-margin-bottom:34px;
-
+.bottom-area p {
+  max-width: 500px;
+  font-size: 20px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 34px;
 }
+
 /*==========================================================
    CTA BUTTON
 ==========================================================*/
 
-.hero-btn{
-
-    position:relative;
-
-    width:100%;
-    max-width:420px;
-    height:74px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 12px 0 30px;
-
-    border-radius:999px;
-
-    text-decoration:none;
-
-    background:
-    linear-gradient(
-    180deg,
-    #FFFFFF 0%,
-    #EEF4FF 100%);
-
-    color:#111827;
-
-    font-family:"Poppins",sans-serif;
-    font-size:19px;
-    font-weight:700;
-
-    overflow:hidden;
-
-    transition:var(--transition);
-
-    box-shadow:
-    0 10px 28px rgba(0,0,0,.18),
-    0 25px 60px rgba(0,0,0,.28);
-
+.hero-btn {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px 0 30px;
+  border-radius: 999px;
+  text-decoration: none;
+  background: linear-gradient(180deg, #ffffff 0%, #eef4ff 100%);
+  color: #111827;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18),
+    0 25px 60px rgba(0, 0, 0, 0.28);
 }
 
-.hero-btn::before{
-
-content:"";
-
-position:absolute;
-inset:0;
-
-background:
-
-linear-gradient(
-
-110deg,
-
-rgba(255,255,255,.85) 0%,
-
-rgba(255,255,255,.15) 35%,
-
-transparent 60%
-
-);
-
-pointer-events:none;
-
+.hero-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(255, 255, 255, 0.15) 35%,
+    transparent 60%
+  );
+  pointer-events: none;
 }
 
-.hero-btn:hover{
-
-transform:translateY(-4px);
-
-box-shadow:
-
-0 16px 36px rgba(0,0,0,.22),
-
-0 30px 70px rgba(93,140,255,.30);
-
+.hero-btn:hover {
+  transform: translateY(-4px);
+  color: #111827;
+  box-shadow:
+    0 16px 36px rgba(0, 0, 0, 0.22),
+    0 30px 70px rgba(93, 140, 255, 0.3);
 }
 
-.hero-btn:active{
-
-transform:scale(.985);
-
+.hero-btn:active {
+  transform: scale(0.985);
 }
 
-.hero-btn span{
-
-position:relative;
-z-index:2;
-
+.hero-btn span {
+  position: relative;
+  z-index: 2;
 }
 
-.hero-btn-icon{
-
-width:54px;
-height:54px;
-
-border-radius:50%;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-background:var(--gradient);
-
-color:#fff;
-
-box-shadow:
-
-0 12px 28px rgba(93,140,255,.45);
-
-transition:.35s;
-
-flex-shrink:0;
-
+.hero-btn-icon {
+  position: relative;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(93, 140, 255, 0.45);
+  transition: 0.35s;
+  flex-shrink: 0;
+  z-index: 2;
 }
 
-.hero-btn:hover .hero-btn-icon{
-
-transform:translateX(5px);
-
+.hero-btn:hover .hero-btn-icon {
+  transform: translateX(5px);
 }
 
-.hero-btn-icon i{
-
-font-size:20px;
-
+.hero-btn-icon i {
+  font-size: 20px;
 }
 
 .hero-btn-icon::before,
-.hero-btn-icon::after{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-border-radius:50%;
-
-border:2px solid rgba(93,140,255,.35);
-
-animation:ripple 2.4s ease infinite;
-
+.hero-btn-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(93, 140, 255, 0.35);
+  animation: ripple 2.4s ease infinite;
 }
 
-.hero-btn-icon::after{
-
-animation-delay:1.2s;
-
+.hero-btn-icon::after {
+  animation-delay: 1.2s;
 }
 
-@keyframes ripple{
-
-from{
-
-transform:scale(1);
-
-opacity:.5;
-
+@keyframes ripple {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
 }
 
-to{
-
-transform:scale(1.8);
-
-opacity:0;
-
-}
-
-}
-
-/*==========================================================
-LARGE DESKTOP
-==========================================================*/
-
-@media (min-width:1600px){
-
-.hero-content{
-
-padding:58px 140px 80px;
-
-}
-
-.bottom-area{
-
-max-width:700px;
-
-}
-
-.bottom-area h1{
-
-font-size:108px;
-
-}
-
-.bottom-area p{
-
-font-size:22px;
-
-}
-
-.hero-btn{
-
-height:82px;
-
-max-width:460px;
-
-font-size:21px;
-
-}
-
-.hero-btn-icon{
-
-width:60px;
-height:60px;
-
-}
-
-}
-
-/*==========================================================
-DESKTOP
-==========================================================*/
-
-@media (max-width:1400px){
-
-.hero-content{
-
-padding:40px 70px 50px;
-
-}
-
-.bottom-area{
-
-max-width:600px;
-
-}
-
-.bottom-area h1{
-
-font-size:78px;
-
-}
-
-.bottom-area p{
-
-font-size:18px;
-
-}
-
-}
-
-/*==========================================================
-LAPTOP
-==========================================================*/
-
-@media (max-width:1200px){
-
-.hero-content{
-
-padding:36px 48px 42px;
-
-}
-
-.logo{
-
-font-size:28px;
-
-}
-
-.logo i{
-
-width:50px;
-height:50px;
-
-font-size:22px;
-
-}
-
-.hero-badge{
-
-font-size:12px;
-
-padding:10px 18px;
-
-}
-
-.bottom-area{
-
-max-width:560px;
-
-}
-
-.bottom-area h1{
-
-font-size:68px;
-
-letter-spacing:-3px;
-
-line-height:.95;
-
-}
-
-.bottom-area p{
-
-font-size:17px;
-
-line-height:1.65;
-
-margin-bottom:28px;
-
-}
-
-.hero-btn{
-
-height:68px;
-
-font-size:17px;
-
-max-width:390px;
-
-}
-
-.hero-btn-icon{
-
-width:48px;
-height:48px;
-
-}
-
-/* Prevent overflow on shorter laptop screens */
-
-@media (max-height:760px){
-
-.hero-content{
-
-padding:24px 42px 28px;
-
-}
-
-.bottom-area h1{
-
-font-size:58px;
-
-margin-bottom:16px;
-
-}
-
-.bottom-area p{
-
-font-size:15px;
-
-margin-bottom:20px;
-
-}
-
-.hero-btn{
-
-height:60px;
-
-}
-
-}
-
-}
-
-/*==========================================================
-TABLET
-==========================================================*/
-
-@media (max-width:992px){
-
-.hero-content{
-
-padding:28px 32px 34px;
-
-}
-
-.logo{
-
-font-size:24px;
-
-}
-
-.logo i{
-
-width:46px;
-height:46px;
-
-font-size:20px;
-
-}
-
-.hero-badge{
-
-font-size:11px;
-
-padding:10px 16px;
-
-margin-bottom:18px;
-
-}
-
-.bottom-area{
-
-max-width:100%;
-
-}
-
-.bottom-area h1{
-
-font-size:58px;
-
-line-height:.98;
-
-letter-spacing:-2px;
-
-margin-bottom:18px;
-
-}
-
-.bottom-area p{
-
-font-size:16px;
-
-line-height:1.65;
-
-margin-bottom:24px;
-
-}
-
-.hero-btn{
-
-max-width:100%;
-
-height:64px;
-
-font-size:17px;
-
-}
-
-.hero-btn-icon{
-
-width:48px;
-height:48px;
-
-}
-
-}
 /*==========================================================
    LARGE DESKTOP
 ==========================================================*/
 
 @media (min-width: 1600px) {
-
-  .hero-content{
-    padding:56px 130px 72px;
+  .hero-content {
+    padding: 56px 130px 72px;
   }
 
-  .bottom-area{
-    max-width:640px;
+  .bottom-area {
+    max-width: 640px;
   }
 
-  .bottom-area h1{
-    font-size:110px;
-    line-height:.94;
+  .bottom-area h1 {
+    font-size: 100px;
+    line-height: 0.94;
   }
 
-  .bottom-area p{
-    font-size:22px;
-    max-width:560px;
+  .bottom-area p {
+    font-size: 21px;
+    max-width: 540px;
   }
 
-  .hero-btn{
-    width:440px;
-    height:82px;
-    font-size:21px;
+  .hero-btn {
+    max-width: 440px;
+    height: 80px;
+    font-size: 20px;
   }
 
+  .hero-btn-icon {
+    width: 58px;
+    height: 58px;
+  }
 }
-
 
 /*==========================================================
    DESKTOP
 ==========================================================*/
 
-@media (max-width:1500px){
-
-  .hero-content{
-    padding:42px 70px 58px;
+@media (max-width: 1500px) {
+  .hero-content {
+    padding: 42px 70px 56px;
   }
 
-  .bottom-area h1{
-    font-size:88px;
+  .bottom-area h1 {
+    font-size: 84px;
   }
-
 }
 
-
-@media (max-width:1366px){
-
-  .hero-content{
-    padding:34px 58px 46px;
+@media (max-width: 1366px) {
+  .hero-content {
+    padding: 34px 58px 46px;
   }
 
-  .bottom-area{
-    max-width:560px;
+  .bottom-area {
+    max-width: 560px;
   }
 
-  .bottom-area h1{
-    font-size:76px;
+  .bottom-area h1 {
+    font-size: 74px;
   }
 
-  .bottom-area p{
-    font-size:18px;
+  .bottom-area p {
+    font-size: 18px;
   }
-
 }
-
 
 /*==========================================================
    LAPTOP
 ==========================================================*/
 
-@media (max-width:1200px){
-
-  .hero-content{
-    padding:28px 40px 36px;
+@media (max-width: 1200px) {
+  .hero-content {
+    padding: 28px 40px 36px;
   }
 
-  .logo{
-    font-size:28px;
+  .logo {
+    font-size: 28px;
   }
 
-  .logo i{
-    width:50px;
-    height:50px;
-    font-size:20px;
+  .logo i {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
   }
 
-  .hero-badge{
-    font-size:12px;
+  .hero-badge {
+    font-size: 12px;
+    padding: 10px 18px;
   }
 
-  .bottom-area{
-    max-width:520px;
+  .bottom-area {
+    max-width: 520px;
   }
 
-  .bottom-area h1{
-    font-size:68px;
-    line-height:.95;
+  .bottom-area h1 {
+    font-size: 64px;
+    line-height: 0.95;
+    letter-spacing: -3px;
   }
 
-  .bottom-area p{
-    font-size:17px;
-    margin-bottom:28px;
+  .bottom-area p {
+    font-size: 17px;
+    margin-bottom: 28px;
   }
 
-  .hero-btn{
-    width:360px;
-    height:66px;
-    font-size:17px;
+  .hero-btn {
+    max-width: 360px;
+    height: 66px;
+    font-size: 17px;
   }
 
+  .hero-btn-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
+/* Short laptop screens — keep everything visible */
+@media (max-width: 1200px) and (max-height: 760px) {
+  .hero-content {
+    padding: 22px 40px 28px;
+  }
+
+  .bottom-area h1 {
+    font-size: 54px;
+    margin-bottom: 14px;
+  }
+
+  .bottom-area p {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  .hero-btn {
+    height: 58px;
+  }
+}
 
 /*==========================================================
    TABLET
 ==========================================================*/
 
-@media (max-width:992px){
-
-  html,
-  body{
-    overflow:auto;
+@media (max-width: 992px) {
+  .hero-content {
+    padding: 28px 28px 34px;
   }
 
-  .landing{
-    overflow:hidden;
+  .logo {
+    font-size: 24px;
   }
 
-  .hero-content{
-    padding:28px 28px 34px;
+  .logo i {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
   }
 
-  .bottom-area{
-    max-width:100%;
+  .hero-badge {
+    font-size: 11px;
+    padding: 10px 16px;
+    margin-bottom: 18px;
   }
 
-  .bottom-area h1{
-    font-size:60px;
+  .bottom-area {
+    max-width: 100%;
   }
 
-  .bottom-area p{
-    font-size:17px;
-    max-width:500px;
+  .bottom-area h1 {
+    font-size: 58px;
+    line-height: 0.98;
+    letter-spacing: -2px;
+    margin-bottom: 18px;
   }
 
-  .hero-btn{
-    width:340px;
+  .bottom-area p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 24px;
   }
 
+  .hero-btn {
+    max-width: 100%;
+    height: 64px;
+    font-size: 17px;
+  }
+
+  .hero-btn-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
 
-
 /*==========================================================
-   MOBILE
+   MOBILE — big fonts kept, gap ≥ 10vh
 ==========================================================*/
 
-@media (max-width:768px){
-
-  html,
-  body{
-    overflow:auto;
+@media (max-width: 768px) {
+  .glow-1,
+  .glow-2,
+  .glow-3 {
+    filter: blur(60px);
   }
 
-  .landing{
-    overflow:hidden;
+  .landing::after {
+    width: 560px;
+    height: 400px;
+    bottom: -140px;
   }
 
-  .hero-image{
-    object-position:center;
-    transform:scale(1.1);
+  .hero-image {
+    object-position: center;
+    transform: scale(1.08);
   }
 
-  .hero-content{
-    padding:22px 20px 26px;
+  .hero-content {
+    /* space-between + min gap via logo margin */
+    padding: 22px 20px 28px;
   }
 
-  .logo{
-    font-size:22px;
+  .logo {
+    font-size: 22px;
+    /* minimum gap to bottom-area */
+    margin-bottom: 10vh;
   }
 
-  .logo i{
-    width:44px;
-    height:44px;
+  .logo i {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 
-  .hero-badge{
-    font-size:13px;
-    padding:10px 16px;
-    margin-bottom:18px;
+  .hero-badge {
+    font-size: 13px;
+    padding: 10px 16px;
+    margin-bottom: 18px;
   }
 
-  .bottom-area{
-    width:100%;
-    margin-bottom:0;
+  .bottom-area {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .bottom-area h1{
-
-    font-size:65px;
-    line-height:.92;
-    letter-spacing:-2.4px;
-    margin-bottom:18px;
-
+  .bottom-area h1 {
+    font-size: 65px;
+    line-height: 0.92;
+    letter-spacing: -2.4px;
+    margin-bottom: 18px;
   }
 
-  .bottom-area p{
-
-    font-size:17px;
-    max-width:100%;
-    margin-bottom:28px;
-
+  .bottom-area p {
+    font-size: 17px;
+    max-width: 100%;
+    margin-bottom: 28px;
   }
 
-  .hero-btn{
-
-    width:100%;
-    max-width:none;
-    height:68px;
-    font-size:19px;
-
+  .hero-btn {
+    width: 100%;
+    max-width: none;
+    height: 68px;
+    font-size: 19px;
   }
 
+  .hero-btn-icon {
+    width: 50px;
+    height: 50px;
+  }
 }
 
-
 /*==========================================================
-   SMALL PHONES
+   SMALL PHONES — big fonts kept, gap ≥ 10vh
 ==========================================================*/
 
-@media (max-width:480px){
-
-  .hero-content{
-    padding:18px 16px 22px;
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 18px 16px 24px;
   }
 
-  .logo{
-    font-size:20px;
+  .logo {
+    font-size: 20px;
+    margin-bottom: 10vh;
   }
 
-  .logo i{
-    width:42px;
-    height:42px;
+  .logo i {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
   }
 
-  .hero-badge{
-
-    font-size:13px;
-    padding:9px 14px;
-
+  .hero-badge {
+    font-size: 13px;
+    padding: 9px 14px;
+    margin-bottom: 18px;
   }
 
-  .bottom-area h1{
-
-    font-size:65px;
-    line-height:.9;
-    letter-spacing:-2px;
-
+  .bottom-area h1 {
+    font-size: 65px;
+    line-height: 0.9;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
   }
 
-  .bottom-area p{
-
-    font-size:16px;
-    line-height:1.65;
-
+  .bottom-area p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 26px;
   }
 
-  .hero-btn{
-
-    height:66px;
-    font-size:19px;
-
+  .hero-btn {
+    height: 66px;
+    font-size: 19px;
   }
 
-  .hero-btn-icon{
-
-    width:52px;
-    height:52px;
-
+  .hero-btn-icon {
+    width: 52px;
+    height: 52px;
   }
 
+  .hero-btn-icon i {
+    font-size: 20px;
+  }
 }
 
-
 /*==========================================================
-   VERY SMALL DEVICES
+   VERY SMALL
 ==========================================================*/
 
-@media (max-width:380px){
-
-  .bottom-area h1{
-
-    font-size:58px;
-
+@media (max-width: 380px) {
+  .logo {
+    margin-bottom: 10vh;
   }
 
-  .bottom-area p{
-
-    font-size:15px;
-
+  .bottom-area h1 {
+    font-size: 58px;
   }
 
-  .hero-btn{
-
-    height:62px;
-    font-size:18px;
-
+  .bottom-area p {
+    font-size: 15px;
   }
 
+  .hero-btn {
+    height: 62px;
+    font-size: 18px;
+  }
 }

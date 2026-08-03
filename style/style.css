@@ -441,6 +441,95 @@ main {
   color: var(--danger);
 }
 
+/* ---------- SUCCESS ---------- */
+
+/* ===========================
+   SUCCESS TOAST
+=========================== */
+
+.toast-success{
+    background:#D1FAE5 !important;
+    color:#065F46 !important;
+    border-left:5px solid #10B981;
+}
+
+/* ===========================
+   WARNING TOAST
+=========================== */
+
+.toast-warning{
+    background:#FEF3C7 !important;
+    color:#78350F !important;
+    border-left:5px solid #D97706;
+}
+
+/* ===========================
+   ERROR TOAST
+=========================== */
+
+.toast-error{
+    background:#FEE2E2 !important;
+    color:#7F1D1D !important;
+    border-left:5px solid #DC2626;
+}
+
+/* Toast body */
+
+.toast-success .toast-body,
+.toast-warning .toast-body,
+.toast-error .toast-body{
+    color:inherit !important;
+}
+
+/* Toast header */
+
+.toast-success .toast-header,
+.toast-warning .toast-header,
+.toast-error .toast-header{
+    background:transparent !important;
+    color:inherit !important;
+    border:none;
+}
+
+/* Close button */
+
+.toast-success .btn-close,
+.toast-warning .btn-close,
+.toast-error .btn-close{
+    filter:none;
+}
+
+.toast-container{
+    z-index:9999;
+}
+
+#exerciseToast{
+    min-width:320px;
+    max-width:420px;
+
+    border:none;
+    border-radius:14px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+    overflow:hidden;
+}
+
+#exerciseToast .toast-body{
+    padding:16px 18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:12px;
+
+    font-weight:500;
+}
+
+#exerciseToast .btn-close{
+    flex-shrink:0;
+}
 /* ==========================================================
    FLOATING BOTTOM NAV
 ========================================================== */
@@ -920,27 +1009,6 @@ hr {
   object-fit: contain;
 }
 
-/* ==========================================================
-   TOAST
-========================================================== */
-
-.toast {
-  border: none;
-  overflow: hidden;
-  border-radius: 18px;
-  background: var(--surface);
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
-}
-
-.toast-body {
-  padding: 16px 18px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.toast.text-bg-success {
-  background: linear-gradient(135deg, #34C759, #28A745) !important;
-}
 
 /* ==========================================================
    DARK MODE OVERRIDES

@@ -8,8 +8,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/benchpress1.jpg",
+        "images/benchpress2.jpg"
         ],
         bodyMap: "image/chest.png",
 
@@ -39,8 +39,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/shoulderpress1.jpg",
+        "images/shoulderpress2.jpg"
         ],
         bodyMap: "image/chest.png",
 
@@ -70,8 +70,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/chestfly1.jpg",
+        "images/chestfly2.jpg"
         ],
         bodyMap: "image/chest.png",
 
@@ -101,8 +101,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/cablyfly1.jpg",
+        "images/cablefly2.jpg"
         ],
         bodyMap: "image/chest.png",
         
@@ -133,8 +133,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/push1.jpg",
+        "images/pushup2.jpg"
         ],
         bodyMap: "image/chest.png",
         
@@ -165,8 +165,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/hiptrust1.jpg",
+        "images/hiptrust2.jpg"
         ],
         bodyMap: "image/glute.png",
         
@@ -196,8 +196,8 @@ const exerciseLibrary = [
         difficulty: "Intermediate",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/rdl1.jpg",
+        "images/rdl2.jpg"
         ],
         bodyMap: "image/hamstring.png",
         
@@ -229,8 +229,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/cable-kickback1.jpg",
+        "images/cable-kickback2.jpg"
         ],
         bodyMap: "image/glute.png",
         
@@ -261,8 +261,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/bulgarian1.jpg",
+        "images/exercises/bulgarian2.jpg"
         ],
         bodyMap: "image/quads.png",
         
@@ -357,8 +357,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/deadlift1.jpg",
+        "images/deadlift2.jpg"
         ],
         bodyMap: "image/hamstring.png",
         
@@ -517,8 +517,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/glute-bridge1.jpg",
+        "images/glute-bridge2.jpg"
         ],
         bodyMap: "image/glute.png",
         
@@ -1061,8 +1061,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/tricepextention1.jpg",
+        "images/tricepextention2.jpg"
         ],
         bodyMap: "image/tricep.png",
         
@@ -1221,8 +1221,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/russian-twist1.jpg",
+        "images/=/russian-twist2.jpg"
         ],
         bodyMap: "image/core.png",
         
@@ -1477,8 +1477,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/hacksquat1.jpg",
+        "images/hacksquat2.jpg"
         ],
         bodyMap: "image/quads.png",
         
@@ -1861,8 +1861,8 @@ const exerciseLibrary = [
     type: "Cardio",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/mountainclimb1.jpg",
+        "images/mountainclimb2.jpg"
         ],
         bodyMap: "image/cardio.png",
         
