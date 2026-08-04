@@ -217,36 +217,6 @@
 }
 
 /*==========================================================
-   MUSCLE BADGES
-==========================================================*/
-
-.muscle-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 14px;
-  border-radius: 999px;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-  margin: 0;
-}
-
-.muscle-badge.chest { background: #FDECEC; color: #DC2626; }
-.muscle-badge.back { background: #E8F1FF; color: #2563EB; }
-.muscle-badge.shoulders { background: #FFF3E6; color: #EA580C; }
-.muscle-badge.biceps,
-.muscle-badge.triceps,
-.muscle-badge.arms { background: #F2ECFF; color: #7C3AED; }
-.muscle-badge.core { background: #FFF8DA; color: #CA8A04; }
-.muscle-badge.glutes { background: #FFEAF3; color: #DB2777; }
-.muscle-badge.quadriceps,
-.muscle-badge.hamstrings,
-.muscle-badge.calves,
-.muscle-badge.legs { background: #E9FAEF; color: #15803D; }
-.muscle-badge.cardio { background: #FFF3E6; color: #EA580C; }
-
-/*==========================================================
    ACTION BUTTONS
 ==========================================================*/
 
@@ -517,50 +487,7 @@
   color: #fff;
 }
 
-.dark-mode .muscle-badge.chest {
-  background: rgba(220, 38, 38, 0.15);
-  color: #F87171;
-}
 
-.dark-mode .muscle-badge.back {
-  background: rgba(37, 99, 235, 0.15);
-  color: #60A5FA;
-}
-
-.dark-mode .muscle-badge.shoulders {
-  background: rgba(234, 88, 12, 0.15);
-  color: #FB923C;
-}
-
-.dark-mode .muscle-badge.biceps,
-.dark-mode .muscle-badge.triceps,
-.dark-mode .muscle-badge.arms {
-  background: rgba(124, 58, 237, 0.15);
-  color: #A78BFA;
-}
-
-.dark-mode .muscle-badge.core {
-  background: rgba(202, 138, 4, 0.15);
-  color: #FACC15;
-}
-
-.dark-mode .muscle-badge.glutes {
-  background: rgba(219, 39, 119, 0.15);
-  color: #F472B6;
-}
-
-.dark-mode .muscle-badge.quadriceps,
-.dark-mode .muscle-badge.hamstrings,
-.dark-mode .muscle-badge.calves,
-.dark-mode .muscle-badge.legs {
-  background: rgba(21, 128, 61, 0.15);
-  color: #4ADE80;
-}
-
-.dark-mode .muscle-badge.cardio {
-  background: rgba(234, 88, 12, 0.16);
-  color: #FB923C;
-}
 
 .dark-mode #exerciseModal .modal-content,
 .dark-mode #addWorkoutModal .modal-content {

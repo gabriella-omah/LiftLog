@@ -29,6 +29,7 @@ let isPaused = false;
 let timerInterval = null;
 let userHasInteracted = false;
 
+
 document.addEventListener("pointerdown", () => {
     userHasInteracted = true;
 }, { once: true });
@@ -65,41 +66,51 @@ function openExerciseInfo(exerciseId) {
         return;
     }
 
-    const modalBody = document.getElementById("exerciseInfoContent") ||
-                      document.getElementById("exerciseInfoBody");
+    const modalBody =
+        document.getElementById("exerciseInfoContent") ||
+        document.getElementById("exerciseInfoBody");
+
+        const titleEl = document.getElementById("exerciseTitle");
+if (titleEl) titleEl.textContent = exercise.name;
 
     if (!modalBody) return;
 
     modalBody.innerHTML = `
-        <h3 class="mb-3">${exercise.name}</h3>
 
-        <div class="row mb-3">
-            <div class="col-md-6">
+
+        ${
+            exercise.bodyMap
+                ? `
+                <div class="exercise-body-map text-center mb-4">
+                    <img
+                        src="${exercise.bodyMap}"
+                        alt="${exercise.muscle || "Body map"}"
+                        class="exercise-modal-image"
+                    >
+                </div>
+                `
+                : ""
+        }
+
+        <div class="row mb-3 exercise-meta-row">
+            <div class="col-md-4">
                 <strong>Muscle</strong><br>
-                ${exercise.muscle}
+                ${exercise.muscle || "—"}
             </div>
-            <div class="col-md-6">
-                <strong>Body Part</strong><br>
-                ${
-                    exercise.bodyMap
-                        ? `<img src="${exercise.bodyMap}" class="img-fluid rounded border mt-2" style="max-height:220px;">`
-                        : "N/A"
-                }
+            <div class="col-md-4">
+                <strong>Type</strong><br>
+                ${exercise.type || "—"}
+            </div>
+            <div class="col-md-4">
+                <strong>Difficulty</strong><br>
+                ${exercise.difficulty || "—"}
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-4">
-                <strong>Type</strong><br>
-                ${exercise.type}
-            </div>
-            <div class="col-md-4">
-                <strong>Difficulty</strong><br>
-                ${exercise.difficulty}
-            </div>
-            <div class="col-md-4">
+            <div class="col-12">
                 <strong>Equipment</strong><br>
-                ${exercise.equipment}
+                ${exercise.equipment || "—"}
             </div>
         </div>
 
@@ -107,11 +118,19 @@ function openExerciseInfo(exerciseId) {
             exercise.images?.length
                 ? `
                 <hr>
-                <h5 class="mb-3">Exercise Movement</h5>
-                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                    <img src="${exercise.images[0]}" class="img-fluid rounded border" style="max-height:220px;">
-                    ${exercise.images.length > 1 ? `<i class="bi bi-arrow-right fs-1"></i>` : ""}
-                    ${exercise.images[1] ? `<img src="${exercise.images[1]}" class="img-fluid rounded border" style="max-height:220px;">` : ""}
+                <h5>Exercise Movement</h5>
+                <div class="imagedouble">
+                    <img src="${exercise.images[0]}" alt="${exercise.name} start">
+                    ${
+                        exercise.images.length > 1
+                            ? `<i class="bi bi-arrow-right"></i>`
+                            : ""
+                    }
+                    ${
+                        exercise.images[1]
+                            ? `<img src="${exercise.images[1]}" alt="${exercise.name} end">`
+                            : ""
+                    }
                 </div>
                 `
                 : ""
@@ -298,7 +317,10 @@ function displayWorkoutExercises() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout || !workoutExercises) return;
 
-    const isLocked = workout.completed;
+    const daysAgo = getWorkoutDaysAgo(workout);
+    const isFuture = daysAgo < 0;
+    const isLocked = workout.completed || isFuture;
+
 
     if (!Array.isArray(workout.exercises)) {
         workout.exercises = [];
@@ -425,15 +447,6 @@ function updateExercise(event) {
         ((Number(exercise.sets) || 0) * (Number(exercise.reps) || 0)) * 0.5
     );
 
-    const currentPR = Number(personalRecordsData[exercise.name]) || 0;
-    const currentWeight = Number(exercise.weight) || 0;
-
-    if (currentWeight > currentPR && currentWeight > 0) {
-        personalRecordsData[exercise.name] = currentWeight;
-        savePersonalRecords();
-        showToast(`New PR! ${currentWeight}${weightUnit} on ${exercise.name}`, "success");
-    }
-
     saveWorkouts();
 }
 
@@ -443,7 +456,19 @@ function attachCompleteEvents() {
             const workout = workouts.find(w => w.id === workoutId);
             if (!workout || workout.completed) return;
 
-            const exercise = workout.exercises.find(ex => ex.id == input.dataset.id);
+            // Block future workouts
+            if (getWorkoutDaysAgo(workout) < 0) {
+                input.checked = false;
+                showToast(
+                    "You cannot mark exercises on a future workout.",
+                    "warning"
+                );
+                return;
+            }
+
+            const exercise = workout.exercises.find(
+                ex => ex.id == input.dataset.id
+            );
             if (!exercise) return;
 
             exercise.completed = input.checked;
@@ -461,16 +486,27 @@ function updateWorkoutProgress() {
     const workout = workouts.find(w => w.id === workoutId);
     if (!workout) return;
 
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+
+    // Future workout → no progress
+    if (getWorkoutDaysAgo(workout) < 0) {
+        if (progressBar) progressBar.style.width = "0%";
+        if (progressText) {
+            progressText.textContent =
+                `0/${workout.exercises.length} Exercises Completed • 0%`;
+        }
+        return;
+    }
+
     const completed = workout.exercises.filter(e => e.completed).length;
     const total = workout.exercises.length;
     const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-    const progressBar = document.getElementById("progressBar");
-    const progressText = document.getElementById("progressText");
-
     if (progressBar) progressBar.style.width = `${percent}%`;
     if (progressText) {
-        progressText.textContent = `${completed}/${total} Exercises Completed • ${percent}%`;
+        progressText.textContent =
+            `${completed}/${total} Exercises Completed • ${percent}%`;
     }
 }
 
@@ -544,6 +580,7 @@ function startWorkout() {
         showToast("This workout has already been completed.", "warning");
         return;
     }
+    
 
     const daysAgo = getWorkoutDaysAgo(workout);
 
@@ -715,20 +752,41 @@ function completeWorkout() {
     let prCount = 0;
 
     workout.exercises.forEach(exercise => {
-        if (exercise.completed) completedExercises++;
-
-        const sets = Number(exercise.sets) || 0;
-        const reps = Number(exercise.reps) || 0;
-        const weight = Number(exercise.weight) || 0;
-
-        totalVolume += sets * reps * weight;
-        totalCalories += Math.round(sets * reps * 0.5);
 
         const currentPR = Number(personalRecordsData[exercise.name]) || 0;
-        if (weight > currentPR && weight > 0) {
-            personalRecordsData[exercise.name] = weight;
-            prCount++;
-        }
+    const currentWeight = Number(exercise.weight) || 0;
+
+    if (currentWeight > currentPR && currentWeight > 0) {
+        personalRecordsData[exercise.name] = currentWeight;
+        savePersonalRecords();
+        showToast(`New PR! ${currentWeight}${weightUnit} on ${exercise.name}`, "success");
+    }
+        if (exercise.completed) {
+
+    completedExercises++;
+
+    const currentPR =
+        Number(personalRecordsData[exercise.name]) || 0;
+
+    const currentWeight =
+        Number(exercise.weight) || 0;
+
+    if (
+        currentWeight > currentPR &&
+        currentWeight > 0
+    ) {
+        personalRecordsData[exercise.name] =
+            currentWeight;
+
+        prCount++;
+
+        showToast(
+            `New PR! ${currentWeight}${weightUnit} on ${exercise.name}`,
+            "success"
+        );
+    }
+
+}
     });
 
     savePersonalRecords();

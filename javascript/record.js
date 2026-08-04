@@ -39,8 +39,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/shoulderpress1.jpg",
-        "images/shoulderpress2.jpg"
+        "images/inclinepress1.jpg",
+        "images/inclinepress2.jpg"
         ],
         bodyMap: "image/chest.png",
 
@@ -133,7 +133,7 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/push1.jpg",
+        "images/pushup1.jpg",
         "images/pushup2.jpg"
         ],
         bodyMap: "image/chest.png",
@@ -485,8 +485,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/calfraise1.jpg",
+        "images/calfraise2.jpg"
         ],
         bodyMap: "image/calf.png",
         
@@ -549,8 +549,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/pullup1.jpg",
+        "images/pullup2.jpg"
         ],
         bodyMap: "image/back.png",
         
@@ -581,8 +581,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/latpull1.jpg",
+        "images/latpull2.jpg"
         ],
         bodyMap: "image/back.png",
         
@@ -645,8 +645,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/seatedcablerow1.jpg",
+        "images/seatedcablerow2.jpg"
         ],
         bodyMap: "image/back.png",
         
@@ -677,8 +677,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/facepull1.jpg",
+        "images/facepull2.jpg"
         ],
         bodyMap: "image/back.png",
         
@@ -773,8 +773,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/overheadpress11.jpg",
+        "images/ovearheadpress.jpg"
         ],
         bodyMap: "image/shoulder.png",
         
@@ -837,8 +837,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "lateralraise1.jpg",
+        "lateralraise2.jpg"
         ],
         bodyMap: "image/shoulder.png",
         
@@ -869,8 +869,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/frontraise1.jpg",
+        "images/frontraise2.jpg"
         ],
         bodyMap: "image/shoulder.png",
         
@@ -965,8 +965,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/bicepcurl1.jpg",
+        "images/bicepcurl2.jpg"
         ],
         bodyMap: "image/bicep.png",
         
@@ -997,8 +997,8 @@ const exerciseLibrary = [
         type: "Isolation",
 
         images:[
-        "images/exercises/bench-press-1.png",
-        "images/exercises/bench-press-2.png"
+        "images/hammercurl1.jpg",
+        "images/hammercurl2.jpg"
         ],
         bodyMap: "image/bicep.png",
         

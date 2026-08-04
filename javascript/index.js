@@ -148,7 +148,7 @@ function displayTodayWorkout() {
                     </span>
                     <span>
                         <i class="bi bi-clock"></i>
-                        ${getWorkoutMinutes(workout)} min
+                        ${getWorkoutMinutes(workout)}
                     </span>
                 </div>
                 <div class="progress workout-progress-bar">
@@ -166,7 +166,7 @@ function displayTodayWorkout() {
                     </span>
                     <span>
                         <i class="bi bi-clock"></i>
-                        ${getWorkoutMinutes(workout)} min
+                        ${getWorkoutMinutes(workout)}
                     </span>
                 </div>
                 <div class="progress workout-progress-bar">
@@ -189,11 +189,28 @@ function displayTodayWorkout() {
 }
 
 function getWorkoutMinutes(workout) {
+    let totalMinutes = 0;
+
     if (workout.startTime && !workout.isPaused && !workout.completed) {
-        const elapsedSeconds = Math.floor((Date.now() - workout.startTime) / 1000);
-        return Math.floor(elapsedSeconds / 60);
+        const totalSeconds = Math.floor((Date.now() - workout.startTime) / 1000);
+        totalMinutes = Math.floor(totalSeconds / 60);
+    } else if (workout.durationSeconds) {
+        totalMinutes = Math.floor(Number(workout.durationSeconds) / 60);
+    } else {
+        // duration is already stored in minutes
+        totalMinutes = Number(workout.duration) || 0;
     }
-    return Math.floor((Number(workout.durationSeconds) || Number(workout.duration) || 0) / 60);
+
+    if (totalMinutes < 60) {
+        return `${totalMinutes} min`;
+    }
+
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+
+    return minutes === 0
+        ? `${hours} ${hours === 1 ? "hr" : "hrs"}`
+        : `${hours} ${hours === 1 ? "hr" : "hrs"} ${minutes} min`;
 }
 
 // ========================================
@@ -323,7 +340,7 @@ function displayDailyQuote() {
     const dayNumber = Math.floor(diff / oneDay);
 
     const quote = quotes[dayNumber % quotes.length];
-    motivationText.textContent = `"${quote}"`;
+    motivationText.textContent = `${quote}`;
 }
 
 // ========================================

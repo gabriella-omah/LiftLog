@@ -397,7 +397,7 @@
   border: 2px solid var(--border);
   background-color: var(--surface);
   cursor: pointer;
-  transition: var(--transition);
+  transition: all ease .03;
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -665,89 +665,36 @@
 }
 
 /*==========================================================
-   EXERCISE INFO MODAL
+   EXERCISE INFO — body map (no border, centered)
 ==========================================================*/
 
-#exerciseInfoModal .modal-content,
-#exerciseInfoModal.premium-modal {
-  border: none;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: var(--shadow-md);
+#exerciseInfoModal .exercise-body-map,
+#exerciseInfoContent .exercise-body-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0 24px;
+  padding: 0 8px;
 }
 
-#exerciseInfoModal .modal-header {
-  padding: 22px 24px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
-#exerciseInfoModal .modal-title,
-#exerciseInfoTitle {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text);
-}
-
-#exerciseInfoModal .modal-body,
-#exerciseInfoBody,
-#exerciseInfoContent {
-  padding: 24px;
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.75;
-  max-height: min(70vh, 620px);
-  overflow-y: auto;
-}
-
-#exerciseInfoModal .row.mb-3,
-#exerciseInfoBody .row,
-#exerciseInfoContent .row {
-  --bs-gutter-x: 14px;
-  --bs-gutter-y: 14px;
-}
-
-#exerciseInfoModal img,
-#exerciseInfoBody img,
-#exerciseInfoContent img {
+#exerciseInfoModal .exercise-modal-image,
+#exerciseInfoContent .exercise-modal-image {
   display: block;
-  width: 100%;
-  max-height: 220px;
-  object-fit: contain;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  padding: 10px;
-}
-
-#exerciseInfoContent .d-flex img,
-#exerciseInfoBody .d-flex img {
-  max-height: 200px;
-  width: auto;
-  max-width: min(46%, 220px);
-}
-
-#exerciseInfoContent .bi-arrow-right,
-#exerciseInfoBody .bi-arrow-right {
-  color: var(--primary);
-  font-size: 1.6rem;
-  flex-shrink: 0;
-}
-
-#exerciseInfoModal .text-center img,
-#exerciseInfoBody .text-center img {
-  max-height: 240px;
   margin: 0 auto;
+  max-height: 220px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border: none !important;
+  border-radius: 16px;
   background: transparent;
-  border: none;
+  box-shadow: none;
   padding: 0;
 }
 
-#exerciseInfoBody .text-center p,
-#exerciseInfoContent .text-center p {
+#exerciseInfoModal .body-map-label,
+#exerciseInfoContent .body-map-label {
   margin-top: 10px;
   font-size: 13px;
   font-weight: 600;
@@ -756,116 +703,50 @@
   text-transform: uppercase;
 }
 
-#exerciseInfoModal strong,
-#exerciseInfoBody strong,
-#exerciseInfoContent strong {
-  color: var(--text);
-  font-weight: 700;
+/* Kill any leftover Bootstrap border on modal images */
+#exerciseInfoModal img.border,
+#exerciseInfoContent img.border,
+#exerciseInfoBody img.border {
+  border: none !important;
 }
 
-#exerciseInfoModal h3,
-#exerciseInfoContent h3 {
-  margin: 0 0 18px;
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-  color: var(--text);
+/*==========================================================
+   EXERCISE INFO — movement row (.imagedouble)
+==========================================================*/
+
+#exerciseInfoModal .imagedouble,
+#exerciseInfoContent .imagedouble {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  /* side padding so images never touch modal edges */
+  margin: 0 0 22px;
+  padding: 0 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-#exerciseInfoModal h5,
-#exerciseInfoBody h5,
-#exerciseInfoContent h5 {
-  margin: 28px 0 12px;
-  padding-top: 22px;
-  border-top: 1px solid var(--border);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  color: var(--text);
+#exerciseInfoModal .imagedouble img,
+#exerciseInfoContent .imagedouble img {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: min(46%, 240px);
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: none !important;
+  border-radius: 16px;
 }
 
-#exerciseInfoModal h5:first-of-type,
-#exerciseInfoBody h5:first-of-type,
-#exerciseInfoContent h5:first-of-type {
-  margin-top: 8px;
-}
-
-#exerciseInfoModal ol,
-#exerciseInfoModal ul,
-#exerciseInfoBody ol,
-#exerciseInfoBody ul,
-#exerciseInfoContent ol,
-#exerciseInfoContent ul {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text-light);
-}
-
-#exerciseInfoModal li,
-#exerciseInfoBody li,
-#exerciseInfoContent li {
-  margin-bottom: 10px;
-  line-height: 1.65;
-  padding-left: 4px;
-}
-
-#exerciseInfoModal ol li::marker,
-#exerciseInfoBody ol li::marker,
-#exerciseInfoContent ol li::marker {
+#exerciseInfoModal .imagedouble .bi-arrow-right,
+#exerciseInfoContent .imagedouble .bi-arrow-right {
+  flex-shrink: 0;
   color: var(--primary);
-  font-weight: 700;
-}
-
-#exerciseInfoModal ul li::marker,
-#exerciseInfoBody ul li::marker,
-#exerciseInfoContent ul li::marker {
-  color: var(--primary);
-}
-
-#exerciseInfoModal hr,
-#exerciseInfoBody hr,
-#exerciseInfoContent hr {
-  border: none;
-  height: 1px;
-  background: var(--border);
-  margin: 22px 0;
-}
-
-#exerciseInfoModal .modal-footer {
-  padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-}
-
-#exerciseInfoModal .btn-secondary {
-  min-width: 110px;
-  height: 48px;
-  border: none;
-  border-radius: 14px;
-  background: var(--surface-3);
-  color: var(--text);
-  font-weight: 600;
-}
-
-#exerciseInfoModal .btn-secondary:hover {
-  background: var(--border);
-}
-
-.dark-mode #exerciseInfoModal .modal-content {
-  background: var(--surface);
-}
-
-.dark-mode #exerciseInfoModal img,
-.dark-mode #exerciseInfoBody img,
-.dark-mode #exerciseInfoContent img {
-  background: var(--surface-2);
-  border-color: var(--border);
-}
-
-.dark-mode #exerciseInfoModal .text-center img,
-.dark-mode #exerciseInfoBody .text-center img {
-  background: transparent;
-  border: none;
+  font-size: 1.5rem;
 }
 
 /*==========================================================
@@ -1011,7 +892,6 @@
   transform: none;
   box-shadow: none;
 }
-
 
 /*==========================================================
    DARK MODE
@@ -1293,6 +1173,7 @@
     font-size: 15px !important;
   }
 
+  /* Info modal mobile — same as library */
   #exerciseInfoModal .modal-content {
     border-radius: 22px;
     margin: 10px;
@@ -1311,31 +1192,33 @@
   #exerciseInfoBody,
   #exerciseInfoContent {
     padding: 18px;
-    max-height: min(72vh, 560px);
+    max-height: min(74vh, 560px);
     font-size: 14.5px;
   }
 
-  #exerciseInfoModal img,
-  #exerciseInfoBody img,
-  #exerciseInfoContent img {
-    max-height: 180px;
+  #exerciseInfoModal .exercise-modal-image,
+  #exerciseInfoModal #exerciseMuscleImage {
+    max-height: 160px;
+    margin-bottom: 18px;
+  }
+
+  #exerciseInfoModal .exercise-images {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  #exerciseInfoModal .exercise-images img,
+  #exerciseInfoContent .d-flex img,
+  #exerciseInfoBody .d-flex img {
+    max-width: 100%;
+    max-height: 170px;
     border-radius: 14px;
-    padding: 8px;
+    
   }
 
   #exerciseInfoContent .d-flex {
     flex-direction: column;
     gap: 12px !important;
-  }
-
-  #exerciseInfoContent .d-flex img,
-  #exerciseInfoBody .d-flex img {
-    max-width: 100%;
-    max-height: 160px;
-  }
-
-  #exerciseInfoContent .bi-arrow-right {
-    transform: rotate(90deg);
   }
 
   #exerciseInfoModal h3,
@@ -1347,7 +1230,7 @@
   #exerciseInfoBody h5,
   #exerciseInfoContent h5 {
     margin: 22px 0 10px;
-    padding-top: 18px;
+    padding-top: 16px;
     font-size: 15px;
   }
 

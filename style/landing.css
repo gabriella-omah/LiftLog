@@ -173,7 +173,6 @@ body {
   z-index: 5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 48px clamp(40px, 6vw, 100px) 60px;
   pointer-events: none;
 }
@@ -220,6 +219,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  margin-top: auto;
+
+  padding-bottom: 10vh;
+
   flex-shrink: 0;
 }
 
@@ -609,8 +613,6 @@ body {
 
   .logo {
     font-size: 22px;
-    /* minimum gap to bottom-area */
-    margin-bottom: 10vh;
   }
 
   .logo i {
@@ -707,28 +709,5 @@ body {
 
   .hero-btn-icon i {
     font-size: 20px;
-  }
-}
-
-/*==========================================================
-   VERY SMALL
-==========================================================*/
-
-@media (max-width: 380px) {
-  .logo {
-    margin-bottom: 10vh;
-  }
-
-  .bottom-area h1 {
-    font-size: 58px;
-  }
-
-  .bottom-area p {
-    font-size: 15px;
-  }
-
-  .hero-btn {
-    height: 62px;
-    font-size: 18px;
   }
 }

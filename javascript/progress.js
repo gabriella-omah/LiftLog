@@ -31,6 +31,9 @@ document.getElementById("longestStreak");
 const strength =
     document.getElementById("displayStrength");
 
+const strengthExercise =
+    document.getElementById("displayStrengthExercise");
+
 const caloriesBurned =
 document.getElementById("caloriesBurned");
 
@@ -40,6 +43,27 @@ const totalTrainingTime =
   let weeklyChart;
 
   let totalSeconds = 0;
+
+  import { exportWorkoutPDF } from "./pdfExport.js";
+const exportWorkoutBtn =
+    document.getElementById("exportWorkoutBtn");
+
+if (exportWorkoutBtn) {
+
+    exportWorkoutBtn.addEventListener("click", () => {
+    exportWorkoutPDF(workouts, weightUnit);
+
+
+        const workout =
+            workouts.find(w => w.id === workoutId);
+
+        if (!workout) return;
+
+        exportWorkoutPDF(workout, weightUnit);
+
+    });
+
+}
 
 function displayProgress() {
 
@@ -1909,18 +1933,48 @@ function displayWeeklyChart() {
 
 function displayStrength() {
 
-    const totalStrength =
-        Object.values(personalRecords)
-            .reduce(
-                (total, weight) =>
-                    total + Number(weight),
-                0
-            );
+    const records =
+        Object.entries(personalRecords);
+
+    if (records.length === 0) {
+
+        strength.textContent = "0";
+
+        if (strengthExercise) {
+
+            strengthExercise.textContent = "--";
+
+        }
+
+        return;
+
+    }
+
+    let strongestExercise = "";
+
+    let strongestWeight = 0;
+
+    records.forEach(([exercise, weight]) => {
+
+        if (Number(weight) > strongestWeight) {
+
+            strongestWeight = Number(weight);
+
+            strongestExercise = exercise;
+
+        }
+
+    });
 
     strength.textContent =
-        formatWeight(totalStrength) +
-        " " +
-        weightUnit;
+        `${formatWeight(strongestWeight)} ${weightUnit}`;
+
+    if (strengthExercise) {
+
+        strengthExercise.textContent =
+            strongestExercise;
+
+    }
 
 }
 

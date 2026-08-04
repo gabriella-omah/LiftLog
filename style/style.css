@@ -1079,8 +1079,8 @@ hr {
 
 .category-chest,
 .muscle-badge.chest {
-  background: #FDECEC;
-  color: #DC2626;
+  background: #FFF4D6;
+  color: #CA8A04;
 }
 
 .category-back,
@@ -1113,8 +1113,8 @@ hr {
 
 .category-glutes,
 .muscle-badge.glutes {
-  background: #FFEAF3;
-  color: #DB2777;
+  background: #ECFDF5;
+  color: #059669;
 }
 
 .category-quadriceps,
@@ -1141,8 +1141,8 @@ hr {
 
 .category-cardio,
 .muscle-badge.cardio {
-  background: #FFF3E6;
-  color: #EA580C;
+  background: #FFE7D6;
+  color: #F97316;
 }
 
 .category-full-body,
@@ -1171,8 +1171,8 @@ hr {
 
 .category-hiit,
 .muscle-badge.hiit {
-  background: #FEE2E2;
-  color: #DC2626;
+  background: #FCE7F3;
+  color: #DB2777;
 }
 
 .category-rest,
@@ -1181,22 +1181,23 @@ hr {
   color: #6B7280;
 }
 
-/* Dark mode categories */
+/* ---------------- DARK MODE ---------------- */
+
 .dark-mode .category-chest,
 .dark-mode .muscle-badge.chest {
-  background: rgba(220, 38, 38, 0.15);
-  color: #F87171;
+  background: rgba(202, 138, 4, 0.18);
+  color: #FCD34D;
 }
 
 .dark-mode .category-back,
 .dark-mode .muscle-badge.back {
-  background: rgba(37, 99, 235, 0.15);
+  background: rgba(37, 99, 235, 0.16);
   color: #60A5FA;
 }
 
 .dark-mode .category-shoulders,
 .dark-mode .muscle-badge.shoulders {
-  background: rgba(234, 88, 12, 0.15);
+  background: rgba(234, 88, 12, 0.16);
   color: #FB923C;
 }
 
@@ -1206,20 +1207,20 @@ hr {
 .dark-mode .muscle-badge.biceps,
 .dark-mode .muscle-badge.triceps,
 .dark-mode .muscle-badge.arms {
-  background: rgba(124, 58, 237, 0.15);
-  color: #A78BFA;
+  background: rgba(124, 58, 237, 0.16);
+  color: #C4B5FD;
 }
 
 .dark-mode .category-core,
 .dark-mode .muscle-badge.core {
-  background: rgba(202, 138, 4, 0.15);
+  background: rgba(202, 138, 4, 0.16);
   color: #FACC15;
 }
 
 .dark-mode .category-glutes,
 .dark-mode .muscle-badge.glutes {
-  background: rgba(219, 39, 119, 0.15);
-  color: #F472B6;
+  background: rgba(5, 150, 105, 0.16);
+  color: #6EE7B7;
 }
 
 .dark-mode .category-quadriceps,
@@ -1230,41 +1231,41 @@ hr {
 .dark-mode .muscle-badge.hamstrings,
 .dark-mode .muscle-badge.calves,
 .dark-mode .muscle-badge.legs {
-  background: rgba(21, 128, 61, 0.15);
+  background: rgba(21, 128, 61, 0.16);
   color: #4ADE80;
 }
 
 .dark-mode .category-push {
-  background: rgba(59, 130, 246, 0.16);
-  color: #9CC4FF;
+  background: rgba(37, 99, 235, 0.16);
+  color: #93C5FD;
 }
 
 .dark-mode .category-pull {
   background: rgba(124, 58, 237, 0.16);
-  color: #D2BEFF;
+  color: #C4B5FD;
 }
 
 .dark-mode .category-cardio,
 .dark-mode .muscle-badge.cardio {
-  background: rgba(234, 88, 12, 0.16);
-  color: #FB923C;
+  background: rgba(249, 115, 22, 0.16);
+  color: #FDBA74;
 }
 
 .dark-mode .category-full-body,
 .dark-mode .muscle-badge.full-body {
-  background: rgba(14, 165, 233, 0.16);
-  color: #7DD3FC;
+  background: rgba(14, 116, 144, 0.16);
+  color: #67E8F9;
 }
 
 .dark-mode .category-upper-body,
 .dark-mode .muscle-badge.upper-body {
-  background: rgba(99, 102, 241, 0.16);
+  background: rgba(79, 70, 229, 0.16);
   color: #C7D2FE;
 }
 
 .dark-mode .category-lower-body,
 .dark-mode .muscle-badge.lower-body {
-  background: rgba(34, 197, 94, 0.16);
+  background: rgba(21, 128, 61, 0.16);
   color: #86EFAC;
 }
 
@@ -1276,8 +1277,8 @@ hr {
 
 .dark-mode .category-hiit,
 .dark-mode .muscle-badge.hiit {
-  background: rgba(220, 38, 38, 0.16);
-  color: #F87171;
+  background: rgba(219, 39, 119, 0.16);
+  color: #F9A8D4;
 }
 
 .dark-mode .category-rest,

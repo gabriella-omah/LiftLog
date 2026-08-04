@@ -348,24 +348,6 @@
    CATEGORY COLORS
 ==========================================================*/
 
-.category-chest { background: #FDECEC; color: #DC2626; }
-.category-back { background: #E8F1FF; color: #2563EB; }
-.category-shoulders { background: #FFF3E6; color: #EA580C; }
-.category-biceps,
-.category-triceps { background: #F2ECFF; color: #7C3AED; }
-.category-core { background: #FFF8DA; color: #CA8A04; }
-.category-glutes { background: #FFEAF3; color: #DB2777; }
-.category-quadriceps,
-.category-hamstrings,
-.category-calves { background: #E9FAEF; color: #15803D; }
-.category-push { background: #E8F1FF; color: #2563EB; }
-.category-pull { background: #F2ECFF; color: #7C3AED; }
-.category-legs { background: #E9FAEF; color: #15803D; }
-.category-cardio { background: #FFF3E6; color: #EA580C; }
-.category-full-body { background: #E0F7FA; color: #0E7490; }
-.category-upper-body { background: #EEF2FF; color: #4F46E5; }
-.category-lower-body { background: #E9FAEF; color: #15803D; }
-
 /* Difficulty badges from JS */
 #workoutList .badge.bg-success {
   background: rgba(52, 199, 89, 0.14) !important;
