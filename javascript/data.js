@@ -213,6 +213,124 @@ const getWorkoutExercises = (exerciseIds, library) => {
         .filter(Boolean);
 };
 
+function displayExercises(list) {
+    if (!library) return;
+
+    if (!Array.isArray(list) || list.length === 0) {
+        library.innerHTML = `
+            <div class="text-center py-4 text-muted">
+                No exercises found.
+            </div>
+        `;
+        return;
+    }
+
+    library.innerHTML = "";
+
+    list.forEach(exercise => {
+        library.innerHTML += `
+            <section class="exercise-card">
+                <div class="card-body">
+                    <div class="exercise-info">
+                        <h4>${exercise.name}</h4>
+                        <p class="muscle-badge ${String(exercise.muscle || "")
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")}">
+                            ${exercise.muscle || ""}
+                        </p>
+                        <small>
+                            ${exercise.equipment || ""}
+                            •
+                            ${exercise.type || ""}
+                            •
+                            ${exercise.difficulty || ""}
+                        </small>
+                        <button
+                            class="btn btn-success mt-3 w-100 viewExerciseBtn"
+                            type="button"
+                            data-id="${exercise.id}">
+                            View Exercise
+                        </button>
+                    </div>
+                </div>
+            </section>
+        `;
+    });
+}
+
+
+// ========================================
+// IMAGE VIEWER
+// ========================================
+
+const imageViewer = document.getElementById("imageViewer");
+const imageViewerImg = document.getElementById("imageViewerImg");
+const closeImageViewerBtn = document.getElementById("closeImageViewer");
+
+function openImageViewer(src, alt = "Exercise image") {
+    if (!imageViewer || !imageViewerImg) {
+        console.warn("Image viewer HTML is missing (#imageViewer)");
+        return;
+    }
+
+    if (!src || src.endsWith("/") || src.includes("library.html")) {
+        return;
+    }
+
+    imageViewerImg.src = src;
+    imageViewerImg.alt = alt;
+    imageViewer.classList.remove("d-none");
+    document.body.style.overflow = "hidden";
+}
+
+function closeImageViewer() {
+    if (!imageViewer || !imageViewerImg) return;
+
+    imageViewer.classList.add("d-none");
+    imageViewerImg.removeAttribute("src");
+    document.body.style.overflow = "";
+}
+
+document.addEventListener("click", (e) => {
+    const img = e.target.closest(
+        "#exerciseBody img, #exerciseMuscleImage, .exercise-images img"
+    );
+
+    if (!img) return;
+
+    const src = img.currentSrc || img.src;
+    if (!src) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    openImageViewer(src, img.alt || "Exercise image");
+});
+
+if (closeImageViewerBtn) {
+    closeImageViewerBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeImageViewer();
+    });
+}
+
+if (imageViewer) {
+    imageViewer.addEventListener("click", (e) => {
+        if (e.target === imageViewer) {
+            closeImageViewer();
+        }
+    });
+}
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        closeImageViewer();
+    }
+});
+
+
+
 
 function showToast(message, type = "success") {
     const toast = document.getElementById("exerciseToast");

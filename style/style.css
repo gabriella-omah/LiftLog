@@ -1696,3 +1696,253 @@ body.dark-mode .back-btn {
     font-size: 13px;
   }
 }
+/*==========================================================
+   SHARED EXERCISE DETAIL MODAL
+   Used by: library (#exerciseModal) + workout (#exerciseInfoModal)
+==========================================================*/
+
+#exerciseModal .modal-content,
+#exerciseInfoModal .modal-content {
+  border: none;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+#exerciseModal .modal-header,
+#exerciseInfoModal .modal-header {
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+#exerciseModal .modal-title,
+#exerciseInfoModal .modal-title,
+#exerciseTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+#exerciseModal .modal-body,
+#exerciseInfoModal .modal-body {
+  padding: 24px;
+  max-height: min(72vh, 640px);
+  overflow-y: auto;
+}
+
+/* Body map */
+.exercise-modal-image,
+#exerciseMuscleImage {
+  display: block;
+  margin: 0 auto 24px;
+  max-height: 200px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  cursor: zoom-in;
+}
+
+/* Movement images */
+.exercise-images {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.exercise-images img,
+#exerciseBody img {
+  display: block;
+  width: 100%;
+  max-height: 200px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  cursor: zoom-in;
+}
+
+/* Body content */
+#exerciseBody {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+#exerciseBody p {
+  margin: 0 0 10px;
+  color: var(--text-light);
+}
+
+#exerciseBody strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+#exerciseBody hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 22px 0;
+}
+
+#exerciseBody h5 {
+  margin: 26px 0 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: var(--text);
+}
+
+#exerciseBody h5:first-of-type {
+  margin-top: 4px;
+}
+
+#exerciseBody ol,
+#exerciseBody ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-light);
+}
+
+#exerciseBody li {
+  margin-bottom: 10px;
+  line-height: 1.65;
+  padding-left: 4px;
+}
+
+#exerciseBody ol li::marker {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#exerciseBody ul li::marker {
+  color: var(--primary);
+}
+
+#exerciseModal .modal-footer,
+#exerciseInfoModal .modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Image viewer (shared) */
+.image-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.92);
+  padding: 20px;
+}
+
+.image-viewer.d-none {
+  display: none !important;
+}
+
+.image-viewer img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.image-viewer-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3001;
+}
+
+/* Dark mode */
+.dark-mode #exerciseModal .modal-content,
+.dark-mode #exerciseInfoModal .modal-content {
+  background: var(--surface);
+}
+
+.dark-mode .exercise-images img,
+.dark-mode #exerciseBody img {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #exerciseModal .modal-content,
+  #exerciseInfoModal .modal-content {
+    border-radius: 22px;
+    margin: 10px;
+  }
+
+  #exerciseModal .modal-header,
+  #exerciseInfoModal .modal-header {
+    padding: 16px 18px;
+  }
+
+  #exerciseModal .modal-title,
+  #exerciseInfoModal .modal-title,
+  #exerciseTitle {
+    font-size: 18px;
+  }
+
+  #exerciseModal .modal-body,
+  #exerciseInfoModal .modal-body {
+    padding: 18px;
+    max-height: min(74vh, 560px);
+  }
+
+  .exercise-modal-image,
+  #exerciseMuscleImage {
+    max-height: 160px;
+    margin-bottom: 18px;
+  }
+
+  .exercise-images {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .exercise-images img,
+  #exerciseBody img {
+    max-height: 170px;
+    border-radius: 14px;
+  }
+
+  #exerciseBody {
+    font-size: 14.5px;
+  }
+
+  #exerciseBody h5 {
+    margin: 22px 0 10px;
+    padding-top: 16px;
+    font-size: 15px;
+  }
+
+  #exerciseModal .modal-footer,
+  #exerciseInfoModal .modal-footer {
+    padding: 14px 18px;
+  }
+}

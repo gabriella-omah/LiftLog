@@ -1,74 +1,8 @@
 /*==========================================================
    LIFTLOG LIBRARY PAGE CSS
    Premium • Clean • Cohesive
+   (Exercise detail modal styles live in style.css)
 ==========================================================*/
-
-/*==========================================================
-   ROOT VARIABLES
-==========================================================*/
-
-:root {
-  --bg: #F6F8FB;
-  --surface: #FFFFFF;
-  --surface-2: #F7F9FC;
-  --surface-3: #EEF2F8;
-
-  --text: #10131A;
-  --text-light: #5B6475;
-  --text-muted: #9099A8;
-
-  --primary: #5D8CFF;
-  --secondary: #7A5AF8;
-
-  --success: #34C759;
-  --warning: #F5B942;
-  --danger: #EF4444;
-
-  --border: #E8ECF3;
-
-  --glass: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.65);
-
-  --radius-sm: 14px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
-  --radius-xl: 30px;
-
-  --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
-
-  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/*==========================================================
-   DARK MODE
-==========================================================*/
-
-.dark-mode {
-  --bg: #090B10;
-  --surface: #141821;
-  --surface-2: #1B212C;
-  --surface-3: #232B37;
-
-  --text: #F5F7FA;
-  --text-light: #C3CBD8;
-  --text-muted: #8892A3;
-
-  --primary: #79A7FF;
-  --secondary: #9C84FF;
-
-  --success: #2BE59D;
-  --warning: #FFC857;
-  --danger: #FF6B6B;
-
-  --border: #2B3340;
-
-  --glass: rgba(18, 22, 30, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.05);
-}
 
 /*==========================================================
    FILTERS
@@ -251,144 +185,7 @@
 }
 
 /*==========================================================
-   EXERCISE DETAIL MODAL (#exerciseModal)
-==========================================================*/
-
-#exerciseModal .modal-content {
-  border: none;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--surface);
-  color: var(--text);
-  box-shadow: var(--shadow-lg);
-}
-
-#exerciseModal .modal-header {
-  padding: 22px 24px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-
-#exerciseModal .modal-title,
-#exerciseTitle {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.3px;
-  color: var(--text);
-}
-
-#exerciseModal .modal-body {
-  padding: 24px;
-  max-height: min(72vh, 640px);
-  overflow-y: auto;
-}
-
-/* Body map */
-.exercise-modal-image,
-#exerciseMuscleImage {
-  display: block;
-  margin: 0 auto 24px;
-  max-height: 200px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 16px;
-}
-
-/* Movement images */
-.exercise-images {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 22px;
-}
-
-.exercise-images img,
-#exerciseBody img {
-  display: block;
-  width: 100%;
-  max-height: 200px;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-}
-
-/* Body content */
-#exerciseBody {
-  color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-#exerciseBody p {
-  margin: 0 0 10px;
-  color: var(--text-light);
-}
-
-#exerciseBody strong {
-  color: var(--text);
-  font-weight: 700;
-}
-
-#exerciseBody hr {
-  border: none;
-  height: 1px;
-  background: var(--border);
-  margin: 22px 0;
-}
-
-#exerciseBody h5 {
-  margin: 26px 0 12px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: -0.2px;
-  color: var(--text);
-}
-
-#exerciseBody h5:first-of-type {
-  margin-top: 4px;
-}
-
-#exerciseBody ol,
-#exerciseBody ul {
-  margin: 0;
-  padding-left: 20px;
-  color: var(--text-light);
-}
-
-#exerciseBody li {
-  margin-bottom: 10px;
-  line-height: 1.65;
-  padding-left: 4px;
-}
-
-#exerciseBody ol li::marker {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-#exerciseBody ul li::marker {
-  color: var(--primary);
-}
-
-#exerciseModal .modal-footer {
-  padding: 16px 24px;
-  border-top: 1px solid var(--border);
-  background: var(--surface);
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-#exerciseModal .modal-footer .btn,
-#openAddWorkout {
-  margin-top: 0;
-}
-
-/*==========================================================
-   ADD TO WORKOUT MODAL
+   ADD TO WORKOUT MODAL (library only)
 ==========================================================*/
 
 #addWorkoutModal .modal-content {
@@ -410,6 +207,11 @@
 #addWorkoutModal .modal-footer {
   padding: 16px 24px;
   border-top: 1px solid var(--border);
+}
+
+#addWorkoutModal .modal-footer .btn,
+#openAddWorkout {
+  margin-top: 0;
 }
 
 #workoutSelect {
@@ -446,7 +248,7 @@
 }
 
 /*==========================================================
-   DARK MODE
+   DARK MODE (page-specific only)
 ==========================================================*/
 
 .dark-mode .exercise-card {
@@ -487,17 +289,8 @@
   color: #fff;
 }
 
-
-
-.dark-mode #exerciseModal .modal-content,
 .dark-mode #addWorkoutModal .modal-content {
   background: var(--surface);
-}
-
-.dark-mode .exercise-images img,
-.dark-mode #exerciseBody img {
-  background: var(--surface-2);
-  border-color: var(--border);
 }
 
 .dark-mode #workoutSelect {
@@ -567,62 +360,19 @@
     font-size: 14px;
   }
 
-  /* Modal mobile */
-  #exerciseModal .modal-content,
   #addWorkoutModal .modal-content {
     border-radius: 22px;
     margin: 10px;
   }
 
-  #exerciseModal .modal-header,
   #addWorkoutModal .modal-header {
     padding: 16px 18px;
   }
 
-  #exerciseModal .modal-title,
-  #exerciseTitle {
-    font-size: 18px;
-  }
-
-  #exerciseModal .modal-body,
   #addWorkoutModal .modal-body {
     padding: 18px;
-    max-height: min(74vh, 560px);
   }
 
-  .exercise-modal-image,
-  #exerciseMuscleImage {
-    max-height: 160px;
-    margin-bottom: 18px;
-  }
-
-  .exercise-images {
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-
-  .exercise-images img,
-  #exerciseBody img {
-    max-width: 100%;
-    max-height: 170px;
-    border-radius: 14px;
-  }
-
-  #exerciseBody {
-    font-size: 14.5px;
-  }
-
-  #exerciseBody h5 {
-    margin: 22px 0 10px;
-    padding-top: 16px;
-    font-size: 15px;
-  }
-
-  #exerciseBody li {
-    margin-bottom: 8px;
-  }
-
-  #exerciseModal .modal-footer,
   #addWorkoutModal .modal-footer {
     padding: 14px 18px;
   }

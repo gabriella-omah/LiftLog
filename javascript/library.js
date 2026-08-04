@@ -118,50 +118,7 @@ let selectedWorkout = null;
 // DISPLAY EXERCISES
 // ========================================
 
-function displayExercises(list) {
-    if (!library) return;
 
-    if (!Array.isArray(list) || list.length === 0) {
-        library.innerHTML = `
-            <div class="text-center py-4 text-muted">
-                No exercises found.
-            </div>
-        `;
-        return;
-    }
-
-    library.innerHTML = "";
-
-    list.forEach(exercise => {
-        library.innerHTML += `
-            <section class="exercise-card">
-                <div class="card-body">
-                    <div class="exercise-info">
-                        <h4>${exercise.name}</h4>
-                        <p class="muscle-badge ${String(exercise.muscle || "")
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}">
-                            ${exercise.muscle || ""}
-                        </p>
-                        <small>
-                            ${exercise.equipment || ""}
-                            •
-                            ${exercise.type || ""}
-                            •
-                            ${exercise.difficulty || ""}
-                        </small>
-                        <button
-                            class="btn btn-success mt-3 w-100 viewExerciseBtn"
-                            type="button"
-                            data-id="${exercise.id}">
-                            View Exercise
-                        </button>
-                    </div>
-                </div>
-            </section>
-        `;
-    });
-}
 
 // ========================================
 // MAIN FILTERS
@@ -540,6 +497,7 @@ if (addExerciseBtn) {
         );
     });
 }
+
 
 // ========================================
 // INIT

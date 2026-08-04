@@ -322,7 +322,7 @@
 }
 
 /*==========================================================
-   EXERCISES
+   EXERCISES LIST
 ==========================================================*/
 
 .exercises-section #workoutExercises {
@@ -397,7 +397,7 @@
   border: 2px solid var(--border);
   background-color: var(--surface);
   cursor: pointer;
-  transition: all ease .03;
+  transition: all ease 0.03s;
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -539,34 +539,7 @@
 }
 
 /*==========================================================
-   ADD EXERCISE BUTTON
-==========================================================*/
-
-#openAddWorkout {
-  width: 100%;
-  height: 54px;
-  border: none;
-  border-radius: 18px;
-  background: var(--primary-gradient);
-  color: #fff;
-  font-size: 15px;
-  font-weight: 700;
-  transition: var(--transition);
-  box-shadow: 0 8px 20px rgba(93, 140, 255, 0.2);
-  cursor: pointer;
-}
-
-#openAddWorkout:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(93, 140, 255, 0.26);
-}
-
-#openAddWorkout:active {
-  transform: scale(0.98);
-}
-
-/*==========================================================
-   EXERCISE PICKER MODAL
+   ADD EXERCISE PICKER MODAL (search list only)
 ==========================================================*/
 
 #exerciseModal .modal-body {
@@ -662,91 +635,6 @@
 
 .dark-mode #exerciseModal #exerciseResults small {
   color: var(--text-light) !important;
-}
-
-/*==========================================================
-   EXERCISE INFO — body map (no border, centered)
-==========================================================*/
-
-#exerciseInfoModal .exercise-body-map,
-#exerciseInfoContent .exercise-body-map {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 8px 0 24px;
-  padding: 0 8px;
-}
-
-#exerciseInfoModal .exercise-modal-image,
-#exerciseInfoContent .exercise-modal-image {
-  display: block;
-  margin: 0 auto;
-  max-height: 220px;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-  border: none !important;
-  border-radius: 16px;
-  background: transparent;
-  box-shadow: none;
-  padding: 0;
-}
-
-#exerciseInfoModal .body-map-label,
-#exerciseInfoContent .body-map-label {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-/* Kill any leftover Bootstrap border on modal images */
-#exerciseInfoModal img.border,
-#exerciseInfoContent img.border,
-#exerciseInfoBody img.border {
-  border: none !important;
-}
-
-/*==========================================================
-   EXERCISE INFO — movement row (.imagedouble)
-==========================================================*/
-
-#exerciseInfoModal .imagedouble,
-#exerciseInfoContent .imagedouble {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  /* side padding so images never touch modal edges */
-  margin: 0 0 22px;
-  padding: 0 12px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#exerciseInfoModal .imagedouble img,
-#exerciseInfoContent .imagedouble img {
-  display: block;
-  flex: 1 1 0;
-  min-width: 0;
-  max-width: min(46%, 240px);
-  max-height: 200px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border: none !important;
-  border-radius: 16px;
-}
-
-#exerciseInfoModal .imagedouble .bi-arrow-right,
-#exerciseInfoContent .imagedouble .bi-arrow-right {
-  flex-shrink: 0;
-  color: var(--primary);
-  font-size: 1.5rem;
 }
 
 /*==========================================================
@@ -1145,12 +1033,6 @@
     font-size: 14.5px;
   }
 
-  #openAddWorkout {
-    height: 50px;
-    border-radius: 16px;
-    font-size: 14.5px;
-  }
-
   #exerciseModal .modal-body {
     padding: 18px;
   }
@@ -1171,77 +1053,6 @@
 
   #exerciseModal #exerciseResults h5 {
     font-size: 15px !important;
-  }
-
-  /* Info modal mobile — same as library */
-  #exerciseInfoModal .modal-content {
-    border-radius: 22px;
-    margin: 10px;
-  }
-
-  #exerciseInfoModal .modal-header {
-    padding: 16px 18px;
-  }
-
-  #exerciseInfoModal .modal-title,
-  #exerciseInfoTitle {
-    font-size: 18px;
-  }
-
-  #exerciseInfoModal .modal-body,
-  #exerciseInfoBody,
-  #exerciseInfoContent {
-    padding: 18px;
-    max-height: min(74vh, 560px);
-    font-size: 14.5px;
-  }
-
-  #exerciseInfoModal .exercise-modal-image,
-  #exerciseInfoModal #exerciseMuscleImage {
-    max-height: 160px;
-    margin-bottom: 18px;
-  }
-
-  #exerciseInfoModal .exercise-images {
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-
-  #exerciseInfoModal .exercise-images img,
-  #exerciseInfoContent .d-flex img,
-  #exerciseInfoBody .d-flex img {
-    max-width: 100%;
-    max-height: 170px;
-    border-radius: 14px;
-    
-  }
-
-  #exerciseInfoContent .d-flex {
-    flex-direction: column;
-    gap: 12px !important;
-  }
-
-  #exerciseInfoModal h3,
-  #exerciseInfoContent h3 {
-    font-size: 19px;
-  }
-
-  #exerciseInfoModal h5,
-  #exerciseInfoBody h5,
-  #exerciseInfoContent h5 {
-    margin: 22px 0 10px;
-    padding-top: 16px;
-    font-size: 15px;
-  }
-
-  #exerciseInfoModal li,
-  #exerciseInfoBody li,
-  #exerciseInfoContent li {
-    margin-bottom: 8px;
-  }
-
-  #exerciseInfoModal .modal-footer {
-    padding: 14px 18px;
   }
 
   .workout-summary .section-header {

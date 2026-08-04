@@ -773,8 +773,8 @@ const exerciseLibrary = [
         type: "Compound",
 
         images:[
-        "images/overheadpress11.jpg",
-        "images/ovearheadpress.jpg"
+        "images/overheadpress1.jpg",
+        "images/ovearheadpress2.jpg"
         ],
         bodyMap: "image/shoulder.png",
         

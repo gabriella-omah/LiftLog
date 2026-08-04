@@ -959,37 +959,58 @@ Save Changes
     </div>
 
 </div>
-<div class="modal fade" id="exerciseInfoModal">
+<!-- =========================
+     EXERCISE DETAILS MODAL
+     (same structure as library)
+========================= -->
 
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="exerciseInfoModal" tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
 
         <div class="modal-content">
 
             <div class="modal-header">
 
-                <h5 class="modal-title"
-                id="exerciseTitle">
-                
-                </h5>
+                <h5 class="modal-title" id="exerciseTitle"></h5>
 
-                <button 
+                <button
+                    type="button"
                     class="btn-close"
                     data-bs-dismiss="modal">
                 </button>
 
             </div>
 
+            <div class="modal-body">
 
-            <div class="modal-body" id="exerciseInfoContent">
+                <div class="exercise-modal-image">
+                    <img
+                        id="exerciseMuscleImage"
+                        src=""
+                        alt="Target Muscle">
+                </div>
+
+                <div id="exerciseBody"></div>
 
             </div>
-
 
         </div>
 
     </div>
 
 </div>
+
+
+<!-- Image Viewer -->
+<div id="imageViewer" class="image-viewer d-none">
+    <button type="button" id="closeImageViewer" class="image-viewer-close" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+    </button>
+    <img id="imageViewerImg" src="" alt="Exercise image">
+</div>
+
+
 <!-- =========================
      SCRIPTS
 ========================= -->

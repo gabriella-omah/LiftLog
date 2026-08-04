@@ -60,100 +60,103 @@ function getWorkoutDaysAgo(workout) {
 ========================================================= */
 
 function openExerciseInfo(exerciseId) {
-    const exercise = exerciseLibrary.find(e => e.id === Number(exerciseId));
+    const id = Number(exerciseId);
+
+    // Prefer full library data, fall back to workout exercise
+    let exercise =
+        (typeof exerciseLibrary !== "undefined"
+            ? exerciseLibrary.find(e => e.id === id)
+            : null) || null;
+
+    if (!exercise) {
+        const workout = workouts.find(w => w.id === workoutId);
+        exercise = workout?.exercises?.find(e => e.id === id) || null;
+    }
+
     if (!exercise) {
         showToast("Exercise not found.", "error");
         return;
     }
 
-    const modalBody =
-        document.getElementById("exerciseInfoContent") ||
-        document.getElementById("exerciseInfoBody");
+    // Title
+    const titleEl = document.getElementById("exerciseTitle");
+    if (titleEl) {
+        titleEl.textContent = exercise.name || "";
+    }
 
-        const titleEl = document.getElementById("exerciseTitle");
-if (titleEl) titleEl.textContent = exercise.name;
+    // Body map
+    const bodyWrap = document.querySelector(
+        "#exerciseInfoModal .exercise-modal-image"
+    );
+    const bodyImage = document.getElementById("exerciseMuscleImage");
 
-    if (!modalBody) return;
-
-    modalBody.innerHTML = `
-
-
-        ${
-            exercise.bodyMap
-                ? `
-                <div class="exercise-body-map text-center mb-4">
-                    <img
-                        src="${exercise.bodyMap}"
-                        alt="${exercise.muscle || "Body map"}"
-                        class="exercise-modal-image"
-                    >
-                </div>
-                `
-                : ""
+    if (bodyImage) {
+        if (exercise.bodyMap) {
+            bodyImage.src = exercise.bodyMap;
+            bodyImage.alt = exercise.muscle || exercise.name || "Target muscle";
+            bodyImage.style.display = "block";
+            if (bodyWrap) bodyWrap.style.display = "block";
+        } else {
+            bodyImage.removeAttribute("src");
+            bodyImage.style.display = "none";
+            if (bodyWrap) bodyWrap.style.display = "none";
         }
+    }
 
-        <div class="row mb-3 exercise-meta-row">
-            <div class="col-md-4">
-                <strong>Muscle</strong><br>
-                ${exercise.muscle || "—"}
-            </div>
-            <div class="col-md-4">
-                <strong>Type</strong><br>
-                ${exercise.type || "—"}
-            </div>
-            <div class="col-md-4">
-                <strong>Difficulty</strong><br>
-                ${exercise.difficulty || "—"}
-            </div>
-        </div>
+    // Detail body
+    const bodyEl = document.getElementById("exerciseBody");
+    if (bodyEl) {
+        const images = Array.isArray(exercise.images) ? exercise.images : [];
 
-        <div class="row mb-3">
-            <div class="col-12">
-                <strong>Equipment</strong><br>
-                ${exercise.equipment || "—"}
-            </div>
-        </div>
+        bodyEl.innerHTML = `
+            <hr>
+            <p><strong>Muscle:</strong> ${exercise.muscle || "—"}</p>
+            <p><strong>Equipment:</strong> ${exercise.equipment || "—"}</p>
+            <p><strong>Difficulty:</strong> ${exercise.difficulty || "—"}</p>
+            <p><strong>Type:</strong> ${exercise.type || "—"}</p>
+            <hr>
 
-        ${
-            exercise.images?.length
-                ? `
-                <hr>
-                <h5>Exercise Movement</h5>
-                <div class="imagedouble">
-                    <img src="${exercise.images[0]}" alt="${exercise.name} start">
-                    ${
-                        exercise.images.length > 1
-                            ? `<i class="bi bi-arrow-right"></i>`
-                            : ""
-                    }
-                    ${
-                        exercise.images[1]
-                            ? `<img src="${exercise.images[1]}" alt="${exercise.name} end">`
-                            : ""
-                    }
+            ${
+                images.length
+                    ? `
+                <div class="exercise-images mb-3">
+                    ${images
+                        .map(
+                            image => `
+                        <img
+                            src="${image}"
+                            class="img-fluid rounded mb-2"
+                            alt="${exercise.name || "Exercise"}">
+                    `
+                        )
+                        .join("")}
                 </div>
-                `
-                : ""
-        }
+              `
+                    : ""
+            }
 
-        <hr>
-        <h5>How to Perform</h5>
-        <ol>
-            ${(exercise.instructions || []).map(step => `<li>${step}</li>`).join("")}
-        </ol>
+            <h5>How to Perform</h5>
+            <ol>
+                ${(exercise.instructions || [])
+                    .map(step => `<li>${step}</li>`)
+                    .join("")}
+            </ol>
 
-        <hr>
-        <h5>Tips</h5>
-        <ul>
-            ${(exercise.tips || []).map(tip => `<li>${tip}</li>`).join("")}
-        </ul>
+            <h5>Tips</h5>
+            <ul>
+                ${(exercise.tips || [])
+                    .map(tip => `<li>${tip}</li>`)
+                    .join("")}
+            </ul>
 
-        <hr>
-        <h5>Common Mistakes</h5>
-        <ul>
-            ${(exercise.mistakes || []).map(item => `<li>${item}</li>`).join("")}
-        </ul>
-    `;
+            <h5>Common Mistakes</h5>
+            <ul>
+                ${(exercise.mistakes || [])
+                    .map(mistake => `<li>${mistake}</li>`)
+                    .join("")}
+            </ul>
+        `;
+    }
 
     const modalEl = document.getElementById("exerciseInfoModal");
     if (modalEl) {
