@@ -575,16 +575,19 @@ if(confirmDeleteAccount){
     confirmDeleteAccount.addEventListener("click",()=>{
 
         localStorage.clear();
-
         sessionStorage.clear();
 
-        showToast("Account deleted successfully!", "success");
+        const modalEl = document.getElementById("deleteAccountModal");
+        const modal = bootstrap.Modal.getInstance(modalEl);
+
+        if(modal){
+            modal.hide();
+        }
+
+        showToast("Your account has been deleted.", "warning");
 
         setTimeout(()=>{
-
-            window.location.href =
-                "home.html";
-
+            window.location.href = "home.html";
         },1200);
 
     });
