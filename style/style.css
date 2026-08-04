@@ -1,6 +1,6 @@
 /* ==========================================================
    LIFTLOG PREMIUM GLOBAL CSS
-   Clean • Expensive • Cohesive
+   Clean • Expensive • Cohesive • Smooth
 ========================================================== */
 
 /* ==========================================================
@@ -94,8 +94,12 @@ html {
   --space-9: 90px;
   --space-10: 100px;
 
-  /* Motion */
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Motion — intentional, soft */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   --liftx: translateX(-3px);
   --lifty: translateY(-3px);
 }
@@ -142,7 +146,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft);
   padding-top: 82px;
 }
 
@@ -190,13 +194,12 @@ ul {
   list-style: none;
 }
 
+/* Color / border transitions only — avoid animating transform on every element */
 * {
   transition:
-    background-color 0.3s,
-    color 0.3s,
-    border-color 0.3s,
-    box-shadow 0.3s,
-    transform 0.3s;
+    background-color 0.28s var(--ease-soft),
+    color 0.28s var(--ease-soft),
+    border-color 0.28s var(--ease-soft);
 }
 
 /* ==========================================================
@@ -272,6 +275,7 @@ main {
   -webkit-backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--border);
   z-index: 1000;
+  transition: background-color 0.3s var(--ease-soft), border-color 0.3s var(--ease-soft);
 }
 
 .nav-left,
@@ -286,15 +290,21 @@ main {
   gap: 12px;
   font-size: 1.4rem;
   font-weight: 700;
+  transition: transform 0.25s var(--ease-out);
 }
 
 .logo i {
   font-size: 1.8rem;
   color: var(--primary);
+  transition: transform 0.3s var(--ease-out);
 }
 
 .logo:hover {
   transform: translateY(-2px);
+}
+
+.logo:hover i {
+  transform: scale(1.06);
 }
 
 .avatar-btn {
@@ -316,16 +326,41 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition:
+    transform 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-soft);
 }
 
 .avatar:hover {
   transform: scale(1.06);
-  box-shadow: 0 20px 40px rgba(93, 140, 255, 0.45);
+  box-shadow: 0 18px 36px rgba(93, 140, 255, 0.42);
+}
+
+.avatar:active {
+  transform: scale(0.96);
 }
 
 /* ==========================================================
    BUTTONS
 ========================================================== */
+
+.btn,
+button.btn,
+.primary-btn,
+.secondary-btn,
+.finish-btn,
+.premium-primary-btn,
+.danger-button,
+.control-btn,
+.floating-button {
+  transition:
+    transform 0.18s var(--ease-out),
+    box-shadow 0.25s var(--ease-soft),
+    background 0.25s var(--ease-soft),
+    color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease;
+}
 
 .btn {
   display: inline-flex;
@@ -338,25 +373,24 @@ main {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
 }
 
 .btn:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .btn:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 .btn-primary {
   background: var(--primary-gradient);
   color: #fff;
-  box-shadow: 0 16px 35px rgba(93, 140, 255, 0.35);
+  box-shadow: 0 10px 24px rgba(93, 140, 255, 0.18);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 25px 50px rgba(93, 140, 255, 0.45);
+  box-shadow: 0 16px 36px rgba(93, 140, 255, 0.28);
 }
 
 .btn-secondary {
@@ -441,95 +475,86 @@ main {
   color: var(--danger);
 }
 
-/* ---------- SUCCESS ---------- */
-
 /* ===========================
-   SUCCESS TOAST
+   SUCCESS / WARNING / ERROR TOASTS
 =========================== */
 
-.toast-success{
-    background:#D1FAE5 !important;
-    color:#065F46 !important;
-    border-left:5px solid #10B981;
+.toast-success {
+  background: #D1FAE5 !important;
+  color: #065F46 !important;
+  border-left: 5px solid #10B981;
 }
 
-/* ===========================
-   WARNING TOAST
-=========================== */
-
-.toast-warning{
-    background:#FEF3C7 !important;
-    color:#78350F !important;
-    border-left:5px solid #D97706;
+.toast-warning {
+  background: #FEF3C7 !important;
+  color: #78350F !important;
+  border-left: 5px solid #D97706;
 }
 
-/* ===========================
-   ERROR TOAST
-=========================== */
-
-.toast-error{
-    background:#FEE2E2 !important;
-    color:#7F1D1D !important;
-    border-left:5px solid #DC2626;
+.toast-error {
+  background: #FEE2E2 !important;
+  color: #7F1D1D !important;
+  border-left: 5px solid #DC2626;
 }
-
-/* Toast body */
 
 .toast-success .toast-body,
 .toast-warning .toast-body,
-.toast-error .toast-body{
-    color:inherit !important;
+.toast-error .toast-body {
+  color: inherit !important;
 }
-
-/* Toast header */
 
 .toast-success .toast-header,
 .toast-warning .toast-header,
-.toast-error .toast-header{
-    background:transparent !important;
-    color:inherit !important;
-    border:none;
+.toast-error .toast-header {
+  background: transparent !important;
+  color: inherit !important;
+  border: none;
 }
-
-/* Close button */
 
 .toast-success .btn-close,
 .toast-warning .btn-close,
-.toast-error .btn-close{
-    filter:none;
+.toast-error .btn-close {
+  filter: none;
 }
 
-.toast-container{
-    z-index:9999;
+.toast-container {
+  z-index: 9999;
 }
 
-#exerciseToast{
-    min-width:320px;
-    max-width:420px;
-
-    border:none;
-    border-radius:14px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-
-    overflow:hidden;
+#exerciseToast {
+  min-width: 320px;
+  max-width: 420px;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: toastIn 0.35s var(--ease-out) both;
 }
 
-#exerciseToast .toast-body{
-    padding:16px 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    gap:12px;
-
-    font-weight:500;
+#exerciseToast .toast-body {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 500;
 }
 
-#exerciseToast .btn-close{
-    flex-shrink:0;
+#exerciseToast .btn-close {
+  flex-shrink: 0;
 }
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* ==========================================================
    FLOATING BOTTOM NAV
 ========================================================== */
@@ -562,16 +587,19 @@ main {
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 500;
-  transition: var(--transition);
+  transition:
+    color 0.22s var(--ease-soft),
+    transform 0.22s var(--ease-out);
 }
 
 .bottom-nav a i {
   font-size: 22px;
+  transition: transform 0.25s var(--ease-out);
 }
 
 .bottom-nav a:hover {
   color: var(--primary);
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
 .bottom-nav a.active {
@@ -579,7 +607,11 @@ main {
 }
 
 .bottom-nav a.active i {
-  transform: scale(1.15);
+  transform: scale(1.12);
+}
+
+.bottom-nav a:active {
+  transform: scale(0.94);
 }
 
 /* ==========================================================
@@ -599,7 +631,10 @@ select,
   border: 1px solid var(--border);
   color: var(--text);
   font-size: 15px;
-  transition: var(--transition);
+  transition:
+    border-color 0.22s var(--ease-soft),
+    background 0.22s var(--ease-soft),
+    box-shadow 0.22s var(--ease-soft);
 }
 
 textarea,
@@ -653,13 +688,13 @@ hr {
 }
 
 /* ==========================================================
-   ANIMATIONS
+   ANIMATIONS — luxury, subtle, intentional
 ========================================================== */
 
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -667,18 +702,129 @@ hr {
   }
 }
 
-.fade-up {
-  animation: fadeUp 0.45s ease both;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.05); }
-  100% { transform: scale(1); }
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes softPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+
+.fade-up {
+  animation: fadeUp 0.4s var(--ease-out) both;
+}
+
+.fade-in {
+  animation: fadeIn 0.35s var(--ease-soft) both;
+}
+
+.scale-in {
+  animation: scaleIn 0.35s var(--ease-out) both;
 }
 
 .pulse {
-  animation: pulse 2s infinite;
+  animation: softPulse 2.4s ease-in-out infinite;
+}
+
+/* Card / list entrance — use on workout, exercise, stat cards */
+.exercise-card,
+.workout-card,
+.stat-card,
+.action-card,
+.dashboard-card,
+.history-card,
+.pr-item,
+.achievement-row,
+.planner-item {
+  animation: fadeUp 0.38s var(--ease-out) both;
+}
+
+/* Staggered feel when siblings appear together */
+.exercise-card:nth-child(1),
+.workout-card:nth-child(1),
+.stat-card:nth-child(1),
+.action-card:nth-child(1) { animation-delay: 0.02s; }
+
+.exercise-card:nth-child(2),
+.workout-card:nth-child(2),
+.stat-card:nth-child(2),
+.action-card:nth-child(2) { animation-delay: 0.06s; }
+
+.exercise-card:nth-child(3),
+.workout-card:nth-child(3),
+.stat-card:nth-child(3),
+.action-card:nth-child(3) { animation-delay: 0.10s; }
+
+.exercise-card:nth-child(4),
+.workout-card:nth-child(4),
+.stat-card:nth-child(4),
+.action-card:nth-child(4) { animation-delay: 0.14s; }
+
+.exercise-card:nth-child(5),
+.workout-card:nth-child(5),
+.stat-card:nth-child(5),
+.action-card:nth-child(5) { animation-delay: 0.18s; }
+
+.exercise-card:nth-child(n + 6),
+.workout-card:nth-child(n + 6),
+.stat-card:nth-child(n + 6),
+.action-card:nth-child(n + 6) { animation-delay: 0.22s; }
+
+/* Hover lift — desktop feel */
+.exercise-card,
+.workout-card,
+.stat-card,
+.action-card,
+.dashboard-card {
+  transition:
+    transform 0.28s var(--ease-out),
+    box-shadow 0.28s var(--ease-soft),
+    border-color 0.25s var(--ease-soft),
+    background-color 0.25s var(--ease-soft);
+}
+
+.exercise-card:hover,
+.workout-card:hover,
+.stat-card:hover,
+.action-card:hover {
+  transform: translateY(-3px);
+}
+
+.exercise-card:active,
+.workout-card:active,
+.action-card:active {
+  transform: scale(0.985);
+}
+
+/* Progress bar — smooth fill */
+.progress-bar,
+.progress .progress-bar,
+#progressBar {
+  transition: width 0.55s var(--ease-out) !important;
+}
+
+/* Modal content soft settle (works with Bootstrap fade) */
+.modal.fade .modal-dialog {
+  transition:
+    transform 0.32s var(--ease-out),
+    opacity 0.28s var(--ease-soft);
+}
+
+.modal.show .modal-dialog {
+  transform: none;
 }
 
 /* ==========================================================
@@ -693,7 +839,6 @@ hr {
   padding: 20px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: var(--transition);
 }
 
 .dashboard-card:hover {
@@ -714,6 +859,7 @@ hr {
     rgba(255, 255, 255, 0.55),
     transparent
   );
+  pointer-events: none;
 }
 
 .dark-mode .dashboard-card::before {
@@ -741,6 +887,7 @@ hr {
     var(--surface);
   border-radius: 28px;
   overflow: hidden;
+  animation: fadeUp 0.45s var(--ease-out) both;
 }
 
 .hero-section::after {
@@ -827,7 +974,7 @@ hr {
   );
   color: var(--primary);
   font-size: 20px;
-  transition: 0.3s ease;
+  transition: transform 0.28s var(--ease-out), box-shadow 0.28s var(--ease-soft);
   box-shadow: 0 10px 24px rgba(93, 140, 255, 0.18);
 }
 
@@ -990,7 +1137,7 @@ hr {
 
 .btn-close {
   opacity: 0.55;
-  transition: 0.25s ease;
+  transition: opacity 0.22s ease, transform 0.28s var(--ease-out);
 }
 
 .btn-close:hover {
@@ -1008,7 +1155,6 @@ hr {
 .exercise-modal-image img {
   object-fit: contain;
 }
-
 
 /* ==========================================================
    DARK MODE OVERRIDES
@@ -1303,7 +1449,9 @@ hr {
   background: rgba(255, 255, 255, 0.08);
   color: var(--text);
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition:
+    background 0.22s var(--ease-soft),
+    transform 0.22s var(--ease-out);
 }
 
 .back-btn i {
@@ -1324,265 +1472,8 @@ body.dark-mode .back-btn {
 }
 
 /* ==========================================================
-   MOBILE – balanced breathing room
-   (max-width: 768px)
-========================================================== */
-
-/* ==========================================================
-   MOBILE – more padding & gap in dashboards / sections
-========================================================== */
-
-@media (max-width: 768px) {
-
-  /* Navbar */
-  .navbar {
-    height: 68px;
-    padding: 0 18px;
-  }
-
-  body {
-    padding-top: 68px;
-  }
-
-  .logo {
-    font-size: 1.25rem;
-    gap: 10px;
-  }
-
-  .logo i {
-    font-size: 1.55rem;
-  }
-
-  .avatar {
-    width: 42px;
-    height: 42px;
-    font-size: 0.92rem;
-  }
-
-  /* ---------- MAIN LAYOUT (more gap + padding) ---------- */
-  .main-content {
-    gap: 28px;                 /* was 18–22 */
-    padding: 22px 18px 124px;  /* more side + top padding */
-  }
-
-  section {
-    padding: 36px 0;           /* more section breathing room */
-  }
-
-  .container {
-    padding-inline: 18px;
-  }
-
-  /* ---------- HERO / DASHBOARD SECTIONS ---------- */
-  .hero-section {
-    padding: 26px 20px;        /* more inner padding */
-    border-radius: 24px;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(24px, 7vw, 32px);
-    letter-spacing: -1.2px;
-    margin-bottom: 12px;
-  }
-
-  .hero-content p {
-    font-size: 15px;
-    max-width: 100%;
-    line-height: 1.65;
-  }
-
-  .hero-content .badge {
-    margin-bottom: 16px;
-    padding: 7px 13px;
-    font-size: 12px;
-  }
-
-  /* ---------- SECTION HEADERS ---------- */
-  .section-header {
-    margin-bottom: 22px;       /* more space before content */
-  }
-
-  .section-title {
-    gap: 12px;
-  }
-
-  .section-title h2 {
-    font-size: 18px;
-  }
-
-  .section-title p {
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .icon-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 13px;
-    font-size: 18px;
-  }
-
-  /* ---------- DASHBOARD CARDS (more padding) ---------- */
-  .dashboard-card {
-    padding: 22px 20px;        /* was 16–18 */
-    border-radius: 24px;
-  }
-
-  /* ---------- SEARCH ---------- */
-  .search-card {
-    margin-bottom: 20px;
-  }
-
-  .search-box input {
-    height: 52px;
-    padding: 0 18px 0 50px;
-    border-radius: 16px;
-    font-size: 15px;
-  }
-
-  .search-box i {
-    left: 17px;
-    font-size: 17px;
-  }
-
-  /* ---------- BUTTONS ---------- */
-  .btn {
-    padding: 13px 22px;
-    font-size: 14.5px;
-    border-radius: 16px;
-  }
-
-  /* ---------- BOTTOM NAV ---------- */
-  .bottom-nav {
-    height: 68px;
-    bottom: 14px;
-    border-radius: 22px;
-    width: min(94%, 480px);
-  }
-
-  .bottom-nav a {
-    font-size: 11.5px;
-    gap: 4px;
-  }
-
-  .bottom-nav a i {
-    font-size: 21px;
-  }
-
-  /* ---------- FORMS ---------- */
-  input,
-  textarea,
-  select,
-  .form-control,
-  .form-select {
-    height: 50px;
-    padding: 13px 15px;
-    border-radius: 14px;
-    font-size: 15px;
-  }
-
-  textarea,
-  textarea.form-control {
-    min-height: 110px;
-  }
-
-  label {
-    margin: 16px 0 8px;
-    font-size: 13.5px;
-  }
-
-  /* ---------- MODALS ---------- */
-  .modal-content,
-  .premium-modal {
-    border-radius: 24px;
-    margin: 12px;
-  }
-
-  .modal-header {
-    padding: 18px 20px;
-  }
-
-  .modal-title {
-    font-size: 18px;
-  }
-
-  .modal-body {
-    padding: 20px;
-  }
-
-  .modal-footer {
-    padding: 16px 20px;
-    gap: 12px;
-  }
-
-  .modal .btn-secondary,
-  .modal .premium-primary-btn,
-  .modal .danger-button {
-    height: 48px;
-    min-width: 104px;
-    padding: 0 18px;
-    border-radius: 14px;
-  }
-
-  /* ---------- BADGES ---------- */
-  .badge {
-    padding: 7px 12px;
-    font-size: 12px;
-  }
-
-  .workout-category,
-  .muscle-badge {
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  /* ---------- TYPOGRAPHY ---------- */
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.4rem; }
-  h3 { font-size: 1.2rem; }
-  h4 { font-size: 1.08rem; }
-
-  p {
-    line-height: 1.65;
-  }
-}
-
-/* Extra small — still keep card/section room */
-@media (max-width: 400px) {
-  .main-content {
-    padding: 18px 14px 118px;
-    gap: 24px;
-  }
-
-  .hero-section {
-    padding: 22px 16px;
-  }
-
-  .dashboard-card {
-    padding: 18px 16px;
-  }
-
-  .section-header {
-    margin-bottom: 18px;
-  }
-
-  .section-title h2 {
-    font-size: 17px;
-  }
-
-  .navbar {
-    height: 64px;
-    padding: 0 14px;
-  }
-
-  body {
-    padding-top: 64px;
-  }
-}
-
-/*==========================================================
    WORKOUT BANNER — warning yellow
-==========================================================*/
+========================================================== */
 
 .workout-banner {
   position: fixed;
@@ -1608,9 +1499,10 @@ body.dark-mode .back-btn {
     0 20px 48px rgba(0, 0, 0, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.45);
   backdrop-filter: blur(12px);
+  animation: toastIn 0.4s var(--ease-out) both;
   transition:
     opacity 0.3s ease,
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.35s var(--ease-out);
 }
 
 .workout-banner.hidden {
@@ -1652,9 +1544,9 @@ body.dark-mode .back-btn {
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    background 0.25s ease;
+    transform 0.22s var(--ease-out),
+    box-shadow 0.22s var(--ease-soft),
+    background 0.22s var(--ease-soft);
 }
 
 .workout-banner button:hover {
@@ -1664,41 +1556,11 @@ body.dark-mode .back-btn {
 }
 
 .workout-banner button:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
-/*==========================================================
-   MOBILE
-==========================================================*/
-
-@media (max-width: 640px) {
-  .workout-banner {
-    top: 64px;
-    width: min(440px, 94%);
-    padding: 12px 14px;
-    gap: 12px;
-    border-radius: 16px;
-    font-size: 13.5px;
-  }
-
-  .workout-banner i,
-  .workout-banner .banner-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    font-size: 16px;
-  }
-
-  .workout-banner button {
-    height: 36px;
-    padding: 0 14px;
-    border-radius: 10px;
-    font-size: 13px;
-  }
-}
 /*==========================================================
    SHARED EXERCISE DETAIL MODAL
-   Used by: library (#exerciseModal) + workout (#exerciseInfoModal)
 ==========================================================*/
 
 #exerciseModal .modal-content,
@@ -1735,7 +1597,6 @@ body.dark-mode .back-btn {
   overflow-y: auto;
 }
 
-/* Body map */
 .exercise-modal-image,
 #exerciseMuscleImage {
   display: block;
@@ -1748,7 +1609,6 @@ body.dark-mode .back-btn {
   cursor: zoom-in;
 }
 
-/* Movement images */
 .exercise-images {
   display: flex;
   gap: 12px;
@@ -1766,7 +1626,6 @@ body.dark-mode .back-btn {
   cursor: zoom-in;
 }
 
-/* Body content */
 #exerciseBody {
   color: var(--text-muted);
   font-size: 15px;
@@ -1836,7 +1695,6 @@ body.dark-mode .back-btn {
   flex-wrap: wrap;
 }
 
-/* Image viewer (shared) */
 .image-viewer {
   position: fixed;
   inset: 0;
@@ -1846,6 +1704,7 @@ body.dark-mode .back-btn {
   justify-content: center;
   background: rgba(0, 0, 0, 0.92);
   padding: 20px;
+  animation: fadeIn 0.25s var(--ease-soft) both;
 }
 
 .image-viewer.d-none {
@@ -1857,6 +1716,7 @@ body.dark-mode .back-btn {
   max-height: 90vh;
   object-fit: contain;
   border-radius: 12px;
+  animation: scaleIn 0.3s var(--ease-out) both;
 }
 
 .image-viewer-close {
@@ -1875,9 +1735,14 @@ body.dark-mode .back-btn {
   justify-content: center;
   cursor: pointer;
   z-index: 3001;
+  transition: transform 0.2s var(--ease-out), background 0.2s ease;
 }
 
-/* Dark mode */
+.image-viewer-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: scale(1.05);
+}
+
 .dark-mode #exerciseModal .modal-content,
 .dark-mode #exerciseInfoModal .modal-content {
   background: var(--surface);
@@ -1889,8 +1754,272 @@ body.dark-mode .back-btn {
   border-color: var(--border);
 }
 
-/* Mobile */
+/* ==========================================================
+   REDUCED MOTION — accessibility
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .exercise-card,
+  .workout-card,
+  .stat-card,
+  .action-card,
+  .dashboard-card,
+  .history-card,
+  .pr-item,
+  .achievement-row,
+  .planner-item,
+  .hero-section,
+  .fade-up,
+  .fade-in,
+  .scale-in,
+  #exerciseToast,
+  .workout-banner {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================
+   MOBILE – balanced breathing room
+========================================================== */
+
 @media (max-width: 768px) {
+
+  .navbar {
+    height: 68px;
+    padding: 0 18px;
+  }
+
+  body {
+    padding-top: 68px;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    gap: 10px;
+  }
+
+  .logo i {
+    font-size: 1.55rem;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 0.92rem;
+  }
+
+  .main-content {
+    gap: 28px;
+    padding: 22px 18px 124px;
+  }
+
+  section {
+    padding: 36px 0;
+  }
+
+  .container {
+    padding-inline: 18px;
+  }
+
+  .hero-section {
+    padding: 26px 20px;
+    border-radius: 24px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(24px, 7vw, 32px);
+    letter-spacing: -1.2px;
+    margin-bottom: 12px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+    max-width: 100%;
+    line-height: 1.65;
+  }
+
+  .hero-content .badge {
+    margin-bottom: 16px;
+    padding: 7px 13px;
+    font-size: 12px;
+  }
+
+  .section-header {
+    margin-bottom: 22px;
+  }
+
+  .section-title {
+    gap: 12px;
+  }
+
+  .section-title h2 {
+    font-size: 18px;
+  }
+
+  .section-title p {
+    font-size: 13px;
+    margin-top: 4px;
+  }
+
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: 18px;
+  }
+
+  .dashboard-card {
+    padding: 22px 20px;
+    border-radius: 24px;
+  }
+
+  .search-card {
+    margin-bottom: 20px;
+  }
+
+  .search-box input {
+    height: 52px;
+    padding: 0 18px 0 50px;
+    border-radius: 16px;
+    font-size: 15px;
+  }
+
+  .search-box i {
+    left: 17px;
+    font-size: 17px;
+  }
+
+  .btn {
+    padding: 13px 22px;
+    font-size: 14.5px;
+    border-radius: 16px;
+  }
+
+  .bottom-nav {
+    height: 68px;
+    bottom: 14px;
+    border-radius: 22px;
+    width: min(94%, 480px);
+  }
+
+  .bottom-nav a {
+    font-size: 11.5px;
+    gap: 4px;
+  }
+
+  .bottom-nav a i {
+    font-size: 21px;
+  }
+
+  input,
+  textarea,
+  select,
+  .form-control,
+  .form-select {
+    height: 50px;
+    padding: 13px 15px;
+    border-radius: 14px;
+    font-size: 15px;
+  }
+
+  textarea,
+  textarea.form-control {
+    min-height: 110px;
+  }
+
+  label {
+    margin: 16px 0 8px;
+    font-size: 13.5px;
+  }
+
+  .modal-content,
+  .premium-modal {
+    border-radius: 24px;
+    margin: 12px;
+  }
+
+  .modal-header {
+    padding: 18px 20px;
+  }
+
+  .modal-title {
+    font-size: 18px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }
+
+  .modal-footer {
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .modal .btn-secondary,
+  .modal .premium-primary-btn,
+  .modal .danger-button {
+    height: 48px;
+    min-width: 104px;
+    padding: 0 18px;
+    border-radius: 14px;
+  }
+
+  .badge {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .workout-category,
+  .muscle-badge {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  h3 { font-size: 1.2rem; }
+  h4 { font-size: 1.08rem; }
+
+  p {
+    line-height: 1.65;
+  }
+
+  .workout-banner {
+    top: 64px;
+    width: min(440px, 94%);
+    padding: 12px 14px;
+    gap: 12px;
+    border-radius: 16px;
+    font-size: 13.5px;
+  }
+
+  .workout-banner i,
+  .workout-banner .banner-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+
+  .workout-banner button {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
   #exerciseModal .modal-content,
   #exerciseInfoModal .modal-content {
     border-radius: 22px;
@@ -1944,5 +2073,37 @@ body.dark-mode .back-btn {
   #exerciseModal .modal-footer,
   #exerciseInfoModal .modal-footer {
     padding: 14px 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  .main-content {
+    padding: 18px 14px 118px;
+    gap: 24px;
+  }
+
+  .hero-section {
+    padding: 22px 16px;
+  }
+
+  .dashboard-card {
+    padding: 18px 16px;
+  }
+
+  .section-header {
+    margin-bottom: 18px;
+  }
+
+  .section-title h2 {
+    font-size: 17px;
+  }
+
+  .navbar {
+    height: 64px;
+    padding: 0 14px;
+  }
+
+  body {
+    padding-top: 64px;
   }
 }

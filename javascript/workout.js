@@ -168,38 +168,6 @@ function openExerciseInfo(exerciseId) {
    EXERCISE SEARCH / DISPLAY
 ========================================================= */
 
-function displayExercises(list = exerciseLibrary) {
-    if (!exerciseResults) return;
-
-    exerciseResults.innerHTML = "";
-
-    list.forEach(exercise => {
-        exerciseResults.innerHTML += `
-            <div class="card mb-2 exercise-card" data-id="${exercise.id}" style="cursor:pointer;">
-                <div class="card-body">
-                    <h5>${exercise.name}</h5>
-                    <small>${exercise.muscle} • ${exercise.equipment}</small>
-                </div>
-            </div>
-        `;
-    });
-
-    attachExerciseEvents();
-}
-
-function searchExercises() {
-    if (!exerciseSearch) return;
-
-    const keyword = exerciseSearch.value.toLowerCase().trim();
-
-    const filtered = exerciseLibrary.filter(exercise =>
-        exercise.name.toLowerCase().includes(keyword) ||
-        exercise.muscle.toLowerCase().includes(keyword) ||
-        exercise.equipment.toLowerCase().includes(keyword)
-    );
-
-    displayExercises(filtered);
-}
 
 /* =========================================================
    ADD / REMOVE EXERCISE
@@ -1158,9 +1126,7 @@ function migrateWorkoutExercises() {
    EVENT LISTENERS
 ========================================================= */
 
-if (exerciseSearch) {
-    exerciseSearch.addEventListener("input", searchExercises);
-}
+
 
 if (finishWorkoutBtn) {
     finishWorkoutBtn.addEventListener("click", finishWorkout);
@@ -1227,9 +1193,73 @@ if (!workout) {
     showToast("Workout not found.", "error");
 }
 
+// =========================================
+// SEARCH EXERCISES
+// =========================================
+
+if (exerciseSearch) {
+
+    exerciseSearch.addEventListener("input", () => {
+
+        const value = exerciseSearch.value
+            .toLowerCase()
+            .trim();
+
+        const filtered = exerciseLibrary.filter(exercise =>
+
+            String(exercise.name || "")
+                .toLowerCase()
+                .includes(value)
+
+            ||
+
+            String(exercise.muscle || "")
+                .toLowerCase()
+                .includes(value)
+
+            ||
+
+            String(exercise.equipment || "")
+                .toLowerCase()
+                .includes(value)
+
+        );
+
+        displayExercises(filtered, exerciseResults);
+
+    });
+
+}
+
+// =========================================
+// AUTO-FOCUS EXERCISE SEARCH
+// =========================================
+
+const exerciseModal =
+    document.getElementById("exerciseModal");
+
+if (exerciseModal) {
+
+    exerciseModal.addEventListener("shown.bs.modal", () => {
+
+        if (!exerciseSearch) return;
+
+        // Clear previous search
+        exerciseSearch.value = "";
+
+        // Show full exercise list again
+        displayExercises(exerciseLibrary, exerciseResults);
+
+        // Focus search input
+        exerciseSearch.focus();
+
+    });
+
+}
+
 migrateWorkoutExercises();
 displayWorkoutHeader();
-displayExercises();
+displayExercises(exerciseLibrary, exerciseResults);
 displayWorkoutExercises();
 updateWorkoutProgress();
 

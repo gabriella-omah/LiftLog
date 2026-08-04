@@ -7,6 +7,20 @@
    TODAY'S WORKOUT
 ==========================================================*/
 
+.featured-workout-image {
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.workout-progress-card {
+  animation: fadeUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+
 .workout-card {
   margin: -10px;
   margin-top: 0;
@@ -156,7 +170,7 @@
 }
 
 .planner-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
 }
 
@@ -446,7 +460,7 @@
 }
 
 .action-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 

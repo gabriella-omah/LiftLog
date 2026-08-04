@@ -782,6 +782,33 @@
 }
 
 /*==========================================================
+   COMPACT EXERCISE CARD
+==========================================================*/
+
+
+.compact-exercise-card {
+    margin-bottom: 0.75rem;
+}
+
+.compact-exercise-card .card-body {
+    padding: 0.5rem 0.9rem;
+}
+
+.compact-exercise-card h5 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.compact-exercise-card small {
+    display: block;
+    margin-top: 0.2rem;
+}
+
+.compact-exercise-card .btn {
+    min-width: 85px;
+}
+/*==========================================================
    DARK MODE
 ==========================================================*/
 

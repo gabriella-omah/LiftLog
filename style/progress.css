@@ -125,7 +125,7 @@
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
 }
 
@@ -273,7 +273,7 @@
 }
 
 .training-time-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 0 16px 35px rgba(15, 23, 42, 0.1);
 }
 
@@ -355,7 +355,7 @@
 .calendar-nav-btn:hover {
   background: var(--success);
   color: #fff;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: 0 8px 18px rgba(52, 199, 89, 0.25);
 }
 
@@ -408,7 +408,7 @@
 }
 
 .calendar-day:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   border-color: var(--success);
 }
@@ -769,7 +769,7 @@
 }
 
 .history-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-3Px);
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
 }
 
@@ -879,7 +879,7 @@
 }
 
 .pr-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3Ppx);
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 

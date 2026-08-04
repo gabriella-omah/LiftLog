@@ -139,7 +139,7 @@ mainFilters.forEach(button => {
         categoryContainer.innerHTML = "";
 
         if (type === "all") {
-            displayExercises(exerciseLibrary);
+            displayExercises(exerciseLibrary, library);
             return;
         }
 
@@ -189,7 +189,7 @@ document.addEventListener("click", e => {
         );
     }
 
-    displayExercises(filtered);
+    displayExercises(filtered, library);
 });
 
 // ========================================
@@ -206,7 +206,7 @@ if (search) {
             String(exercise.equipment || "").toLowerCase().includes(value)
         );
 
-        displayExercises(filtered);
+        displayExercises(filtered, library);
     });
 }
 
@@ -505,5 +505,6 @@ if (addExerciseBtn) {
 
 updateWeightUnit();
 displayExercises(
-    typeof exerciseLibrary !== "undefined" ? exerciseLibrary : []
+    typeof exerciseLibrary !== "undefined" ? exerciseLibrary : [],
+    library
 );

@@ -1,74 +1,8 @@
 /*==========================================================
    LIFTLOG SETTINGS PAGE CSS
    Premium • Clean • Cohesive
+   (Tokens + shared dark mode live in global style.css)
 ==========================================================*/
-
-/*==========================================================
-   ROOT VARIABLES
-==========================================================*/
-
-:root {
-  --bg: #F6F8FB;
-  --surface: #FFFFFF;
-  --surface-2: #F7F9FC;
-  --surface-3: #EEF2F8;
-
-  --text: #10131A;
-  --text-light: #5B6475;
-  --text-muted: #9099A8;
-
-  --primary: #5D8CFF;
-  --secondary: #7A5AF8;
-
-  --success: #34C759;
-  --warning: #F5B942;
-  --danger: #EF4444;
-
-  --border: #E8ECF3;
-
-  --glass: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.65);
-
-  --radius-sm: 14px;
-  --radius-md: 18px;
-  --radius-lg: 24px;
-  --radius-xl: 30px;
-
-  --shadow-xs: 0 2px 8px rgba(15, 23, 42, 0.04);
-  --shadow-sm: 0 10px 25px rgba(15, 23, 42, 0.06);
-  --shadow-md: 0 20px 45px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 35px 90px rgba(15, 23, 42, 0.12);
-
-  --primary-gradient: linear-gradient(135deg, #5D8CFF, #7A5AF8);
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/*==========================================================
-   DARK MODE
-==========================================================*/
-
-.dark-mode {
-  --bg: #090B10;
-  --surface: #141821;
-  --surface-2: #1B212C;
-  --surface-3: #232B37;
-
-  --text: #F5F7FA;
-  --text-light: #C3CBD8;
-  --text-muted: #8892A3;
-
-  --primary: #79A7FF;
-  --secondary: #9C84FF;
-
-  --success: #2BE59D;
-  --warning: #FFC857;
-  --danger: #FF6B6B;
-
-  --border: #2B3340;
-
-  --glass: rgba(18, 22, 30, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.05);
-}
 
 /*==========================================================
    HEADER
@@ -234,7 +168,9 @@
 .settings-arrow {
   font-size: 18px;
   color: var(--text-muted);
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
 }
 
 .settings-row:hover .settings-arrow {
@@ -363,12 +299,12 @@ textarea.premium-input {
   font-weight: 700;
   cursor: pointer;
   transition: 0.3s ease;
-  box-shadow: 0 16px 34px rgba(93, 140, 255, 0.22);
+  box-shadow: 0 12px 28px rgba(93, 140, 255, 0.2);
 }
 
 .premium-primary-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 22px 44px rgba(93, 140, 255, 0.28);
+  box-shadow: 0 18px 36px rgba(93, 140, 255, 0.26);
 }
 
 .premium-primary-btn:active {
@@ -462,9 +398,9 @@ textarea.premium-input {
 }
 
 .faq-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: rgba(93, 140, 255, 0.25);
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
 }
 
 .faq-item h4 {
@@ -534,12 +470,12 @@ textarea.premium-input {
   color: #fff;
   background: linear-gradient(135deg, #FF5A5F, #E53935);
   transition: 0.3s ease;
-  box-shadow: 0 16px 34px rgba(239, 68, 68, 0.22);
+  box-shadow: 0 12px 28px rgba(239, 68, 68, 0.2);
 }
 
 .danger-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 22px 46px rgba(239, 68, 68, 0.28);
+  box-shadow: 0 18px 36px rgba(239, 68, 68, 0.26);
 }
 
 .danger-button:active {
@@ -569,31 +505,24 @@ textarea.premium-input {
 ==========================================================*/
 
 .glass-panel {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .glass-panel:hover {
   transform: translateY(-2px);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
 }
 
 /*==========================================================
-   ANIMATIONS
+   ANIMATIONS (page-only)
 ==========================================================*/
 
-@keyframes settingsFade {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes avatarFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -602,7 +531,7 @@ textarea.premium-input {
 }
 
 /*==========================================================
-   DARK MODE OVERRIDES
+   DARK MODE (page-specific overrides only)
 ==========================================================*/
 
 .dark-mode .premium-form {
@@ -610,8 +539,8 @@ textarea.premium-input {
 }
 
 .dark-mode .premium-input {
-  background: #0F172A !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: var(--surface-2) !important;
+  border-color: var(--border) !important;
 }
 
 .dark-mode .premium-input:focus {
@@ -635,25 +564,28 @@ textarea.premium-input {
 }
 
 .dark-mode .modal-content {
-  background: #141821;
+  background: var(--surface);
 }
 
 .dark-mode .modal-header,
 .dark-mode .modal-footer {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--border);
 }
 
 .dark-mode .btn-secondary {
-  background: #232B37;
+  background: var(--surface-3);
 }
 
 .dark-mode .btn-secondary:hover {
-  background: #2C3645;
+  background: color-mix(in srgb, var(--surface-3) 80%, #fff 8%);
 }
-
 
 .dark-mode .btn-close {
   filter: invert(1);
+}
+
+.dark-mode .danger-row:hover {
+  background: rgba(255, 107, 107, 0.08);
 }
 
 /*==========================================================
@@ -667,20 +599,15 @@ select:focus-visible {
   box-shadow: 0 0 0 4px rgba(93, 140, 255, 0.18);
 }
 
-button {
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-}
-
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
 /*==========================================================
-   MOBILE – more padding & gap
+   MOBILE
 ==========================================================*/
 
 @media (max-width: 768px) {
-
   .setting-header {
     margin: 14px 0 0;
   }

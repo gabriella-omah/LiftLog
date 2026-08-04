@@ -326,7 +326,7 @@ body {
 }
 
 .hero-btn:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   color: #111827;
   box-shadow:
     0 16px 36px rgba(0, 0, 0, 0.22),
@@ -359,7 +359,7 @@ body {
 }
 
 .hero-btn:hover .hero-btn-icon {
-  transform: translateX(5px);
+  transform: translateX(3px);
 }
 
 .hero-btn-icon i {
@@ -710,4 +710,14 @@ body {
   .hero-btn-icon i {
     font-size: 20px;
   }
+
+  .glow,
+  .hero-btn-icon::before,
+  .hero-btn-icon::after {
+    animation: none;
+  }
+  .hero-btn:hover {
+    transform: none;
+}
+
 }

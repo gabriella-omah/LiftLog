@@ -378,11 +378,11 @@ function addWorkout() {
 // ========================================
 
 function searchWorkouts() {
-    const keyword = searchWorkout.value.toLowerCase().trim();
-
-    const filtered = workouts.filter(workout =>
-        String(workout.name || "").toLowerCase().includes(keyword)
-    );
+    const filtered = searchData({
+        data: workouts,
+        query: searchWorkout.value,
+        fields: ["name", "category", "goal", "day", "difficulty"]
+    });
 
     displayWorkouts(filtered);
     attachEditEvents();

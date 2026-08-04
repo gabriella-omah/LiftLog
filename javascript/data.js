@@ -213,49 +213,96 @@ const getWorkoutExercises = (exerciseIds, library) => {
         .filter(Boolean);
 };
 
-function displayExercises(list) {
-    if (!library) return;
+function displayExercises(list, container) {
+
+    if (!container) return;
 
     if (!Array.isArray(list) || list.length === 0) {
-        library.innerHTML = `
-            <div class="text-center py-4 text-muted">
+        container.innerHTML = `
+            <div class="text-center py-4">
                 No exercises found.
             </div>
         `;
         return;
     }
 
-    library.innerHTML = "";
+    container.innerHTML = "";
+
+    const isWorkoutPage = container.id === "exerciseResults";
 
     list.forEach(exercise => {
-        library.innerHTML += `
-            <section class="exercise-card">
-                <div class="card-body">
-                    <div class="exercise-info">
-                        <h4>${exercise.name}</h4>
-                        <p class="muscle-badge ${String(exercise.muscle || "")
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")}">
-                            ${exercise.muscle || ""}
-                        </p>
-                        <small>
-                            ${exercise.equipment || ""}
-                            •
-                            ${exercise.type || ""}
-                            •
-                            ${exercise.difficulty || ""}
-                        </small>
+
+        if (isWorkoutPage) {
+
+            // Compact layout for Workout page
+            container.innerHTML += `
+                <section class="exercise-card compact-exercise-card" data-id="${exercise.id}">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+
+                        <div class="exercise-info">
+                            <h5 class="mb-1">${exercise.name}</h5>
+
+                            <small class="text-muted">
+                                ${exercise.muscle || ""}
+                                ${exercise.equipment ? "• " + exercise.equipment : ""}
+                            </small>
+                        </div>
+
                         <button
-                            class="btn btn-success mt-3 w-100 viewExerciseBtn"
+                            class="btn btn-primary btn-sm viewExerciseBtn"
                             type="button"
                             data-id="${exercise.id}">
-                            View Exercise
+                            Add
                         </button>
+
                     </div>
-                </div>
-            </section>
-        `;
+                </section>
+            `;
+
+        } else {
+
+            // Original Library layout
+            container.innerHTML += `
+                <section class="exercise-card" data-id="${exercise.id}">
+                    <div class="card-body">
+
+                        <div class="exercise-info">
+
+                            <h4>${exercise.name}</h4>
+
+                            <p class="muscle-badge ${String(exercise.muscle || "")
+                                .toLowerCase()
+                                .replace(/\s+/g, "-")}">
+                                ${exercise.muscle || ""}
+                            </p>
+
+                            <small>
+                                ${exercise.equipment || ""}
+                                •
+                                ${exercise.type || ""}
+                                •
+                                ${exercise.difficulty || ""}
+                            </small>
+
+                            <button
+                                class="btn btn-primary mt-3 w-100 viewExerciseBtn"
+                                type="button"
+                                data-id="${exercise.id}">
+                                View Exercise
+                            </button>
+
+                        </div>
+
+                    </div>
+                </section>
+            `;
+        }
+
     });
+
+    if (typeof attachExerciseEvents === "function") {
+        attachExerciseEvents();
+    }
 }
 
 
@@ -708,6 +755,19 @@ function isThisWeek(dateString) {
     return date >= getStartOfWeek() && date < getEndOfWeek();
 }
 
+function replayFade(container) {
+  const cards = container.querySelectorAll(".exercise-card, .workout-card");
+  cards.forEach((card, i) => {
+    card.style.animation = "none";
+    // force reflow
+    void card.offsetWidth;
+    card.style.animation = "";
+    card.style.animationDelay = `${i * 0.04}s`;
+  });
+}
+
+// after displayExercises() / displayWorkouts():
+// replayFade(exerciseResults);
 // ========================================
 // Global Event Listeners
 // ========================================

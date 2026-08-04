@@ -34,7 +34,7 @@
 .library-filter:hover {
   background: rgba(93, 140, 255, 0.08);
   color: var(--primary);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .library-filter.active {
@@ -67,7 +67,7 @@
   border-color: var(--primary);
   color: var(--primary);
   background: rgba(93, 140, 255, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .sub-filter-btn.active {
@@ -102,7 +102,6 @@
   background: var(--surface);
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
-  animation: libraryFade 0.35s ease both;
 }
 
 .exercise-card::before {
@@ -118,7 +117,7 @@
 }
 
 .exercise-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
 }
 
