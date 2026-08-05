@@ -740,7 +740,6 @@ hr {
 }
 
 /* Card / list entrance — use on workout, exercise, stat cards */
-.exercise-card,
 .workout-card,
 .stat-card,
 .action-card,
@@ -817,6 +816,7 @@ hr {
 }
 
 /* Modal content soft settle (works with Bootstrap fade) */
+.exercise-card,
 .modal.fade .modal-dialog {
   transition:
     transform 0.32s var(--ease-out),
